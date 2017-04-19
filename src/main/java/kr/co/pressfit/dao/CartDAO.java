@@ -16,7 +16,7 @@ public interface CartDAO {
 	public void chkArr(List<String> List) throws Exception;
 	public void alldelete(String userId) throws Exception;
 	public List<CartVO> order(List<String> chkArr) throws Exception;
-
+	public List<CartVO> memberInfo(String id) throws Exception;
 }
 
  

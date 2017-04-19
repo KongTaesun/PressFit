@@ -70,7 +70,6 @@ width:100%
  		for (var i = 0; i < idx.length; i++) {
 			if (idx[i].checked == true) {
 				var list = new Array(idx[i].value);
-				alert(list);
 			}
 		}
  		 list;
