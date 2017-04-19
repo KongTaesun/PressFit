@@ -10,24 +10,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
      
     </head> 
-        
-      <%@ include file="/resources/include/mobile.jsp" %>  
-	      
+         
+      <%@ include file="/resources/include/mobile.jsp" %>   
+	       
         <!-- slider Area Start -->     
-		<div class="slider-area"> 
+		<div class="slider-area">    
 			<div class="bend niceties preview-1">  
 				<div id="ensign-nivoslider" class="slides">	   
 					<img src="resources/writer/img/slider/1.jpg" alt="" title="#slider-direction-1"  />
 					<img src="resources/writer/img/slider/2.jpg" alt="" title="#slider-direction-2"  />
-				</div>  
-				<!-- direction 1 -->   
+				</div>   
+				<!-- direction 1 -->    
 				<div id="slider-direction-1" class="text-center slider-direction">   
 					<!-- layer 1 -->    
 					<div class="layer-1">    
 						<h2 class="title-1">LET’S WRITE IMAGINE</h2>    
-					</div>    
+					</div>     
 					   
- 					<!-- layer 2 -->      
+ 					<!-- layer 2 -->       
 					<div class="layer-2"> 
 						<p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 					</div>  

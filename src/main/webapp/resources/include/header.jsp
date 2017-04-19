@@ -20,7 +20,7 @@
 		<!-- bootstrap v3.3.6 css --> 
         <link rel="stylesheet" href="${path}/resources/writer/css/bootstrap.min.css">
 		<!-- animate css -->
-        <link rel="stylesheet" href="${path}/resources/writer/css/animate.css">
+        <link rel="stylesheet" href="${path}/resources/writer/css/animate.css"> 
 		<!-- jquery-ui.min css --> 
         <link rel="stylesheet" href="${path}/resources/writer/css/jquery-ui.min.css">
 		<!-- meanmenu css -->
@@ -144,19 +144,27 @@
 										<li><a href="#">마이페이지</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
-												<li><a href="${path}/auth/providerid">카카오로그인</a></li>
-												<li><a href="about.html">주문내역</a></li>
-												<li><a href="about.html">찜</a></li>
-												<li><a href="about.html">취소및교환</a></li>
+												<li><a href="${path}/auth/providerid">카카오로그인</a></li> 
+												<li><a href="${path}/order/orderList.do">주문내역</a></li> 
+												<li><a href="about.html">취소및교환</a></li> 
 												<li><a href="about.html">1:1문의</a></li>
 											</ul></li>
 									</c:when>
-									<c:otherwise> 
+									<c:when test="${ kind  eq 'business'}">
+										<li><a href="#">사업자 페이지</a>
+											<ul class="sub-menu">
+											<li><a href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
+											<li><a href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
+											<li><a href="${path}/business/orderList.do">주문상품</a></li>
+											<li><a href="${path}/login/logout.do">로그아웃</a></li>
+											</ul>
+										</li>
+									</c:when> 
+									<c:otherwise>  
 										<li><a href="#">마이페이지</a> 
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-												<li><a href="about.html">주문내역</a></li>
-												<li><a href="about.html">찜</a></li>
+												<li><a href="${path}/order/orderList.do">주문내역</a></li>
 												<li><a href="about.html">취소및교환</a></li>
 												<li><a href="about.html">1:1문의</a></li>
 											</ul></li>
@@ -169,9 +177,7 @@
 									<li><a href="${path}/community/list.do">공지사항</a></li>
 									<li><a href="${path}/faq/list.do">FAQ</a></li>
 									
-									
-									
-									
+
 								</ul>
 							<li><a href="#">MYPAGE</a>
 								<ul class="sub-menu">
@@ -188,23 +194,25 @@
 									<li><a href="contact.html">CONTACT</a></li>
 								</ul></li>
 							<li><a href="#">사업자 페이지</a>
-								<ul class="sub-menu">
+								<ul class="sub-menu"> 
 									<li><a href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
 									<li><a href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
 									<li><a href="${path}/business/orderList.do">주문상품</a></li>
+									<li><a href="${path}/login/logout.do">로그아웃</a></li>
+									
 								</ul></li>
 						</ul>
 					</nav>
 				</div>                        
                     </div> 
                   
-                    <c:if test="${not empty sessionScope.id }" >
+                  <%--   <c:if test="${not empty sessionScope.id }" >
 						<span class="c_container" style="float:right;margin-right:10px;">
 						
 							[ ${sessionScope.id } 접속중 ]  <a href="${path}/${sessionScope.kind}/view.do?id=${sessionScope.id}">CONTACT</a>
 							 <a href="${path}/${sessionScope.kind }/list.do">memberlist</a>
 						</span>
-	    			</c:if>
+	    			</c:if> --%>
 	    			   
 	    			   
 	    			   
@@ -212,7 +220,9 @@
                         <div class="header-right">
                             <ul>
                                 <li>
-                                    <a href="${path}/login/login.do"><i class="flaticon-people"></i></a>
+                                    <a href="${path}/login/login.do"><i class="flaticon-people">
+                                        </i></a>
+                                                               
                                 </li>
                                 <li class="shoping-cart">
                                    <a href="${path}/shop/cart/cartList.do">
