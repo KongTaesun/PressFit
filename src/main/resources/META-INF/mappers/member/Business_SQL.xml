@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- java Resource/src/main/resources/mappers/
+    businessMapper.xml -->
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="business">
+	<select id="businessList" resultType="kr.co.pressfit.vo.BusinessVO">
+		select * from Cbusiness
+	</select>
+	 
+	<insert id="insertBusiness" parameterType="kr.co.pressfit.vo.BusinessVO">
+	insert into Cbusiness (id,pw,name,gender,birth,email,hp,address,companyname,companytp, representative, corporateregistrationnumber, typeofbusiness, itemsofbusiness, companyaddress ) 
+	values (#{id},#{pw},#{name},#{gender},#{birth},#{email},#{hp},#{address},
+	#{companyname}, #{companytp}, #{representative}, #{corporateregistrationnumber}, #{typeofbusiness}, #{itemsofbusiness}, #{companyaddress}  )	
+	
+	</insert>
+	
+	<select id="viewBusiness" resultType="kr.co.pressfit.vo.BusinessVO">
+	select * from Cbusiness
+	where id=#{id}
+	</select>
+	<!-- 회원정보 수정 -->
+	<update id="updateBusiness"> 
+	update Cbusiness
+	set pw=#{pw}, name=#{name}
+		,email=#{email}, updatedate=now()
+	where id=#{id}
+	</update> 
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteBusiness">
+		delete from Cbusiness 
+		where id=#{id} 
+	</delete>
+	<!-- 비밀번호 체크 -->	
+	<select id="checkPw" resultType="int">
+		select count(*) from Cbusiness
+		where id=#{id} and pw=#{pw}
+	</select>
+</mapper>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+

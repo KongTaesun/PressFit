@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- java Resource/src/main/resources/mappers/
+    memberMapper.xml -->
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="join">
+	<select id="memberList" 
+resultType="kr.co.pressfit.vo.MemberVO">
+		select * from Cmember
+		order by name
+	</select>
+	 
+	<insert id="insertMember"  parameterType="kr.co.pressfit.vo.MemberVO">
+	insert into Cmember 
+		(id,pw,name,gender,birth,email,hp,address) 
+	values  
+	    (#{id},#{pw},#{name},#{gender},#{birth},#{email},#{hp},#{address}  )	
+	</insert>
+	
+	<select id="viewMember" resultType=
+"kr.co.pressfit.vo.MemberVO">
+	select * from Cmember
+	where id=#{id}
+	</select>
+	<!-- 회원정보 수정 -->
+	<update id="updateMember"> 
+	update Cmember 
+	set pw=#{pw}, name=#{name}
+		,email=#{email}, updatedate=now()
+	where id=#{id}
+	</update>
+	<!-- 회원정보 삭제 -->
+	<delete id="deleteMember">
+		delete from Cmember
+		where id=#{id} 
+	</delete>
+	<!-- 비밀번호 체크 -->	
+	<select id="checkPw" resultType="int">
+		select count(*) from Cmember
+		where id=#{id} and pw=#{pw}
+	</select>
+</mapper>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
