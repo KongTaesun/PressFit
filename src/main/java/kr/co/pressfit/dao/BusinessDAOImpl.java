@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.pressfit.vo.BusinessVO;
+import kr.co.pressfit.vo.CartVO;
 
 
  
@@ -60,7 +61,21 @@ public class BusinessDAOImpl implements BusinessDAO {
 		if(count==1) result=true;
 		return result;
 	}
-
+	
+	@Override
+    public List<CartVO> orderList(String id) {
+        return sqlSession.selectList("business.orderList", id);
+    }
+    // 5. ��ٱ��� �ݾ� �հ�
+    @Override
+    public int sumMoney(String id) {
+        return sqlSession.selectOne("business.sumMoney", id);
+    }
+    // 결제
+    @Override
+	public List<CartVO> payment(List<String> chkArr) throws Exception {
+		return sqlSession.selectList("business.payment", chkArr);
+	}
 }
 
 

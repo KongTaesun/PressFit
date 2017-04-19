@@ -22,6 +22,7 @@ import kr.co.pressfit.service.BusinessService;
 import kr.co.pressfit.service.KeyboardService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.BusinessVO;
+import kr.co.pressfit.vo.CartVO;
 import kr.co.pressfit.vo.KeyboardVO;
 import kr.co.pressfit.vo.TMouseVO;
 
@@ -143,36 +144,81 @@ public class BusinessController {
 	}
 	
 	// 자신이 올린 제품리스트 (키보드)
-		@RequestMapping("keyboardList.do")
-		public ModelAndView keyboardList(@RequestParam(defaultValue = "title") String searchOption,
-				@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int minPrice,
-				@RequestParam(defaultValue = "200000") int maxPrice, @RequestParam(defaultValue = "1") int curPage, HttpSession session)
-				throws Exception {
-			String id = (String) session.getAttribute("id");
-			System.out.println(searchOption);
-			System.out.println(keyword);
-			System.out.println(id);
-			int count = keyboardservice.countArticle(searchOption, keyword, id);
-			System.out.println(count);
-			BoardPager boardPager = new BoardPager(count, curPage);
-			int start = boardPager.getPageBegin();
-			int end = boardPager.getPageEnd();
-			List<KeyboardVO> list = keyboardservice.listAll(start, end, searchOption, keyword, minPrice, maxPrice, id);
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("list", list); // list
-			map.put("count", count);
-			map.put("searchOption", searchOption);
-			map.put("keyword", keyword);
-			map.put("minPrice", minPrice);
-			map.put("maxPrice", maxPrice);
-			map.put("boardPager", boardPager);
+	@RequestMapping("keyboardList.do")
+	public ModelAndView keyboardList(@RequestParam(defaultValue = "title") String searchOption,
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int minPrice,
+			@RequestParam(defaultValue = "200000") int maxPrice, @RequestParam(defaultValue = "1") int curPage, HttpSession session)
+			throws Exception {
+		String id = (String) session.getAttribute("id");
+		System.out.println(searchOption);
+		System.out.println(keyword);
+		System.out.println(id);
+		int count = keyboardservice.countArticle(searchOption, keyword, id);
+		System.out.println(count);
+		BoardPager boardPager = new BoardPager(count, curPage);
+		int start = boardPager.getPageBegin();
+		int end = boardPager.getPageEnd();
+		List<KeyboardVO> list = keyboardservice.listAll(start, end, searchOption, keyword, minPrice, maxPrice, id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list); // list
+		map.put("count", count);
+		map.put("searchOption", searchOption);
+		map.put("keyword", keyword);
+		map.put("minPrice", minPrice);
+		map.put("maxPrice", maxPrice);
+		map.put("boardPager", boardPager);
+	
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map", map);
+		mav.setViewName(folder + "/keyboardList");
 
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("map", map);
-			mav.setViewName(folder + "/keyboardList");
-
-			return mav;
-		}
+		return mav;
+	}
+	
+	// 사업자 주문들어온 상품 리스트
+	@RequestMapping("orderList.do")
+    public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception{
+        String id = (String) session.getAttribute("id"); // session�� ����� userId
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<CartVO> list = businessService.orderList(id); // ��ٱ��� ���� 
+        int sumMoney = businessService.sumMoney(id); // ��ٱ��� ��ü �ݾ� ȣ��
+        // ��ٱ��� ��ü ��׿� ���� ��ۺ� ����
+        // ��۷�(10�����̻� => ����, �̸� => 2500��)
+        
+        int fee = sumMoney >= 100000 ? 0 : 2500;
+        map.put("list", list);                // ��ٱ��� ������ map�� ����
+        map.put("count", list.size());        // ��ٱ��� ��ǰ�� ����
+        map.put("sumMoney", sumMoney);        // ��ٱ��� ��ü �ݾ�
+        map.put("fee", fee);                 // ��۱ݾ�
+        map.put("allSum", sumMoney+fee);    // �ֹ� ��ǰ ��ü �ݾ�
+        mav.setViewName("business/orderList");    // view(jsp)�� �̸� ����
+        mav.addObject("map", map);            // map ���� ����
+        return mav;
+    }
+	
+	// 주문들어온 상품 결제
+	@RequestMapping(value="payment.do")
+	public ModelAndView order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
+    	System.out.println("컨트롤러"+chkArr);
+    	ModelAndView mav = new ModelAndView();
+    	String id = (String) session.getAttribute("id"); // session�� ����� userId
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<CartVO> list = businessService.payment(chkArr);
+        System.out.println("컨트롤러"+list);
+        int sumMoney = businessService.sumMoney(id); // ��ٱ��� ��ü �ݾ� ȣ��
+        
+        int fee = sumMoney >= 100000 ? 0 : 2500;
+        map.put("list", list);
+        /*map.put("count", list.size());*/
+        map.put("sumMoney", sumMoney);
+        map.put("fee", fee);
+        map.put("allSum", sumMoney+fee);
+        mav.setViewName("business/orderList");
+        mav.addObject("map", map);
+        return mav;
+    	
+		
+    }
 }
 
  
