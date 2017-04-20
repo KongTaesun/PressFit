@@ -15,11 +15,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Kakao {
-
+ 
 	
 	private static final String RestApiKey = "5a64502276ff74fd32b2263f101279ac";
 
-	private static final String Redirect_URL = "http://192.168.56.1:8080/pressfit/kakaologin";
+	private static final String Redirect_URL = "http://192.168.1.26:8080/pressfit/kakaologin";
 	
 	private static final String keyHost = "http://kauth.kakao.com";
 
