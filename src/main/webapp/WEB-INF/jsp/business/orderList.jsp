@@ -103,7 +103,8 @@ width:100%
 		<form name="frm" method="post" action="${path}/business/payment.do" onsubmit="return order();">
 		<!-- Cart Area Start -->
 		<div class="shopping-cart-area section-padding">
-		    <div class="container">
+		    <div class="col-md-1"></div>
+		    <div class="col-md-10">
 		        <div class="row">
 		            <div class="col-md-12">
                         <div class="wishlist-table-area table-responsive">
@@ -123,8 +124,9 @@ width:100%
 					                    <th>수량</th>
 					                    <th>금액</th>
 					                    <th>구매자</th>
-					                   	<th>상태</th>
-					                    <th>주문날짜</th>
+					                   	<th>주문날짜</th>
+					                   	<th><select value="상태"><option></option></select></th>
+
 					                    <!-- <th>취소</th> -->
 					                </tr>
                                 </thead>
@@ -153,21 +155,21 @@ width:100%
 					                    
 					                    
 					                    
-					                    <td style="width: 80px" align="right">
-					                        <fmt:formatNumber pattern="###,###,###" value="${row.price}"/>
+					                    <td align="right">
+					                        <fmt:formatNumber pattern="###,###,###" value="${row.price}"/> 원
 					                        <%-- <input type="hidden" name="price" value="${row.price}"> --%>
 					                    </td>
-					                    <td style="width: 60px" align="right">
-					                        <input type="text" style="width:10px; border:none;" name="amount" value="${row.amount}" readonly="readonly">개
-					                         <input type="hidden" id="amount" name="amount" value="${row.amount}">
+					                    <td align="right">
+					                        ${row.amount} 개
+					                         
 					                    </td>
 					                    
-					                    <td name="price" style="width: 100px" align="right">
+					                    <td name="price" align="right">
 					                    	<%-- <input type="hidden" value="${row.money}"/> --%>
 					                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
 					                    </td>
 					                    <td>
-					                    	${row.userId} 
+					                    	${row.user_id} 
 					                    </td>
 					                    <td>
 					                    	<c:if test="${row.shippingStatus eq 0}">
@@ -178,7 +180,8 @@ width:100%
 					                    	</c:if>
 					                    </td>
 					                    <td>
-					                   		 ${row.orderdate }
+					                   		 ${row.orderdate}
+					                   		 ${row.kind}
 					                    </td>
 					                    <%-- <td>
 					                        <a href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">
@@ -193,14 +196,10 @@ width:100%
 						    </c:choose>
                         </div>	
                         <div class="shopingcart-bottom-area">
-                            <a class="left-shoping-cart" href="${path}/tmouse/list.do">CONTINUE SHOPPING</a>
-                            <div class="shopingcart-bottom-area pull-right">
+                        	<input type="submit" id="order" name="order" value="배송시작"
+                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
+                            text-transform: uppercase;float: right !important;"/>
                             
-                            	
-                            
-								<!-- <a class="right-shoping-cart" href="#">장바구니 비우기</a> -->
-								<a class="right-shoping-cart" href="#">UPDATE SHOPPING CART</a>
-							</div>
                         </div>	                
 		            </div>
 		        </div>
@@ -212,31 +211,7 @@ width:100%
         <div class="discount-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="discount-main-area">
-                            <div class="discount-top">
-                                <h3>DISCOUNT CODE</h3>
-                                <p>Enter your coupon code if have one</p>
-                            </div>
-                            <div class="discount-middle">
-                                <input type="text" placeholder="">
-                                <a class="" href="#">APPLY COUPON</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="subtotal-main-area">
-                            <div class="subtotal-area">
-                                <h2>선택상품 금액 합계 : <span id="chicemoney">0</span>￦</h2>
-                            </div>
-                            <div class="subtotal-area">
-                                <h2>전체 주문금액<span>${map.allSum}￦</span></h2>
-                            </div>
-                            <input type="submit" id="order" name="order" value="결제승인"  />
-                            <p>Checkout With Multiple Addresses</p>
-                            
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

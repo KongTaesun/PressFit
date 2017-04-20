@@ -35,7 +35,7 @@ public class CartController {
     public ModelAndView insert(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
     	System.out.println(vo);
         String id = (String) session.getAttribute("id");
-        vo.setUserId(id);
+        vo.setUser_id(id);
 
         int count = cartService.countCart(vo.getIdx(), id);
         
@@ -111,7 +111,7 @@ public class CartController {
         // ���ڵ��� ���� ��ŭ �ݺ��� ����
         for(int i=0; i<idx.length; i++){
             CartVO vo = new CartVO();
-            vo.setUserId(userId);
+            vo.setUser_id(userId);
             vo.setAmount(amount[i]);
             vo.setIdx(idx[i]);
             cartService.modifyCart(vo);
