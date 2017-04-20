@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.pressfit.dao.BusinessDAOImpl;
 import kr.co.pressfit.vo.BusinessVO;
+import kr.co.pressfit.vo.CartVO;
 
  
 
@@ -66,5 +67,20 @@ public class BusinessServiceImpl implements BusinessService {
 	public boolean checkPw(String id, String pw) {
 		return BusinessDao.checkPw(id, pw); 
 	}
-
+	
+	@Override
+    public List<CartVO> orderList(String id) throws Exception {
+        return BusinessDao.orderList(id);
+    }
+    // 5. ��ٱ��� �ݾ� �հ�
+    @Override
+    public int sumMoney(String id) throws Exception {
+        return BusinessDao.sumMoney(id);
+    }
+    //결제
+    @Override
+	public List<CartVO> payment(List<String> chkArr) throws Exception {
+		return BusinessDao.payment(chkArr);
+		
+	}
 }

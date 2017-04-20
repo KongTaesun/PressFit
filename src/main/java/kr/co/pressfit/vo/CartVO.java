@@ -16,8 +16,17 @@ public class CartVO {
 	private String fullName;
 	private String kind;
 	private String crea_id;
+	private int shippingStatus;
+	private String orderdate;
+	private String methodpayment;
 	
 	
+	public String getMethodpayment() {
+		return methodpayment;
+	}
+	public void setMethodpayment(String methodpayment) {
+		this.methodpayment = methodpayment;
+	}
 	public String getCrea_id() {
 		return crea_id;
 	}
@@ -108,13 +117,27 @@ public class CartVO {
 	public void setMoney(String money) {
 		this.money = money;
 	}
+	public int getShippingStatus() {
+		return shippingStatus;
+	}
+	public void setShippingStatus(int shippingStatus) {
+		this.shippingStatus = shippingStatus;
+	}
+	public String getOrderdate() {
+		return orderdate;
+	}
+	public void setOrderdate(String orderdate) {
+		this.orderdate = orderdate;
+	}
 	@Override
 	public String toString() {
 		return "CartVO [idx=" + idx + ", cart_id=" + cart_id + ", amount=" + amount + ", price=" + price + ", dprice="
 				+ dprice + ", items_select=" + items_select + ", manufacturecompany=" + manufacturecompany
 				+ ", modelname=" + modelname + ", payment=" + payment + ", userId=" + userId + ", money=" + money
-				+ ", fullName=" + fullName + ", kind=" + kind + ", crea_id=" + crea_id + "]";
+				+ ", fullName=" + fullName + ", kind=" + kind + ", crea_id=" + crea_id + ", shippingStatus="
+				+ shippingStatus + ", orderdate=" + orderdate + ", methodpayment=" + methodpayment + "]";
 	}
+	
 	
 	
 }

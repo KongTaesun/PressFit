@@ -208,25 +208,20 @@ text-align: left;
 													</tbody>
 													<tfoot id="bbb">
 														<tr>
-															<td colspan="3">Subtotal</td>
+															<td colspan="2">전체 합계 금액 : </td>
+															<td><fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/>원</td>
 															<td></td>
 														</tr>
 														<tr>
-															<td colspan="3">Shipping Handling (Flat Rate - Fixed)</td>
-															<td><span class="check-price">$10.00</span></td>
+															<td colspan="2">배송비 (10만원 이상 배송비 무료)</td>
+															<td><span class="check-price"><fmt:formatNumber pattern="###,###,###" value="${map.fee}"/>원</span></td>
 														</tr>
 														<tr>
-															<td colspan="3"><strong>Grand Total</strong></td>
-															<td><strong><span class="check-price">$387.00</span></strong></td>
+															<td colspan="2"><strong>총 결제 금액 (전체 합계 금액 + 배송비)</strong></td>
+															<td><strong><fmt:formatNumber pattern="###,###,###" value="${map.allSum }"/>원</strong></td>
 														</tr>
 													</tfoot>
 												</table>
-											</div>
-											<div id="checkout-review-submit">
-												<div class="cart-btn-3" id="review-buttons-container">
-													<p class="left">Forgot an Item? <a href="#">Edit Your Cart</a></p>
-													<button type="submit" title="Place Order" class="btn btn-default"><span>Place Order</span></button>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -243,18 +238,18 @@ text-align: left;
 								<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 									<div class="panel-body no-padding">
 										<div class="payment-met">
-											<form action="#" id="payment-form">
+											
 												<ul class="form-list">
 													<li class="control">
-														<input type="radio" class="radio" title="Check / Money order" name="payment[method]" id="p_method_checkmo">
-														<label for="p_method_checkmo">Check / Money order </label>
+														<input type="radio" class="radio" name="무통장입금" id="p_method_checkmo">
+														<label for="p_method_checkmo">무통장입금</label>
 													</li>
 													<li class="control">
-														<input type="radio" class="radio" title="Credit Card (saved)" name="payment[method]" id="p_method_ccsave">
-														<label for="p_method_ccsave">Credit Card (saved) </label>
+														<input type="radio" class="radio" name="신용카드" id="p_method_ccsave">
+														<label for="p_method_ccsave">신용카드</label>
 													</li>
 												</ul>
-											</form>
+										
 											<div class="buttons-set">
 												<button class="btn btn-default">CONTINUE</button>
 											</div>
@@ -263,17 +258,6 @@ text-align: left;
 								</div>
 							</div>
 							</div>
-                        </div>
-                    </div>
-                    <div class="col-md-offset-1 col-md-3">
-                        <div class="checkout-widget">
-                            <h2 class="widget-title">YOUR CHECKOUT PROGRESS</h2>
-                            <ul>
-								<li><a href="#"><i class="fa fa-minus"></i> Billing Address</a></li>
-								<li><a href="#"><i class="fa fa-minus"></i> Shipping Address</a></li>
-								<li><a href="#"><i class="fa fa-minus"></i> Shipping Method</a></li>
-								<li><a href="#"><i class="fa fa-minus"></i> Payment Method</a></li>
-							</ul>
                         </div>
                     </div>
                 </div>
@@ -286,245 +270,82 @@ text-align: left;
 		    <div class="container">
 		        <div class="row">
 		        <div class="team-list indicator-style">
+		        	<c:forEach var="row" items="${map.list}" varStatus="i">
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/1.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">rokan tech</a>
-		                        <p>WRITER</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/2.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">mirinda</a>
-		                        <p>AUTHOR</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/3.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">jone doe</a>
-		                        <p>WRITER</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/4.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">nick kon</a>
-		                        <p>WRITER</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/2.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">mirinda</a>
-		                        <p>AUTHOR</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
 		            <div class="col-md-3">
 		                <div class="single-team-member">
-		                    <a href="#">
-		                        <img src="img/about/team/1.jpg" alt="">
-		                    </a>
+		                    <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                    <img src="${path}/resources/upload${row.fullName}" width="10px" height="100px"></a>
 		                    <div class="member-info">
-		                        <a href="#">rokan tech</a>
-		                        <p>WRITER</p>
+		                        <a href="${path}/${row.kind}/view.do?idx=${row.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
+					                        ${row.modelname}</a>
+		                        <p>${crea_id}</p>
 		                    </div>
 		                </div>
 		            </div>
+		            </c:forEach>
 		        </div>
 		        </div>
 		    </div>
 		</div>
 		<!-- Our Team Area End -->
-		<!-- Footer Area Start -->
-		<footer>
-		    <div class="footer-top-area">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-md-3 col-sm-8">
-		                    <div class="footer-left">
-		                        <a href="index.html">
-		                            <img src="img/logo-2.png" alt="">
-		                        </a>
-		                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-		                        <ul class="footer-contact">
-		                            <li>
-		                                <i class="flaticon-location"></i>
-		                                450 fifth Avenue, 34th floor. NYC
-		                            </li>
-		                            <li>
-		                                <i class="flaticon-technology"></i>
-		                                (+800) 123 4567 890
-		                            </li>
-		                            <li>
-		                                <i class="flaticon-web"></i>
-		                                info@bookstore.com
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 col-sm-4">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">Information</h2>
-		                        <ul class="footer-list">
-		                            <li><a href="about.html">About Us</a></li>
-		                            <li><a href="#">Delivery Information</a></li>
-		                            <li><a href="#">Privacy & Policy</a></li>
-		                            <li><a href="#">Terms & Conditions</a></li>
-		                            <li><a href="#">Manufactures</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 hidden-sm">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">My Account</h2>
-		                        <ul class="footer-list">
-		                            <li><a href="my-account.html">My Account</a></li>
-		                            <li><a href="account.html">Login</a></li>
-		                            <li><a href="cart.html">My Cart</a></li>
-		                            <li><a href="wishlist.html">Wishlist</a></li>
-		                            <li><a href="checkout.html">Checkout</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 hidden-sm">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">Shop</h2>
-		                        <ul class="footer-list">
-		                            <li><a href="#">Orders & Returns</a></li>
-		                            <li><a href="#">Search Terms</a></li>
-		                            <li><a href="#">Advance Search</a></li>
-		                            <li><a href="#">Affiliates</a></li>
-		                            <li><a href="#">Group Sales</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-3 col-sm-8">
-		                    <div class="single-footer footer-newsletter">
-		                        <h2 class="footer-title">Our Newsletter</h2>
-		                        <p>Consectetur adipisicing elit se do eiusm od tempor incididunt ut labore et dolore magnas aliqua.</p>
-		                        <form action="#" method="post">
-		                            <div>
-		                                <input type="text" placeholder="email address">
-		                            </div>
-		                            <button class="btn btn-search btn-small" type="submit">SUBSCRIBE</button>
-		                            <i class="flaticon-networking"></i>
-		                        </form>
-		                        <ul class="social-icon">
-		                            <li>
-		                                <a href="#">
-		                                    <i class="flaticon-social"></i>
-		                                </a>
-		                            </li>
-		                            <li>
-		                                <a href="#">
-		                                    <i class="flaticon-social-1"></i>
-		                                </a>
-		                            </li>
-		                            <li>
-		                                <a href="#">
-		                                    <i class="flaticon-social-2"></i>
-		                                </a>
-		                            </li>
-		                            <li>
-		                                <a href="#">
-		                                    <i class="flaticon-video"></i>
-		                                </a>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 col-sm-4 visible-sm">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">Shop</h2>
-		                        <ul class="footer-list">
-		                            <li><a href="#">Orders & Returns</a></li>
-		                            <li><a href="#">Search Terms</a></li>
-		                            <li><a href="#">Advance Search</a></li>
-		                            <li><a href="#">Affiliates</a></li>
-		                            <li><a href="#">Group Sales</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    <div class="footer-bottom">
-		        <div class="container">
-		            <div class="row">
-		                <div class="col-md-6">
-                            <div class="footer-bottom-left pull-left">
-                                <p>Copyright &copy; 2016 <span><a href="#">DevItems</a></span>. All Right Reserved.</p>
-                            </div>
-		                </div>
-		                <div class="col-md-6">
-		                    <div class="footer-bottom-right pull-right">
-		                        <img src="img/paypal.png" alt="">
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		
-		
-		
 		<!-- ====================================================================================================================================================================== -->
 		<!-- ====================================================================================================================================================================== -->
 		<!-- ====================================================================================================================================================================== -->
-		<!-- Discount Area Start -->
-        <div class="discount-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="discount-main-area">
-                            <div class="discount-top">
-                                <h3>DISCOUNT CODE</h3>
-                                <p>Enter your coupon code if have one</p>
-                            </div>
-                            <div class="discount-middle">
-                                <input type="text" placeholder="">
-                                <a class="" href="#">APPLY COUPON</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="subtotal-main-area">
-                            <div class="subtotal-area">
-                                <h2>선택상품 금액 합계 : <span id="chicemoney">0</span>￦</h2>
-                            </div>
-                            <div class="subtotal-area">
-                                <h2>전체 주문금액<span>${map.allSum}￦</span></h2>
-                            </div>
-                            <input type="submit" id="order" name="order" value="결제하기"  />
-                            <p>Checkout With Multiple Addresses</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Discount Area End -->
 </form>
 		<%@ include file="/resources/include/footer.jsp" %>
 </body>

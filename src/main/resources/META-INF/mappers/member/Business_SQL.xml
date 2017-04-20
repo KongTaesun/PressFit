@@ -38,6 +38,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from Cbusiness
 		where id=#{id} and pw=#{pw}
 	</select>
+	
+	 <!-- 2. 주문 들어온 목록 -->
+    <select id="orderList" resultType="kr.co.pressfit.vo.CartVO">
+        SELECT *,(price * amount) money 
+        FROM cart_board
+        where payment ='Y'
+        and shippingStatus = '0'
+        AND crea_id = #{id}
+         
+        ORDER BY cart_id
+    </select>
+    
+    
+    <!-- 3. 주문 전체 금액 -->
+    <select id="sumMoney" resultType="int">
+        SELECT ifnull(SUM(c.price * c.amount), 0) money
+        FROM cart_board c, TMouseBoard p
+        WHERE c.idx = p.idx AND c.payment = 'N' and c.shippingStatus = '0' AND c.crea_id = #{id} 
+    </select>
+    
+    <!-- 결제 -->
+    <update id="payment" parameterType="String">
+		update cart_board
+		set shippingStatus = '1'
+		where cart_id in
+		<foreach item="item" collection="list"
+     					open="(" separator="," close=")">
+       				#{item}
+		</foreach>
+	</update>
 </mapper>
 
  

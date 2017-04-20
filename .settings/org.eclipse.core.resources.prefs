@@ -7,8 +7,14 @@ encoding//src/main/java/kr/co/pressfit/controller/CartController.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/controller/Gallery.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/controller/Keyboard.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/controller/MemberController.java=UTF-8
+<<<<<<< HEAD
 encoding//src/main/java/kr/co/pressfit/dao/CartDAOImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/service/CartServiceImpl.java=UTF-8
+=======
+encoding//src/main/java/kr/co/pressfit/controller/SearchController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/recommendation/recoview.jsp=UTF-8
+>>>>>>> f8b4b8d000041a7016acb255e78fb10f31d34f05
 encoding//src/main/webapp/resources/include/footer.jsp=UTF-8
 encoding//src/main/webapp/resources/include/mobile.jsp=UTF-8
 encoding//src/main/webapp/resources/writer/style.css=UTF-8
+encoding/<project>=UTF-8
