@@ -50,11 +50,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ORDER BY cart_id
     </select>
     
+    
     <!-- 3. 주문 전체 금액 -->
     <select id="sumMoney" resultType="int">
         SELECT ifnull(SUM(c.price * c.amount), 0) money
         FROM cart_board c, TMouseBoard p
-        WHERE c.idx = p.idx AND c.payment = 'N' AND c.crea_id = #{id} 
+        WHERE c.idx = p.idx AND c.payment = 'N' and c.shippingStatus = '0' AND c.crea_id = #{id} 
     </select>
     
     <!-- 결제 -->

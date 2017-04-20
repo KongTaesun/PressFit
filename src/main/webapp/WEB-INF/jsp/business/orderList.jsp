@@ -3,8 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품장바구니</title>
+<title>주문내역</title>
 <%@ include file="/resources/include/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 .image{
     height: 100px;
@@ -121,7 +122,10 @@ width:100%
 					                    <th>단가</th>
 					                    <th>수량</th>
 					                    <th>금액</th>
-					                    <th>취소</th>
+					                    <th>구매자</th>
+					                   	<th>상태</th>
+					                    <th>주문날짜</th>
+					                    <!-- <th>취소</th> -->
 					                </tr>
                                 </thead>
                                 <tbody>
@@ -153,7 +157,7 @@ width:100%
 					                        <fmt:formatNumber pattern="###,###,###" value="${row.price}"/>
 					                        <%-- <input type="hidden" name="price" value="${row.price}"> --%>
 					                    </td>
-					                    <td style="width: 80px" align="right">
+					                    <td style="width: 60px" align="right">
 					                        <input type="text" style="width:10px; border:none;" name="amount" value="${row.amount}" readonly="readonly">개
 					                         <input type="hidden" id="amount" name="amount" value="${row.amount}">
 					                    </td>
@@ -163,9 +167,23 @@ width:100%
 					                        <fmt:formatNumber pattern="###,###,###" value="${row.money}"/>
 					                    </td>
 					                    <td>
+					                    	${row.userId} 
+					                    </td>
+					                    <td>
+					                    	<c:if test="${row.shippingStatus eq 0}">
+					                    		결제확인
+					                    	</c:if>
+					                    	<c:if test="${row.shippingStatus eq 1}">
+					                    		배송중
+					                    	</c:if>
+					                    </td>
+					                    <td>
+					                   		 ${row.orderdate }
+					                    </td>
+					                    <%-- <td>
 					                        <a href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">
 					                        <input type="hidden" name="cart_id" value="${row.cart_id}">삭제</a>
-					                    </td>
+					                    </td> --%>
 					                </tr>
 					                </c:forEach>
                                 </tbody>
