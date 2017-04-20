@@ -11,7 +11,7 @@ public class CartVO {
 	private String manufacturecompany;
 	private String modelname;
 	private String payment;
-	private String userId;
+	private String user_id;
 	private String money;
 	private String fullName;
 	private String kind;
@@ -99,11 +99,11 @@ public class CartVO {
 	public void setPayment(String payment) {
 		this.payment = payment;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getDprice() {
 		return dprice;
@@ -133,10 +133,11 @@ public class CartVO {
 	public String toString() {
 		return "CartVO [idx=" + idx + ", cart_id=" + cart_id + ", amount=" + amount + ", price=" + price + ", dprice="
 				+ dprice + ", items_select=" + items_select + ", manufacturecompany=" + manufacturecompany
-				+ ", modelname=" + modelname + ", payment=" + payment + ", userId=" + userId + ", money=" + money
+				+ ", modelname=" + modelname + ", payment=" + payment + ", user_id=" + user_id + ", money=" + money
 				+ ", fullName=" + fullName + ", kind=" + kind + ", crea_id=" + crea_id + ", shippingStatus="
 				+ shippingStatus + ", orderdate=" + orderdate + ", methodpayment=" + methodpayment + "]";
 	}
+	
 	
 	
 	

@@ -198,24 +198,15 @@ public class BusinessController {
 	
 	// 주문들어온 상품 결제
 	@RequestMapping(value="payment.do")
-	public ModelAndView order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
+	public String order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
     	System.out.println("컨트롤러"+chkArr);
     	ModelAndView mav = new ModelAndView();
     	String id = (String) session.getAttribute("id"); // session�� ����� userId
         Map<String, Object> map = new HashMap<String, Object>();
         List<CartVO> list = businessService.payment(chkArr);
         System.out.println("컨트롤러"+list);
-        int sumMoney = businessService.sumMoney(id); // ��ٱ��� ��ü �ݾ� ȣ��
         
-        int fee = sumMoney >= 100000 ? 0 : 2500;
-        map.put("list", list);
-        /*map.put("count", list.size());*/
-        map.put("sumMoney", sumMoney);
-        map.put("fee", fee);
-        map.put("allSum", sumMoney+fee);
-        mav.setViewName("business/orderList");
-        mav.addObject("map", map);
-        return mav;
+        return "redirect:orderList.do";
     	
 		
     }
