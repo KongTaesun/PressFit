@@ -15,13 +15,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         ORDER BY cart_id
     </select>
 
+
+	<select id="orderDeatail" resultType="kr.co.pressfit.vo.CartVO" parameterType="java.util.List">
+		SELECT *,(price * amount) money 
+        FROM cart_board
+        where cart_id in
+        <foreach item="item" collection="list"
+     					open="(" separator="," close=")">
+       				#{item}
+		</foreach>
+                 
+        ORDER BY cart_id
+	</select>
+	
+	<select id="memberInfo" resultType="kr.co.pressfit.vo.MemberVO">
+        SELECT *
+        FROM Cmember
+        where id = #{id}
+    </select>
+	
+	<update id="test" parameterType="map">
+		update cart_board c
+		set c.payment = 'Y',
+			c.orderdate = now(),
+			c.methodpayment = #{methodpayment}
+		where cart_id in
+		<foreach item="item" collection="list"
+     					open="(" separator="," close=")">
+       				#{item}
+		</foreach>
+		
+	</update>
+
+
 </mapper>
-
- 
-
-
-
-
 
 
 

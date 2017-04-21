@@ -25,7 +25,7 @@
 					<!-- layer 1 -->    
 					<div class="layer-1">    
 						<h2 class="title-1">LET’S WRITE IMAGINE</h2>    
-					</div>     
+					</div>      
 					   
  					<!-- layer 2 -->       
 					<div class="layer-2"> 
