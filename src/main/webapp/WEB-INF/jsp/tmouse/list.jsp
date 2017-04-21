@@ -21,13 +21,7 @@
 									+ "&searchOption=${map.searchOption}"
 									+ "&keyword=${map.keyword}";
 						});
-			/* 	$("#btndelete").click(function(){
-					location.href = "${path}/tmouse/delete.do?idx="+${map.idx}
-					
-				}) */
-				
-				
-				
+			 					
 				$( "#slider-range" ).slider({
 	                  range: true,
 	                  min: 0, 
@@ -45,7 +39,6 @@
 	                     var max = $( "#slider-range" ).slider( "values", 1 );
 	               location.href="${path}/tmouse/list.do?searchOption=price&minPrice="+min+"&maxPrice="+max;
 	            });
-				
 			
 			});
 	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
@@ -215,11 +208,11 @@
 										</c:if>
 									<c:if test="${sessionScope.id != null}">
 										<button type="button" id="btnWrite">글쓰기</button>
-									<!-- 	<button type="button" id="btndelete">글삭제</button> -->
 									</c:if>							
 									</ul>
 							</div>
 						</div>
+
 						<div class="tab-content">
 							<div class="row tab-pane fade in active" id="home">
 								<div class="shop-single-product-area">

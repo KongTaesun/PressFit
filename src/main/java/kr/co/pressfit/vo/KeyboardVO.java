@@ -60,10 +60,17 @@ public class KeyboardVO {
 	private int hit_cnt;
 	private int recnt;
 	private String content;
+	private int amount;
 	
 	
 	
-    public String getContent() {
+    public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public String getContent() {
 		return content;
 	}
 	public void setContent(String content) {
@@ -432,24 +439,24 @@ public class KeyboardVO {
 				+ ", connectionmethod=" + connectionmethod + ", bluetoothversion=" + bluetoothversion + ", battery="
 				+ battery + ", keyarray=" + keyarray + ", goldbraidedUSBterminal=" + goldbraidedUSBterminal
 				+ ", interface1=" + interface1 + ", contactsystem=" + contactsystem + ", bouttonswitch=" + bouttonswitch
-				+ ", keyswitch=" + keyswitch + ", keyboardform=" + keyboardform + ", functionkey=" + functionkey
-				+ ", macrofunction=" + macrofunction + ", simultaneousinput=" + simultaneousinput
-				+ ", responsevelocity=" + responsevelocity + ", windowskeylocking=" + windowskeylocking
-				+ ", fullkeylock=" + fullkeylock + ", stepsculture2=" + stepsculture2 + ", vikistyle=" + vikistyle
-				+ ", metalhousing=" + metalhousing + ", foreignlanguageonly=" + foreignlanguageonly
-				+ ", keycapmaterial=" + keycapmaterial + ", keycapburningmethod=" + keycapburningmethod
-				+ ", ledbacklight=" + ledbacklight + ", fabriccable=" + fabriccable + ", removablecable="
-				+ removablecable + ", multipairing=" + multipairing + ", builtinusbhub=" + builtinusbhub
-				+ ", cherrystylestabilizer=" + cherrystylestabilizer + ", lifewaterproofing=" + lifewaterproofing
-				+ ", touchpad=" + touchpad + ", trackball=" + trackball + ", motionsensor=" + motionsensor
-				+ ", smartkeyboard=" + smartkeyboard + ", switchrudder=" + switchrudder + ", siliconkeyskin="
-				+ siliconkeyskin + ", plasticcover=" + plasticcover + ", Integralwristrest=" + Integralwristrest
-				+ ", detachablewristrest=" + detachablewristrest + ", keycapremover=" + keycapremover
-				+ ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps + ", width=" + width
-				+ ", length=" + length + ", height=" + height + ", weight=" + weight + ", cablelength=" + cablelength
-				+ ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel=" + showdel + ", hit_cnt=" + hit_cnt
-				+ ", recnt=" + recnt + ", content=" + content + ", fullName=" + fullName + "]";
+				+ ", keyswitch=" + keyswitch + ", switch1=" + switch1 + ", keyboardform=" + keyboardform
+				+ ", functionkey=" + functionkey + ", macrofunction=" + macrofunction + ", simultaneousinput="
+				+ simultaneousinput + ", responsevelocity=" + responsevelocity + ", windowskeylocking="
+				+ windowskeylocking + ", fullkeylock=" + fullkeylock + ", stepsculture2=" + stepsculture2
+				+ ", vikistyle=" + vikistyle + ", metalhousing=" + metalhousing + ", foreignlanguageonly="
+				+ foreignlanguageonly + ", keycapmaterial=" + keycapmaterial + ", keycapburningmethod="
+				+ keycapburningmethod + ", ledbacklight=" + ledbacklight + ", fabriccable=" + fabriccable
+				+ ", removablecable=" + removablecable + ", multipairing=" + multipairing + ", builtinusbhub="
+				+ builtinusbhub + ", cherrystylestabilizer=" + cherrystylestabilizer + ", lifewaterproofing="
+				+ lifewaterproofing + ", touchpad=" + touchpad + ", trackball=" + trackball + ", motionsensor="
+				+ motionsensor + ", smartkeyboard=" + smartkeyboard + ", switchrudder=" + switchrudder
+				+ ", siliconkeyskin=" + siliconkeyskin + ", plasticcover=" + plasticcover + ", Integralwristrest="
+				+ Integralwristrest + ", detachablewristrest=" + detachablewristrest + ", keycapremover="
+				+ keycapremover + ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps
+				+ ", width=" + width + ", length=" + length + ", height=" + height + ", weight=" + weight
+				+ ", cablelength=" + cablelength + ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel="
+				+ showdel + ", hit_cnt=" + hit_cnt + ", recnt=" + recnt + ", content=" + content + ", amount=" + amount
+				+ ", fullName=" + fullName + "]";
 	}
-	
 	
 }

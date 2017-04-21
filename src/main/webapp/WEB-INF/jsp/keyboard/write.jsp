@@ -16,7 +16,7 @@
             var d_price = $("#d_price").val();
             var manufacturecompany = $("#manufacturecompany").val();
             var registrationyear = $("#registrationyear").val();
-            if(modelname == "" && price == "" && d_price == "" && manufacturecompany == "" && registrationyear == ""){
+            if(modelname == "" && price == "" && d_price == "" && manufacturecompany == "" && registrationyear == "" && amount == ""){
                 alert("필수 사항을 입력해주세요~!!!!!");
                 document.form1.modelname.focus();
                 return;
@@ -140,6 +140,9 @@
 													<p class="form-row">
 														<input type="text" id="registrationyear" name="registrationyear" placeholder="제조년월  *" />
 													</p>
+													<p class="form-row">
+														<input type="text" id="amount" name="amount" placeholder="수량  *" />  
+													</p> 
 												</div>											
 											</div>
 										</div>

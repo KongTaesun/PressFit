@@ -74,12 +74,12 @@
 	    INSERT INTO TMouseBoard (idx,modelname,price,d_price,manufacturecompany,registrationyear,responsivemethod,numberofbuttons,connectionmethod,bluetoothversion,battery,
 	    goldbraidedusbterminal,interface1,wheeladjustment,mousesensor,maximumsensitivity,changedpi,scanrate,accelerationsupport,responsespeed,macrofunction,
 		softwaresupport,builtinmemory,wristtunnelsyndrome,ledtuningproducts,mousecoating,gamingmouse,weightapplication,customfirmwaresupport,possiblechangeparts,dpishift,
-		multipairing,switch1,length,width,height,weight,crea_id,showdel,content) 
+		multipairing,switch1,length,width,height,weight,crea_id,showdel,content,amount) 
 		
 		VALUES (#{idx},#{modelname},#{price},#{d_price},#{manufacturecompany},#{registrationyear},#{responsivemethod},#{numberofbuttons},#{connectionmethod},#{bluetoothversion},#{battery},
 	    #{goldbraidedusbterminal},#{interface1},#{wheeladjustment},#{mousesensor},#{maximumsensitivity},#{changedpi},#{scanrate},#{accelerationsupport},#{responsespeed},#{macrofunction},
 	    #{softwaresupport},#{builtinmemory},#{wristtunnelsyndrome},#{ledtuningproducts},#{mousecoating},#{gamingmouse},#{weightapplication},#{customfirmwaresupport},#{possiblechangeparts},#{dpishift},
-		#{multipairing},#{switch1},#{length},#{width},#{height},#{weight},#{crea_id},'y',#{content});
+		#{multipairing},#{switch1},#{length},#{width},#{height},#{weight},#{crea_id},'y',#{content},#{amount});
 	 </insert>
 	 
     <update id="cmt">

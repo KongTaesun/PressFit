@@ -44,9 +44,16 @@ public class TMouseVO {
     private String fullName;
 	private int recnt;
 	private String content;
+	private int amount;
 	
 	
 	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -322,7 +329,7 @@ public class TMouseVO {
 				+ ", dpishift=" + dpishift + ", multipairing=" + multipairing + ", switch1=" + switch1 + ", length="
 				+ length + ", width=" + width + ", height=" + height + ", weight=" + weight + ", analysis=" + analysis
 				+ ", crea_id=" + crea_id + ", hit_cnt=" + hit_cnt + ", fullName=" + fullName + ", recnt=" + recnt
-				+ ", content=" + content + "]";
+				+ ", content=" + content + ", amount=" + amount + "]";
 	}
 		
 }

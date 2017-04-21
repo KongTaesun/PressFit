@@ -146,7 +146,9 @@ public class TMouse {
     // 05. 寃뚯떆湲� �궘�젣
     @RequestMapping("delete.do")
     public String delete(@RequestParam int idx) throws Exception{
-        tmouseservice.delete(idx);
+        System.out.println(idx);
+    	tmouseservice.delete(idx);
+        
         return "redirect:list.do";
     }
     // 寃뚯떆湲� 泥⑤��뙆�씪 紐⑸줉 留ㅽ븨

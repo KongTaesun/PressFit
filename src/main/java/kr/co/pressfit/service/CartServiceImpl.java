@@ -53,9 +53,9 @@ public class CartServiceImpl implements CartService {
     }
     // 8.
 	@Override
-	public void chkArr(List<String> List) throws Exception {
+	public void chkArr(List<String> List, String methodpayment) throws Exception {
 		System.out.println("占쏙옙占쏙옙占쏙옙占쏙옙"+List);
-		cartDao.chkArr(List);
+		cartDao.chkArr(List, methodpayment);
 	}
 	// 9.
 	@Override
@@ -73,9 +73,5 @@ public class CartServiceImpl implements CartService {
 
 		return cartDao.memberInfo(id);
 	}
-	
-	
-	
-	
 }
 

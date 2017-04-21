@@ -58,11 +58,13 @@ public class CartDAOImpl implements CartDAO {
     }
     // 8. 占쏙옙袂占쏙옙占� 체크
 	@Override
-	public void chkArr(List<String> List) throws Exception {
+	public void chkArr(List<String> List, String methodpayment) throws Exception {
 		for(int i=0; i<List.size(); i++){
-			System.out.println("DAO1:"+List.get(i));
+			Map<String, Object> map = new HashMap<String, Object>();
 			String num = List.get(i);
-			sqlSession.update("cart.payment", num);
+			map.put("num", num);
+			map.put("methodpayment", methodpayment);
+			sqlSession.update("cart.payment", map);
 		}
 
 	}

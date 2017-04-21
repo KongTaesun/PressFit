@@ -74,14 +74,14 @@
 	    ledbacklight,fabriccable,removablecable,multipairing,builtinusbhub,cherrystylestabilizer,lifewaterproofing,
 	    touchpad,trackball,motionsensor,smartkeyboard,switchrudder,siliconkeyskin,plasticcover,Integralwristrest,
 	    detachablewristrest,keycapremover,cleaningbrush,replacementkeycaps,width,length,height,weight,cablelength,
-		crea_id,showdel,content)
+		crea_id,showdel,content, amount)
 		
 		VALUES (#{idx},#{modelname},#{price},#{d_price},#{manufacturecompany},#{registrationyear},#{connectionmethod},#{bluetoothversion},#{battery},#{keyarray},
 	    #{goldbraidedUSBterminal},#{interface1},#{contactsystem},#{switch1},#{keyswitch},#{keyboardform},#{functionkey},#{macrofunction},#{simultaneousinput},#{responsevelocity},
 	    #{windowskeylocking},#{fullkeylock},#{stepsculture2},#{vikistyle},#{metalhousing},#{foreignlanguageonly},#{keycapmaterial},#{keycapburningmethod},#{ledbacklight},#{fabriccable},
 		#{removablecable},#{multipairing},#{builtinusbhub},#{cherrystylestabilizer},#{lifewaterproofing},#{touchpad},
 		#{trackball},#{motionsensor},#{smartkeyboard},#{switchrudder},#{siliconkeyskin},#{plasticcover},#{Integralwristrest},#{detachablewristrest},#{keycapremover},#{cleaningbrush},
-		#{replacementkeycaps},#{width},#{length},#{height},#{weight},#{cablelength},#{crea_id},'y',#{content});
+		#{replacementkeycaps},#{width},#{length},#{height},#{weight},#{cablelength},#{crea_id},'y',#{content}, #{amount});
 	 </insert>
 	 
     <update id="cmt">

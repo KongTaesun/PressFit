@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -121,10 +122,11 @@ public class CartController {
     
     // 5. 占쏙옙袂占쏙옙占� 체크 占쏙옙占쏙옙
     @RequestMapping(value="/payment.do")
-	public ModelAndView cartCheck(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
+	public ModelAndView cartCheck(@RequestParam(value="check") List<String> chkArr, HttpSession session, @RequestParam(value="methodpayment") String methodpayment) throws Exception{
     	String userId = (String) session.getAttribute("id");
     	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
-		cartService.chkArr(chkArr);
+    	Map<String, Object> map = new HashMap<String, Object>();
+    	cartService.chkArr(chkArr, methodpayment);
 		
 		return mv;
 	}

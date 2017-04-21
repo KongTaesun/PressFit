@@ -27,9 +27,10 @@
 		    }
 		    // 댓글의 수가 0이면 삭제처리
 		    if(confirm("삭제하시겠습니까?")){
-		        document.form1.action = "${path}/tmouse/delete.do?idx=${dto.idx}";
-		        document.form1.submit();
+		        location.href = "${path}/tmouse/delete.do?idx=${dto.idx}";
 		        }
+		    else{
+		    }
 		});
 
         
