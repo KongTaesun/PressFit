@@ -434,6 +434,7 @@ p {
 	
 </style>
 </head>
+<body>
         <!-- slider Area Start -->     
 		<div class="slider-area"> 
 			<div class="bend niceties preview-1">  
