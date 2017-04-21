@@ -5,30 +5,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>제품군 작성</title>
 <%@ include file="/resources/include/header.jsp" %>
-<%@ include file="/resources/include/sessionCheck.jsp" %>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
-    $(document).ready(function(){
-        $("#btnSave").click(function(){
-            var modelname = $("#modelname").val();
-            var price = $("#price").val();
-            var d_price = $("#d_price").val();
-            var manufacturecompany = $("#manufacturecompany").val();
-            var registrationyear = $("#registrationyear").val();
-            if(modelname == "" && price == "" && d_price == "" && manufacturecompany == "" && registrationyear == ""){
-                alert("필수 사항을 입력해주세요~!!!!!");
-                document.form1.modelname.focus();
-                return;
-            }
-            document.form1.submit();
-        });
+$(document).ready(function(){
+    $("#btnSave").click(function(){
+        var modelname = $("#modelname").val();
+        var price = $("#price").val();
+        var d_price = $("#d_price").val();
+        var manufacturecompany = $("#manufacturecompany").val();
+        var registrationyear = $("#registrationyear").val();
+        var amount =$("#amount").val();
+        if(modelname == "" && price == "" && d_price == "" && manufacturecompany == "" && registrationyear == "" && amount == ""){
+            alert("필수 사항을 입력해주세요~!!!!!");
+            document.form1.modelname.focus();
+            return;
+        }
+        document.form1.submit();
+    }); 
+    
         // 파일 업로드 영역에서 기본효과를 제한
         $(".fileDrop").on("dragenter dragover", function(e){
             e.preventDefault(); // 기본효과 제한
         });
         // 드래그해서 드롭한 파일들 ajax 업로드 요청
-        $(".fileDrop").on("drop", function(e){
+         $(".fileDrop").on("drop", function(e){
             e.preventDefault(); // 기본효과 제한
             var files = e.originalEvent.dataTransfer.files; // 드래그한 파일들
             var file = files[0]; // 첫번째 첨부파일
@@ -55,7 +56,7 @@
                     $("#form1").append(str);
             }
         });
-    });
+    }); 
         $(".uploadedList").on("click", "#fileDel", function(event){
             alert("이미지 삭제")
             var that = $(this); // 여기서 this는 클릭한 span태그
@@ -75,6 +76,7 @@
             });
         });
 });
+
 </script>
 
 </head>
@@ -101,16 +103,13 @@
 		<!-- My Account Area Start -->
 		<div class="my-account-area section-padding">
 			<div class="container">
-				<form method="post" name="form1" id="form1" action="${path}/tmouse/insert.do">
+				<form method="POST" name="form1" id="form1" action="${path}/tmouse/updateinsert.do">
 				<div class="section-title2">
-					<h2>--제 품 등 록 수 정 --</h2>
-					<p>귀사의 제품 등록을 환영합니다 ♥</p>
+					<p>수정♥</p>
 				</div>
 				<div class="row">
 					<div class="addresses-lists">
 						<div class="col-xs-12 col-sm-12 col-lg-12">
-							
-							
 							<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 								<div class="panel panel-default">
 									<div class="panel-heading" role="tab" id="headingOne">
@@ -128,20 +127,24 @@
 												<p class="coupon-text">제품 등록을 위한 필수사항들을 입력해주세요.</p>
 												<p class="required">*기본사항</p>
 													<p class="form-row">
-														<input type="text" id="modelname" name="modelname" placeholder="제목 겸 모델명 *" value="${dto.modelname}">
+														<input type="text" id="modelname" name="modelname" placeholder="제목 겸 모델명 *" value="${dto.modelname}" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="price" name="price" placeholder="가격 *" value="${dto.price}">
+														<input type="text" id="price" name="price" placeholder="가격 *" value="${dto.price}" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="d_price" name="d_price" placeholder="배송비 *"  value="${dto.d_price}"/>
+														<input type="text" id="d_price" name="d_price" placeholder="배송비 *" value="${dto.d_price}" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="manufacturecompany" name="manufacturecompany" placeholder="제조사  *"  value="${dto.manufacturecompany}"/>
+														<input type="text" id="manufacturecompany" name="manufacturecompany" placeholder="제조사  *" value="${dto.manufacturecompany}" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="registrationyear" name="registrationyear" placeholder="제조년월  *"  value="${dto.registrationyear}"/>
+														<input type="text" id="registrationyear" name="registrationyear" placeholder="제조년월  *"  value="${dto.registrationyear}" />
 													</p>
+													<p class="form-row">
+														<input type="text" id="amount" name="amount" placeholder="수량  *"  value="${dto.amount}" />  
+													</p> 
+													<input type="hidden" id="idx" name="idx" value="${dto.idx }" />
 												</div>											
 											</div>
 										</div>
@@ -165,7 +168,6 @@
 												<div class="shop-select">
 													<label>responsivemethod <span class="required">*</span></label>
 													<select id="responsivemethod" name="responsivemethod" >
-														<option value="${dto.responsivemethod}"selected="selected">선택</option>
 														<option value="광">광</option>
 														<option value="레이저">레이저</option>
 														<option value="적외선">적외선</option>
@@ -174,7 +176,6 @@
 												<div class="shop-select">
 													<label>numberofbuttons <span class="required">*</span></label>
 													<select id="numberofbuttons" name="numberofbuttons" >
-														<option value="${dto.numberofbuttons}"selected="selected">선택</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
@@ -192,22 +193,20 @@
 												<div class="shop-select">
 													<label>connectionmethod <span class="required">*</span></label>
 													<select id="connectionmethod" name="connectionmethod" >
-														<option value="${dto.connectionmethod}"selected="selected">선택</option>
 														<option value="유선">유선</option>
 														<option value="무선">무선</option>
 														<option value="유.무선">유.무선</option>
 													</select> 									
 												</div>
 												<p class="form-row">
-													<input type="text" id="bluetoothversion" name="bluetoothversion" placeholder="bluetoothversion *"  value="${dto.bluetoothversion}"/>
+													<input type="text" id="bluetoothversion" name="bluetoothversion" placeholder="bluetoothversion *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="battery" name="battery" placeholder="battery *"  value="${dto.battery}"/>
+													<input type="text" id="battery" name="battery" placeholder="battery *" />
 												</p>
 												<div class="shop-select">
-													<label>goldbraidedusbterminal <span class="required">*</span></label>
-													<select id="goldbraidedusbterminal" name="goldbraidedusbterminal" >
-														<option value="${dto.goldbraidedusbterminal}"selected="selected">선택</option>
+													<label>goldbraidedUSBterminal <span class="required">*</span></label>
+													<select id="goldbraidedUSBterminal" name="goldbraidedUSBterminal" >
 														<option value="">no</option>
 														<option value="금도금">yes</option>
 													</select> 									
@@ -215,7 +214,6 @@
 												<div class="shop-select">
 													<label>interface1<span class="required">*</span></label>
 													<select id="interface1" name="interface1" >
-														<option value="${dto.interface1}"selected="selected">선택</option>
 														<option value="USB">USB</option>
 														<option value="other">other</option>
 													</select> 									
@@ -223,41 +221,38 @@
 												<div class="shop-select">
 													<label>wheeladjustment<span class="required">*</span></label>
 													<select id="wheeladjustment" name="wheeladjustment" >
-														<option value="${dto.wheeladjustment}"selected="selected">선택</option>
 														<option value="상하">상하</option>
 														<option value="상하좌우">상하좌우</option>
 													</select> 									
 												</div>
 												<p class="form-row">
-													<input type="text" id="mousesensor" name="mousesensor" placeholder="mousesensor *"  value="${dto.mousesensor}"/>
+													<input type="text" id="mousesensor" name="mousesensor" placeholder="mousesensor *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="maximumsensitivity" name="maximumsensitivity" placeholder="maximumsensitivity(DPI) *"  value="${dto.maximumsensitivity}"/>
+													<input type="text" id="maximumsensitivity" name="maximumsensitivity" placeholder="maximumsensitivity(DPI) *" />
 												</p>
 												<div class="shop-select">
 													<label>changedpi<span class="required">*</span></label>
 													<select id="changedpi" name="changedpi" >
-														<option value="${dto.changedpi}"selected="selected">선택</option>
 														<option value="불가능">불가능</option>
 														<option value="변경가능">변경가능</option>
 													</select> 									
 												</div>
 												<p class="form-row">
-													<input type="text" id="scanrate" name="scanrate" placeholder="scanrate(FPS) *"  value="${dto.scanrate}"/>
+													<input type="text" id="scanrate" name="scanrate" placeholder="scanrate(FPS) *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="accelerationsupport" name="accelerationsupport" placeholder="accelerationsupport *"  value="${dto.accelerationsupport}"/>
+													<input type="text" id="accelerationsupport" name="accelerationsupport" placeholder="accelerationsupport *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="responsespeed" name="responsespeed" placeholder="responsespeed *"  value="${dto.responsespeed}"/>
+													<input type="text" id="responsespeed" name="responsespeed" placeholder="responsespeed *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="macrofunction" name="macrofunction" placeholder="macrofunction *"  value="${dto.macrofunction}"/>
+													<input type="text" id="macrofunction" name="macrofunction" placeholder="macrofunction *" />
 												</p>
 												<div class="shop-select">
 													<label>softwaresupport<span class="required">*</span></label>
 													<select id="softwaresupport" name="softwaresupport" >
-														<option value="${dto.softwaresupport}"selected="selected">선택</option>
 														<option value="소프트웨어 미지원">소프트웨어 미지원</option>
 														<option value="소프트웨어 지원">소프트웨어 지원</option>
 													</select> 									
@@ -265,81 +260,79 @@
 												<div class="shop-select">
 													<label>builtinmemory<span class="required">*</span></label>
 													<select id="builtinmemory" name="builtinmemory" >
-														<option value="${dto.builtinmemory}"selected="selected">선택</option>
 														<option value="메모리없음">메모리없음</option>
 														<option value="내장 메모리">내장 메모리</option>
 													</select> 									
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="wristtunnelsyndrome" name="wristtunnelsyndrome"  value="${dto.wristtunnelsyndrome}"/></span>
+														<span><input type="checkbox" id="wristtunnelsyndrome" name="wristtunnelsyndrome" /></span>
 														wristtunnelsyndrome
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="ledtuningproducts" name="ledtuningproducts"  value="${dto.ledtuningproducts}"/></span>
+														<span><input type="checkbox" id="ledtuningproducts" name="ledtuningproducts" /></span>
 														ledtuningproducts
 													</label>
 												</div>
 												<p class="form-row">
-													<input type="text" id="mousecoating" name="mousecoating" placeholder="mousecoating *"  value="${dto.mousecoating}"/>
+													<input type="text" id="mousecoating" name="mousecoating" placeholder="mousecoating *" />
 												</p>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="gamingmouse" name="gamingmouse"  value="${dto.gamingmouse}"/></span>
+														<span><input type="checkbox" id="gamingmouse" name="gamingmouse" /></span>
 														gamingmouse
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="weightapplication" name="weightapplication"  value="${dto.weightapplication}"/></span>
+														<span><input type="checkbox" id="weightapplication" name="weightapplication" /></span>
 														weightapplication
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="customfirmwaresupport" name="customfirmwaresupport" value="${dto.customfirmwaresupport}"/></span>
+														<span><input type="checkbox" id="customfirmwaresupport" name="customfirmwaresupport"  /></span>
 														customfirmwaresupport
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="possiblechangeparts" name="possiblechangeparts"  value="${dto.possiblechangeparts}"/></span>
+														<span><input type="checkbox" id="possiblechangeparts" name="possiblechangeparts" /></span>
 														possiblechangeparts
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="dpishift" name="dpishift"  value="${dto.dpishift}"/></span>
+														<span><input type="checkbox" id="dpishift" name="dpishift" /></span>
 														dpishift
 													</label>
 												</div>
 												<div class="checkbox">
 													<label>
-														<span><input type="checkbox" id="multipairing" name="multipairing"  value="${dto.multipairing}"/></span>
+														<span><input type="checkbox" id="multipairing" name="multipairing" /></span>
 														multipairing
 													</label>
 												</div>
 												<div class="shop-select">
 													<label>switch<span class="required">*</span></label>
 													<select id="switch1" name="switch1" >
-														<option value="${dto.switch1}"selected="selected">선택</option>
 														<option value="OMRON 스위치">OMRON 스위치</option>
 														<option value="무소음 스위치">무소음 스위치</option>
 													</select> 									
 												</div>
 												<p class="form-row">
-													<input type="text" id="length" name="length" placeholder="length(mm) *"  value="${dto.length}"/>
+													<input type="text" id="length" name="length" placeholder="length(mm) *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="width" name="width" placeholder="width(mm) *"  value="${dto.width}"/>
+													<input type="text" id="width" name="width" placeholder="width(mm) *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="height" name="height" placeholder="height(mm) *"  value="${dto.height}"/>
+													<input type="text" id="height" name="height" placeholder="height(mm) *" />
 												</p>
 												<p class="form-row">
-													<input type="text" id="weight" name="weight" placeholder="weight(g) *"  value="${dto.weight}"/>
+													<input type="text" id="weight" name="weight" placeholder="weight(g) *" />
 												</p>
 											</div>											
 										</div>
@@ -360,7 +353,7 @@
 												<h1 class="heading-title">제품내용</h1>
 												<p class="coupon-text">니 제품의 내용을 적으셍.</p>
 												<p class="required">*Content</p>
-													<textarea name="content" id="content" rows="4" cols="80"  value="${dto.content}"placeholder="내용을 입력해주세요"></textarea>
+													<textarea name="content" id="content" rows="4" cols="80" placeholder="${dto.idx }"></textarea>
 													<script>
 													CKEDITOR.replace("content",{
 														filebrowserUploadUrl : "${path}/tmouse/imageUpload.do"
