@@ -1,46 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en" class="no-js">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 작성</title>
-<%@ include file="/resources/include/header.jsp"%>
-<script src="<c:url value='/resources/include/commons.js' />"></script>
+
+  <link rel="stylesheet" href="<c:url value='/resources/recommendation/css/style.css' />" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <script type='text/javascript' src="<c:url value='/resources/recommendation/jquery.particleground.js' />"></script>
+
+  <%@ include file="/resources/include/header.jsp"%>
+  <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
-$(document).ready(function() {
-	//search();
-	 $("#btnCmt").click(function(){
-     	location.href="${path}/keyboard/cmt.do?idx=${dto.idx}";
-     });
-	});
-	
-function search(){
-	var amount=$("#amount").val();
-	if(amount < 1){
-		alert("수량을 체크해주세요!");
-	} else{
-		$.ajax({
-            type: "get",
-            url: "${path}/shop/cart/insert.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=keyboard&crea_id=${dto.crea_id}",
-            success: function(){
-            	var result = confirm("장바구니에 추가되었습니다. 바로 확인하시겠습니까?");
-        		if(result){
-        			location.href="${path}/shop/cart/cartList.do";
-        		} else{
-        		}
-            },
-            error: function(){
-            	alert("실패");
-            }
-        });
-	}
-}  
+document.addEventListener('DOMContentLoaded', function () {
+	  particleground(document.getElementById('particles'), {
+	    dotColor: '#32B5F3',
+	    lineColor: '#32B5F3'
+	  });
+	  var intro = document.getElementById('intro');
+	  intro.style.marginTop = - intro.offsetHeight / 2 + 'px';
+	}, false);
 </script>
 
 </head>
 <body>
 
+<div id="particles">
+  <div id="intro">
+    
+  </div>
+</div>
+
 </body>
-<%@ include file="/resources/include/footer.jsp" %>
+	<%@ include file="/resources/include/footer.jsp" %>
 </html>
