@@ -165,7 +165,7 @@ public class TMouse {
     	String fileName = upload.getOriginalFilename();
     	tmouseservice.addAttach(fileName);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");
@@ -175,8 +175,8 @@ public class TMouse {
     			+callback+",'"+fileUrl+"','dwqwsqqq')"
     					+ "</script>");
     	printwriter.flush();
-    	out.close();
-    }
+    	out.close(); 
+    } 
 
     // 4. Ajax�뾽濡쒕뱶 �럹�씠吏� 留ㅽ븨
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.GET)

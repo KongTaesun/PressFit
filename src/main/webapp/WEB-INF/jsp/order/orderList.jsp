@@ -78,8 +78,7 @@
                                          <a> ${row.crea_id}</a> 
                                         </td>
                                          <td class="order_state">
-                                         
-                                         
+
                                          <a>  
                                          <c:if test="${row.shippingStatus eq 0}">
                                          	배송전
@@ -88,7 +87,7 @@
                                          	배송중
                                          </c:if>
                                          <c:if test="${row.shippingStatus eq 2}">
-                                         	수령
+                                         	배송완료
                                          </c:if>                                         
                                          </a>
                                       
@@ -96,12 +95,15 @@
                                     </tr>                               
                                   </c:forEach>                                   
                                 </tbody>
-                            </table>
+                            </table> 
                             </c:otherwise>
                             </c:choose>
                         </div>
-                          <input type="submit" id="order" name="order" value="결제확인"  />
-                          
+                          <input type="submit" id="order1" name="order1" value="배송조회(배송확인)"  />
+                          <input type="submit" id="order2" name="order2" value="반품신청"  />
+                          <input type="submit" id="order3" name="order3" value="교환문의"  />
+                          <input type="submit" id="order4" name="order4" value="상품평 쓰기"  />
+                           
                         </div>
                     </div>
                 </div>
