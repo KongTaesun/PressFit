@@ -241,11 +241,11 @@ text-align: left;
 											
 												<ul class="form-list">
 													<li class="control">
-														<input type="radio" class="radio" name="무통장입금" id="p_method_checkmo">
+														<input type="radio" class="radio" name="methodpayment" id="methodpayment" value="무통장입금">
 														<label for="p_method_checkmo">무통장입금</label>
 													</li>
 													<li class="control">
-														<input type="radio" class="radio" name="신용카드" id="p_method_ccsave">
+														<input type="radio" class="radio" name="methodpayment" id="methodpayment" value="신용카드">
 														<label for="p_method_ccsave">신용카드</label>
 													</li>
 												</ul>

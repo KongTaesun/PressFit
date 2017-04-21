@@ -10,7 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT *,(price * amount) money 
         FROM cart_board
         where payment ='Y' 
-        and shippingStatus = '0'
         AND user_id = #{id}
          
         ORDER BY cart_id

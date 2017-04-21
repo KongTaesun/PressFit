@@ -22,7 +22,7 @@
             #{amount},
             #{modelname},
             manufacturecompany,
-            #{userId},
+            #{user_id},
             #{fullName},
             #{kind},
             #{crea_id}
@@ -34,7 +34,7 @@
         SELECT *,(price * amount) money 
         FROM cart_board
         where payment ='N'
-        AND user_id = #{userID}
+        AND user_id = #{user_id}
          
         ORDER BY cart_id
     </select>
@@ -43,14 +43,14 @@
     <select id="sumMoney" resultType="int">
         SELECT ifnull(SUM(c.price * c.amount), 0) money
         FROM cart_board c, TMouseBoard p
-        WHERE c.idx = p.idx AND c.payment = 'N' AND c.user_id = #{userId} 
+        WHERE c.idx = p.idx AND c.payment = 'N' AND c.user_id = #{user_id} 
     </select>
     
     <!-- 4. 장바구니 수정 -->
     <update id="modifyCart">
         UPDATE cart_board    
         SET amount = #{amount} 
-        WHERE user_id= #{userId} 
+        WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </update>
     
@@ -62,7 +62,7 @@
     <!-- 5.1 장바구니 전체 삭제 -->
     <delete id="alldeleteCart">
         DELETE FROM cart_board 
-        WHERE user_id = #{userId}
+        WHERE user_id = #{user_id}
     </delete>
     
     
@@ -70,14 +70,14 @@
     <select id="countCart" resultType="int">
         SELECT COUNT(*)
         FROM cart_board
-        WHERE user_id= #{userId} 
+        WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </select>
     <!-- 7. 장바구니에 동일한 상품이 존재하면 수정 -->
     <update id="updateCart">
         UPDATE cart_board 
         SET amount = amount + #{amount} 
-        WHERE user_id= #{userId} 
+        WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </update>
 	<!-- 8. 장바구니에서 체크된 항목만 결제 버튼 클릭시 결제완료 -->
@@ -97,7 +97,7 @@
        				#{item}
 		</foreach>
         
-<!--         AND user_id = #{userID} -->
+<!--         AND user_id = #{user_id} -->
          
         ORDER BY cart_id
 	</select>

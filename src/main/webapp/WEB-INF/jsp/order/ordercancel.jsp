@@ -46,23 +46,23 @@
                             <table>
                                 <thead>
 					                 <tr>
-					                  
                                         <th class="order_date">주문일자</th>
                                         <th class="order_name">주문 상품 정보</th>
                                         <th class="order_count">상품수량</th>
                                         <th class="order_price">금액</th>
                                         <th class="order_customer">판매자</th>
                                         <th class="order_state">주문상태</th>                                     
-
+                                        <th class="order_comform">확인/취소/리뷰</th>
+                                 
                              </tr>
                                 </thead>
                                 <tbody>
 					                <c:forEach var="row" items="${map.list}" varStatus="i">
                                     <tr>
-                                       
                                         <td class="order_date">
-                                           <a> ${row.orderdate}
-                                           </a>  
+                                            <a>
+                                            ${row.orderdate} 
+                                            </a>
                                         </td>
                                         <td class="order_name">
                                          <a> ${row.modelname}</a>
@@ -91,7 +91,21 @@
                                          	수령
                                          </c:if>                                         
                                          </a>
-                                      
+                                        </td>
+                                        
+                                         <td class="order_comform">
+                                         
+                                         
+                              
+                     
+                                
+                                
+                                
+                                <a class="" href="#">[배송취소하기]</a>
+                                         
+                               
+                   
+                                        </td>
                              
                                     </tr>                               
                                   </c:forEach>                                   
@@ -100,8 +114,7 @@
                             </c:otherwise>
                             </c:choose>
                         </div>
-                          <input type="submit" id="order" name="order" value="결제확인"  />
-                          
+                       
                         </div>
                     </div>
                 </div>
