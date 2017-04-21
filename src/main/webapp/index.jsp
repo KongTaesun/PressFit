@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
      
-    </head> 
+    </head>  
          
       <%@ include file="/resources/include/mobile.jsp" %>   
 	       
@@ -17,9 +17,9 @@
 		<div class="slider-area">    
 			<div class="bend niceties preview-1">  
 				<div id="ensign-nivoslider" class="slides">	   
-					<img src="resources/writer/img/slider/1.jpg" alt="" title="#slider-direction-1"  />
-					<img src="resources/writer/img/slider/2.jpg" alt="" title="#slider-direction-2"  />
-				</div>   
+					<img src="${path}/resources/writer/img/bigpicture/main2.jpg" alt="" title="#slider-direction-1"  />
+					<%-- <img src="${path}/resources/writer/img/bigpicture/main1.jpg" alt="" title="#slider-direction-2"  /> --%>
+				</div>    
 				<!-- direction 1 -->    
 				<div id="slider-direction-1" class="text-center slider-direction">   
 					<!-- layer 1 -->    

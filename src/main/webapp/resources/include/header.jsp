@@ -52,8 +52,8 @@
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="header-logo">
                             <a href="${path}/index.jsp">
-                                <img src="${path}/resources/writer/img/logo.png" alt="">  
-                            </a>
+                                <img src="${path}/resources/writer/img/logo/logo.png" alt="">   
+                            </a> 
                         </div>
                     </div>
                     <div class="col-md-1 col-sm-6 visible-sm  col-xs-6">
@@ -63,7 +63,7 @@
                                     <a href="${path}/login/login.do"><i class="flaticon-people"></i></a>
                                 </li>
                                 <li class="shoping-cart">
-                                    <a href="${path}/shop/cart/cartList.do">  
+                                    <a href="${path}/shop/cart/cartList.do">   
                                         <i class="flaticon-shop"></i>
                                         <span>2</span>
                                     </a>
@@ -147,7 +147,7 @@
 												<li><a href="${path}/auth/providerid">카카오로그인</a></li> 
 												<li><a href="${path}/order/orderList.do">주문내역</a></li> 
 												<li><a href="about.html">취소및교환</a></li> 
-												<li><a href="about.html">1:1문의</a></li>
+												<li><a href="${path}/order/orderList.do">1:1문의</a></li>
 											</ul></li>
 									</c:when>
 									<c:when test="${ kind  eq 'business'}">

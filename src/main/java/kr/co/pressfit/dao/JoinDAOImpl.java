@@ -60,7 +60,7 @@ public class JoinDAOImpl implements JoinDAO {
 		return result;
 	}
 
-}
+} 
 
 
 

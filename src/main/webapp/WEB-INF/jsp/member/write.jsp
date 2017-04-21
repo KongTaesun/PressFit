@@ -11,6 +11,20 @@
 </script>
 
 <script>
+
+
+$("#allCheck").click(function(){
+	
+	if($("#allCheck").prop("checked")){
+		$("input[type=checkbox]").prop("checked", true);
+	}
+	else{
+		$("input[type=checkbox]").prop("checked", false);
+	}
+})
+
+		
+
 	$(document).ready(function() {
 		$('#btn1').click(function() {
 			$.ajax({
@@ -75,9 +89,9 @@
 								type="hidden" name="redirect" value="/ko/signup"> <input
 								type="hidden" name="marketing_email" value="false">
 						<div id="signup-agree" class="create-account-form">
-							<label> <input class="agree-all" type="checkbox" name="chk-all"> <i></i> <span>전체동의</span> <!-- 볼드처리 -->
+							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> <!-- 볼드처리 -->
 							</label>
-
+ 
 							<div class="signup-agree-labelwrap">
 								<label><input class="agree-tos" type="checkbox"
 									name="agree-tos"> <i></i> <span> 이용약관<b>
@@ -157,7 +171,7 @@
 					<p class="form-row">
 						성별 <input type="checkbox" name="gender" placeholder="남자" value="0" /> <input
 							type="checkbox" name="gender" placeholder="여자" value="1" />
-					</p>
+					</p> 
 
 					<p class="form-row">
 						생년월일 <input type="text" name="birth" placeholder="생년월일" />
@@ -183,10 +197,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 
 </body>

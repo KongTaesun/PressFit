@@ -31,7 +31,6 @@ width:100%
 			alldelete();
 		});
 
-		
 		$("#allCheck").click(function(){
 			
 			if($("#allCheck").prop("checked")){

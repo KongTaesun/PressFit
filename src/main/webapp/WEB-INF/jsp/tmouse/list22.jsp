@@ -49,11 +49,6 @@ $("#btnPrice").click(
 	}
 	
 	
-	
-	
-	
-	
-	
 </script>
 </head>
 <body>
