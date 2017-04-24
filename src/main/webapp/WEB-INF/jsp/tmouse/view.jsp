@@ -5,7 +5,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글</title>
 <%@ include file="/resources/include/header.jsp" %>
+<style>
+.table-data-sheet1 {
+  background: #f3f3f3 none repeat scroll 0 0;
+  border: 1px solid #d6d4d4;
+  width: 100%;
+}
+.table-data-sheet1 tr {
+  border-top: 1px solid #d6d4d4;
+  border-bottom: 1px solid #d6d4d4;
+}
+.table-data-sheet1 tr th {
+  background: #E3FFDB none repeat scroll 0 0;
+  border : 1px solid #d6d4d4;
+  padding: 10px 20px 11px;
+  color: #FF0000;
+}
+.table-data-sheet1 tr td{
+  border-right: 1px solid #d6d4d4;
+  color: #333333;
+  font-weight: 400;
+  width: 20%;
+  padding: 10px 20px 11px;
+}
+.table-data-sheet1 tr td:first-child{
+  font-weight: 900;
+}
+.table-data-sheet1 tr td:nth-child(3){
+  font-weight: 900;
+}
 
+
+</style>
 
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
@@ -343,9 +374,9 @@
                         <div class="p-details-tab-content">
                             <div class="p-details-tab">
                                 <ul class="p-details-nav-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">Description</a></li>
-                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Review</a></li>
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Tab</a></li>
+                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">판매자 제공</a></li>
+                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">스펙</a></li>
+                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">댓글</a></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
@@ -354,26 +385,128 @@
                                     <p>${dto.content}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="data">
-                                    <table class="table-data-sheet">
+                                    <table class="table-data-sheet1">
                                         <tbody>
                                             <tr class="odd">
-                                                <td>Compositions</td>
-                                                <td>Cotton</td>
+                                                <td>제조사</td>
+                                                <td>${dto.manufacturecompany}</td>
+                                                <td>등록년월</td>
+                                                <td>${dto.registrationyear}</td>
                                             </tr>
                                             <tr class="even">
-                                                <td>Styles</td>
-                                                <td>Casual</td>
+                                                <td>광/볼 마우스</td>
+                                                <td>${dto.responsivemethod}</td>
+                                                <td>버튼갯수</td>
+                                                <td>${dto.numberofbuttons }</td>
                                             </tr>
-                                            <tr class="odd">
-                                                <td>Properties</td>
-                                                <td>Short Sleeve</td>
+                                             <tr class="odd">
+                                                <td>유/무선</td>
+                                                <td>${dto.connectionmethod }</td>
+                                                <td>블루투스 버전</td>
+                                                <td>${dto.bluetoothversion }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>배터리</td>
+                                                <td>${dto.battery }</td>
+                                                <td>인터페이스</td>
+                                                <td>${dto.interface1 }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>휠 조정</td>
+                                                <td>${dto.wheeladjustment }</td>
+                                                <td>마우스 센서</td>
+                                                <td>${dto.mousesensor }</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">기능</th>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>최대 감도</td>
+                                                <td>${dto.maximumsensitivity }</td>
+                                                <td>DPI 변경</td>
+                                                <td>${dto.changedpi }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>스캔율</td>
+                                                <td>${dto.scanrate }</td>
+                                                <td>가속도 지원</td>
+                                                <td>${dto.accelerationsupport }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>응답속도</td>
+                                                <td>${dto.responsespeed }</td>
+                                             </tr>
+                                             <tr>
+                                            	<th colspan="4">매크로</th>
+                                            </tr>
+                                             <tr>
+                                                <td>매크로 기능</td>
+                                                <td>${dto.macrofunction }</td>
+                                                <td>소프트웨어 지원</td>
+                                                <td>${dto.softwaresupport }</td>
+                                             </tr>
+                                             <tr class="odd">
+                                                <td>내장 메모리 지원</td>
+                                                <td>${dto.builtinmemory}</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">외형</th>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>손목터널증후군 방지</td>
+                                                <td>${dto.wristtunnelsyndrome }</td>
+                                                <td>LED 튜닝제품</td>
+                                                <td>${dto.ledtuningproducts}</td>
+                                             </tr>
+                                             <tr class="odd">
+                                                <td>마우스 코팅</td>
+                                                <td>${dto.mousecoating }</td>
+                                             </tr>
+                                                <tr>
+                                            	<th colspan="4">부가 기능</th>
+                                            </tr>
+                                            <tr>
+                                                <td>게이밍 마우스</td>
+                                                <td>${dto.gamingmouse}</td>
+                                                <td>무게추 적용</td>
+                                                <td>${dto.weightapplication }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>커스텀펌웨어 지원</td>
+                                                <td>${dto.customfirmwaresupport}</td>
+                                                <td>파츠 변경 가능</td>
+                                                <td>${dto.possiblechangeparts }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>DPI Shift</td>
+                                                <td>${dto.dpishift}</td>
+                                                <td>멀티페어링</td>
+                                                <td>${dto.multipairing }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>스위치</td>
+                                                <td>${dto.switch1}</td>
+                                                <td>세로</td>
+                                                <td>${dto.length }</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">크기</th>
+                                            </tr>
+                                            <tr>
+                                                <td>가로</td>
+                                                <td>${dto.width}</td>
+                                                <td>높이</td>
+                                                <td>${dto.height }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>무게</td>
+                                                <td>${dto.weight}</td>
                                             </tr>
                                         </tbody>
                                    </table>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reviews">
                                     <div id="product-comments-block-tab">
-                                        <a href="#" class="comment-btn"><span>Be the first to write your review!</span></a>
                                             <div style="width:650px; text-align: center;">
 									        <br>
 									        <!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->

@@ -40,6 +40,7 @@ import kr.co.pressfit.service.KeyboardService;
 import kr.co.pressfit.utill.MediaUtils;
 import kr.co.pressfit.utill.UploadFileUtils;
 import kr.co.pressfit.vo.ReplyVO;
+import kr.co.pressfit.vo.TMouseVO;
 import kr.co.pressfit.vo.KeyboardVO;
 
 @Controller 
@@ -139,9 +140,13 @@ public class Keyboard {
         return mav;
     }
     @RequestMapping(value="updateinsert.do", method=RequestMethod.POST)
-    public String updateinsert(@ModelAttribute KeyboardVO vo) throws Exception{
-        keyboardservice.update(vo);
-        return "redirect:view.do?idx="+vo.getIdx()+"&curPage=1&searchOption=&keyword=";
+    public String updateinsert(KeyboardVO vo, HttpSession session) throws Exception {
+    	String crea_id = (String) session.getAttribute("id");
+        vo.setCrea_id(crea_id);
+        System.out.println("받은것"+vo.getIdx());
+    	keyboardservice.update(vo);
+    	System.out.println("리다이렉트"+vo.getIdx());
+    	return "redirect:view.do?idx="+vo.getIdx()+"&curPage=1&searchOption=&keyword=";
     }
 
     // 05. 寃뚯떆湲� �궘�젣
@@ -158,7 +163,7 @@ public class Keyboard {
     }
     
     @RequestMapping("imageUpload.do")
-    public void iageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
+    public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
     	response.setCharacterEncoding("utf-8");
     	response.setContentType("text/html");
     	OutputStream out = null;
@@ -177,6 +182,30 @@ public class Keyboard {
     					+ "</script>");
     	printwriter.flush();
     	out.close();
+    }
+    
+    @RequestMapping("imageUpdate.do")
+    public void imageUpdate(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload, KeyboardVO vo) throws Exception {
+    	response.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html");
+    	OutputStream out = null;
+    	PrintWriter printwriter = null;
+    	String fileName = upload.getOriginalFilename();
+    	
+    	int idx = vo.getIdx();
+    	keyboardservice.updateAttach(fileName, idx);
+    	byte[] bytes = upload.getBytes();
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	out = new FileOutputStream(new File(uploadPath));
+    	out.write(bytes);
+    	String callback = request.getParameter("CKEditorFuncNum");
+    	printwriter = response.getWriter();
+    	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
+    	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
+    			+callback+",'"+fileUrl+"','dwqwsqqq')"
+    					+ "</script>");
+    	printwriter.flush();
+    	out.close(); 
     }
 
     // 4. Ajax�뾽濡쒕뱶 �럹�씠吏� 留ㅽ븨
