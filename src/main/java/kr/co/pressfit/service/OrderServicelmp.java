@@ -21,5 +21,14 @@ public class OrderServicelmp implements OrderService{
     public List<CartVO> orderList(String id) throws Exception {
         return OrderDao.orderList(id);
     }
+	@Override
+	public List<CartVO> order(List<String> chkArr) throws Exception {
+		return OrderDao.order(chkArr);
+	}
+	@Override
+	public List<CartVO> memberInfo(String id) throws Exception {
+
+		return OrderDao.memberInfo(id);
+	}
 }
  

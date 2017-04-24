@@ -85,29 +85,29 @@ public class TMouse {
 
     @RequestMapping(value="write.do", method=RequestMethod.GET)
     public String write(){
-        return folder+"/write"; // write.jsp濡� �씠�룞
+        return folder+"/write"; // write.jsp嚥∽옙 占쎌뵠占쎈짗
     }
     
     @RequestMapping(value="insert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute TMouseVO vo, HttpSession session) throws Exception{
-        // session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
+        // session占쎈퓠 占쏙옙占쎌삢占쎈쭆 userId�몴占� writer占쎈퓠 占쏙옙占쎌삢
         String crea_id = (String) session.getAttribute("id");
         vo.setCrea_id(crea_id);
         tmouseservice.create(vo);
         return "redirect:list.do";
     }
     
-    // 03. 寃뚯떆湲� �긽�꽭�궡�슜 議고쉶, 寃뚯떆湲� 議고쉶�닔 利앷� 泥섎━
-    // @RequestParam : get/post諛⑹떇�쑝濡� �쟾�떖�맂 蹂��닔 1媛�
-    // HttpSession �꽭�뀡媛앹껜
- // 03. 寃뚯떆湲� �긽�꽭�궡�슜 議고쉶, 寃뚯떆湲� 議고쉶�닔 利앷� 泥섎━
+    // 03. 野껊슣�뻻疫뀐옙 占쎄맒占쎄쉭占쎄땀占쎌뒠 鈺곌퀬�돳, 野껊슣�뻻疫뀐옙 鈺곌퀬�돳占쎈땾 筌앹빓占� 筌ｌ꼶�봺
+    // @RequestParam : get/post獄쎻뫗�뻼占쎌몵嚥∽옙 占쎌읈占쎈뼎占쎈쭆 癰귨옙占쎈땾 1揶쏉옙
+    // HttpSession 占쎄쉭占쎈�▼첎�빘猿�
+ // 03. 野껊슣�뻻疫뀐옙 占쎄맒占쎄쉭占쎄땀占쎌뒠 鈺곌퀬�돳, 野껊슣�뻻疫뀐옙 鈺곌퀬�돳占쎈땾 筌앹빓占� 筌ｌ꼶�봺
     @RequestMapping(value="view.do", method=RequestMethod.GET)
     public ModelAndView view(@RequestParam int idx, @RequestParam int curPage, @RequestParam String searchOption,
                             @RequestParam String keyword, HttpSession session) throws Exception{
     	tmouseservice.increaseViewcnt(idx, session);
         ModelAndView mav = new ModelAndView();
         mav.setViewName(folder+"/view");
-        // �뙎湲��쓽 �닔瑜� 留듭뿉 ���옣 : �뙎湲��씠 議댁옱�븯�뒗 寃뚯떆臾쇱쓽 �궘�젣泥섎━ 諛⑹��븯湲� �쐞�빐 
+        // 占쎈솊疫뀐옙占쎌벥 占쎈땾�몴占� 筌띾벊肉� 占쏙옙占쎌삢 : 占쎈솊疫뀐옙占쎌뵠 鈺곕똻�삺占쎈릭占쎈뮉 野껊슣�뻻�눧�눘�벥 占쎄텣占쎌젫筌ｌ꼶�봺 獄쎻뫗占쏙옙釉�疫뀐옙 占쎌맄占쎈퉸 
         mav.addObject("count", tmouseservice.replycount(idx)); 
         mav.addObject("dto", tmouseservice.read(idx));
         mav.addObject("curPage", curPage);
@@ -117,8 +117,8 @@ public class TMouse {
         return mav;
     }
     
-    // 04. 寃뚯떆湲� �닔�젙
-    // �뤌�뿉�꽌 �엯�젰�븳 �궡�슜�뱾�� @ModelAttribute BoardVO vo濡� �쟾�떖�맖
+    // 04. 野껊슣�뻻疫뀐옙 占쎈땾占쎌젟
+    // 占쎈쨲占쎈퓠占쎄퐣 占쎌뿯占쎌젾占쎈립 占쎄땀占쎌뒠占쎈굶占쏙옙 @ModelAttribute BoardVO vo嚥∽옙 占쎌읈占쎈뼎占쎈쭡
     @RequestMapping(value="update.do", method=RequestMethod.GET)
     public ModelAndView update(@ModelAttribute TMouseVO vo) throws Exception{
     	ModelAndView mav = new ModelAndView();
@@ -127,8 +127,8 @@ public class TMouse {
     	logger.info("mav:", mav);
         return mav;
     }
- // 04. 寃뚯떆湲� �닔�젙
-    // �뤌�뿉�꽌 �엯�젰�븳 �궡�슜�뱾�� @ModelAttribute BoardVO vo濡� �쟾�떖�맖
+ // 04. 野껊슣�뻻疫뀐옙 占쎈땾占쎌젟 
+    // 占쎈쨲占쎈퓠占쎄퐣 占쎌뿯占쎌젾占쎈립 占쎄땀占쎌뒠占쎈굶占쏙옙 @ModelAttribute BoardVO vo嚥∽옙 占쎌읈占쎈뼎占쎈쭡
     @RequestMapping(value="cmt.do", method=RequestMethod.GET)
     public ModelAndView cmt(@ModelAttribute TMouseVO vo) throws Exception{
     	ModelAndView mav = new ModelAndView();
@@ -138,12 +138,16 @@ public class TMouse {
         return mav;
     }
     @RequestMapping(value="updateinsert.do", method=RequestMethod.POST)
-    public String updateinsert(@ModelAttribute TMouseVO vo) throws Exception{
-        tmouseservice.update(vo);
-        return "redirect:view.do?idx="+vo.getIdx()+"&curPage=1&searchOption=&keyword=";
+    public String updateinsert(TMouseVO vo, HttpSession session) throws Exception {
+    	System.out.println("vo : " + vo);
+    	String crea_id = (String) session.getAttribute("id");
+        vo.setCrea_id(crea_id);
+    	tmouseservice.update(vo);
+    	return "redirect:view.do?idx="+vo.getIdx()+"&curPage=1&searchOption=&keyword=";
     }
 
-    // 05. 寃뚯떆湲� �궘�젣
+
+    // 05. 野껊슣�뻻疫뀐옙 占쎄텣占쎌젫
     @RequestMapping("delete.do")
     public String delete(@RequestParam int idx) throws Exception{
         System.out.println(idx);
@@ -151,15 +155,15 @@ public class TMouse {
         
         return "redirect:list.do";
     }
-    // 寃뚯떆湲� 泥⑤��뙆�씪 紐⑸줉 留ㅽ븨
+    // 野껊슣�뻻疫뀐옙 筌ｂ뫀占쏙옙�솁占쎌뵬 筌뤴뫖以� 筌띲끋釉�
     @RequestMapping("/getAttach/{idx}")
-    @ResponseBody // view媛� �븘�땶 data瑜� 由ы꽩
+    @ResponseBody // view揶쏉옙 占쎈툡占쎈빒 data�몴占� �뵳�뗪쉘
     public List<String> getAttach(@PathVariable("idx") int idx){
         return tmouseservice.getAttach(idx);
     }
     
     @RequestMapping("imageUpload.do")
-    public void iageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
+    public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
     	response.setCharacterEncoding("utf-8");
     	response.setContentType("text/html");
     	OutputStream out = null;
@@ -167,7 +171,7 @@ public class TMouse {
     	String fileName = upload.getOriginalFilename();
     	tmouseservice.addAttach(fileName);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");
@@ -180,15 +184,15 @@ public class TMouse {
     	out.close(); 
     } 
 
-    // 4. Ajax�뾽濡쒕뱶 �럹�씠吏� 留ㅽ븨
+    // 4. Ajax占쎈씜嚥≪뮆諭� 占쎈읂占쎌뵠筌욑옙 筌띲끋釉�
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.GET)
     public void uploadAjax(){
-        // uploadAjax.jsp濡� �룷�썙�뵫
+        // uploadAjax.jsp嚥∽옙 占쎈７占쎌뜖占쎈뎃
     }
 
-    // 5. Ajax�뾽濡쒕뱶 泥섎━ 留ㅽ븨
-    // �뙆�씪�쓽 �븳湲�泥섎━ : produces="text/plain;charset=utf-8"
-    @ResponseBody // view媛� �븘�땶 data由ы꽩
+    // 5. Ajax占쎈씜嚥≪뮆諭� 筌ｌ꼶�봺 筌띲끋釉�
+    // 占쎈솁占쎌뵬占쎌벥 占쎈립疫뀐옙筌ｌ꼶�봺 : produces="text/plain;charset=utf-8"
+    @ResponseBody // view揶쏉옙 占쎈툡占쎈빒 data�뵳�뗪쉘
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
     public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
         logger.info("originalName : "+file.getOriginalFilename());
@@ -197,105 +201,105 @@ public class TMouse {
         return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
     }
     
-    // 6. �씠誘몄� �몴�떆 留ㅽ븨
-    @ResponseBody // view媛� �븘�땶 data由ы꽩
+    // 6. 占쎌뵠沃섎챷占� 占쎈ご占쎈뻻 筌띲끋釉�
+    @ResponseBody // view揶쏉옙 占쎈툡占쎈빒 data�뵳�뗪쉘
     @RequestMapping("/upload/displayFile")
     public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
-        // �꽌踰꾩쓽 �뙆�씪�쓣 �떎�슫濡쒕뱶�븯湲� �쐞�븳 �뒪�듃由�
+        // 占쎄퐣甕곌쑴�벥 占쎈솁占쎌뵬占쎌뱽 占쎈뼄占쎌뒲嚥≪뮆諭띰옙釉�疫뀐옙 占쎌맄占쎈립 占쎈뮞占쎈뱜�뵳占�
         InputStream in = null; //java.io
         ResponseEntity<byte[]> entity = null;
         try {
-            // �솗�옣�옄瑜� 異붿텧�븯�뿬 formatName�뿉 ���옣
+            // 占쎌넇占쎌삢占쎌쁽�몴占� �빊遺욱뀱占쎈릭占쎈연 formatName占쎈퓠 占쏙옙占쎌삢
             String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-            // 異붿텧�븳 �솗�옣�옄瑜� MediaUtils�겢�옒�뒪�뿉�꽌  �씠誘몄��뙆�씪�뿬遺�瑜� 寃��궗�븯怨� 由ы꽩諛쏆븘 mType�뿉 ���옣
+            // �빊遺욱뀱占쎈립 占쎌넇占쎌삢占쎌쁽�몴占� MediaUtils占쎄깻占쎌삋占쎈뮞占쎈퓠占쎄퐣  占쎌뵠沃섎챷占쏙옙�솁占쎌뵬占쎈연�겫占썹몴占� 野껓옙占쎄텢占쎈릭�⑨옙 �뵳�뗪쉘獄쏆룇釉� mType占쎈퓠 占쏙옙占쎌삢
             MediaType mType = MediaUtils.getMediaType(formatName);
-            // �뿤�뜑 援ъ꽦 媛앹껜(�쇅遺��뿉�꽌 �뜲�씠�꽣瑜� 二쇨퀬諛쏆쓣 �븣�뿉�뒗 header�� body瑜� 援ъ꽦�빐�빞�븯湲� �븣臾몄뿉)
+            // 占쎈엘占쎈쐭 �뤃�딄쉐 揶쏆빘猿�(占쎌뇚�겫占쏙옙肉됵옙苑� 占쎈쑓占쎌뵠占쎄숲�몴占� 雅뚯눊�ц쳸�룇�뱽 占쎈르占쎈퓠占쎈뮉 header占쏙옙 body�몴占� �뤃�딄쉐占쎈퉸占쎈튊占쎈릭疫뀐옙 占쎈르�눧紐꾨퓠)
             HttpHeaders headers = new HttpHeaders();
-            // InputStream �깮�꽦
+            // InputStream 占쎄문占쎄쉐
             in = new FileInputStream(uploadPath + fileName);
-            // �씠誘몄� �뙆�씪�씠硫�
+            // 占쎌뵠沃섎챷占� 占쎈솁占쎌뵬占쎌뵠筌롳옙
             if (mType != null) { 
                 headers.setContentType(mType);
-            // �씠誘몄�媛� �븘�땲硫�
+            // 占쎌뵠沃섎챷占썲첎占� 占쎈툡占쎈빍筌롳옙
             } else { 
                 fileName = fileName.substring(fileName.indexOf("_") + 1);
-                // �떎�슫濡쒕뱶�슜 而⑦뀗�듃 ���엯
+                // 占쎈뼄占쎌뒲嚥≪뮆諭띰옙�뒠 �뚢뫂�쀯옙�뱜 占쏙옙占쎌뿯
                 headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
                 // 
-                // 諛붿씠�듃諛곗뿴�쓣 �뒪�듃留곸쑝濡� : new String(fileName.getBytes("utf-8"),"iso-8859-1") * iso-8859-1 �꽌�쑀�읇�뼵�뼱, �겙 �뵲�샂�몴 �궡遺��뿉  " \" �궡�슜 \" "
-                // �뙆�씪�쓽 �븳湲� 源⑥쭚 諛⑹�
+                // 獄쏅뗄�뵠占쎈뱜獄쏄퀣肉댐옙�뱽 占쎈뮞占쎈뱜筌띻낯�몵嚥∽옙 : new String(fileName.getBytes("utf-8"),"iso-8859-1") * iso-8859-1 占쎄퐣占쎌�占쎌쓦占쎈섧占쎈선, 占쎄쿃 占쎈뎡占쎌긾占쎈ご 占쎄땀�겫占쏙옙肉�  " \" 占쎄땀占쎌뒠 \" "
+                // 占쎈솁占쎌뵬占쎌벥 占쎈립疫뀐옙 繹먥뫁彛� 獄쎻뫗占�
                 headers.add("Content-Disposition", "attachment; filename=\""+new String(fileName.getBytes("utf-8"), "iso-8859-1")+"\"");
                 //headers.add("Content-Disposition", "attachment; filename='"+fileName+"'");
             }
-            // 諛붿씠�듃諛곗뿴, �뿤�뜑, HTTP�긽�깭肄붾뱶
+            // 獄쏅뗄�뵠占쎈뱜獄쏄퀣肉�, 占쎈엘占쎈쐭, HTTP占쎄맒占쎄묶�굜遺얜굡
             entity = new ResponseEntity<byte[]>(IOUtil.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // HTTP�긽�깭 肄붾뱶()
+            // HTTP占쎄맒占쎄묶 �굜遺얜굡()
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
         } finally {
-            in.close(); //�뒪�듃由� �떕湲�
+            in.close(); //占쎈뮞占쎈뱜�뵳占� 占쎈뼍疫뀐옙
         }
         return entity;
     }
 
-    // 7. �뙆�씪 �궘�젣 留ㅽ븨
-    @ResponseBody // view媛� �븘�땶 �뜲�씠�꽣 由ы꽩
+    // 7. 占쎈솁占쎌뵬 占쎄텣占쎌젫 筌띲끋釉�
+    @ResponseBody // view揶쏉옙 占쎈툡占쎈빒 占쎈쑓占쎌뵠占쎄숲 �뵳�뗪쉘
     @RequestMapping(value = "/upload/deleteFile.do", method = RequestMethod.POST)
     public ResponseEntity<String> deleteFile(String fileName) {
-        // �뙆�씪�쓽 �솗�옣�옄 異붿텧
+        // 占쎈솁占쎌뵬占쎌벥 占쎌넇占쎌삢占쎌쁽 �빊遺욱뀱
         String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-        // �씠誘몄� �뙆�씪 �뿬遺� 寃��궗
+        // 占쎌뵠沃섎챷占� 占쎈솁占쎌뵬 占쎈연�겫占� 野껓옙占쎄텢
         MediaType mType = MediaUtils.getMediaType(formatName);
-        // �씠誘몄��쓽 寃쎌슦(�뜽�꽕�씪 + �썝蹂명뙆�씪 �궘�젣), �씠誘몄�媛� �븘�땲硫� �썝蹂명뙆�씪留� �궘�젣
-        // �씠誘몄� �뙆�씪�씠硫�
+        // 占쎌뵠沃섎챷占쏙옙�벥 野껋럩�뒭(占쎈쑞占쎄퐬占쎌뵬 + 占쎌뜚癰귣챸�솁占쎌뵬 占쎄텣占쎌젫), 占쎌뵠沃섎챷占썲첎占� 占쎈툡占쎈빍筌롳옙 占쎌뜚癰귣챸�솁占쎌뵬筌랃옙 占쎄텣占쎌젫
+        // 占쎌뵠沃섎챷占� 占쎈솁占쎌뵬占쎌뵠筌롳옙
         if (mType != null) {
-            // �뜽�꽕�씪 �씠誘몄� �뙆�씪 異붿텧
+            // 占쎈쑞占쎄퐬占쎌뵬 占쎌뵠沃섎챷占� 占쎈솁占쎌뵬 �빊遺욱뀱
             String front = fileName.substring(0, 12);
             String end = fileName.substring(14);
-            // �뜽�꽕�씪 �씠誘몄� �궘�젣
+            // 占쎈쑞占쎄퐬占쎌뵬 占쎌뵠沃섎챷占� 占쎄텣占쎌젫
             new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
         }
-        // �썝蹂� �뙆�씪 �궘�젣
+        // 占쎌뜚癰귨옙 占쎈솁占쎌뵬 占쎄텣占쎌젫
         new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
-        // �젅肄붾뱶 �궘�젣
+        // 占쎌쟿�굜遺얜굡 占쎄텣占쎌젫
         tmouseservice.deleteFile(fileName);
 
-        // �뜲�씠�꽣�� http �긽�깭 肄붾뱶 �쟾�넚
+        // 占쎈쑓占쎌뵠占쎄숲占쏙옙 http 占쎄맒占쎄묶 �굜遺얜굡 占쎌읈占쎈꽊
         return new ResponseEntity<String>("deleted", HttpStatus.OK);
     }
-    // 1_2. �뙎湲��엯�젰 (@RestController諛⑹떇�쑝濡� json�쟾�떖�븯�뿬 �뙎湲��엯�젰)
-    // @ResponseEntity : �뜲�씠�꽣 + http status code
-    // @ResponseBody : 媛앹껜瑜� json�쑝濡� (json - String)
-    // @RequestBody : json�쓣 媛앹껜濡�
+    // 1_2. 占쎈솊疫뀐옙占쎌뿯占쎌젾 (@RestController獄쎻뫗�뻼占쎌몵嚥∽옙 json占쎌읈占쎈뼎占쎈릭占쎈연 占쎈솊疫뀐옙占쎌뿯占쎌젾)
+    // @ResponseEntity : 占쎈쑓占쎌뵠占쎄숲 + http status code
+    // @ResponseBody : 揶쏆빘猿쒐몴占� json占쎌몵嚥∽옙 (json - String)
+    // @RequestBody : json占쎌뱽 揶쏆빘猿쒏에占�
     @RequestMapping(value="/reply/insertRest.do", method=RequestMethod.POST)
     public ResponseEntity<String> insertRest(@RequestBody ReplyVO vo, HttpSession session){
         ResponseEntity<String> entity = null;
         try {
-            // �꽭�뀡�뿉 ���옣�맂 �쉶�썝�븘�씠�뵒瑜� �뙎湲��옉�꽦�옄�뿉 �꽭�똿
+            // 占쎄쉭占쎈�∽옙肉� 占쏙옙占쎌삢占쎈쭆 占쎌돳占쎌뜚占쎈툡占쎌뵠占쎈탵�몴占� 占쎈솊疫뀐옙占쎌삂占쎄쉐占쎌쁽占쎈퓠 占쎄쉭占쎈샒
             String id = (String) session.getAttribute("id");
             vo.setReplayer(id);
-            // �뙎湲��엯�젰 硫붿꽌�뱶 �샇異�
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾 筌롫뗄苑뚳옙諭� 占쎌깈�빊占�
             tmouseservice.replycreate(vo);
-            // �뙎湲��엯�젰�씠 �꽦怨듯븯硫� �꽦怨듬찓�떆吏� ���옣
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾占쎌뵠 占쎄쉐�⑤벏釉�筌롳옙 占쎄쉐�⑤벉李볩옙�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // �뙎湲��엯�젰�씠 �떎�뙣�븯硫� �떎�뙣硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾占쎌뵠 占쎈뼄占쎈솭占쎈릭筌롳옙 占쎈뼄占쎈솭筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // �엯�젰 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
+        // 占쎌뿯占쎌젾 筌ｌ꼶�봺 HTTP 占쎄맒占쎄묶 筌롫뗄�뻻筌욑옙 �뵳�뗪쉘
         return entity;
     }
     @RequestMapping(value="/reply/insertRestcmt.do", method=RequestMethod.POST)
     public ResponseEntity<String> insertRestcmt(@RequestBody ReplyVO vo, HttpSession session){
         ResponseEntity<String> entity = null;
         try {
-            // �꽭�뀡�뿉 ���옣�맂 �쉶�썝�븘�씠�뵒瑜� �뙎湲��옉�꽦�옄�뿉 �꽭�똿
+            // 占쎄쉭占쎈�∽옙肉� 占쏙옙占쎌삢占쎈쭆 占쎌돳占쎌뜚占쎈툡占쎌뵠占쎈탵�몴占� 占쎈솊疫뀐옙占쎌삂占쎄쉐占쎌쁽占쎈퓠 占쎄쉭占쎈샒
             String id = (String) session.getAttribute("id");
             vo.setReplayer(id);
-            // �뙎湲��엯�젰 硫붿꽌�뱶 �샇異�
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾 筌롫뗄苑뚳옙諭� 占쎌깈�빊占�
             System.out.println(vo);
             ReplyVO pa = tmouseservice.replydetail(vo.getIdx());
             vo.setRef(pa.getRef());
@@ -303,66 +307,66 @@ public class TMouse {
             vo.setLevel(pa.getLevel());
             System.out.println(vo);
             tmouseservice.replycreatecmt(vo);
-            // �뙎湲��엯�젰�씠 �꽦怨듯븯硫� �꽦怨듬찓�떆吏� ���옣
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾占쎌뵠 占쎄쉐�⑤벏釉�筌롳옙 占쎄쉐�⑤벉李볩옙�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // �뙎湲��엯�젰�씠 �떎�뙣�븯硫� �떎�뙣硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙占쎌뿯占쎌젾占쎌뵠 占쎈뼄占쎈솭占쎈릭筌롳옙 占쎈뼄占쎈솭筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // �엯�젰 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
+        // 占쎌뿯占쎌젾 筌ｌ꼶�봺 HTTP 占쎄맒占쎄묶 筌롫뗄�뻻筌욑옙 �뵳�뗪쉘
         return entity;
     }
-    // ** Controller 異붽� �궗�빆 - Rest諛⑹떇�쑝濡� �뙎湲� 紐⑸줉, �닔�젙, �궘�젣 泥섎━
+    // ** Controller �빊遺쏙옙 占쎄텢占쎈퉮 - Rest獄쎻뫗�뻼占쎌몵嚥∽옙 占쎈솊疫뀐옙 筌뤴뫖以�, 占쎈땾占쎌젟, 占쎄텣占쎌젫 筌ｌ꼶�봺
     
-    // 2_3. �뙎湲� 紐⑸줉(@RestController諛⑹떇 :  json�쑝濡� �쟾�떖�븯�뿬 紐⑸줉�깮�꽦)
-    // /reply/list/1 => 1踰� 寃뚯떆臾쇱쓽 �뙎湲� 紐⑸줉 由ы꽩
-    // /reply/list/2 => 2踰� 寃뚯떆臾쇱쓽 �뙎湲� 紐⑸줉 由ы꽩
-    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
+    // 2_3. 占쎈솊疫뀐옙 筌뤴뫖以�(@RestController獄쎻뫗�뻼 :  json占쎌몵嚥∽옙 占쎌읈占쎈뼎占쎈릭占쎈연 筌뤴뫖以됵옙源�占쎄쉐)
+    // /reply/list/1 => 1甕곤옙 野껊슣�뻻�눧�눘�벥 占쎈솊疫뀐옙 筌뤴뫖以� �뵳�뗪쉘
+    // /reply/list/2 => 2甕곤옙 野껊슣�뻻�눧�눘�벥 占쎈솊疫뀐옙 筌뤴뫖以� �뵳�뗪쉘
+    // @PathVariable : url占쎈퓠 占쎌뿯占쎌젾占쎈쭍 癰귨옙占쎈땾揶쏉옙 筌욑옙占쎌젟
     @RequestMapping(value="/reply/list/{idx}/{curPage}", method=RequestMethod.GET)
     public ModelAndView replyList(@PathVariable("idx") int idx, @PathVariable int curPage, ModelAndView mav, HttpSession session){
-        // �럹�씠吏� 泥섎━
-        int count = tmouseservice.replycount(idx); // �뙎湲� 媛��닔
+        // 占쎈읂占쎌뵠筌욑옙 筌ｌ꼶�봺
+        int count = tmouseservice.replycount(idx); // 占쎈솊疫뀐옙 揶쏉옙占쎈땾
         ReplyPager replyPager = new ReplyPager(count, curPage);
-        // �쁽�옱 �럹�씠吏��쓽 �럹�씠吏� �떆�옉 踰덊샇
+        // 占쎌겱占쎌삺 占쎈읂占쎌뵠筌욑옙占쎌벥 占쎈읂占쎌뵠筌욑옙 占쎈뻻占쎌삂 甕곕뜇�깈
         int start = replyPager.getPageBegin();
-        // �쁽�옱 �럹�씠吏��쓽 �럹�씠吏�  �걹 踰덊샇
+        // 占쎌겱占쎌삺 占쎈읂占쎌뵠筌욑옙占쎌벥 占쎈읂占쎌뵠筌욑옙  占쎄국 甕곕뜇�깈
         int end = replyPager.getPageEnd();
         List<ReplyVO> list = tmouseservice.replylist(idx, start, end, session);
         System.out.println(list);
-        // 酉곗씠由� 吏��젙
+        // �뀎怨쀬뵠�뵳占� 筌욑옙占쎌젟
         mav.setViewName(folder+"/replyList");
-        // 酉곗뿉 �쟾�떖�븷 �뜲�씠�꽣 吏��젙
+        // �뀎怨쀫퓠 占쎌읈占쎈뼎占쎈막 占쎈쑓占쎌뵠占쎄숲 筌욑옙占쎌젟
         mav.addObject("boardno", idx);
         mav.addObject("list", list);
         mav.addObject("replyPager", replyPager);
-        // replyList.jsp濡� �룷�썙�뵫
+        // replyList.jsp嚥∽옙 占쎈７占쎌뜖占쎈뎃
         return mav;
     }
     
-    // 3. �뙎湲� �긽�꽭 蹂닿린
-    // /reply/detail/1 => 1踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
-    // /reply/detail/2 => 2踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
-    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
+    // 3. 占쎈솊疫뀐옙 占쎄맒占쎄쉭 癰귣떯由�
+    // /reply/detail/1 => 1甕곤옙 占쎈솊疫뀐옙占쎌벥 占쎄맒占쎄쉭占쎌넅筌롳옙 �뵳�뗪쉘
+    // /reply/detail/2 => 2甕곤옙 占쎈솊疫뀐옙占쎌벥 占쎄맒占쎄쉭占쎌넅筌롳옙 �뵳�뗪쉘
+    // @PathVariable : url占쎈퓠 占쎌뿯占쎌젾占쎈쭍 癰귨옙占쎈땾揶쏉옙 筌욑옙占쎌젟
     @RequestMapping(value="/reply/detail/{boardno}/{idx}", method=RequestMethod.GET)
     public ModelAndView replyDetail(@PathVariable("idx") Integer idx,
     		@PathVariable("boardno") Integer boardno,ModelAndView mav){
         ReplyVO vo = tmouseservice.replydetail(idx);
-        // 酉곗씠由� 吏��젙
+        // �뀎怨쀬뵠�뵳占� 筌욑옙占쎌젟
         mav.setViewName(folder+"/replyDetail");
-        // 酉곗뿉 �쟾�떖�븷 �뜲�씠�꽣 吏��젙
+        // �뀎怨쀫퓠 占쎌읈占쎈뼎占쎈막 占쎈쑓占쎌뵠占쎄숲 筌욑옙占쎌젟
         mav.addObject("vo", vo);
-        // replyDetail.jsp濡� �룷�썙�뵫
+        // replyDetail.jsp嚥∽옙 占쎈７占쎌뜖占쎈뎃
         return mav;
     }
-    // 3. �뙎湲� �긽�꽭 蹂닿린
-    // /reply/detail/1 => 1踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
-    // /reply/detail/2 => 2踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
-    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
+    // 3. 占쎈솊疫뀐옙 占쎄맒占쎄쉭 癰귣떯由�
+    // /reply/detail/1 => 1甕곤옙 占쎈솊疫뀐옙占쎌벥 占쎄맒占쎄쉭占쎌넅筌롳옙 �뵳�뗪쉘
+    // /reply/detail/2 => 2甕곤옙 占쎈솊疫뀐옙占쎌벥 占쎄맒占쎄쉭占쎌넅筌롳옙 �뵳�뗪쉘
+    // @PathVariable : url占쎈퓠 占쎌뿯占쎌젾占쎈쭍 癰귨옙占쎈땾揶쏉옙 筌욑옙占쎌젟
     @RequestMapping(value="/reply/Cmtdetail/{boardno}/{idx}", method=RequestMethod.GET)
     public ModelAndView replyCmtDetail(@PathVariable("idx") Integer idx,
     		@PathVariable("boardno") Integer boardno,ModelAndView mav){
-        // 酉곗씠由� 吏��젙
+        // �뀎怨쀬뵠�뵳占� 筌욑옙占쎌젟
     	mav.addObject("idx",idx);
     	mav.addObject("cmt","cmt");
     	mav.addObject("boardno",boardno);
@@ -370,39 +374,39 @@ public class TMouse {
         return mav;
     }
     
-    // 4. �뙎湲� �닔�젙 泥섎━ - PUT:�쟾泥� �닔�젙, PATCH:�씪遺��닔�젙
-    // RequestMethod瑜� �뿬�윭 諛⑹떇�쑝濡� �꽕�젙�븷 寃쎌슦 {}�븞�뿉 �옉�꽦
+    // 4. 占쎈솊疫뀐옙 占쎈땾占쎌젟 筌ｌ꼶�봺 - PUT:占쎌읈筌ｏ옙 占쎈땾占쎌젟, PATCH:占쎌뵬�겫占쏙옙�땾占쎌젟
+    // RequestMethod�몴占� 占쎈연占쎌쑎 獄쎻뫗�뻼占쎌몵嚥∽옙 占쎄퐬占쎌젟占쎈막 野껋럩�뒭 {}占쎈툧占쎈퓠 占쎌삂占쎄쉐
     @RequestMapping(value="/reply/update/{idx}", method={RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<String> replyUpdate(@PathVariable("idx") Integer idx, @RequestBody ReplyVO vo){
         ResponseEntity<String> entity = null;
         try {
             vo.setIdx(idx);
             tmouseservice.replyupdate(vo);
-            // �뙎湲� �닔�젙�씠 �꽦怨듯븯硫� �꽦怨� �긽�깭硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙 占쎈땾占쎌젟占쎌뵠 占쎄쉐�⑤벏釉�筌롳옙 占쎄쉐�⑨옙 占쎄맒占쎄묶筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // �뙎湲� �닔�젙�씠 �떎�뙣�븯硫� �떎�뙣 �긽�깭硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙 占쎈땾占쎌젟占쎌뵠 占쎈뼄占쎈솭占쎈릭筌롳옙 占쎈뼄占쎈솭 占쎄맒占쎄묶筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // �닔�젙 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
+        // 占쎈땾占쎌젟 筌ｌ꼶�봺 HTTP 占쎄맒占쎄묶 筌롫뗄�뻻筌욑옙 �뵳�뗪쉘
         return entity;
     }
     
-    // 5. �뙎湲� �궘�젣泥섎━
+    // 5. 占쎈솊疫뀐옙 占쎄텣占쎌젫筌ｌ꼶�봺
     @RequestMapping(value="/reply/delete/{idx}")
     public ResponseEntity<String> replyDelete(@PathVariable("idx") Integer idx){
         ResponseEntity<String> entity = null;
         try {
             tmouseservice.replydelete(idx);
-            // �뙎湲� �궘�젣媛� �꽦怨듯븯硫� �꽦怨� �긽�깭硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙 占쎄텣占쎌젫揶쏉옙 占쎄쉐�⑤벏釉�筌롳옙 占쎄쉐�⑨옙 占쎄맒占쎄묶筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // �뙎湲� �궘�젣媛� �떎�뙣�븯硫� �떎�뙣 �긽�깭硫붿떆吏� ���옣
+            // 占쎈솊疫뀐옙 占쎄텣占쎌젫揶쏉옙 占쎈뼄占쎈솭占쎈릭筌롳옙 占쎈뼄占쎈솭 占쎄맒占쎄묶筌롫뗄�뻻筌욑옙 占쏙옙占쎌삢
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // �궘�젣 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
+        // 占쎄텣占쎌젫 筌ｌ꼶�봺 HTTP 占쎄맒占쎄묶 筌롫뗄�뻻筌욑옙 �뵳�뗪쉘
         return entity;
     }
 }

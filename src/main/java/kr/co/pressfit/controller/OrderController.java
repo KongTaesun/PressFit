@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.pressfit.service.OrderService;
@@ -19,7 +20,7 @@ import kr.co.pressfit.vo.CartVO;
 
 
 
-@Controller  //현재 클래스를 controller bean으로 등록시킴
+@Controller  
 @RequestMapping("/order/*")
 public class OrderController {
 
@@ -46,7 +47,10 @@ public class OrderController {
 	
 	}
 	
-	
+	  @RequestMapping(value="/orderDetail.do")
+		public void order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
+	    	
+	  }
 	
 	
 }
