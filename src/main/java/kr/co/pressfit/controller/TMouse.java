@@ -107,7 +107,6 @@ public class TMouse {
     	tmouseservice.increaseViewcnt(idx, session);
         ModelAndView mav = new ModelAndView();
         mav.setViewName(folder+"/view");
-        // 占쎈솊疫뀐옙占쎌벥 占쎈땾�몴占� 筌띾벊肉� 占쏙옙占쎌삢 : 占쎈솊疫뀐옙占쎌뵠 鈺곕똻�삺占쎈릭占쎈뮉 野껊슣�뻻�눧�눘�벥 占쎄텣占쎌젫筌ｌ꼶�봺 獄쎻뫗占쏙옙釉�疫뀐옙 占쎌맄占쎈퉸 
         mav.addObject("count", tmouseservice.replycount(idx)); 
         mav.addObject("dto", tmouseservice.read(idx));
         mav.addObject("curPage", curPage);
@@ -139,7 +138,6 @@ public class TMouse {
     }
     @RequestMapping(value="updateinsert.do", method=RequestMethod.POST)
     public String updateinsert(TMouseVO vo, HttpSession session) throws Exception {
-    	System.out.println("vo : " + vo);
     	String crea_id = (String) session.getAttribute("id");
         vo.setCrea_id(crea_id);
     	tmouseservice.update(vo);
@@ -184,6 +182,31 @@ public class TMouse {
     	out.close(); 
     } 
 
+    @RequestMapping("imageUpdate.do")
+    public void imageUpdate(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload, TMouseVO vo) throws Exception {
+    	response.setCharacterEncoding("utf-8");
+    	response.setContentType("text/html");
+    	OutputStream out = null;
+    	PrintWriter printwriter = null;
+    	String fileName = upload.getOriginalFilename();
+    	int idx = vo.getIdx();
+    	tmouseservice.updateAttach(fileName, idx);
+    	byte[] bytes = upload.getBytes();
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	out = new FileOutputStream(new File(uploadPath));
+    	out.write(bytes);
+    	String callback = request.getParameter("CKEditorFuncNum");
+    	printwriter = response.getWriter();
+    	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
+    	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
+    			+callback+",'"+fileUrl+"','dwqwsqqq')"
+    					+ "</script>");
+    	printwriter.flush();
+    	out.close(); 
+    }
+    
+    
+    
     // 4. Ajax占쎈씜嚥≪뮆諭� 占쎈읂占쎌뵠筌욑옙 筌띲끋釉�
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.GET)
     public void uploadAjax(){

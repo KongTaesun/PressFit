@@ -14,7 +14,6 @@ public class KeyboardVO {
 	private String goldbraidedUSBterminal;
 	private String interface1;
 	private String contactsystem;
-	private String bouttonswitch;
 	private String keyswitch;
 	private String switch1;
 	private String keyboardform;
@@ -44,8 +43,6 @@ public class KeyboardVO {
 	private String switchrudder;
 	private String siliconkeyskin;
 	private String plasticcover;
-	private String Integralwristrest;
-	private String detachablewristrest;
 	private String keycapremover;
 	private String cleaningbrush;
 	private String replacementkeycaps;
@@ -161,12 +158,6 @@ public class KeyboardVO {
 	}
 	public void setContactsystem(String contactsystem) {
 		this.contactsystem = contactsystem;
-	}
-	public String getBouttonswitch() {
-		return bouttonswitch;
-	}
-	public void setBouttonswitch(String bouttonswitch) {
-		this.bouttonswitch = bouttonswitch;
 	}
 	public String getKeyswitch() {
 		return keyswitch;
@@ -336,18 +327,6 @@ public class KeyboardVO {
 	public void setPlasticcover(String plasticcover) {
 		this.plasticcover = plasticcover;
 	}
-	public String getIntegralwristrest() {
-		return Integralwristrest;
-	}
-	public void setIntegralwristrest(String integralwristrest) {
-		Integralwristrest = integralwristrest;
-	}
-	public String getDetachablewristrest() {
-		return detachablewristrest;
-	}
-	public void setDetachablewristrest(String detachablewristrest) {
-		this.detachablewristrest = detachablewristrest;
-	}
 	public String getKeycapremover() {
 		return keycapremover;
 	}
@@ -438,8 +417,7 @@ public class KeyboardVO {
 				+ ", manufacturecompany=" + manufacturecompany + ", registrationyear=" + registrationyear
 				+ ", connectionmethod=" + connectionmethod + ", bluetoothversion=" + bluetoothversion + ", battery="
 				+ battery + ", keyarray=" + keyarray + ", goldbraidedUSBterminal=" + goldbraidedUSBterminal
-				+ ", interface1=" + interface1 + ", contactsystem=" + contactsystem + ", bouttonswitch=" + bouttonswitch
-				+ ", keyswitch=" + keyswitch + ", switch1=" + switch1 + ", keyboardform=" + keyboardform
+				+ ", interface1=" + interface1 + ", contactsystem=" + contactsystem + ", keyswitch=" + keyswitch + ", switch1=" + switch1 + ", keyboardform=" + keyboardform
 				+ ", functionkey=" + functionkey + ", macrofunction=" + macrofunction + ", simultaneousinput="
 				+ simultaneousinput + ", responsevelocity=" + responsevelocity + ", windowskeylocking="
 				+ windowskeylocking + ", fullkeylock=" + fullkeylock + ", stepsculture2=" + stepsculture2
@@ -450,8 +428,7 @@ public class KeyboardVO {
 				+ builtinusbhub + ", cherrystylestabilizer=" + cherrystylestabilizer + ", lifewaterproofing="
 				+ lifewaterproofing + ", touchpad=" + touchpad + ", trackball=" + trackball + ", motionsensor="
 				+ motionsensor + ", smartkeyboard=" + smartkeyboard + ", switchrudder=" + switchrudder
-				+ ", siliconkeyskin=" + siliconkeyskin + ", plasticcover=" + plasticcover + ", Integralwristrest="
-				+ Integralwristrest + ", detachablewristrest=" + detachablewristrest + ", keycapremover="
+				+ ", siliconkeyskin=" + siliconkeyskin + ", plasticcover=" + plasticcover + ", keycapremover="
 				+ keycapremover + ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps
 				+ ", width=" + width + ", length=" + length + ", height=" + height + ", weight=" + weight
 				+ ", cablelength=" + cablelength + ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel="

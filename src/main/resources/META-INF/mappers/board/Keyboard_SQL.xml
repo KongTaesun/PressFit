@@ -128,8 +128,10 @@
     <update id="updateArticle">
         UPDATE KeyboardBoard SET
             modelname = #{modelname},
+            price = #{price},
             content = #{content},
-            writer = #{writer}
+            crea_id = #{crea_id},
+            amount = #{amount}
         WHERE idx = #{idx}
     </update>
     <!-- 06. 게시글 삭제처리 -->

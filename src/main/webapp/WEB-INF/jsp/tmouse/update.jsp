@@ -356,7 +356,7 @@ $(document).ready(function(){
 													<textarea name="content" id="content" rows="4" cols="80" placeholder="${dto.idx }"></textarea>
 													<script>
 													CKEDITOR.replace("content",{
-														filebrowserUploadUrl : "${path}/tmouse/imageUpload.do"
+														filebrowserUploadUrl : "${path}/tmouse/imageUpdate.do"
 													});
 													</script>
 											</div>

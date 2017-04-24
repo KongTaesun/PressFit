@@ -5,6 +5,38 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글</title>
 <%@ include file="/resources/include/header.jsp" %>
+<style>
+.table-data-sheet1 {
+  background: #f3f3f3 none repeat scroll 0 0;
+  border: 1px solid #d6d4d4;
+  width: 100%;
+}
+.table-data-sheet1 tr {
+  border-top: 1px solid #d6d4d4;
+  border-bottom: 1px solid #d6d4d4;
+}
+.table-data-sheet1 tr th {
+  background: #E3FFDB none repeat scroll 0 0;
+  border : 1px solid #d6d4d4;
+  padding: 10px 20px 11px;
+  color: #FF0000;
+}
+.table-data-sheet1 tr td{
+  border-right: 1px solid #d6d4d4;
+  color: #333333;
+  font-weight: 400;
+  width: 20%;
+  padding: 10px 20px 11px;
+}
+.table-data-sheet1 tr td:first-child{
+  font-weight: 900;
+}
+.table-data-sheet1 tr td:nth-child(3){
+  font-weight: 900;
+}
+
+
+</style>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
     $(document).ready(function(){
@@ -332,9 +364,9 @@
                         <div class="p-details-tab-content">
                             <div class="p-details-tab">
                                 <ul class="p-details-nav-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">Description</a></li>
-                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Review</a></li>
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Tab</a></li>
+                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">판매자제공</a></li>
+                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">스펙</a></li>
+                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">댓글</a></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
@@ -343,26 +375,170 @@
                                     <p>${dto.content}</p>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="data">
-                                    <table class="table-data-sheet">
+                                    <table class="table-data-sheet1">
                                         <tbody>
                                             <tr class="odd">
-                                                <td>Compositions</td>
-                                                <td>Cotton</td>
+                                                <td>제조사</td>
+                                                <td>${dto.manufacturecompany}</td>
+                                                <td>등록년월</td>
+                                                <td>${dto.registrationyear}</td>
                                             </tr>
-                                            <tr class="even">
-                                                <td>Styles</td>
-                                                <td>Casual</td>
+                                             <tr class="odd">
+                                                <td>연결방식</td>
+                                                <td>${dto.connectionmethod }</td>
+                                                <td>블루투스 버전</td>
+                                                <td>${dto.bluetoothversion }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>배터리</td>
+                                                <td>${dto.battery }</td>
+                                                <td>키 배열</td>
+                                                <td>${dto.keyarray }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>인터페이스</td>
+                                                <td>${dto.interface1 }</td>
+                                                <td>접점 방식</td>
+                                                <td>${dto.contactsystem }</td>
                                             </tr>
                                             <tr class="odd">
-                                                <td>Properties</td>
-                                                <td>Short Sleeve</td>
+                                                <td>스위치</td>
+                                                <td>${dto.keyswitch }</td>
+                                                <td>키보드 형태</td>
+                                                <td>${dto.keyboardform }</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">기능</th>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>기능 키</td>
+                                                <td>${dto.functionkey }</td>
+                                                <td>매크로 기능</td>
+                                                <td>${dto.macrofunction }</td>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>동시입력</td>
+                                                <td>${dto.simultaneousinput }</td>
+                                                <td>응답속도</td>
+                                                <td>${dto.responsevelocity }</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">키 잠금</th>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>윈도우 키 잠금</td>
+                                                <td>${dto.windowskeylocking }</td>
+                                                <td>전체 키 잠금</td>
+                                                <td>${dto.fullkeylock }</td>
+                                             </tr>
+                                             <tr>
+                                            	<th colspan="4">외형</th>
+                                            </tr>
+                                             <tr>
+                                                <td>스텝스컬쳐2</td>
+                                                <td>${dto.stepsculture2 }</td>
+                                                <td>비키스타일</td>
+                                                <td>${dto.vikistyle }</td>
+                                             </tr>
+                                             <tr>
+                                                <td>금속 하우징</td>
+                                                <td>${dto.metalhousing }</td>
+                                                <td>외국어 전용</td>
+                                                <td>${dto.foreignlanguageonly }</td>
+                                             </tr>
+                                             <tr>
+                                                <td>키캡 재질</td>
+                                                <td>${dto.keycapmaterial }</td>
+                                                <td>키캡 각인방식</td>
+                                                <td>${dto.keycapburningmethod }</td>
+                                             </tr>
+                                             <tr class="odd">
+                                                <td>LED 백라이트</td>
+                                                <td>${dto.ledbacklight}</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">케이블</th>
+                                            </tr>
+                                             <tr class="odd">
+                                                <td>직조(패브릭) 케이블</td>
+                                                <td>${dto.fabriccable }</td>
+                                                <td>착탈식 케이블</td>
+                                                <td>${dto.removablecable}</td>
+                                             </tr>
+                                            <tr>
+                                            	<th colspan="4">부가 기능</th>
+                                            </tr>
+                                            <tr>
+                                                <td>멀티페어링</td>
+                                                <td>${dto.multipairing}</td>
+                                                <td>USB허브 내장</td>
+                                                <td>${dto.builtinusbhub }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>체리식 스테빌라이저</td>
+                                                <td>${dto.cherrystylestabilizer}</td>
+                                                <td>생활방수</td>
+                                                <td>${dto.lifewaterproofing }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>터치패드</td>
+                                                <td>${dto.touchpad}</td>
+                                                <td>트랙볼</td>
+                                                <td>${dto.trackball }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>모션센서</td>
+                                                <td>${dto.motionsensor}</td>
+                                                <td>스마트키보드</td>
+                                                <td>${dto.smartkeyboard }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>방향키 전환</td>
+                                                <td>${dto.switchrudder}</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">추가 구성</th>
+                                            </tr>
+                                            <tr>
+                                                <td>실리콘 키스킨</td>
+                                                <td>${dto.siliconkeyskin}</td>
+                                                <td>플라스틱 덮개</td>
+                                                <td>${dto.plasticcover }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>키캡 리무버</td>
+                                                <td>${dto.keycapremover}</td>
+                                                <td>청소용 브러쉬</td>
+                                                <td>${dto.cleaningbrush }</td>
+                                            </tr>
+                                            <tr>
+                                                <td>교체용 키캡</td>
+                                                <td>${dto.replacementkeycaps}</td>
+                                            </tr>
+                                            <tr>
+                                            	<th colspan="4">크기(가로x세로x높이)</th>
+                                            </tr>
+                                            <tr>
+                                                <td>가로</td>
+                                                <td>${dto.width}</td>
+                                                <td>세로</td>
+                                                <td>${dto.length }</td>
+                                            </tr>
+                                            <tr>
+                                            	<td>높이</td>
+                                                <td>${dto.height}</td>
+                                                <td>무게</td>
+                                                <td>${dto.weight}</td>
+                                            </tr>
+                                            <tr>
+                                            	<td>케이블 길이</td>
+                                                <td>${dto.cablelength}</td>
                                             </tr>
                                         </tbody>
                                    </table>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reviews">
                                     <div id="product-comments-block-tab">
-                                        <a href="#" class="comment-btn"><span>Be the first to write your review!</span></a>
                                             <div style="width:650px; text-align: center;">
 									        <br>
 									        <!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
