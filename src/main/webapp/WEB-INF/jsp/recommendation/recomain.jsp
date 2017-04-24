@@ -439,7 +439,7 @@ p {
 		<div class="slider-area"> 
 			<div class="bend niceties preview-1">  
 				<div id="ensign-nivoslider" class="slides">	   
-					<img src="${path}/resources/upload/main.jpg" alt="" title="#slider-direction-1"  />
+					<img src="${path}/resources/writer/img/bigpicture/main.jpg" alt="" title="#slider-direction-1"  />
 				</div> 
 				 
 				<!-- direction 1 -->   

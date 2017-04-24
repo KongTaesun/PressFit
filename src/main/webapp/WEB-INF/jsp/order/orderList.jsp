@@ -6,11 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%@ include file="/resources/include/header.jsp"%>
+
+
 </head>
 
-
-        
-        
 
 <body>
         <!-- Breadcrumbs Area Start -->
@@ -46,20 +45,26 @@
                             <table>
                                 <thead>
 					                 <tr>
-					                  
+					                				                  
+                                        <th class="order_id">상품번호</th>
                                         <th class="order_date">주문일자</th>
                                         <th class="order_name">주문 상품 정보</th>
                                         <th class="order_count">상품수량</th>
                                         <th class="order_price">금액</th>
                                         <th class="order_customer">판매자</th>
-                                        <th class="order_state">주문상태</th>                                     
+                                        <th class="order_state">주문상태</th>
+                                        <th class="order_check">확인</th>                                     
 
                              </tr>
                                 </thead>
                                 <tbody>
 					                <c:forEach var="row" items="${map.list}" varStatus="i">
                                     <tr>
-                                       
+					                	
+					                	<td class="order_id">
+                                        
+					                	<a>${row.cart_id }</a>
+					                	</td>
                                         <td class="order_date">
                                            <a> ${row.orderdate}
                                            </a>  
@@ -89,20 +94,37 @@
                                          <c:if test="${row.shippingStatus eq 2}">
                                          	배송완료
                                          </c:if>                                         
+                                         <c:if test="${row.shippingStatus eq 3}">
+                                         	환불신청
+                                         </c:if> 
+                                         <c:if test="${row.shippingStatus eq 4}">
+                                         	환불완료
+                                         </c:if> 
+                                         
                                          </a>
-                                      
-                             
+                                         </td>
+                                      <td class="order_check">
+                                                          
+       								 <button type="submit" id="commit">상품확인</button>
                                     </tr>                               
                                   </c:forEach>                                   
                                 </tbody>
-                            </table> 
-                            </c:otherwise>
+                            </table>
+                             </c:otherwise>
                             </c:choose>
+                            
+                          
+                            
+                           
+                            
                         </div>
-                          <input type="submit" id="order1" name="order1" value="배송조회(배송확인)"  />
-                          <input type="submit" id="order2" name="order2" value="반품신청"  />
-                          <input type="submit" id="order3" name="order3" value="교환문의"  />
-                          <input type="submit" id="order4" name="order4" value="상품평 쓰기"  />
+                        
+                          
+                         
+                          <a class="revers" href="http://localhost:8080/pressfit/order/orderCancel.do">반품신청</a>
+                          <a class="revers" href="http://localhost:8080/pressfit/faq/write.do">교환문의</a>
+                          <a class="revers" href="http://localhost:8080/pressfit//write.do">상품평 쓰기</a>
+                         
                            
                         </div>
                     </div>
