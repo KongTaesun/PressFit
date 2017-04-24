@@ -440,7 +440,7 @@ $(document).ready(function() {
 				<div id="slider-direction-1" class="text-center slider-direction">   
 					<!-- layer 1 -->    
 					<div class="layer-1">
-			            <h2 class="title-1">Recommender system</h2> 
+			            <h2 class="title-1" >Recommender system</h2> 
 		            </div>
  					<!-- layer 2 -->      
 					<div class="layer-2">

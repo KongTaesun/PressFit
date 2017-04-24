@@ -44,15 +44,17 @@
         <link rel="stylesheet" href="${path}/resources/writer/css/responsive.css">
 		<!-- modernizr css -->
         <script src="${path}/resources/writer/js/vendor/modernizr-2.8.3.min.js"></script>
-        
+        <style>
+        @font-face{font-family: 'Connoisseurs';src: url('${path}/resources/font/Connoisseurs.ttf')}
+        </style>
   <!--Header Area Start-->
         <div class="header-area">
-            <div class="container">
+            <div class="container" style="font-size: 15px;">
                 <div class="row">
                     <div class="col-md-2 col-sm-6 col-xs-6">
                         <div class="header-logo">
                             <a href="${path}/index.jsp">
-                                <img src="${path}/resources/writer/img/logo/logo.png" alt="">   
+                            	<img src="${path}/resources/writer/img/logo/logo.png" alt="">
                             </a> 
                         </div>
                     </div>
@@ -135,13 +137,13 @@
 
 						<ul id="nav">
 							<li><a href="${path}/index.jsp">HOME</a></li>
-							<li><a href="#">카테고리</a>
+							<li><a href="#">CATEGORY</a>
 								<ul class="sub-menu">
-									<li><a href="${path}/tmouse/list.do">마우스</a></li>
-									<li><a href="${path}/keyboard/list.do">키보드</a></li>
+									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
+									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
 								</ul> <c:choose>
 									<c:when test="${empty sessionScope.id }">
-										<li><a href="#">마이페이지</a>
+										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
 												<li><a href="${path}/auth/providerid">카카오로그인</a></li> 
@@ -151,7 +153,7 @@
 											</ul></li>
 									</c:when>
 									<c:when test="${ kind  eq 'business'}">
-										<li><a href="#">사업자 페이지</a>
+										<li><a href="#">BUSINESS</a>
 											<ul class="sub-menu">
 											<li><a href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
 											<li><a href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
@@ -161,7 +163,7 @@
 										</li>
 									</c:when> 
 									<c:otherwise>  
-										<li><a href="#">마이페이지</a> 
+										<li><a href="#">MYPAGE</a> 
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
 												<li><a href="${path}/order/orderList.do">주문내역</a></li>
@@ -170,8 +172,8 @@
 											</ul></li>
 									</c:otherwise>
 								</c:choose>
-							<li><a href="${path}/gallery/list.do">갤러리 게시판</a></li>
-							<li><a href="#">고객센터</a>
+							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
+							<li><a href="#">SERVICE CENTER</a>
 								<ul class="sub-menu">
 
 									<li><a href="${path}/community/list.do">공지사항</a></li>
@@ -193,7 +195,7 @@
 									<li><a href="404.html">404 Page</a></li>
 									<li><a href="contact.html">CONTACT</a></li>
 								</ul></li>
-							<li><a href="#">사업자 페이지</a>
+							<li><a href="#">BUSINESS</a>
 								<ul class="sub-menu"> 
 									<li><a href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
 									<li><a href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>

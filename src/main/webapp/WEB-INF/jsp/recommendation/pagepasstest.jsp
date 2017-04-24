@@ -1057,7 +1057,7 @@ vertical-align: inherit;
 </div>
 
 <div id="particles">
-  <div id="intro">
+  <div id="intro" style="position: ixed;">
     <!-- Online Banner Area Start -->
 	<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
