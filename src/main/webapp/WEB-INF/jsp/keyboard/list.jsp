@@ -6,6 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp"%>
+<style>
+.left-item1 img {
+  width: 200px;
+  height: 200px;
+}
+</style>
+
 <script>
 	$(document).ready(
 			function() {
@@ -218,8 +225,8 @@
 												<div class="product-wrapper" style="width:260px; height:260px;">
 													<a
 														href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
-														class="single-banner-image-wrapper"> <img alt=""
-														src="${path}/resources/upload/${row.fullName}"  style="width:260px; height:260px;">
+														class="single-banner-image-wrapper">
+														<img src="${path}/resources/upload/${row.fullName}"  style="width:260px; height:260px;">
 														<div class="price">
 															<span>\</span>${row.price}<br />${row.crea_id}</div>
 													</a>
@@ -274,23 +281,22 @@
 							<div id="menu1" class="tab-pane fade">
 								<div class="row">
 									<div class="single-shop-product">
-									
+									<c:forEach var="row" items="${map.list}">
 										<div class="col-xs-12 col-sm-5 col-md-4">
-											<div class="left-item">
-												<a href="single-product.html" title="Lone some dove"> <img
-													src="/resources/writer/img/featured/4.jpg" alt="">
+											<div class="left-item1">
+												<a href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
+												<img src="${path}/resources/upload/${row.fullName}" />
 												</a>
 											</div>
 										</div>
 										<div class="col-xs-12 col-sm-7 col-md-8">
 											<div class="deal-product-content">
 												<h4>
-													<a href="single-product.html" title="Lone some dove">Lone
-														some dove</a>
+													<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
+													${row.modelname}</a>
 												</h4>
 												<div class="product-price">
-													<span class="new-price">$ 140.00</span> <span
-														class="old-price">$ 120.00</span>
+													<span class="new-price">${row.price}￦</span>
 												</div>
 												<div class="list-rating-icon">
 													<i class="fa fa-star icolor"></i> <i
@@ -298,16 +304,14 @@
 														class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
 												</div>
-												<p>Faded short sleeves t-shirt with high neckline. Soft
-													and stretchy material for a comfortable fit. Accessorize
-													with a straw hat and you're ready for summer!</p>
+												<p>글 내용을 바꿔야함</p>
 												<div class="availability">
 													<span>In stock</span> <span><a href="cart.html">Add
 															to cart</a></span>
 												</div>
 											</div>
 										</div>
-										
+										</c:forEach>
 									</div>
 								</div>
 							</div>
