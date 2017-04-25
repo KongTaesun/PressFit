@@ -44,11 +44,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SELECT *,(price * amount) money 
         FROM cart_board
         where payment ='Y'
+        <include refid="search"></include>
         <!-- and shippingStatus = '0' -->
         AND crea_id = #{id}
          
         ORDER BY cart_id
     </select>
+    
+    <sql id="search">
+      <if test="searchOption=='order'">
+         and shippingStatus = '0'
+      </if>
+      <if test="searchOption=='connectionmethod'">
+         and shippingStatus = '1'
+      </if>
+      <if test="searchOption=='wristtunnelsyndrome'">
+         and shippingStatus = '2'
+      </if>
+      <if test="searchOption=='switch1'">
+         and shippingStatus = '3'
+      </if> 
+      <if test="searchOption=='price'">
+         and shippingStatus = '4'
+      </if>
+      <if test="searchOption=='id'">
+      	 and shippingStatus = '5'
+      </if>
+   </sql>
     
     
     <!-- 3. 주문 전체 금액 -->
