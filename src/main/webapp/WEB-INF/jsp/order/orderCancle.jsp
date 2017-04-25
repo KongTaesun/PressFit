@@ -10,7 +10,7 @@
 
 
         
-        
+         
 
 <body>
         <!-- Breadcrumbs Area Start -->
@@ -81,15 +81,25 @@
                                          
                                          
                                          <a>  
-                                         <c:if test="${row.shippingStatus eq 0}">
+                                                  <c:if test="${row.shippingStatus eq 0}">
                                          	배송전
                                          </c:if>
                                          <c:if test="${row.shippingStatus eq 1}">
                                          	배송중
                                          </c:if>
                                          <c:if test="${row.shippingStatus eq 2}">
-                                         	수령
+                                         	배송완료
                                          </c:if>                                         
+                                         <c:if test="${row.shippingStatus eq 3}">
+                                         	환불신청
+                                         </c:if>  
+                                         <c:if test="${row.shippingStatus eq 4}"> 
+                                         	환불완료
+                                         </c:if> 
+                                          <c:if test="${row.shippingStatus eq 5}">
+                                          </c:if>
+                                          
+                                         	교환신청
                                          </a>
                                         </td>
                                         
@@ -97,9 +107,6 @@
                                          
                                          
                               
-                     
-                                
-                                
                                 
                                 <a class="" href="#">[배송취소하기]</a>
                                          

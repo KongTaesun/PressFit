@@ -6,6 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp"%>
+<style>
+
+
+.left-item1 img {
+  width: 200px;
+  height: 200px;
+}
+
+
+</style>
 <script>
 	$(document).ready(
 			function() {
@@ -33,21 +43,36 @@
 	                 });
 	                 $( "#rangeamount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
 	                  " - $" + $( "#slider-range" ).slider( "values", 1 ) );  
+	                 
 	            $("#btnPrice").click(
 	                  function(){
 	                     var min = $( "#slider-range" ).slider( "values", 0 );
 	                     var max = $( "#slider-range" ).slider( "values", 1 );
 	               location.href="${path}/tmouse/list.do?searchOption=price&minPrice="+min+"&maxPrice="+max;
 	            });
+	            
+	            
+	            
 			
 			});
 	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
 	function list(page) {
-		location.href = "${path}/tmouse/list.do?curPage=" + page
+		var link = location.href = "${path}/tmouse/list.do?curPage=" + page
+		+ "&searchOption=${map.searchOption}"
+		+ "&keyword=${map.keyword}";
+		
+        var tab = link.split('/').pop();
+        $('a[href$='+tab+']').trigger("click");
+		
+		
+		
+		
+		/* location.href = "${path}/tmouse/list.do?curPage=" + page
 				+ "&searchOption=${map.searchOption}"
-				+ "&keyword=${map.keyword}";
+				+ "&keyword=${map.keyword}"; */
 	}
 	
+		
 	
 	
 </script>
@@ -152,10 +177,13 @@
 						<div class="shop-tab-list">
 							<div class="shop-tab-pill pull-left">
 								<ul>
+								
 									<li class="active" id="left"><a data-toggle="pill"
 										href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
+										
 									<li><a data-toggle="pill" href="#menu1"><i
 											class="fa fa-th-list"></i><span>List</span></a></li>
+											
 								</ul>
 							</div>
 							<div class="shop-tab-pill pull-right">
@@ -216,14 +244,20 @@
 						<div class="tab-content">
 							<div class="row tab-pane fade in active" id="home">
 								<div class="shop-single-product-area">
+								
+								<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								
 									<c:forEach var="row" items="${map.list}">
 										<div class="col-md-4 col-sm-6">
 											<div class="single-banner" >
 												<div class="product-wrapper" style="width:260px; height:260px;">
 													<a
 														href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
-														class="single-banner-image-wrapper"> <img alt=""
-														src="${path}/resources/upload/${row.fullName}" style="width:260px; height:260px;">
+														class="single-banner-image-wrapper">
+														<img src="${path}/resources/upload/${row.fullName}" style="width:260px; height:260px;">
 														<div class="price">
 															<span>\</span>${row.price}<br />${row.crea_id}</div>
 													</a>
@@ -268,22 +302,26 @@
 								<div class="row">
 									<div class="single-shop-product">
 									
-										<div class="col-xs-12 col-sm-5 col-md-4">
-											<div class="left-item">
-												<a href="single-product.html" title="Lone some dove"> <img
-													src="/resources/writer/img/featured/4.jpg" alt="">
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<c:forEach var="row" items="${map.list}">
+										<div class="col-xs-12 col-sm-5 col-md-4">   <!-- 12/5/4 -->
+											<div class="left-item1">
+												<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
+												<img src="${path}/resources/upload/${row.fullName}" />
 												</a>
 											</div>
 										</div>
 										<div class="col-xs-12 col-sm-7 col-md-8">
 											<div class="deal-product-content">
 												<h4>
-													<a href="single-product.html" title="Lone some dove">Lone
-														some dove</a>
+													<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
+													${row.modelname}</a>
 												</h4>
 												<div class="product-price">
-													<span class="new-price">$ 140.00</span> <span
-														class="old-price">$ 120.00</span>
+													<span class="new-price">${row.price}￦</span>
 												</div>
 												<div class="list-rating-icon">
 													<i class="fa fa-star icolor"></i> <i
@@ -291,17 +329,22 @@
 														class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
 												</div>
-												<p>Faded short sleeves t-shirt with high neckline. Soft
-													and stretchy material for a comfortable fit. Accessorize
-													with a straw hat and you're ready for summer!</p>
+												<p>글 내용을 바꿔야함</p>
 												<div class="availability">
 													<span>In stock</span> <span><a href="cart.html">Add
 															to cart</a></span>
 												</div>
 											</div>
 										</div>
-										
+										</c:forEach>
 									</div>
+									
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+									
+									
 								</div>
 							</div>
 							

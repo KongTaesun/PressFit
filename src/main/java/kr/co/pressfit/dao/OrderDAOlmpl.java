@@ -1,6 +1,7 @@
 package kr.co.pressfit.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -28,6 +29,15 @@ public class OrderDAOlmpl implements OrderDAO {
 	}
 	@Override
 	public List<CartVO> memberInfo(String id) throws Exception {
-		return sqlSession.selectList("cart.memberInfo", id);
+		return sqlSession.selectList("order.memberInfo", id); 
 	}
+	@Override
+	public List<CartVO> orderCancel(String id) throws Exception {
+		return sqlSession.selectList("order.orderCancel", id);
+	}
+	@Override  
+	public List<CartVO> orderConfirm(Map<String, Object> list) throws Exception {
+		return sqlSession.selectList("order.orderConfirm", list);
+	}
+	
 }

@@ -6,7 +6,11 @@
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp" %>
 <%@ include file="/resources/include/mobile.jsp" %>
-
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/q&a_img.jpg');
+}
+</style>
 <script>
     $(document).ready(function(){
         $("#btnWrite").click(function(){
@@ -28,14 +32,17 @@
     <!-- Breadcrumbs Area Start -->
         <div class="breadcrumbs-area">
 			<div class="container">
+			
 				<div class="row">
 					<div class="col-md-12">
+					
 					    <div class="breadcrumbs">
-					       <h2>SHOPPING CART</h2> 
+					    
+ 					       <h2>SHOPPING CART</h2> 
 					       <ul class="breadcrumbs-list">
 						        <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
+						        </li> 
 						        <li>FAQ</li>
 						    </ul>
 					    </div>
