@@ -22,7 +22,7 @@ $(document).ready(function() {
 	 	jsonp : "callback",
 	 	dataType : "jsonp",
 	 	jsonpCallback: "myCallback",
-	 	success: function(data) {
+	 	success: function(data) {z
 	 		console.log('성공 - ', data);
 			$('#loading').animate({
 	            "opacity": "0",

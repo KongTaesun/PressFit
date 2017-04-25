@@ -35,6 +35,25 @@
 	<beans:bean id="sampleInterceptor" class= "kr.co.pressfit.interceptor.SampleInterceptor"/> 
 	<beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
 	<beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
+	<beans:bean id="adminclearInterceptor" class= "kr.co.pressfit.interceptor.AdminclearInterceptor"/>
+	
+	<interceptors>
+		<interceptor> 
+				<mapping path="/admin/*.do"/>
+				<beans:ref bean="adminInterceptor" />
+		</interceptor>
+		<interceptor> 
+				<mapping path="/tmouse/*.do"/>
+				<mapping path="/keyboard/*.do"/>
+				<mapping path="/gallery/*.do"/>
+				<mapping path="/business/*.do"/>
+				<mapping path="/shop/cart/*.do"/>
+				<mapping path="/community/*.do"/>
+				<mapping path="/faq/*.do"/>
+				<mapping path="/member/*.do"/>
+				<beans:ref bean="adminclearInterceptor" />
+		</interceptor>
+	</interceptors>
 	
 	<!-- 
 	<interceptors>
