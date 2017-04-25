@@ -10,7 +10,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 // 인터셉터 : 요청 전후에 자동으로 처리(경유)되는 클래스
 //  preHandle() =>  return true => write.do => postHandle()
 //              =>  return false; 
-public class AdminInterceptor 
+public class AdminclearInterceptor 
 	extends HandlerInterceptorAdapter{
 	//요청 전에 처리
 	@Override
@@ -18,8 +18,8 @@ public class AdminInterceptor
 			throws Exception {
 		//세션 객체 생성
 		HttpSession session=request.getSession();
-		if(session.getAttribute("admin")==null){
-			response.sendRedirect(request.getContextPath()+"/");
+		if(session.getAttribute("admin")!=null){
+			session.invalidate();
 			return false; //요청을 더이상 실행하지 않음
 		}else{
 			return true; //요청을 실행함

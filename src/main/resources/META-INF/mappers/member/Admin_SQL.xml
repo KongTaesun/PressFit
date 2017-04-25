@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- java Resource/src/main/resources/mappers/
+    businessMapper.xml -->
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="admin">
+	<insert id="create" parameterType="kr.co.pressfit.vo.AdminVO">
+		insert into Aadmin (id,pw,pw2) values (#{id},#{pw},#{pw2})	
+	</insert>
+	<select id="read" resultType="kr.co.pressfit.vo.AdminVO">
+		select * from Aadmin where pw=#{pw}
+	</select>
+	<select id="readlist" resultType="kr.co.pressfit.vo.AdminVO">
+		select * from Aadmin
+	</select>
+	<update id="update"> 
+		update Aadmin
+		set pw=#{pw}, pw2=#{pw2},name=#{name}
+		where id=#{id}
+	</update> 
+	<delete id="delete">
+		delete from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2} 
+	</delete>
+	<select id="passwordcheck" resultType="int">
+		select EXISTS(select * from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2})
+	</select>
+</mapper>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
