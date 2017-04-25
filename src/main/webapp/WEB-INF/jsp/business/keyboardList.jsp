@@ -14,6 +14,26 @@
 				+ "&searchOption=${map.searchOption}"
 				+ "&keyword=${map.keyword}";
 	}
+	$(document).ready(function(){
+        // 삭제 버튼 클릭 
+		$("#btnDelete").click(function(){
+		    // 댓글이 존재하는 게시물의 삭제처리 방지
+		    var count = "${count}";
+		    // 댓글의 수가 0보다 크면 팝업, 함수 종료
+		    if(count > 0) {
+		    	if(confirm("댓글이 많이 있습니다. 삭제하시겠습니까?")){
+		    		document.form1.action = "${path}/tmouse/delete.do?idx=${dto.idx}";
+			        document.form1.submit();
+		    	}else{return;}
+		    }
+		    // 댓글의 수가 0이면 삭제처리
+		    if(confirm("삭제하시겠습니까?")){
+		        location.href = "${path}/tmouse/delete.do?idx=${dto.idx}";
+		        }
+		    else{
+		    }
+		});
+    });
 </script>
 </head>
 <body>

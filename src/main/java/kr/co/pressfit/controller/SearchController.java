@@ -19,7 +19,7 @@ public class SearchController {
 	@RequestMapping("/search/answer.do")
 	public String answer(@RequestParam String q,Model model){
 		model.addAttribute("q",q);
-		return "recommendation/pagepasstest";
+		return "recommendation/recoview";
 	}
 	/*@RequestMapping("/search/answer.do")
 	public String answer(Model model){
