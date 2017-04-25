@@ -9,31 +9,31 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="#">
+                    <a href="/admin/main.do">
                         <i class="pe-7s-news-paper"></i>
                         <p>최 근 활 동</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/member.do">
                         <i class="pe-7s-user"></i>
                         <p>회 원 현 황</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/board.do">
                         <i class="pe-7s-note2"></i>
                         <p>게시판 현황</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/graph.do">
                         <i class="pe-7s-graph"></i>
                         <p>사이트 현황 그래프</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/search.do">
                         <i class="pe-7s-science"></i>
                         <p>검색엔진 관리</p>
                     </a>

@@ -58,6 +58,22 @@ public class Admin {
 	public String main(Model model, HttpSession session){
 		return "admin/main"; 
 	}
+	@RequestMapping("board.do")
+	public String board(Model model, HttpSession session){
+		return "admin/board"; 
+	}
+	@RequestMapping("member.do")
+	public String member(Model model, HttpSession session){
+		return "admin/member"; 
+	}
+	@RequestMapping("graph.do")
+	public String graph(Model model, HttpSession session){
+		return "admin/graph"; 
+	}
+	@RequestMapping("search.do")
+	public String search(Model model, HttpSession session){
+		return "admin/search"; 
+	}
 	@RequestMapping("/inter/login.do")
 	public String login(Model model, HttpSession session){
 		System.out.println(session.getAttribute("admin"));
