@@ -1,5 +1,7 @@
 package kr.co.pressfit.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,7 @@ public class CartController {
     TMouseService tmouseservice;
     
     @ResponseBody 
-    // 1. 占쏙옙袂占쏙옙占� 占쌩곤옙
+    
     @RequestMapping("insert.do")
     public ModelAndView insert(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
     	System.out.println(vo);
@@ -60,36 +62,31 @@ public class CartController {
     }
 
     
-    // 2. 占쏙옙袂占쏙옙占� 占쏙옙占�
+   
     @RequestMapping("cartList.do")
     public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception{
-        String id = (String) session.getAttribute("id"); // session占쏙옙 占쏙옙占쏙옙占� userId
+        String id = (String) session.getAttribute("id");
         Map<String, Object> map = new HashMap<String, Object>();
-        List<CartVO> list = cartService.listCart(id); // 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙 
-        int sumMoney = cartService.sumMoney(id); // 占쏙옙袂占쏙옙占� 占쏙옙체 占쌥억옙 호占쏙옙
-        // 占쏙옙袂占쏙옙占� 占쏙옙체 占쏙옙六占� 占쏙옙占쏙옙 占쏙옙舫占� 占쏙옙占쏙옙
-        // 占쏙옙紡占�(10占쏙옙占쏙옙占싱삼옙 => 占쏙옙占쏙옙, 占싱몌옙 => 2500占쏙옙)
-        
-        
-        
+        List<CartVO> list = cartService.listCart(id);  
+        int sumMoney = cartService.sumMoney(id); 
+       
         
         int fee = sumMoney >= 100000 ? 0 : 2500;
-        map.put("list", list);                // 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙占쏙옙 map占쏙옙 占쏙옙占쏙옙
-        map.put("count", list.size());        // 占쏙옙袂占쏙옙占� 占쏙옙품占쏙옙 占쏙옙占쏙옙
-        map.put("sumMoney", sumMoney);        // 占쏙옙袂占쏙옙占� 占쏙옙체 占쌥억옙
-        map.put("fee", fee);                 // 占쏙옙旁附占�
-        map.put("allSum", sumMoney+fee);    // 占쌍뱄옙 占쏙옙품 占쏙옙체 占쌥억옙
-        mav.setViewName("shop/cart/cartList");    // view(jsp)占쏙옙 占싱몌옙 占쏙옙占쏙옙
-        mav.addObject("map", map);            // map 占쏙옙占쏙옙 占쏙옙占쏙옙
+        map.put("list", list);                
+        map.put("count", list.size());        
+        map.put("sumMoney", sumMoney);        
+        map.put("fee", fee);                 
+        map.put("allSum", sumMoney+fee);    
+        mav.setViewName("shop/cart/cartList");    
+        mav.addObject("map", map);           
         return mav;
     }
 
     
-    // 3. 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙
     @RequestMapping("delete.do")
     public String delete(@RequestParam(value="cart_id", required=false) int cart_id) throws Exception{
         cartService.delete(cart_id);
-        System.out.println("占쏙옙트占싼뤄옙"+cart_id);
+        System.out.println("cart_id"+cart_id);
         return "redirect:/shop/cart/cartList.do";
     }
 
@@ -103,12 +100,11 @@ public class CartController {
     
      
     
-    // 4. 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙
-    @RequestMapping("update.do")
+     @RequestMapping("update.do")
     public String update(@RequestParam int[] amount, @RequestParam int[] idx, HttpSession session) throws Exception {
-        // session占쏙옙 id
+       
         String userId = (String) session.getAttribute("id");
-        // 占쏙옙占쌘듸옙占쏙옙 占쏙옙占쏙옙 占쏙옙큼 占쌥븝옙占쏙옙 占쏙옙占쏙옙
+       
         for(int i=0; i<idx.length; i++){
             CartVO vo = new CartVO();
             vo.setUser_id(userId);
@@ -120,13 +116,17 @@ public class CartController {
         return "redirect:/shop/cart/list.do";
     }
     
-    // 5. 占쏙옙袂占쏙옙占� 체크 占쏙옙占쏙옙
+    
     @RequestMapping(value="/payment.do")
-	public ModelAndView cartCheck(@RequestParam(value="check") List<String> chkArr, HttpSession session, @RequestParam(value="methodpayment") String methodpayment) throws Exception{
+	public ModelAndView cartCheck(@RequestParam(value="check") List<String> chkArr, @RequestParam(value="amount") List<Integer> amountList, HttpSession session, @RequestParam(value="methodpayment") String methodpayment, @RequestParam(value="idx") int idx) throws Exception{
     	String userId = (String) session.getAttribute("id");
     	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
+    	System.out.println(idx);
+    	
+    
+    	 
     	Map<String, Object> map = new HashMap<String, Object>();
-    	cartService.chkArr(chkArr, methodpayment);
+    	cartService.chkArr(chkArr, methodpayment, amountList, idx);
 		
 		return mv;
 	}
@@ -134,11 +134,11 @@ public class CartController {
     @RequestMapping(value="/orderInfoAction.do")
 	public ModelAndView order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{
     	ModelAndView mav = new ModelAndView();
-    	String id = (String) session.getAttribute("id"); // session占쏙옙 占쏙옙占쏙옙占� userId
+    	String id = (String) session.getAttribute("id"); 
         Map<String, Object> map = new HashMap<String, Object>();
         List<CartVO> list = cartService.order(chkArr);
         List<CartVO> memberInfo = cartService.memberInfo(id);
-        int sumMoney = cartService.sumMoney(id); // 占쏙옙袂占쏙옙占� 占쏙옙체 占쌥억옙 호占쏙옙
+        int sumMoney = cartService.sumMoney(id); 
         
         int fee = sumMoney >= 100000 ? 0 : 2500;
         map.put("list", list);

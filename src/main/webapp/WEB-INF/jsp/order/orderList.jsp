@@ -11,6 +11,9 @@
 </head>
 
 
+
+
+
 <body>
         <!-- Breadcrumbs Area Start -->
         <div class="breadcrumbs-area">
@@ -53,7 +56,9 @@
                                         <th class="order_price">금액</th>
                                         <th class="order_customer">판매자</th>
                                         <th class="order_state">주문상태</th>
-                                        <th class="order_check">확인</th>                                     
+                                        <th class="order_check">확인</th> 
+                                        <th class="order_confirm">리뷰</th> 
+                                                                            
 
                              </tr>
                                 </thead>
@@ -100,19 +105,30 @@
                                          <c:if test="${row.shippingStatus eq 4}">
                                          	환불완료
                                          </c:if> 
+                                          <c:if test="${row.shippingStatus eq 5}">
+                                         	교환신청
+                                         </c:if> 
                                          
                                          </a>
                                          </td>
                                       <td class="order_check">
                                                           
-       								 <button type="submit" id="commit">상품확인</button>
+       								 <a class="commit" href="${path}/order/orderConfirm.do?cart_id=${row.cart_id}">상품확인</a>
+       								
+       								 <a class="cancle" href="${path}/order/orderCancle.do">반품신청</a>
+       								 </td>
+       								 
+       								 <td class=order_confirm>
+                        			  <a class="revers" href="http://localhost:8080/pressfit//write.do">상품평 쓰기</a>
+       								 </td>
+       								 
                                     </tr>                               
                                   </c:forEach>                                   
                                 </tbody>
                             </table>
                              </c:otherwise>
                             </c:choose>
-                            
+                             
                           
                             
                            
@@ -121,9 +137,7 @@
                         
                           
                          
-                          <a class="revers" href="http://localhost:8080/pressfit/order/orderCancel.do">반품신청</a>
-                          <a class="revers" href="http://localhost:8080/pressfit/faq/write.do">교환문의</a>
-                          <a class="revers" href="http://localhost:8080/pressfit//write.do">상품평 쓰기</a>
+                         
                          
                            
                         </div>

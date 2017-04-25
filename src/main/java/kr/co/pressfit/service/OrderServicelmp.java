@@ -1,7 +1,7 @@
 package kr.co.pressfit.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -29,6 +29,16 @@ public class OrderServicelmp implements OrderService{
 	public List<CartVO> memberInfo(String id) throws Exception {
 
 		return OrderDao.memberInfo(id);
+	}
+	@Override 
+	public List<CartVO> orderCancel(CartVO vo) throws Exception {
+		
+		return null;
+	}
+	@Override 
+	public List<CartVO> orderConfirm(Map<String, Object> list) throws Exception {
+		
+		return OrderDao.orderConfirm(list); 
 	}
 }
  

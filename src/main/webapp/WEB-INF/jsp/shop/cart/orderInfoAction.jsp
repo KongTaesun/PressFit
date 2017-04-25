@@ -37,6 +37,7 @@ text-align: left;
 <body>
 <!-- Breadcrumbs Area Start -->
 <form name="frm2" method="post" action="${path}/shop/cart/payment.do">
+
         <div class="breadcrumbs-area">
 			<div class="container">
 				<div class="row">
@@ -80,9 +81,13 @@ text-align: left;
                                 </thead>
                                 <tbody>
 					                <c:forEach var="row" items="${map.list}" varStatus="i">
+					                
+					                <input type="hidden" id="cart_id" name="check" value="${row.cart_id}"> 
+					              
+					         	 <input type="hidden" id="idx" name="idx" value="${row.idx}"> 
 					                <tr>
 <%-- 					                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row.cart_id }" ></td>
-					                	<td>${row.cart_id } --%><input type="hidden" id="cart_id" name="check" value="${row.cart_id}"/></td>
+					                	<td>${row.cart_id } --%>
 					                	
 					                	
 					                    <td>

@@ -120,6 +120,24 @@
      					open="(" separator="," close=")">
        				#{item}
 		</foreach>
+		update
+		  <if test="#{kind} == keyboard">
+		  	KeyboardBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+ 		</if>
+ 		
+		 <if test="#{kind} == tmouse">
+		 	TMouseBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+		</if>
+		where idx = #{idx}
+		
+		
+		
+<!-- 		update (select * from cart_board where kind=#{kind}) 
+ 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+ 		where idx = #{idx} -->
+		
 		
 	</update>
 	

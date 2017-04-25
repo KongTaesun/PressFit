@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.pressfit.vo.CartVO;
 
@@ -17,33 +18,32 @@ public class CartDAOImpl implements CartDAO {
     @Inject
     SqlSession sqlSession;
 
-    // 1. 占쏙옙袂占쏙옙占� 占쌩곤옙
     @Override
     public void insert(CartVO vo) {
         sqlSession.insert("cart.insertCart", vo);
     }
-    // 2. 占쏙옙袂占쏙옙占� 占쏙옙占�
+   
     @Override
     public List<CartVO> listCart(String userId) {
         return sqlSession.selectList("cart.listCart", userId);
     }
-    // 3. 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙
+   
     @Override
     public void delete(int cart_id) {
     	System.out.println("DAO:"+cart_id);
         sqlSession.delete("cart.deleteCart", cart_id);
     }
-    // 4. 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙
+    
     @Override
     public void modifyCart(CartVO vo) { 
         sqlSession.update("cart.modifyCart", vo);
     }
-    // 5. 占쏙옙袂占쏙옙占� 占쌥억옙 占쌌곤옙
+    
     @Override
     public int sumMoney(String userId) {
         return sqlSession.selectOne("cart.sumMoney", userId);
     }
-    // 6. 占쏙옙袂占쏙옙占� 占쏙옙占쏙옙占쏙옙 占쏙옙품 占쏙옙占쌘듸옙 확占쏙옙
+    
     @Override
     public int countCart(int productId, String userId) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -51,20 +51,31 @@ public class CartDAOImpl implements CartDAO {
         map.put("userId", userId);
         return sqlSession.selectOne("cart.countCart", map);
     }
-    // 7. 占쏙옙袂占쏙옙占� 占쏙옙품占쏙옙占쏙옙 占쏙옙占쏙옙
+    
     @Override
     public void updateCart(CartVO vo) {
         sqlSession.update("cart.sumCart", vo);
     }
-    // 8. 占쏙옙袂占쏙옙占� 체크
+  
+    @Transactional
 	@Override
-	public void chkArr(List<String> List, String methodpayment) throws Exception {
-		for(int i=0; i<List.size(); i++){
+	public void chkArr(List<String> List, String methodpayment, List<Integer> amountList, int idx) throws Exception {
+    	System.out.println("DAO");
+    	System.out.println(List);
+    	System.out.println(methodpayment);
+    	System.out.println(amountList);
+    	System.out.println(idx);
+    	
+    	for(int i=0; i<List.size(); i++){
 			Map<String, Object> map = new HashMap<String, Object>();
 			String num = List.get(i);
+			int amount = amountList.get(i);
 			map.put("num", num);
 			map.put("methodpayment", methodpayment);
+			map.put("amount", amount);
+			map.put("idx", idx);
 			sqlSession.update("cart.payment", map);
+			
 		}
 
 	}

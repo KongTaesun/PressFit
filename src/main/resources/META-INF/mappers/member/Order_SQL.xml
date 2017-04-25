@@ -47,6 +47,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</update>
 
+<!-- 	<select id="orderCancel" resultType="kr.co.pressfit.vo.MemberVO">
+		SELECT *
+        FROM Cmember
+        where id = #{id}
+	</select> -->
+
+ 	<update id="orderConfirm">
+		update cart_board 
+		set shippingStatus = 2
+		where user_id = #{id}
+		AND cart_id = #{cart_id}
+	</update>
+
+
 
 </mapper>
 
