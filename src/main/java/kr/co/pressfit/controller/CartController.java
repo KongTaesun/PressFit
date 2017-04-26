@@ -1,13 +1,11 @@
 package kr.co.pressfit.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -118,18 +116,33 @@ public class CartController {
     
     
     @RequestMapping(value="/payment.do")
-	public ModelAndView cartCheck(@RequestParam(value="check") List<String> chkArr, @RequestParam(value="amount") List<Integer> amountList, HttpSession session, @RequestParam(value="methodpayment") String methodpayment, @RequestParam(value="idx") int idx) throws Exception{
-    	String userId = (String) session.getAttribute("id");
-    	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
-    	System.out.println(idx);
+	public ModelAndView cartCheck(@RequestParam(value="cart_id") int[] cart_id, 
+			@RequestParam(value="amount") int[] amountList, HttpSession session, @RequestParam(value="methodpayment") String methodpayment, 
+			@RequestParam(value="idx") int[] idx, @RequestParam(value="kind") String[] kind) throws Exception{
     	
-    
+    	String userId = (String) session.getAttribute("id");
+    	
+    	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
+    	
+        for(int i=0; i<idx.length; i++){
+            CartVO vo = new CartVO();
+            vo.setAmount(amountList[i]);
+            vo.setMethodpayment(methodpayment);
+            vo.setIdx(idx[i]);
+            vo.setKind(kind[i]);
+            vo.setCart_id(cart_id[i]);
+             
+            cartService.chkArr(vo);
+        	cartService.amounttest(vo);
+        }
+    	
+    	
+    	
     	 
-    	Map<String, Object> map = new HashMap<String, Object>();
-    	cartService.chkArr(chkArr, methodpayment, amountList, idx);
-		
-		return mv;
+		return mv; 
 	}
+    
+    
     
     @RequestMapping(value="/orderInfoAction.do")
 	public ModelAndView order(@RequestParam(value="check") List<String> chkArr, HttpSession session) throws Exception{

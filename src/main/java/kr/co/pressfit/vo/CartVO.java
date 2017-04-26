@@ -21,7 +21,7 @@ public class CartVO {
 	private String methodpayment;
 	
 	
-	public String getMethodpayment() {
+	public String getMethodpayment() { 
 		return methodpayment;
 	}
 	public void setMethodpayment(String methodpayment) {

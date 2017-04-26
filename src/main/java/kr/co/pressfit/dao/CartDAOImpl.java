@@ -59,24 +59,20 @@ public class CartDAOImpl implements CartDAO {
   
     @Transactional
 	@Override
-	public void chkArr(List<String> List, String methodpayment, List<Integer> amountList, int idx) throws Exception {
-    	System.out.println("DAO");
-    	System.out.println(List);
-    	System.out.println(methodpayment);
-    	System.out.println(amountList);
-    	System.out.println(idx);
-    	
-    	for(int i=0; i<List.size(); i++){
+	public void chkArr(CartVO vo) throws Exception {
+
+   /* 	for(int i=0; i<List.size(); i++){
 			Map<String, Object> map = new HashMap<String, Object>();
 			String num = List.get(i);
 			int amount = amountList.get(i);
 			map.put("num", num);
 			map.put("methodpayment", methodpayment);
 			map.put("amount", amount);
-			map.put("idx", idx);
-			sqlSession.update("cart.payment", map);
-			
-		}
+			map.put("idx", idx);*/
+    	
+    	
+			sqlSession.update("cart.payment", vo);
+		
 
 	}
 	@Override
@@ -97,5 +93,36 @@ public class CartDAOImpl implements CartDAO {
 	public List<CartVO> memberInfo(String id) throws Exception {
 		return sqlSession.selectList("cart.memberInfo", id);
 	}
-	
+
+	@Override
+	public void amounttest(CartVO vo) throws Exception {
+		
+	/*	for(int i=0; i<chkArr.size(); i++){
+			Map<String, Object> map = new HashMap<String, Object>();
+			
+			
+			String num = chkArr.get(i);
+			int amount = amountList.get(i);
+			
+			System.out.println("컨트롤러테스트 넘"+num);
+			System.out.println("컨트롤러테스트 결제수단"+methodpayment);
+			System.out.println("컨트롤러테스트 수량"+amount);
+			System.out.println("컨트롤러테스트 글번호"+idx);
+			
+			
+			map.put("num", num);
+			map.put("methodpayment", methodpayment);
+			map.put("amount", amount);
+			map.put("idx", idx);
+			map.put("kind", kind);*/
+			
+		System.out.println(vo);
+		
+		if(vo.getKind().equals("keyboard"))
+			sqlSession.update("cart.amounttest_keyboard", vo);
+		else
+			sqlSession.update("cart.amounttest_mouse", vo);
+		
+	}
+
 }

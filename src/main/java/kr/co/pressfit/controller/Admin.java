@@ -45,7 +45,7 @@ public class Admin {
     FaqService faqservice;
     @Inject
     GalleryService galleryservice;
-	@Inject
+	@Inject 
 	BusinessService businessService;
     @Inject
     MemberService memberService;
@@ -81,7 +81,7 @@ public class Admin {
 	public String login(Model model, HttpSession session){
 		System.out.println(session.getAttribute("admin"));
 		return "admin/login";
-	}
+	} 
 	@RequestMapping("/inter/passwordcheck.do")
 	public ModelAndView passwordcheck(@ModelAttribute AdminVO vo,Model model, HttpSession session){
         ModelAndView mav = new ModelAndView();
@@ -95,7 +95,7 @@ public class Admin {
         } else {
             mav.setViewName("admin/login");
             mav.addObject("msg", "failure");
-        }
+        } 
         return mav;
 	}
 	@RequestMapping("create.do")

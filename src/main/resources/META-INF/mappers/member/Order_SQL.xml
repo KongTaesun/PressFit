@@ -60,8 +60,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND cart_id = #{cart_id}
 	</update>
 
+ <select id="orderCancel" resultType="kr.co.pressfit.vo.CartVO">
+        SELECT *,(price * amount) money 
+        FROM cart_board
+        where user_id = #{id} 
+        ORDER BY cart_id
+    </select>
 
-
+ 	<update id="orderCancelaction">
+		update cart_board 
+		set shippingStatus = 3
+		where user_id = #{id}
+		AND cart_id = #{cart_id}
+	</update>
+ 
 </mapper>
 
 

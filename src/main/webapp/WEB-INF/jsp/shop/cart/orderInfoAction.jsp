@@ -82,9 +82,11 @@ text-align: left;
                                 <tbody>
 					                <c:forEach var="row" items="${map.list}" varStatus="i">
 					                
-					                <input type="hidden" id="cart_id" name="check" value="${row.cart_id}"> 
+					                <input type="hidden" id="cart_id" name="cart_id" value="${row.cart_id}"> 
 					              
 					         	 <input type="hidden" id="idx" name="idx" value="${row.idx}"> 
+					         	 
+					         	 <input type="hidden" id="kind" name="kind" value="${row.kind}"> 
 					                <tr>
 <%-- 					                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row.cart_id }" ></td>
 					                	<td>${row.cart_id } --%>
