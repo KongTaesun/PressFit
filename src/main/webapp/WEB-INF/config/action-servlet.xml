@@ -23,7 +23,7 @@
  
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
         in the /WEB-INF/views directory -->
-    <beans:bean
+    <beans:bean 
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/jsp/" />
         <beans:property name="suffix" value=".jsp" />
@@ -36,8 +36,8 @@
 	<beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
 	<beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
 	<beans:bean id="adminclearInterceptor" class= "kr.co.pressfit.interceptor.AdminclearInterceptor"/>
-	
-	<interceptors>
+	 
+	<interceptors> 
 		<interceptor> 
 				<mapping path="/admin/*.do"/>
 				<beans:ref bean="adminInterceptor" />

@@ -6,8 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%@ include file="/resources/include/header.jsp"%>
-
-
 </head>
 
 
@@ -115,11 +113,11 @@
                                                           
        								 <a class="commit" href="${path}/order/orderConfirm.do?cart_id=${row.cart_id}">상품확인</a>
        								
-       								 <a class="cancle" href="${path}/order/orderCancle.do">반품신청</a>
+       								 <a class="cancle" href="${path}/order/orderCancel.do">반품신청</a>
        								 </td>
        								 
        								 <td class=order_confirm>
-                        			  <a class="revers" href="http://localhost:8080/pressfit//write.do">상품평 쓰기</a>
+                        			  <a class="revers" href="http://localhost:8080/pressfit/write.do">상품평 쓰기</a>
        								 </td>
        								 
                                     </tr>                               

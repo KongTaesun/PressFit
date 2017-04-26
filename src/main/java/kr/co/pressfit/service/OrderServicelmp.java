@@ -29,16 +29,22 @@ public class OrderServicelmp implements OrderService{
 	public List<CartVO> memberInfo(String id) throws Exception {
 
 		return OrderDao.memberInfo(id);
-	}
+	} 
 	@Override 
-	public List<CartVO> orderCancel(CartVO vo) throws Exception {
+	public List<CartVO> orderCancel(String id) throws Exception {
 		
-		return null;
+		return OrderDao.orderCancel(id); 
 	}
 	@Override 
 	public List<CartVO> orderConfirm(Map<String, Object> list) throws Exception {
 		
 		return OrderDao.orderConfirm(list); 
+	}
+	
+	@Override 
+	public List<CartVO> orderCancelaction(Map<String, Object> list) throws Exception {
+		
+		return OrderDao.orderCancelaction(list); 
 	}
 }
  

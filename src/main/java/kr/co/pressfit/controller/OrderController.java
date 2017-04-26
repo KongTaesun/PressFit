@@ -30,32 +30,12 @@ public class OrderController {
 	@Inject
 	OrderService orderService;
 	
-	@RequestMapping("/orderList.do")
-	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception{ 
-	
-		String id = (String) session.getAttribute("id");
-		 Map <String, Object> map = new HashMap<String, Object>();
-	     List <CartVO> list = orderService.orderList(id); 
-		
-	     map.put("list", list);   
-	     mav.setViewName("order/orderList");  
-	     mav.addObject("map", map);  
-	     
-	     
-		return mav;
 
-	}
 	
 	@RequestMapping(value="/orderConfirm.do")
 	public ModelAndView orderConfirm(HttpSession session, int cart_id, ModelAndView mav) throws Exception{
 
 		 String id = (String) session.getAttribute("id");
-		// int cart_id = (Integer)session.getAttribute("cart_id");
-		  
-		 
-		 System.out.println(cart_id);
-
-		 System.out.println(id);
 		 
 		 Map <String, Object> list = new HashMap<String,Object>();
 		
@@ -73,18 +53,52 @@ public class OrderController {
 		  return mav;
 	}
 	
-	 @RequestMapping(value="/orderCancle.do")
-		public ModelAndView orderCancle(HttpSession session, ModelAndView mav) throws Exception{ 
+	@RequestMapping("/orderList.do")
+	public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception{ 
+	
+		String id = (String) session.getAttribute("id");
+		 Map <String, Object> map = new HashMap<String, Object>();
+	     List <CartVO> list = orderService.orderList(id); 
+		
+	     map.put("list", list);   
+	     mav.setViewName("order/orderList");  
+	     mav.addObject("map", map);  
+	     
+	     
+		return mav;
+
+	}
+	 @RequestMapping(value="/orderCancel.do")
+		public ModelAndView orderCancel(HttpSession session, ModelAndView mav) throws Exception{ 
 			
 		  String id = (String) session.getAttribute("id");
-		  int cart_id = (Integer)session.getAttribute("cart_id");
+		  System.out.println(id);
+		  Map <String, Object> map = new HashMap<String,Object>();
+		  List <CartVO> list = orderService.orderCancel(id); 
+			 
+		  map.put("list", list);   
+		  mav.setViewName("order/orderCancel");  
+		  mav.addObject("map", map);  
 		  
-		  List <CartVO> list = orderService.orderList(id);
+		  return mav;
+		  }
+	 
+	 @RequestMapping(value="/orderCancelaction.do")
+		public ModelAndView orderCancelaction(HttpSession session, int cart_id, ModelAndView mav) throws Exception{ 
+			
+		  String id = (String) session.getAttribute("id");
+		  
+		  Map <String, Object> list = new HashMap<String,Object>();
+			
+			 list.put("id", id);
+			 list.put("cart_id", cart_id);
+			  
+		  orderService.orderCancelaction(list);
 		  
 		  Map <String, Object> map = new HashMap<String, Object>();
 		    
 		  map.put("list", list);
-		  mav.setViewName("order/orderCancle");  
+		  mav.setViewName("redirect:/order/orderCancel.do");  
 		  mav.addObject("map", map);  
 		  
 		  return mav;

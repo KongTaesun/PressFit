@@ -13,6 +13,7 @@ public interface OrderDAO {
 	public List<CartVO> memberInfo(String id) throws Exception;
 	public List<CartVO> orderCancel(String id) throws Exception;
 	public List<CartVO> orderConfirm(Map<String, Object> list) throws Exception;
+	public List<CartVO> orderCancelaction(Map<String, Object> list) throws Exception;
 	
 	
 }

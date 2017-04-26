@@ -13,8 +13,9 @@ public interface CartDAO {
 	public int sumMoney(String userId) throws Exception;
 	public int countCart(int productId, String userId) throws Exception;
 	public void updateCart(CartVO vo) throws Exception;
-	public void chkArr(List<String> List, String methodpayment, List<Integer> amountList, int idx) throws Exception;
+	public void chkArr(CartVO vo) throws Exception;
 	public void alldelete(String userId) throws Exception;
 	public List<CartVO> order(List<String> chkArr) throws Exception;
 	public List<CartVO> memberInfo(String id) throws Exception;
+	public void amounttest(CartVO vo) throws Exception;
 }

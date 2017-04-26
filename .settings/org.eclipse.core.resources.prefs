@@ -14,6 +14,7 @@ encoding//src/main/java/kr/co/pressfit/controller/SearchController.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/controller/TMouse.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/dao/CartDAOImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/dao/TMouseDAOImpl.java=UTF-8
+encoding//src/main/java/kr/co/pressfit/interceptor/AdminInterceptor.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/service/CartServiceImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/vo/TMouseVO.java=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/recommendation/recoview.jsp=UTF-8

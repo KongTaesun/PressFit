@@ -46,23 +46,29 @@
                             <table>
                                 <thead>
 					                 <tr>
+                                         <th class="order_id">상품번호</th>
                                         <th class="order_date">주문일자</th>
                                         <th class="order_name">주문 상품 정보</th>
                                         <th class="order_count">상품수량</th>
                                         <th class="order_price">금액</th>
                                         <th class="order_customer">판매자</th>
-                                        <th class="order_state">주문상태</th>                                     
-                                        <th class="order_comform">확인/취소/리뷰</th>
+                                        <th class="order_state">주문상태</th>
+                                        <th class="order_check">확인</th> 
+                                        <th class="order_confirm">리뷰</th> 
                                  
                              </tr>
                                 </thead>
                                 <tbody>
 					                <c:forEach var="row" items="${map.list}" varStatus="i">
                                     <tr>
+                                        	
+					                	<td class="order_id">
+                                        
+					                	<a>${row.cart_id }</a>
+					                	</td>
                                         <td class="order_date">
-                                            <a>
-                                            ${row.orderdate} 
-                                            </a>
+                                           <a> ${row.orderdate}
+                                           </a>  
                                         </td>
                                         <td class="order_name">
                                          <a> ${row.modelname}</a>
@@ -78,10 +84,9 @@
                                          <a> ${row.crea_id}</a> 
                                         </td>
                                          <td class="order_state">
-                                         
-                                         
+
                                          <a>  
-                                                  <c:if test="${row.shippingStatus eq 0}">
+                                         <c:if test="${row.shippingStatus eq 0}">
                                          	배송전
                                          </c:if>
                                          <c:if test="${row.shippingStatus eq 1}">
@@ -90,30 +95,29 @@
                                          <c:if test="${row.shippingStatus eq 2}">
                                          	배송완료
                                          </c:if>                                         
-                                         <c:if test="${row.shippingStatus eq 3}">
+                                         <c:if test="${row.shippingStatus eq 3}"> 
                                          	환불신청
-                                         </c:if>  
-                                         <c:if test="${row.shippingStatus eq 4}"> 
+                                         </c:if> 
+                                         <c:if test="${row.shippingStatus eq 4}">
                                          	환불완료
                                          </c:if> 
                                           <c:if test="${row.shippingStatus eq 5}">
-                                          </c:if>
-                                          
                                          	교환신청
+                                         </c:if> 
+                                         
                                          </a>
                                         </td>
                                         
                                          <td class="order_comform">
                                          
-                                         
-                              
                                 
-                                <a class="" href="#">[배송취소하기]</a>
-                                         
-                               
-                   
+                                       <a class="commit" href="${path}/order/orderCancelaction.do?cart_id=${row.cart_id}">반품신청</a>
+      
+                    
                                         </td>
-                             
+                             <td class=order_confirm>
+                        			  <a class="revers" href="http://localhost:8080/pressfit/write.do">상품평 쓰기</a>
+       								 </td>
                                     </tr>                               
                                   </c:forEach>                                   
                                 </tbody>

@@ -39,5 +39,8 @@ public class OrderDAOlmpl implements OrderDAO {
 	public List<CartVO> orderConfirm(Map<String, Object> list) throws Exception {
 		return sqlSession.selectList("order.orderConfirm", list);
 	}
-	
+	@Override  
+	public List<CartVO> orderCancelaction(Map<String, Object> list) throws Exception {
+		return sqlSession.selectList("order.orderCancelaction", list);
+	}
 }
