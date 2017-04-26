@@ -26,6 +26,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="passwordcheck" resultType="int">
 		select EXISTS(select * from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2})
 	</select>
+	<sql id="search">
+	
+	</sql>
+	<sql id="pagingPre">
+		<![CDATA[
+		select @i as TOTAL, AAA.*
+		from(
+		select
+		@i := @i + 1 as RNUM
+		, AA.*
+		from(
+		]]>
+		</sql>
+		
+		<sql id="pagingPost">
+		<![CDATA[
+		) AA, (select @i := 0, @j := 0) temp	
+		) AAA	
+		where AAA.RNUM limit #{START}, #{END}
+		]]>
+	</sql>
+	<select id="community" parameterType="kr.co.pressfit.vo.CommunityVO" resultType="kr.co.pressfit.vo.CommunityVO">
+	    <include refid="pagingPre"/>
+	    <![CDATA[
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+      	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
+      	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = m.id AND showdel = 'y'
+	    ]]>
+		<include refid="search"></include>
+		ORDER BY b.ref desc,b.turn,b.level
+	    <include refid="pagingPost"/>
+	</select>
+	
 </mapper>
 
  

@@ -80,14 +80,50 @@
         WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </update>
+    
+    
+    
 	<!-- 8. 장바구니에서 체크된 항목만 결제 버튼 클릭시 결제완료 -->
-	<update id="payment" parameterType="hashmap">
+	<update id="payment" parameterType="kr.co.pressfit.vo.CartVO">
 		update cart_board c
 		set c.payment = 'Y',
 			c.methodpayment = #{methodpayment},
 			c.orderdate = now()
-		where cart_id = #{num}
+		where cart_id = #{cart_id}
 	</update>
+		
+		
+		
+	<!-- 9. 판매자 물품 수량 수정 -->
+<!-- 	<update id="amounttest" parameterType="kr.co.pressfit.vo.CartVO">
+	update
+		  <if test="#{kind}=='keyboard'">
+		  	KeyboardBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+ 		where idx = #{idx}
+		
+ 		</if> 
+		 <if test="'#{kind}'=='tmouse'">
+		 	TMouseBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+		where idx = #{idx}
+		</if>
+		</update> -->
+		 
+		<update id="amounttest_keyboard" parameterType="kr.co.pressfit.vo.CartVO">
+		update KeyboardBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+ 		where idx = #{idx}
+		
+		</update>
+		
+		<update id="amounttest_mouse" parameterType="kr.co.pressfit.vo.CartVO">
+		update TMouseBoard
+		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
+		where idx = #{idx}
+		</update>
+	
+	
 	<!-- 9. 결제페이지로 넘어온 장바구니 체크리스트 조회 -->
 	<select id="order" resultType="kr.co.pressfit.vo.CartVO" parameterType="java.util.List">
 		SELECT *,(price * amount) money 
@@ -97,50 +133,16 @@
      					open="(" separator="," close=")">
        				#{item}
 		</foreach>
-        
-<!--         AND user_id = #{user_id} -->
-         
         ORDER BY cart_id
 	</select>
 	
 	<!-- 10. 결제페이지에 구매자 배송지 정보 조회 -->
-    <select id="memberInfo" resultType="kr.co.pressfit.vo.MemberVO">
+     <select id="memberInfo" resultType="kr.co.pressfit.vo.MemberVO">
         SELECT *
         FROM Cmember
         where id = #{id}
     </select>
-	
-	<update id="test" parameterType="map">
-		update cart_board c
-		set c.payment = 'Y',
-			c.orderdate = now(),
-			c.methodpayment = #{methodpayment}
-		where cart_id in
-		<foreach item="item" collection="list"
-     					open="(" separator="," close=")">
-       				#{item}
-		</foreach>
-		update
-		  <if test="#{kind} == keyboard">
-		  	KeyboardBoard
-		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
- 		</if>
- 		
-		 <if test="#{kind} == tmouse">
-		 	TMouseBoard
-		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
-		</if>
-		where idx = #{idx}
-		
-		
-		
-<!-- 		update (select * from cart_board where kind=#{kind}) 
- 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
- 		where idx = #{idx} -->
-		
-		
-	</update>
-	
+
 	
 	
 </mapper>

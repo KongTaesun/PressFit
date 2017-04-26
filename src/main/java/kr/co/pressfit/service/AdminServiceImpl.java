@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.pressfit.dao.AdminDAO;
 import kr.co.pressfit.vo.AdminVO;
+import kr.co.pressfit.vo.CommunityVO;
+import kr.co.pressfit.vo.PageVO;
 
  
 @Service // 현재 클래스를 스프링에서 관리하는 service bean으로 등록
@@ -56,6 +58,10 @@ public class AdminServiceImpl implements AdminService {
 	public boolean loginCheck(HttpSession session) {
 		// TODO Auto-generated method stub
 		return true;
-	} 
+	}
+	@Override
+	public List<CommunityVO> communityList(PageVO vo) {
+		return adminDao.communityList(vo);
+	}
     
 }

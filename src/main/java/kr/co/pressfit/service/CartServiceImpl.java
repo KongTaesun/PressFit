@@ -44,8 +44,8 @@ public class CartServiceImpl implements CartService {
         cartDao.updateCart(vo);
     }
     @Override
-	public void chkArr(List<String> List, String methodpayment, List<Integer> amountList, int idx) throws Exception {
-		cartDao.chkArr(List, methodpayment, amountList, idx);
+	public void chkArr(CartVO vo) throws Exception {
+		cartDao.chkArr(vo);
 	}
 	
 	@Override
@@ -62,5 +62,11 @@ public class CartServiceImpl implements CartService {
 
 		return cartDao.memberInfo(id);
 	}
+	@Override
+	public void amounttest(CartVO vo) throws Exception {
+		cartDao.amounttest(vo);
+	}
+	
+	
 }
 

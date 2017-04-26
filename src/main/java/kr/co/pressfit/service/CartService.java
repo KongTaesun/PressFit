@@ -14,7 +14,8 @@ public interface CartService {
 	public int countCart(int idx, String userId) throws Exception;
 	public void modifyCart(CartVO vo) throws Exception;
 	public void updateCart(CartVO vo) throws Exception;
-	public void chkArr(List<String> List, String methodpayment, List<Integer> amountList, int idx) throws Exception;
+	public void chkArr(CartVO vo) throws Exception;
 	public List<CartVO> order(List<String> chkArr) throws Exception;
 	public List<CartVO> memberInfo(String id)throws Exception;
+	public void amounttest(CartVO vo) throws Exception;
 }

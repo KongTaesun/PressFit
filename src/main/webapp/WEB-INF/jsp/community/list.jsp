@@ -7,7 +7,7 @@
 <%@ include file="/resources/include/header.jsp" %>
 <style>
 .breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/q&a_img.jpg');
+ background-image: url('${path}/resources/writer/img/bigpicture/office_img.png');
 }
 </style>
 
@@ -130,7 +130,7 @@
 
  
     
-								 <tr>
+			<tr>
             <td colspan="10">
                 <!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
                 <c:if test="${map.boardPager.curBlock > 1}">

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -23,8 +24,9 @@
  
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
         in the /WEB-INF/views directory -->
-    <beans:bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+    <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/jsp/" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
@@ -36,8 +38,7 @@
 	<beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
 	<beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
 	<beans:bean id="adminclearInterceptor" class= "kr.co.pressfit.interceptor.AdminclearInterceptor"/>
-	
-	<interceptors>
+	<interceptors> 
 		<interceptor> 
 				<mapping path="/admin/*.do"/>
 				<beans:ref bean="adminInterceptor" />

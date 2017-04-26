@@ -23,11 +23,11 @@
   height: 50px;
   line-height: 50px;
   width: 100%; 
-  padding: 0 1em;
+  padding: 0 1em; 
   box-sizing: border-box;
-  background: transparent;
+  background: transparent;  
   color: white;
-  border: 4px solid white; 
+  border: 4px solid white;  
   border-radius: 50px; 
 }
 .search-bar .toggle {

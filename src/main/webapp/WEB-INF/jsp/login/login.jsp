@@ -10,16 +10,16 @@
 /*  16.	Login Page CSS
 /*----------------------------------------*/
  .breadcrumbs-area{
- background-image:url('${path}/resources/writer/img/bigpicture/logo1.png');
- width: 800px;
+ background-image:url('${path}/resources/writer/img/bigpicture/main.png');
+/*  width: 800px;
  height: 200px;
- margin: 0 auto;
+ margin: 0 auto; */
  }
  .login-account section-padding {
   margin: 0 auto;
 }
  .create-account-form1 {
-  background-color: #FFFFE9;
+  background-color: ;
   border: 1px solid #cfcfcf;
   min-height: 380px;
   padding: 36px 17px;
@@ -78,6 +78,7 @@
 	color: #000000;
 	font-weight: bold;
 	text-decoration: none;
+	font-family: 'Poppins', sans-serif;
 }
 
 .current {
@@ -163,7 +164,7 @@
 	
         <!-- Breadcrumbs Area Start -->
         <div class="breadcrumbs-area">
-			<!-- <div class="container" >
+			 <div class="container" >
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
@@ -177,8 +178,8 @@
 					    </div>
 					</div>
 				</div>
-			</div> -->
-		</div> 
+			</div>
+		</div>
 		<!-- Breadcrumbs Area Start --> 
 		 
         <!-- Loging Area Start --> 
@@ -252,7 +253,7 @@
 										<button name="submitcreate" id="btnLogin" type="submit"
 											class="btn-default">
 
-											<span> <i class="fa fa-user left"></i> 로그인
+											<span> <i class="fa fa-user left" ></i> 로그인
 											</span>
 										</button>
 									</div>
@@ -266,30 +267,7 @@
 					</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					<!-- ======================================================================================================== -->
+					
 <!-- ======================================================================================================== -->
 <!-- ======================================================================================================== -->
 <!-- ======================================================================================================== -->
@@ -371,11 +349,12 @@
            </div>   
     </div> 
          
-        <a class="btn btn-block btn-social btn-kakao" onclick="document.kakao.submit();">
-        <span class="fa fa-kakao"></span>카카오톡 계정으로 로그인하기</a>
+   <!--      <a class="btn btn-block btn-social btn-kakao" onclick="document.kakao.submit();">
+        <span class="fa fa-kakao"></span>카카오톡 계정으로 로그인하기</a> 
       
          <form action="/auth/kakao" name="kakao">
-         <input type="hidden" name="scope"value=email,user_friends"/></form>
+         <input type="hidden" name="scope"value=email,user_friends"/></form>-->
+         
  <div class="submit" style="text-align: center" >					
                            
                                 <button name="submitcreate" id="submitcreate" type="submit" class="btn-default">
