@@ -65,6 +65,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       </if>
    </sql>
     
+    <!-- 페이징 sql -->
+	<sql id="pagingHeader">
+	   SELECT A.* 
+		FROM (
+	</sql>
+	<sql id="pagingFooter">
+		) A
+		WHERE A.ROWNUM BETWEEN #{start} AND #{end}
+		ORDER BY ROWNUM
+	</sql>
+	<!-- 01_02. 게시글 레코드 갯수 -->
+	<select id="countArticle" resultType="int">
+	 	
+	    SELECT COUNT(*) 
+	    FROM cart_board
+		WHERE payment ='Y'
+	    <!-- WHERE절을 include 태그로 삽입 -->
+	    <include refid="search"></include>
+	    AND crea_id = #{id}
+	 
+	</select>
     
     <!-- 3. 주문 전체 금액 -->
     <select id="sumMoney" resultType="int">
@@ -89,6 +110,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where cart_id = #{num}
       	</if>
 		
+	</update>
+	
+	<!-- 환불시 제품 수량 원복 -->
+	<update id="amounttest_keyboard" parameterType="kr.co.pressfit.vo.CartVO">
+		update KeyboardBoard
+		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
+ 		where idx = #{idx}
+	</update>
+		
+	<update id="amounttest_mouse" parameterType="kr.co.pressfit.vo.CartVO">
+		update TMouseBoard
+		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
+		where idx = #{idx}
 	</update>
 </mapper>
 

@@ -26,8 +26,14 @@ import kr.co.pressfit.service.MemberService;
 import kr.co.pressfit.service.OrderService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.AdminVO;
+import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CommunityVO;
+import kr.co.pressfit.vo.FaqVO;
+import kr.co.pressfit.vo.GalleryVO;
+import kr.co.pressfit.vo.KeyboardVO;
+import kr.co.pressfit.vo.MemberVO;
 import kr.co.pressfit.vo.PageVO;
+import kr.co.pressfit.vo.TMouseVO;
   
 @Controller
 @RequestMapping("/admin/*")
@@ -64,9 +70,12 @@ public class Admin {
 	public String board(Model model, HttpSession session){
 		return "admin/board"; 
 	}
+	@RequestMapping("product.do")
+	public String product(Model model, HttpSession session){
+		return "admin/product"; 
+	}
 	@RequestMapping("member.do")
 	public String member(Model model, HttpSession session){
-		
 		return "admin/member"; 
 	}
 	@RequestMapping("graph.do")
@@ -116,25 +125,159 @@ public class Admin {
 		adminService.delete(vo);
 	}
 	@RequestMapping(value="/community/list.do")
-	public ModelAndView selectBoardList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+	public ModelAndView communityList(@RequestParam(name="communityPAGEINDEX",defaultValue="communityPAGEINDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
-	    int nPageRow = 5;
 	    if(StringUtils.isEmpty(pageindex) == false){
 	        nPageIndex = pageindex-1;
 	    }
-	    if(StringUtils.isEmpty(pagerow) == false){
-	        nPageRow =pagerow;
-	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * nPageRow) + 1);
-    	vo.setEND((nPageIndex * nPageRow) + nPageRow);
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
     	List<CommunityVO> list = adminService.communityList(vo);
 
     	ModelAndView mv = new ModelAndView("jsonView");
     	mv.addObject("list", list);
     	if(list.size() > 0){
-    		mv.addObject("TOTAL", list.get(1).getTOTAL());
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/faq/list.do")
+	public ModelAndView faqList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<FaqVO> list = adminService.faqList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/gallery/list.do")
+	public ModelAndView galleryList(@RequestParam(name="galleryPAGEINDEX",defaultValue="galleryPAGEINDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<GalleryVO> list = adminService.galleryList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/tmouse/list.do")
+	public ModelAndView tmouseList(@RequestParam(name="tmousePAGEINDEX",defaultValue="tmousePAGEINDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<TMouseVO> list = adminService.tmouseList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/keyboard/list.do")
+	public ModelAndView keyboardList(@RequestParam(name="keyboardPAGEINDEX",defaultValue="keyboardPAGEINDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<KeyboardVO> list = adminService.keyboardList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/business/list.do")
+	public ModelAndView businessList(@RequestParam(name="businessPAGEINDEX",defaultValue="businessPAGEINDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<BusinessVO> list = adminService.businessList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
+	@RequestMapping(value="/member/list.do")
+	public ModelAndView memberList(@RequestParam(name="memberPAGEINDEX",defaultValue="memberPAGEINDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
+    	List<MemberVO> list = adminService.memberList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
     	}
     	else{
     		mv.addObject("TOTAL", 0);

@@ -45,7 +45,14 @@ public class TMouseVO {
 	private int recnt;
 	private String content;
 	private int amount;
+	private int TOTAL;
 	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	
 	
 	public int getAmount() {
@@ -329,7 +336,7 @@ public class TMouseVO {
 				+ ", dpishift=" + dpishift + ", multipairing=" + multipairing + ", switch1=" + switch1 + ", length="
 				+ length + ", width=" + width + ", height=" + height + ", weight=" + weight + ", analysis=" + analysis
 				+ ", crea_id=" + crea_id + ", hit_cnt=" + hit_cnt + ", fullName=" + fullName + ", recnt=" + recnt
-				+ ", content=" + content + ", amount=" + amount + "]";
+				+ ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + "]";
 	}
 		
 }

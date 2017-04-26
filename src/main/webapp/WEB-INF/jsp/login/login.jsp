@@ -66,7 +66,7 @@
 .tabMenu {
 	list-style: none;
 	width: 150px;
-	margin: 0px;
+	margin: 0px; 
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 10px;

@@ -70,8 +70,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-    public List<CartVO> orderList(Map<String, Object> map) throws Exception {
-        return BusinessDao.orderList(map);
+    public List<CartVO> orderList(int start, int end, String searchOption, String id) throws Exception {
+        return BusinessDao.orderList(start, end, searchOption, id);
     }
     // 5. ��ٱ��� �ݾ� �հ�
     @Override
@@ -83,4 +83,11 @@ public class BusinessServiceImpl implements BusinessService {
 	public void payment(List<String> List, String searchOption) throws Exception {
 		BusinessDao.payment(List, searchOption);
 	}
+
+	@Override
+	public int countArticle(String searchOption, String keyword, String id) throws Exception {
+		return BusinessDao.countArticle(searchOption, keyword, id);
+	}
+    
+    
 }

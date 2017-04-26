@@ -19,6 +19,7 @@ public class CartVO {
 	private int shippingStatus;
 	private String orderdate;
 	private String methodpayment;
+	private String searchOption;
 	
 	
 	public String getMethodpayment() { 
@@ -129,14 +130,23 @@ public class CartVO {
 	public void setOrderdate(String orderdate) {
 		this.orderdate = orderdate;
 	}
+	
+	public String getSearchOption() {
+		return searchOption;
+	}
+	public void setSearchOption(String searchOption) {
+		this.searchOption = searchOption;
+	}
 	@Override
 	public String toString() {
 		return "CartVO [idx=" + idx + ", cart_id=" + cart_id + ", amount=" + amount + ", price=" + price + ", dprice="
 				+ dprice + ", items_select=" + items_select + ", manufacturecompany=" + manufacturecompany
 				+ ", modelname=" + modelname + ", payment=" + payment + ", user_id=" + user_id + ", money=" + money
 				+ ", fullName=" + fullName + ", kind=" + kind + ", crea_id=" + crea_id + ", shippingStatus="
-				+ shippingStatus + ", orderdate=" + orderdate + ", methodpayment=" + methodpayment + "]";
+				+ shippingStatus + ", orderdate=" + orderdate + ", methodpayment=" + methodpayment + ", searchOption="
+				+ searchOption + "]";
 	}
+	
 	
 	
 	

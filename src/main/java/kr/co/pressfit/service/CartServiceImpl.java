@@ -55,7 +55,7 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public List<CartVO> order(List<String> chkArr) throws Exception {
-		return cartDao.order(chkArr);
+		return cartDao.order(chkArr); 
 	}
 	@Override
 	public List<CartVO> memberInfo(String id) throws Exception {

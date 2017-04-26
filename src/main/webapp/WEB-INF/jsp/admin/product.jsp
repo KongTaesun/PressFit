@@ -6,22 +6,22 @@
 <script src="${path}/resources/admin/admin.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	businessBoardList(1);
-	memberBoardList(1);
+	tmouseBoardList(1);
+	keyboardBoardList(1);
 });
-function businessBoardList(pageNo){
+function tmouseBoardList(pageNo){
     var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/business/list.do' />");
-    comAjax.setCallback("businessBoardListCallback");
-    comAjax.addParam("businessPAGEINDEX",pageNo);
+    comAjax.setUrl("<c:url value='/admin/tmouse/list.do' />");
+    comAjax.setCallback("tmouseBoardListCallback");
+    comAjax.addParam("tmousePAGEINDEX",pageNo);
     comAjax.addParam("PAGE_ROW", 5);
     comAjax.ajax();
 }
 
-function businessBoardListCallback(data){
+function tmouseBoardListCallback(data){
     var total = data.TOTAL;
 
-    var body = $("#businesslist");
+    var body = $("#tmouselist");
     body.empty();
     if(total == 0){
         var str = "<tr>" +
@@ -31,10 +31,10 @@ function businessBoardListCallback(data){
     }
     else{
         var params = {
-            divId : "businessPAGE",
-            pageIndex : "businessPAGEINDEX",
+            divId : "tmousePAGE",
+            pageIndex : "tmousePAGEINDEX",
             totalCount : total,
-            eventName : "businessBoardList",
+            eventName : "tmouseBoardList",
             Movename  :  "_movePage"
         };
         gfn_renderPaging(params);
@@ -61,26 +61,26 @@ function businessBoardListCallback(data){
     }
 }
 function _movePage(value){
-    $("#businessPAGEINDEX").val(value);
-    if(typeof(businessBoardList) == "function"){
-    	businessBoardList(value);
+    $("#tmousePAGEINDEX").val(value);
+    if(typeof(tmouseBoardList) == "function"){
+    	tmouseBoardList(value);
     }
     else {
-        eval(businessBoardList + "(value);");
+        eval(tmouseBoardList + "(value);");
     }
 }
-function memberBoardList(pageNo){
+function keyboardBoardList(pageNo){
     var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/member/list.do' />");
-    comAjax.setCallback("memberBoardListCallback");
-    comAjax.addParam("memberPAGEINDEX",pageNo);
+    comAjax.setUrl("<c:url value='/admin/keyboard/list.do' />");
+    comAjax.setCallback("keyboardBoardListCallback");
+    comAjax.addParam("keyboardPAGEINDEX",pageNo);
     comAjax.addParam("PAGE_ROW", 5);
     comAjax.ajax();
 }
-function memberBoardListCallback(data){
+function keyboardBoardListCallback(data){
     var total = data.TOTAL;
 
-    var body = $("#memberlist");
+    var body = $("#keyboardlist");
     body.empty();
     if(total == 0){
         var str = "<tr>" +
@@ -90,10 +90,10 @@ function memberBoardListCallback(data){
     }
     else{
         var params = {
-            divId : "memberPAGE",
-            pageIndex : "memberPAGEINDEX",
+            divId : "keyboardPAGE",
+            pageIndex : "keyboardPAGEINDEX",
             totalCount : total,
-            eventName : "memberBoardList",
+            eventName : "keyboardBoardList",
             Movename  :  "_movePage2"
         };
         gfn_renderPaging(params);
@@ -120,12 +120,12 @@ function memberBoardListCallback(data){
     }
 }
 function _movePage2(value){
-    $("#memberPAGEINDEX").val(value);
-    if(typeof(memberBoardList) == "function"){
-    	memberBoardList(value);
+    $("#keyboardPAGEINDEX").val(value);
+    if(typeof(keyboardBoardList) == "function"){
+    	keyboardBoardList(value);
     }
     else {
-        eval(memberBoardList + "(value);");
+        eval(keyboardBoardList + "(value);");
     }
 }
 
@@ -145,12 +145,12 @@ function _movePage2(value){
             <div class="row">
 			  <div class="tabbed" style="margin: 10px">
 			    <input type="radio" name="tabs" id="tab-nav-1" checked>
-			    <label for="tab-nav-1">business</label>
+			    <label for="tab-nav-1">tmouse</label>
 			    <input type="radio" name="tabs" id="tab-nav-2">
-			    <label for="tab-nav-2">member</label>
+			    <label for="tab-nav-2">keyboard</label>
 			    <div class="tabs" style="perspective:none">
 			      <div style="width: 90%;font-size: 15px;">
-			      <h2>business</h2>
+			      <h2>tmouse</h2>
 			      <table class="table table-hover">
 					<thead>
 						<tr>
@@ -160,15 +160,15 @@ function _movePage2(value){
 							<th class="count">Count</th>
 						</tr>
 					</thead>
-					<tbody id="businesslist">
+					<tbody id="tmouselist">
 					
 					</tbody>
 					</table>
-					<div id="businessPAGE"></div>
-   		 			<input type="hidden" id="businessPAGEINDEX" name="businessPAGEINDEX"/>
+					<div id="tmousePAGE"></div>
+   		 			<input type="hidden" id="tmousePAGEINDEX" name="tmousePAGEINDEX"/>
    		 			</div>
    		 		 <div style="width: 90%;font-size: 15px;">
-			      <h2>member</h2>
+			      <h2>keyboard</h2>
 			      <table class="table table-hover">
 					<thead>
 						<tr>
@@ -178,12 +178,12 @@ function _movePage2(value){
 							<th class="count">Count</th>
 						</tr>
 					</thead>
-					<tbody id="memberlist">
+					<tbody id="keyboardlist">
 					
 					</tbody>
 					</table>
-					<div id="memberPAGE"></div>
-   		 			<input type="hidden" id="memberPAGEINDEX" name="memberPAGEINDEX"/>
+					<div id="keyboardPAGE"></div>
+   		 			<input type="hidden" id="keyboardPAGEINDEX" name="keyboardPAGEINDEX"/>
    		 			</div>
 			  	</div>
 	           </div>

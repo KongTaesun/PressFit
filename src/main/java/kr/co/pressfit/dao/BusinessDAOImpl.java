@@ -63,7 +63,13 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 	
 	@Override
-    public List<CartVO> orderList(Map<String, Object> map) {
+    public List<CartVO> orderList(int start, int end, String searchOption, String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("searchOption", searchOption);
+        map.put("id", id);
+        // BETWEEN #{start}, #{end}�뿉 �엯�젰�맆 媛믪쓣 留듭뿉 
+        map.put("start", start);
+        map.put("end", end);
         return sqlSession.selectList("business.orderList", map);
     }
     // 5. ��ٱ��� �ݾ� �հ�
@@ -74,6 +80,24 @@ public class BusinessDAOImpl implements BusinessDAO {
     // 결제
     @Override
 	public void payment(List<String> List, String searchOption) throws Exception {
+    	
+    	List<CartVO> list = sqlSession.selectList("cart.order", List);
+    	System.out.println("dao"+searchOption);
+    	if(searchOption.equals("refund")){
+    		for(int i=0; i<list.size(); i++){
+    			CartVO vo = list.get(i);
+    			vo.setSearchOption(searchOption);
+    			
+    			System.out.println(i+"수량"+vo.getAmount());
+    			System.out.println(i+"종류"+vo.getKind());
+    			System.out.println(i+"옵션"+vo.getSearchOption());
+    			if(vo.getKind().equals("keyboard"))
+    				sqlSession.update("business.amounttest_keyboard", vo);
+    			else
+    				sqlSession.update("business.amounttest_mouse", vo);
+    		}    		
+    	}
+    	
     	for(int i=0; i<List.size(); i++){
 			Map<String, Object> map = new HashMap<String, Object>();
 			String num = List.get(i);
@@ -83,6 +107,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 		}
     	
 	}
+	@Override
+	public int countArticle(String searchOption, String keyword, String id) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+    	map.put("searchOption", searchOption);
+    	map.put("keyword", keyword);
+    	map.put("id", id);
+    	return sqlSession.selectOne("business.countArticle", map);
+	}
+    
 }
 
 

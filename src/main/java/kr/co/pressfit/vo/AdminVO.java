@@ -6,7 +6,14 @@ public class AdminVO {
 	private	String pw;
 	private	String pw2;
 	private	String level;
+	private int TOTAL;
 	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	public String getLevel() {
 		return level;
 	}
@@ -33,7 +40,7 @@ public class AdminVO {
 	}
 	@Override
 	public String toString() {
-		return "AdminVO [id=" + id + ", pw=" + pw + ", pw2=" + pw2 + ", level=" + level + "]";
+		return "AdminVO [id=" + id + ", pw=" + pw + ", pw2=" + pw2 + ", level=" + level + ", TOTAL=" + TOTAL + "]";
 	}
 	
 }
