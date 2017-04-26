@@ -70,9 +70,12 @@ public class Admin {
 	public String board(Model model, HttpSession session){
 		return "admin/board"; 
 	}
+	@RequestMapping("product.do")
+	public String product(Model model, HttpSession session){
+		return "admin/product"; 
+	}
 	@RequestMapping("member.do")
 	public String member(Model model, HttpSession session){
-		
 		return "admin/member"; 
 	}
 	@RequestMapping("graph.do")
@@ -191,7 +194,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/tmouse/list.do")
-	public ModelAndView tmouseList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+	public ModelAndView tmouseList(@RequestParam(name="tmousePAGEINDEX",defaultValue="tmousePAGEINDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
 	    if(StringUtils.isEmpty(pageindex) == false){
@@ -214,7 +217,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/keyboard/list.do")
-	public ModelAndView keyboardList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+	public ModelAndView keyboardList(@RequestParam(name="keyboardPAGEINDEX",defaultValue="keyboardPAGEINDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
 	    if(StringUtils.isEmpty(pageindex) == false){
@@ -237,7 +240,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/business/list.do")
-	public ModelAndView businessList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+	public ModelAndView businessList(@RequestParam(name="businessPAGEINDEX",defaultValue="businessPAGEINDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
 	    if(StringUtils.isEmpty(pageindex) == false){
@@ -260,7 +263,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/member/list.do")
-	public ModelAndView memberList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+	public ModelAndView memberList(@RequestParam(name="memberPAGEINDEX",defaultValue="memberPAGEINDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
 	    if(StringUtils.isEmpty(pageindex) == false){
