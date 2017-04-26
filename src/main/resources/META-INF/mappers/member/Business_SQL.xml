@@ -45,30 +45,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM cart_board
         where payment ='Y'
         <include refid="search"></include>
-        <!-- and shippingStatus = '0' -->
         AND crea_id = #{id}
-         
         ORDER BY cart_id
     </select>
     
     <sql id="search">
       <if test="searchOption=='order'">
-         and shippingStatus = '0'
+         and (shippingStatus = '0'
+         or shippingStatus = '1'
+         or shippingStatus = '2')
       </if>
-      <if test="searchOption=='connectionmethod'">
-         and shippingStatus = '1'
+      <if test="searchOption=='refund'">
+         and (shippingStatus = '3'
+         or shippingStatus = '4')
       </if>
-      <if test="searchOption=='wristtunnelsyndrome'">
-         and shippingStatus = '2'
-      </if>
-      <if test="searchOption=='switch1'">
-         and shippingStatus = '3'
-      </if> 
-      <if test="searchOption=='price'">
-         and shippingStatus = '4'
-      </if>
-      <if test="searchOption=='id'">
-      	 and shippingStatus = '5'
+      <if test="searchOption=='exchange'">
+         and (shippingStatus = '5'
+         or shippingStatus = '6')
       </if>
    </sql>
     
@@ -81,14 +74,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <!-- 결제 -->
-    <update id="payment" parameterType="String">
+    <update id="payment" parameterType="hashmap">
 		update cart_board
-		set shippingStatus = '1'
-		where cart_id in
-		<foreach item="item" collection="list"
-     					open="(" separator="," close=")">
-       				#{item}
-		</foreach>
+		<if test="searchOption=='order'">
+        	set shippingStatus = '1'
+			where cart_id = #{num}
+      	</if>
+      	<if test="searchOption=='refund'">
+        	set shippingStatus = '4'
+			where cart_id = #{num}
+      	</if>
+      	<if test="searchOption=='exchange'">
+        	set shippingStatus = '6'
+			where cart_id = #{num}
+      	</if>
+		
 	</update>
 </mapper>
 

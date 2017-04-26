@@ -63,8 +63,8 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 	
 	@Override
-    public List<CartVO> orderList(String id) {
-        return sqlSession.selectList("business.orderList", id);
+    public List<CartVO> orderList(Map<String, Object> map) {
+        return sqlSession.selectList("business.orderList", map);
     }
     // 5. ��ٱ��� �ݾ� �հ�
     @Override
@@ -73,8 +73,15 @@ public class BusinessDAOImpl implements BusinessDAO {
     }
     // 결제
     @Override
-	public List<CartVO> payment(List<String> chkArr) throws Exception {
-		return sqlSession.selectList("business.payment", chkArr);
+	public void payment(List<String> List, String searchOption) throws Exception {
+    	for(int i=0; i<List.size(); i++){
+			Map<String, Object> map = new HashMap<String, Object>();
+			String num = List.get(i);
+			map.put("num", num);
+			map.put("searchOption", searchOption);
+			sqlSession.update("business.payment", map);
+		}
+    	
 	}
 }
 

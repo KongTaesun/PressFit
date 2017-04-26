@@ -91,18 +91,18 @@
                                 <c:forEach var="row" items="${map.list}">
                                     <tr>
                                         <td class="product-remove">
-                                            <a href="#">
+                                            <a href="${path}/business/mouseDelete.do?idx=${row.idx}">
                                                 <i class="flaticon-delete"></i>
                                             </a>
                                         </td>
                                         <td class="product-image">
-                                            <a href="#">
+                                            <a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
                                                 <img src="${path}/resources/upload/${row.fullName}" style="width:100px" alt="">
                                             </a>
                                         </td>
                                         <td class="t-product-name">
                                             <h3>
-                                                <a href="#">${row.modelname}</a>
+                                                <a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.modelname}</a>
                                             </h3>
                                         </td>
                                         <td class="product-unit-price">

@@ -1,6 +1,7 @@
 package kr.co.pressfit.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -69,8 +70,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-    public List<CartVO> orderList(String id) throws Exception {
-        return BusinessDao.orderList(id);
+    public List<CartVO> orderList(Map<String, Object> map) throws Exception {
+        return BusinessDao.orderList(map);
     }
     // 5. ��ٱ��� �ݾ� �հ�
     @Override
@@ -79,8 +80,7 @@ public class BusinessServiceImpl implements BusinessService {
     }
     //결제
     @Override
-	public List<CartVO> payment(List<String> chkArr) throws Exception {
-		return BusinessDao.payment(chkArr);
-		
+	public void payment(List<String> List, String searchOption) throws Exception {
+		BusinessDao.payment(List, searchOption);
 	}
 }
