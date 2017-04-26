@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,8 @@ import kr.co.pressfit.service.MemberService;
 import kr.co.pressfit.service.OrderService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.AdminVO;
-import kr.co.pressfit.vo.BusinessVO;
+import kr.co.pressfit.vo.CommunityVO;
+import kr.co.pressfit.vo.PageVO;
   
 @Controller
 @RequestMapping("/admin/*")
@@ -64,6 +66,7 @@ public class Admin {
 	}
 	@RequestMapping("member.do")
 	public String member(Model model, HttpSession session){
+		
 		return "admin/member"; 
 	}
 	@RequestMapping("graph.do")
@@ -87,7 +90,7 @@ public class Admin {
             mav.setViewName("admin/main");
             session.setAttribute("admin", vo.getId());
             session.setAttribute("adminlevel", vo.getLevel());
-            session.setMaxInactiveInterval(60);
+            session.setMaxInactiveInterval(60*40);
             mav.addObject("msg", "success");
         } else {
             mav.setViewName("admin/login");
@@ -112,6 +115,33 @@ public class Admin {
 	public void delete(@ModelAttribute AdminVO vo,Model model, HttpSession session){
 		adminService.delete(vo);
 	}
+	@RequestMapping(value="/community/list.do")
+	public ModelAndView selectBoardList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
+			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
+		int nPageIndex = 0;
+	    int nPageRow = 5;
+	    if(StringUtils.isEmpty(pageindex) == false){
+	        nPageIndex = pageindex-1;
+	    }
+	    if(StringUtils.isEmpty(pagerow) == false){
+	        nPageRow =pagerow;
+	    }
+    	PageVO vo = new PageVO();
+    	vo.setSTART((nPageIndex * nPageRow) + 1);
+    	vo.setEND((nPageIndex * nPageRow) + nPageRow);
+    	List<CommunityVO> list = adminService.communityList(vo);
+
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("list", list);
+    	if(list.size() > 0){
+    		mv.addObject("TOTAL", list.get(1).getTOTAL());
+    	}
+    	else{
+    		mv.addObject("TOTAL", 0);
+    	}
+    	
+    	return mv;
+    }
 }
 
  

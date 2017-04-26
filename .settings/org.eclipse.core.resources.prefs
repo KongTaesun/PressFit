@@ -2,6 +2,7 @@
 <<<<<<<=HEAD
 >>>>>>>=f8b4b8d000041a7016acb255e78fb10f31d34f05
 eclipse.preferences.version=1
+encoding//src/main/java/kr/co/pressfit/common/AdminBoardPager.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/common/BoardPager.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/common/LogAdvice.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/controller/BusinessController.java=UTF-8

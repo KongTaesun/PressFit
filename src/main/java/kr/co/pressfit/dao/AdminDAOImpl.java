@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import kr.co.pressfit.vo.AdminVO;
+import kr.co.pressfit.vo.CommunityVO;
+import kr.co.pressfit.vo.PageVO;
 
 //현재 클래스를 dao bean으로 등록시킴
 @Repository  
@@ -39,6 +41,10 @@ public class AdminDAOImpl implements AdminDAO {
 	public boolean passwordCheck(AdminVO vo) {
 		int check = sqlSession.selectOne("admin.passwordcheck");
 		return (check == 1) ? false : true;
+	}
+	@Override
+	public List<CommunityVO> communityList(PageVO vo) {
+		return sqlSession.selectList("admin.community", vo);
 	}
 }
 
