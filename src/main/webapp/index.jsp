@@ -20,7 +20,7 @@
 .search-bar input {
   outline: none;
   box-shadow: none;
-  height: 50px;
+  height: 50px;\
   line-height: 50px;
   width: 100%; 
   padding: 0 1em; 
@@ -28,7 +28,7 @@
   background: transparent;  
   color: white;
   border: 4px solid white;  
-  border-radius: 50px; 
+  border-radius: 50px;  
 }
 .search-bar .toggle {
   -moz-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
@@ -36,7 +36,7 @@
   -webkit-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99);
   -webkit-transition-delay: 0.25s;
   transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  position: absolute;
+  position: absolute; 
   width: 50px;
   height: 50px;
   cursor: pointer;
@@ -429,6 +429,7 @@ $(document).ready(function() {
 	});
 </script>
 </head>
+
         <!-- slider Area Start -->     
 		<div class="slider-area"> 
 			<div class="bend niceties preview-1">  
