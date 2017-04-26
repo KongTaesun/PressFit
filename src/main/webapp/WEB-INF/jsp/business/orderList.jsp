@@ -62,6 +62,15 @@ width:100%
  		$("#order").click(function(){
  			order();
 		});
+ 		
+ 		$("#btnWrite").click(
+				function() {
+					// 페이지 주소 변경(이동)
+					location.href = "${path}/business/orderList.do?curPage="
+							+ page
+							+ "&searchOption=${map.searchOption}"
+							+ "&keyword=${map.keyword}";
+		});
 		
 	});
 
@@ -76,6 +85,23 @@ width:100%
 		}
  		 list;
 	}	
+ 	
+	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
+	function list(page) {
+		var link = location.href = "${path}/tmouse/list.do?curPage=" + page
+		+ "&searchOption=${map.searchOption}"
+		+ "&keyword=${map.keyword}";
+		
+        var tab = link.split('/').pop();
+        $('a[href$='+tab+']').trigger("click");
+		
+		
+		
+		
+		/* location.href = "${path}/tmouse/list.do?curPage=" + page
+				+ "&searchOption=${map.searchOption}"
+				+ "&keyword=${map.keyword}"; */
+	}
 </script>
 </head>
 <body>
@@ -107,14 +133,11 @@ width:100%
 		    <div class="col-md-12">
 		    	<form name="frm" method="post" action="${path}/business/payment.do?searchOption=order" onsubmit="return order();">
 			        <div class="row">
+			        <div class="col-md-1"></div>
 			            <div class="col-md-12">
 			            	
 	                        <div class="wishlist-table-area table-responsive">
-	                        <c:choose>
-						        <c:when test="${map.count == 0}">
-						           	주문들어온 내역이 없습니다.
-						        </c:when>
-						        <c:otherwise>
+	                        
 						        
 						        <div class="row">
 					<div class="col-md-12">
@@ -129,6 +152,11 @@ width:100%
                             <div class="clearfix"></div>
                             <div class="tab-content review">
                                 <div role="tabpanel" class="tab-pane active" id="more-info">
+                                <c:choose>
+						        <c:when test="${map.listcount1 == 0}">
+						           	주문들어온 내역이 없습니다.
+						        </c:when>
+						        <c:otherwise>
 									<table>
 	                                <thead>
 						                 <tr>
@@ -214,7 +242,6 @@ width:100%
 						                    </td>
 						                    <td>
 						                   		 ${row1.orderdate}
-						                   		 ${row1.kind}
 						                    </td>
 						                    <%-- <td>
 						                        <a href="${path}/shop/cart/delete.do?cart_id=${row1.cart_id}">
@@ -224,6 +251,33 @@ width:100%
 						                </c:forEach>
 	                                </tbody>
 	                            </table>
+	                            </c:otherwise>
+							    </c:choose>
+							    <!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
+									<c:if test="${map.boardPager1.curBlock > 1}">
+										<a href="javascript:list('1')">[처음]</a>
+									</c:if> 
+									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --> 
+									<c:if test="${map.boardPager1.curBlock > 1}">
+										<a href="javascript:list('${map.boardPager1.prevPage}')">[이전]</a>
+									</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> 
+									<c:forEach var="num" begin="${map.boardPager1.blockBegin}" end="${map.boardPager1.blockEnd}">
+									<!-- 현재페이지이면 하이퍼링크 제거 -->
+									<c:choose>
+										<c:when test="${num == map.boardPager1.curPage}">
+											<span style="color: red">${num}</span>&nbsp;
+						                </c:when>
+										<c:otherwise>
+											<a href="javascript:list('${num}')">${num}</a>&nbsp;
+						                </c:otherwise>
+										</c:choose>
+										</c:forEach> <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
+										<c:if test="${map.boardPager1.curBlock <= map.boardPager1.totBlock}">
+											<a href="javascript:list('${map.boardPager1.nextPage}')">[다음]</a>
+										</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --> 
+										<c:if test="${map.boardPager.curPage <= map.boardPager1.totPage}">
+											<a href="javascript:list('${map.boardPager1.totPage}')">[끝]</a>
+										</c:if>
 	                            <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="배송시작"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
@@ -232,6 +286,11 @@ width:100%
 	                        </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="data">
+                                <c:choose>
+						        <c:when test="${map.listcount2 == 0}">
+						           	환불내역이 없습니다.
+						        </c:when>
+						        <c:otherwise>
                                     <table>
 	                                <thead>
 						                 <tr>
@@ -317,7 +376,6 @@ width:100%
 						                    </td>
 						                    <td>
 						                   		 ${row2.orderdate}
-						                   		 ${row2.kind}
 						                    </td>
 						                    <%-- <td>
 						                        <a href="${path}/shop/cart/delete.do?cart_id=${row2.cart_id}">
@@ -327,6 +385,8 @@ width:100%
 						                </c:forEach>
 	                                </tbody>
 	                            </table>
+	                            </c:otherwise>
+							    </c:choose>
 	                            <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="환불승인" formaction="${path}/business/payment.do?searchOption=refund"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
@@ -335,6 +395,11 @@ width:100%
 	                        </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reviews">
+                                <c:choose>
+						        <c:when test="${map.listcount3 == 0}">
+						           	교환내역이 없습니다.
+						        </c:when>
+						        <c:otherwise>
                                     <table>
 	                                <thead>
 						                 <tr>
@@ -420,7 +485,6 @@ width:100%
 						                    </td>
 						                    <td>
 						                   		 ${row3.orderdate}
-						                   		 ${row3.kind}
 						                    </td>
 						                    <%-- <td>
 						                        <a href="${path}/shop/cart/delete.do?cart_id=${row3.cart_id}">
@@ -430,6 +494,8 @@ width:100%
 						                </c:forEach>
 	                                </tbody>
 	                            </table>
+	                            </c:otherwise>
+							    </c:choose>
 	                            <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="교환승인" formaction="${path}/business/payment.do?searchOption=exchange"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
@@ -443,8 +509,7 @@ width:100%
 				</div>  
 						        
 	                            
-	                            </c:otherwise>
-							    </c:choose>
+	                            
 	                        </div>	
 	                        	                
 			            </div>
