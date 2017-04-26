@@ -69,6 +69,7 @@ function gfn_renderPaging(params){
     var divId = params.divId; //페이징이 그려질 div id
     gfv_pageIndex = params.pageIndex; //현재 위치가 저장될 input 태그
     var totalCount = params.totalCount; //전체 조회 건수
+    var Movename = params.Movename;
     var currentIndex = $("#"+params.pageIndex).val(); //현재 위치
     if($("#"+params.pageIndex).length == 0 || gfn_isNull(currentIndex) == true){
         currentIndex = 1;
@@ -92,38 +93,28 @@ function gfn_renderPaging(params){
     var next = (parseInt((currentIndex-1)/10)+1) * 10 + 1 < totalIndexCount ? (parseInt((currentIndex-1)/10)+1) * 10 + 1 : totalIndexCount;
      
     if(totalIndexCount > 10){ //전체 인덱스가 10이 넘을 경우, 맨앞, 앞 태그 작성
-        preStr += "<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>" +
-                "<a href='#this' class='pad_5' onclick='_movePage("+prev+")'>[<]</a>";
+        preStr += "<a href='#this' class='pad_5' onclick='"+Movename+"(1)'>[<<]</a> " +
+                "<a href='#this' class='pad_5' onclick='"+Movename+"("+prev+")'>[<]</a> ";
     }
     else if(totalIndexCount <=10 && totalIndexCount > 1){ //전체 인덱스가 10보다 작을경우, 맨앞 태그 작성
-        preStr += "<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>";
+        preStr += "<a href='#this' class='pad_5' onclick='"+Movename+"(1)'>[<<]</a>";
     }
      
     if(totalIndexCount > 10){ //전체 인덱스가 10이 넘을 경우, 맨뒤, 뒤 태그 작성
-        postStr += "<a href='#this' class='pad_5' onclick='_movePage("+next+")'>[>]</a>" +
-                    "<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
+        postStr += "<a href='#this' class='pad_5' onclick='"+Movename+"("+next+")'>[>]</a> " +
+                    "<a href='#this' class='pad_5' onclick='"+Movename+"("+totalIndexCount+")'>[>>]</a> ";
     }
     else if(totalIndexCount <=10 && totalIndexCount > 1){ //전체 인덱스가 10보다 작을경우, 맨뒤 태그 작성
-        postStr += "<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
+        postStr += "<a href='#this' class='pad_5' onclick='"+Movename+"("+totalIndexCount+")'>[>>]</a> ";
     }
      
     for(var i=first; i<(first+last); i++){
         if(i != currentIndex){
-            str += "<a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a>";
+            str += "<a href='#this' class='pad_5' onclick='"+Movename+"("+i+")'>"+i+"</a> ";
         }
         else{
-            str += "<b><a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a></b>";
+            str += "<b><a href='#this' class='pad_5' onclick='"+Movename+"("+i+")'>"+i+"</a></b> ";
         }
     }
     $("#"+divId).append(preStr + str + postStr);
-}
- 
-function _movePage(value){
-    $("#"+gfv_pageIndex).val(value);
-    if(typeof(gfv_eventName) == "function"){
-        gfv_eventName(value);
-    }
-    else {
-        eval(gfv_eventName + "(value);");
-    }
 }

@@ -9,8 +9,14 @@ import org.springframework.stereotype.Service;
 
 import kr.co.pressfit.dao.AdminDAO;
 import kr.co.pressfit.vo.AdminVO;
+import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CommunityVO;
+import kr.co.pressfit.vo.FaqVO;
+import kr.co.pressfit.vo.GalleryVO;
+import kr.co.pressfit.vo.KeyboardVO;
+import kr.co.pressfit.vo.MemberVO;
 import kr.co.pressfit.vo.PageVO;
+import kr.co.pressfit.vo.TMouseVO;
 
  
 @Service // 현재 클래스를 스프링에서 관리하는 service bean으로 등록
@@ -63,5 +69,30 @@ public class AdminServiceImpl implements AdminService {
 	public List<CommunityVO> communityList(PageVO vo) {
 		return adminDao.communityList(vo);
 	}
+	@Override
+	public List<FaqVO> faqList(PageVO vo) {
+		return adminDao.faqList(vo);
+	}
+	@Override
+	public List<GalleryVO> galleryList(PageVO vo) {
+		return adminDao.galleryList(vo);
+	}
+	@Override
+	public List<TMouseVO> tmouseList(PageVO vo) {
+		return adminDao.tmouseList(vo);
+	}
+	@Override
+	public List<KeyboardVO> keyboardList(PageVO vo) {
+		return adminDao.keyboardList(vo);
+	}
+	@Override
+	public List<BusinessVO> businessList(PageVO vo) {
+		return adminDao.businessList(vo);
+	}
+	@Override
+	public List<MemberVO> memberList(PageVO vo) {
+		return adminDao.memberList(vo);
+	}
+	
     
 }

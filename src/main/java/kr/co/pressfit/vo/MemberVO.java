@@ -14,7 +14,14 @@ public class MemberVO {
 	private	String email;
 	private Date regdate; // java.sql.Date
 	private Date updatedate;
-	 
+	private int TOTAL;
+	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	} 
 	
 	
 	public int getIdx() {
@@ -74,7 +81,8 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender
-				+ ", birth=" + birth + ", address=" + address + ", hp=" + hp + ", email=" + email + "]";
+				+ ", birth=" + birth + ", address=" + address + ", hp=" + hp + ", email=" + email + ", regdate="
+				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + "]";
 	}
 	public Date getRegdate() {
 		return regdate;
