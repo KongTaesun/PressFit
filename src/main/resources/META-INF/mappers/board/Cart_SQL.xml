@@ -95,7 +95,7 @@
 		
 		
 	<!-- 9. 판매자 물품 수량 수정 -->
-	<update id="amounttest" parameterType="kr.co.pressfit.vo.CartVO">
+<!-- 	<update id="amounttest" parameterType="kr.co.pressfit.vo.CartVO">
 	update
 		  <if test="#{kind}=='keyboard'">
 		  	KeyboardBoard
@@ -108,19 +108,17 @@
 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
 		where idx = #{idx}
 		</if>
-		</update>
-		
+		</update> -->
+		 
 		<update id="amounttest_keyboard" parameterType="kr.co.pressfit.vo.CartVO">
-	update
-		  	KeyboardBoard
+		update KeyboardBoard
 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
  		where idx = #{idx}
 		
 		</update>
 		
 		<update id="amounttest_mouse" parameterType="kr.co.pressfit.vo.CartVO">
-	update
-		 	TMouseBoard
+		update TMouseBoard
 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
 		where idx = #{idx}
 		</update>
@@ -135,9 +133,6 @@
      					open="(" separator="," close=")">
        				#{item}
 		</foreach>
-        
-<!--         AND user_id = #{user_id} -->
-         
         ORDER BY cart_id
 	</select>
 	
@@ -147,37 +142,7 @@
         FROM Cmember
         where id = #{id}
     </select>
-	<!-- 
-	<update id="test" parameterType="map">
-		update cart_board c
-		set c.payment = 'Y',
-			c.orderdate = now(),
-			c.methodpayment = #{methodpayment}
-		where cart_id in
-		<foreach item="item" collection="list"
-     					open="(" separator="," close=")">
-       				#{item}
-		</foreach>
-		update
-		  <if test="#{kind} == keyboard">
-		  	KeyboardBoard
-		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
- 		</if>
- 		
-		 <if test="#{kind} == tmouse">
-		 	TMouseBoard
-		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
-		</if>
-		where idx = #{idx} 
-		
-		
-		
-		update (select * from cart_board where kind=#{kind}) 
- 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
- 		where idx = #{idx}
-		
-	
-	 -->
+
 	
 	
 </mapper>

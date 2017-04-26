@@ -11,6 +11,10 @@
   width: 200px;
   height: 200px;
 }
+
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/keyboard_img.jpg');
+}
 </style>
 
 <script>
@@ -60,6 +64,26 @@
 </script>
 </head>
 <body>
+ <!-- Breadcrumbs Area Start -->
+        <div class="breadcrumbs-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					    <div class="breadcrumbs">
+					      
+					       <h2>NOTICE</h2> 
+					       <ul class="breadcrumbs-list">
+						        <li>
+						            <a title="Return to Home" href="index.html">Home</a>
+						        </li>
+						        <li>NOTICE</li>
+						    </ul>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div> 
+		<!-- Breadcrumbs Area Start --> 
 	<div class="shopping-area section-padding">
 		<div class="container">
 			<!-- 레코드의 갯수를 출력 -->

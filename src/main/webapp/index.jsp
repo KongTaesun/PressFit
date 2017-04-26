@@ -27,7 +27,7 @@
   box-sizing: border-box;
   background: transparent;  
   color: white;
-  border: 4px solid white; 
+  border: 4px solid white;  
   border-radius: 50px; 
 }
 .search-bar .toggle {

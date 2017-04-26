@@ -8,7 +8,7 @@
 <%@ include file="/resources/include/mobile.jsp" %>
 <style>
 .breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/q&a_img.jpg');
+ background-image: url('${path}/resources/writer/img/bigpicture/q&a_img.png');
 }
 </style>
 <script>
@@ -16,7 +16,7 @@
         $("#btnWrite").click(function(){
             // 페이지 주소 변경(이동)
             location.href = "${path}/faq/write.do";
-        });
+        }); 
         $("#btnWrite").click(function(){
             // 페이지 주소 변경(이동)
             location.href = "${path}/faq/list.do?curPage="+page+"&searchOption=${map.searchOption}"+"&keyword=${map.keyword}";
@@ -38,7 +38,7 @@
 					
 					    <div class="breadcrumbs">
 					    
- 					       <h2>SHOPPING CART</h2> 
+ 					       <h2>FAQ</h2> 
 					       <ul class="breadcrumbs-list">
 						        <li>
 						            <a title="Return to Home" href="index.html">Home</a>
