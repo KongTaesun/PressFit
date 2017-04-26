@@ -111,6 +111,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	</if>
 		
 	</update>
+	
+	<!-- 환불시 제품 수량 원복 -->
+	<update id="amounttest_keyboard" parameterType="kr.co.pressfit.vo.CartVO">
+		update KeyboardBoard
+		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
+ 		where idx = #{idx}
+	</update>
+		
+	<update id="amounttest_mouse" parameterType="kr.co.pressfit.vo.CartVO">
+		update TMouseBoard
+		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
+		where idx = #{idx}
+	</update>
 </mapper>
 
  

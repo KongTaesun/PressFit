@@ -80,6 +80,24 @@ public class BusinessDAOImpl implements BusinessDAO {
     // 결제
     @Override
 	public void payment(List<String> List, String searchOption) throws Exception {
+    	
+    	List<CartVO> list = sqlSession.selectList("cart.order", List);
+    	System.out.println("dao"+searchOption);
+    	if(searchOption.equals("refund")){
+    		for(int i=0; i<list.size(); i++){
+    			CartVO vo = list.get(i);
+    			vo.setSearchOption(searchOption);
+    			
+    			System.out.println(i+"수량"+vo.getAmount());
+    			System.out.println(i+"종류"+vo.getKind());
+    			System.out.println(i+"옵션"+vo.getSearchOption());
+    			if(vo.getKind().equals("keyboard"))
+    				sqlSession.update("business.amounttest_keyboard", vo);
+    			else
+    				sqlSession.update("business.amounttest_mouse", vo);
+    		}    		
+    	}
+    	
     	for(int i=0; i<List.size(); i++){
 			Map<String, Object> map = new HashMap<String, Object>();
 			String num = List.get(i);
