@@ -119,22 +119,18 @@ public class Admin {
 	public ModelAndView selectBoardList(@RequestParam(name="PAGE_INDEX",defaultValue="PAGE_INDEX") int pageindex,
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
-	    int nPageRow = 5;
 	    if(StringUtils.isEmpty(pageindex) == false){
 	        nPageIndex = pageindex-1;
 	    }
-	    if(StringUtils.isEmpty(pagerow) == false){
-	        nPageRow =pagerow;
-	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * nPageRow) + 1);
-    	vo.setEND((nPageIndex * nPageRow) + nPageRow);
+    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setEND(pagerow);
     	List<CommunityVO> list = adminService.communityList(vo);
 
     	ModelAndView mv = new ModelAndView("jsonView");
     	mv.addObject("list", list);
     	if(list.size() > 0){
-    		mv.addObject("TOTAL", list.get(1).getTOTAL());
+    		mv.addObject("TOTAL", list.get(0).getTOTAL());
     	}
     	else{
     		mv.addObject("TOTAL", 0);
