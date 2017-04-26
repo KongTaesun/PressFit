@@ -130,10 +130,11 @@ width:100%
 		<!-- Cart Area Start -->
 		<div class="shopping-cart-area section-padding">
 		    <!-- <div class="col-md-1"></div> -->
-		    <div class="col-md-12">
-		    	<form name="frm" method="post" action="${path}/business/payment.do?searchOption=order" onsubmit="return order();">
+		    <div class="col-md-1"></div>
+		    <div class="col-md-10">
+		    	
 			        <div class="row">
-			        <div class="col-md-1"></div>
+			        
 			            <div class="col-md-12">
 			            	
 	                        <div class="wishlist-table-area table-responsive">
@@ -152,6 +153,7 @@ width:100%
                             <div class="clearfix"></div>
                             <div class="tab-content review">
                                 <div role="tabpanel" class="tab-pane active" id="more-info">
+                                <form name="frm" method="post" action="${path}/business/payment.do?searchOption=order" onsubmit="return order();">
                                 <c:choose>
 						        <c:when test="${map.listcount1 == 0}">
 						           	주문들어온 내역이 없습니다.
@@ -175,25 +177,19 @@ width:100%
 	                                </thead>
 	                                <tbody>
 						                <c:forEach var="row1" items="${map.list1}" varStatus="i">
+					              
+					         			 <input type="hidden"  name="idx" value="${row1.idx}"> 
+					         			 <input type="hidden"  name="kind" value="${row1.kind}"> 
 						                <tr>
 						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row1.cart_id }" ></td>
 						                	<td>${row1.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row1.cart_id}"/></td>
 						                	
 						                	
 						                    <td>
-						                    <div class='image'>
-						                    <a href="${path}/${row1.kind}/view.do?idx=${row1.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
-						                    <img src="${path}/resources/upload${row1.fullName}" width="10px" height="100px"></a>
-						                     
 						                    
-						                     
-						                   	</div> &nbsp; &nbsp;
-						                    
-						                    
-						                   	<div class='title'>
 						                        <a href="${path}/${row1.kind}/view.do?idx=${row1.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
 						                        ${row1.modelname}</a>
-						                     </div>
+						                    
 						                    </td>
 						                    
 						                    
@@ -204,7 +200,7 @@ width:100%
 						                    </td>
 						                    <td align="right">
 						                        ${row1.amount} 개
-						                         
+						                        <input type="hidden"  name="amount" value="${row1.amount}"/> 
 						                    </td>
 						                    
 						                    <td name="price" align="right">
@@ -284,8 +280,11 @@ width:100%
 	                            text-transform: uppercase;float: right !important;"/>
 	                            
 	                        </div>
+	                        </form>
                                 </div>
+                                
                                 <div role="tabpanel" class="tab-pane" id="data">
+                                <form name="frm" method="post" action="${path}/business/payment.do?searchOption=refund" onsubmit="return order();">
                                 <c:choose>
 						        <c:when test="${map.listcount2 == 0}">
 						           	환불내역이 없습니다.
@@ -309,25 +308,18 @@ width:100%
 	                                </thead>
 	                                <tbody>
 						                <c:forEach var="row2" items="${map.list2}" varStatus="i">
+						                 <input type="hidden" id="idx" name="idx" value="${row2.idx}"> 
+					         			 <input type="hidden" id="kind" name="kind" value="${row2.kind}"> 
 						                <tr>
 						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row2.cart_id }" ></td>
 						                	<td>${row2.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row2.cart_id}"/></td>
 						                	
 						                	
 						                    <td>
-						                    <div class='image'>
-						                    <a href="${path}/${row2.kind}/view.do?idx=${row2.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
-						                    <img src="${path}/resources/upload${row2.fullName}" width="10px" height="100px"></a>
-						                     
 						                    
-						                     
-						                   	</div> &nbsp; &nbsp;
-						                    
-						                    
-						                   	<div class='title'>
 						                        <a href="${path}/${row2.kind}/view.do?idx=${row2.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
 						                        ${row2.modelname}</a>
-						                     </div>
+						                   
 						                    </td>
 						                    
 						                    
@@ -338,7 +330,7 @@ width:100%
 						                    </td>
 						                    <td align="right">
 						                        ${row2.amount} 개
-						                         
+						                        <input type="hidden"  name="amount" value="${row2.amount}"> 
 						                    </td>
 						                    
 						                    <td name="price" align="right">
@@ -388,13 +380,15 @@ width:100%
 	                            </c:otherwise>
 							    </c:choose>
 	                            <div class="shopingcart-bottom-area">
-	                        	<input type="submit" id="order" name="order" value="환불승인" formaction="${path}/business/payment.do?searchOption=refund"
+	                        	<input type="submit" id="order" name="order" value="환불승인"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
 	                            text-transform: uppercase;float: right !important;"/>
 	                            
 	                        </div>
+	                        </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="reviews">
+                                <form name="frm" method="post" action="${path}/business/payment.do?searchOption=exchange" onsubmit="return order();">
                                 <c:choose>
 						        <c:when test="${map.listcount3 == 0}">
 						           	교환내역이 없습니다.
@@ -418,25 +412,18 @@ width:100%
 	                                </thead>
 	                                <tbody>
 						                <c:forEach var="row3" items="${map.list3}" varStatus="i">
+						                 <input type="hidden"  name="idx" value="${row3.idx}"> 
+					         			 <input type="hidden"  name="kind" value="${row3.kind}"> 
 						                <tr>
 						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row3.cart_id }" ></td>
 						                	<td>${row3.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row3.cart_id}"/></td>
 						                	
 						                	
 						                    <td>
-						                    <div class='image'>
-						                    <a href="${path}/${row3.kind}/view.do?idx=${row3.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
-						                    <img src="${path}/resources/upload${row3.fullName}" width="10px" height="100px"></a>
-						                     
 						                    
-						                     
-						                   	</div> &nbsp; &nbsp;
-						                    
-						                    
-						                   	<div class='title'>
 						                        <a href="${path}/${row3.kind}/view.do?idx=${row3.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}">
 						                        ${row3.modelname}</a>
-						                     </div>
+						                     
 						                    </td>
 						                    
 						                    
@@ -447,7 +434,7 @@ width:100%
 						                    </td>
 						                    <td align="right">
 						                        ${row3.amount} 개
-						                         
+						                        <input type="hidden"  name="amount" value="${row3.amount}"> 
 						                    </td>
 						                    
 						                    <td name="price" align="right">
@@ -497,11 +484,12 @@ width:100%
 	                            </c:otherwise>
 							    </c:choose>
 	                            <div class="shopingcart-bottom-area">
-	                        	<input type="submit" id="order" name="order" value="교환승인" formaction="${path}/business/payment.do?searchOption=exchange"
+	                        	<input type="submit" id="order" name="order" value="교환승인"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
 	                            text-transform: uppercase;float: right !important;"/>
 	                            
 	                        </div>
+	                        </form>
                                 </div>
                             </div>
                         </div>
@@ -514,7 +502,7 @@ width:100%
 	                        	                
 			            </div>
 			        </div>
-		        </form>
+		        
 		    </div>
 		</div>
 		

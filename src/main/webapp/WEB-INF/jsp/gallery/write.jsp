@@ -35,7 +35,7 @@
             $.ajax({
                 url: "${path}/gallery/upload/uploadAjax.do",
                 type: "post",
-                data: formData,
+                data: formData, 
                 dataType: "text",
                 processData: false, // processType: false - header가 아닌 body로 전달
                 contentType: false,
@@ -82,16 +82,49 @@
     border: 2px dotted gray;
     background-color: gray;
 }
+.icon1
+  {
+   width: 30px;
+    height: 30px;
+  }
+.border1  {
+	border: 5px solid red;
+}
+.border2
+{
+	 border-style: solid;
+    border-top: thick double #ff0000;
+ }
+.padding1
+{
+    padding: 50px 30px 50px 80px;
+}
+    
+
+
 </style>
 </head>
-<body>
-<%@ include file="/resources/include/menu.jsp" %>
-<h2>게시글 작성</h2>
+<body> 
+<!-- Breadcrumbs Area Start --> 
+		<div class="shopping-cart-area section-padding"> 
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-12">  
+		            
+<h2><img src="${path}/resources/writer/icon/writer.png" class="icon1">글쓰기</h2>
+
 <form id="form1" name="form1" method="post" action="${path}/gallery/insert.do">
-    <div>
-        제목
-        <input name="title" id="title" size="80" placeholder="제목을 입력해주세요">
+
+  <div class="container">
+ 		제목
+        <input name="title" id="title" size="150" placeholder="제목을 입력해주세요">
     </div>
+ 
+    <div class = "border2">
+		말머리
+        <input name="title" id="title" size="150" placeholder="제목을 입력해주세요">
+    </div>
+margin: 25px 0;
     <div>
         내용
         <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea>
@@ -100,18 +133,23 @@ CKEDITOR.replace("content",{
 	filebrowserUploadUrl : "${path}/gallery/imageUpload.do"
 });
 </script>
-    </div>
-    <div>
+    </div> 
+   <!--  <div>
 	    첨부파일 등록
-	    <!-- 첨부파일 등록영역 -->
+	    첨부파일 등록영역
 	    <div class="fileDrop"></div>
-	    <!-- 첨부파일의 목록 출력영역 -->
+	    첨부파일의 목록 출력영역
 	    <div id="uploadedList"></div>
-	</div>
+	</div> -->
     <div style="width:650px; text-align: center;">
         <button type="button" id="btnSave">확인</button>
         <button type="reset">취소</button>
     </div>
 </form>
+</div>
+</div>
+</div>
+</div>
+
 </body>
 </html>
