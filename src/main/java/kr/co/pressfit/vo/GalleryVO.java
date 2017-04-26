@@ -1,5 +1,6 @@
 package kr.co.pressfit.vo;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class GalleryVO {
@@ -16,7 +17,14 @@ public class GalleryVO {
 	private int level;
 	private int recnt;
 	private String fullname;
+	private int TOTAL;
 	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	public int getRecnt() {
 		return recnt;
 	}
@@ -97,10 +105,10 @@ public class GalleryVO {
 	}
 	@Override
 	public String toString() {
-		return "CommunityVO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist=" + filelist
-				+ ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level=" + level + ", recnt=" + recnt  + ", fullname=" + fullname
-				+ "]";
+		return "GalleryVO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
+				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist=" + Arrays.toString(filelist)
+				+ ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level=" + level + ", recnt=" + recnt
+				+ ", fullname=" + fullname + ", TOTAL=" + TOTAL + "]";
 	}
 	
 }

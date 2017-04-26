@@ -22,6 +22,14 @@ public class BusinessVO {
 	private	String typeofbusiness;
 	private	String itemsofbusiness;
 	private	String companyaddress;
+	private int TOTAL;
+	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -137,6 +145,6 @@ public class BusinessVO {
 				+ regdate + ", updatedate=" + updatedate + ", companyname=" + companyname + ", companytp=" + companytp
 				+ ", representative=" + representative + ", corporateregistrationnumber=" + corporateregistrationnumber
 				+ ", typeofbusiness=" + typeofbusiness + ", itemsofbusiness=" + itemsofbusiness + ", companyaddress="
-				+ companyaddress + "]";
+				+ companyaddress + ", TOTAL=" + TOTAL + "]";
 	}
 }

@@ -12,9 +12,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="read" resultType="kr.co.pressfit.vo.AdminVO">
 		select * from Aadmin where pw=#{pw}
 	</select>
+	
 	<select id="readlist" resultType="kr.co.pressfit.vo.AdminVO">
+		<include refid="pagingPre"/>
 		select * from Aadmin
+	    <include refid="pagingPost"/>
 	</select>
+	<select id="businesslist" resultType="kr.co.pressfit.vo.BusinessVO">
+		<include refid="pagingPre"/>
+		select * from Cbusiness
+	    <include refid="pagingPost"/>
+	</select>
+	<select id="memberlist" resultType="kr.co.pressfit.vo.MemberVO">
+        <include refid="pagingPre"/>
+        SELECT * FROM Cmember 
+	    <include refid="pagingPost"/>
+    </select>
+    
 	<update id="update"> 
 		update Aadmin
 		set pw=#{pw}, pw2=#{pw2},name=#{name}
@@ -53,13 +67,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
       	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
-      	WHERE b.writer = m.id AND showdel = 'y'
 	    ]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
 	    <include refid="pagingPost"/>
 	</select>
-	
+	<select id="faq" resultType="kr.co.pressfit.vo.FaqVO">
+	<include refid="pagingPre"/>
+	    <![CDATA[
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+      	(SELECT COUNT(*) FROM FaqReply WHERE boardno=b.idx) AS recnt
+      	FROM FaqBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+		]]>
+		<include refid="search"></include>
+		ORDER BY b.ref desc,b.turn,b.level
+	    <include refid="pagingPost"/>
+	</select>
+	<select id="gallery" resultType="kr.co.pressfit.vo.GalleryVO">
+	    <include refid="pagingPre"/>
+	    <![CDATA[
+        SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+      	(SELECT COUNT(*) FROM GalleryReply WHERE boardno=b.idx) AS recnt,
+      	(SELECT fullname FROM GalleryFile WHERE idx=b.idx ORDER BY GalleryFile.regdate limit 1) AS fullname
+      	FROM GalleryBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+		]]>
+		<include refid="search"></include>
+		ORDER BY b.ref desc,b.turn,b.level
+	    <include refid="pagingPost"/>
+	</select>
+	<select id="tmouse" parameterType="hashmap" resultType="kr.co.pressfit.vo.TMouseVO">
+       <include refid="pagingPre"/>
+	    <![CDATA[
+	      SELECT @ROWNUM:=@ROWNUM+1 AS ROWNUM, b.*,
+	      (SELECT COUNT(*) FROM TMouseReply WHERE boardno=b.idx) AS recnt,
+	      (SELECT fullName FROM TMouseFile WHERE idx=b.idx ORDER BY TMouseFile.regdate limit 1) AS fullName
+	      FROM TMouseBoard b, Cbusiness m,(SELECT @ROWNUM := 0) R
+	    ]]>
+	    <include refid="search"></include>
+	    ORDER BY rownum
+		<include refid="pagingPost"/>
+   </select>
+   	<select id="keyboard" resultType="kr.co.pressfit.vo.KeyboardVO">
+	     <include refid="pagingPre"/>
+	    <![CDATA[
+	    SELECT @ROWNUM:=@ROWNUM+1 AS ROWNUM, b.*,
+		(SELECT COUNT(*) FROM KeyboardReply WHERE boardno=b.idx) AS recnt,
+		(SELECT fullName FROM KeyboardFile WHERE idx=b.idx ORDER BY KeyboardFile.regdate limit 1) AS fullName
+		FROM KeyboardBoard b, Cbusiness m,(SELECT @ROWNUM := 0) R
+	    ]]>
+		<include refid="search"></include>
+		ORDER BY rownum
+		<include refid="pagingPost"/>
+	</select>
+	 
 </mapper>
 
  

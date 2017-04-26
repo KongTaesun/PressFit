@@ -58,7 +58,14 @@ public class KeyboardVO {
 	private int recnt;
 	private String content;
 	private int amount;
+	private int TOTAL;
 	
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	
 	
     public int getAmount() {
@@ -417,22 +424,23 @@ public class KeyboardVO {
 				+ ", manufacturecompany=" + manufacturecompany + ", registrationyear=" + registrationyear
 				+ ", connectionmethod=" + connectionmethod + ", bluetoothversion=" + bluetoothversion + ", battery="
 				+ battery + ", keyarray=" + keyarray + ", goldbraidedUSBterminal=" + goldbraidedUSBterminal
-				+ ", interface1=" + interface1 + ", contactsystem=" + contactsystem + ", keyswitch=" + keyswitch + ", switch1=" + switch1 + ", keyboardform=" + keyboardform
-				+ ", functionkey=" + functionkey + ", macrofunction=" + macrofunction + ", simultaneousinput="
-				+ simultaneousinput + ", responsevelocity=" + responsevelocity + ", windowskeylocking="
-				+ windowskeylocking + ", fullkeylock=" + fullkeylock + ", stepsculture2=" + stepsculture2
-				+ ", vikistyle=" + vikistyle + ", metalhousing=" + metalhousing + ", foreignlanguageonly="
-				+ foreignlanguageonly + ", keycapmaterial=" + keycapmaterial + ", keycapburningmethod="
-				+ keycapburningmethod + ", ledbacklight=" + ledbacklight + ", fabriccable=" + fabriccable
-				+ ", removablecable=" + removablecable + ", multipairing=" + multipairing + ", builtinusbhub="
-				+ builtinusbhub + ", cherrystylestabilizer=" + cherrystylestabilizer + ", lifewaterproofing="
-				+ lifewaterproofing + ", touchpad=" + touchpad + ", trackball=" + trackball + ", motionsensor="
-				+ motionsensor + ", smartkeyboard=" + smartkeyboard + ", switchrudder=" + switchrudder
-				+ ", siliconkeyskin=" + siliconkeyskin + ", plasticcover=" + plasticcover + ", keycapremover="
-				+ keycapremover + ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps
-				+ ", width=" + width + ", length=" + length + ", height=" + height + ", weight=" + weight
-				+ ", cablelength=" + cablelength + ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel="
-				+ showdel + ", hit_cnt=" + hit_cnt + ", recnt=" + recnt + ", content=" + content + ", amount=" + amount
+				+ ", interface1=" + interface1 + ", contactsystem=" + contactsystem + ", keyswitch=" + keyswitch
+				+ ", switch1=" + switch1 + ", keyboardform=" + keyboardform + ", functionkey=" + functionkey
+				+ ", macrofunction=" + macrofunction + ", simultaneousinput=" + simultaneousinput
+				+ ", responsevelocity=" + responsevelocity + ", windowskeylocking=" + windowskeylocking
+				+ ", fullkeylock=" + fullkeylock + ", stepsculture2=" + stepsculture2 + ", vikistyle=" + vikistyle
+				+ ", metalhousing=" + metalhousing + ", foreignlanguageonly=" + foreignlanguageonly
+				+ ", keycapmaterial=" + keycapmaterial + ", keycapburningmethod=" + keycapburningmethod
+				+ ", ledbacklight=" + ledbacklight + ", fabriccable=" + fabriccable + ", removablecable="
+				+ removablecable + ", multipairing=" + multipairing + ", builtinusbhub=" + builtinusbhub
+				+ ", cherrystylestabilizer=" + cherrystylestabilizer + ", lifewaterproofing=" + lifewaterproofing
+				+ ", touchpad=" + touchpad + ", trackball=" + trackball + ", motionsensor=" + motionsensor
+				+ ", smartkeyboard=" + smartkeyboard + ", switchrudder=" + switchrudder + ", siliconkeyskin="
+				+ siliconkeyskin + ", plasticcover=" + plasticcover + ", keycapremover=" + keycapremover
+				+ ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps + ", width=" + width
+				+ ", length=" + length + ", height=" + height + ", weight=" + weight + ", cablelength=" + cablelength
+				+ ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel=" + showdel + ", hit_cnt=" + hit_cnt
+				+ ", recnt=" + recnt + ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL
 				+ ", fullName=" + fullName + "]";
 	}
 	

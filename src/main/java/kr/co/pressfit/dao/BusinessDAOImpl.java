@@ -63,7 +63,13 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 	
 	@Override
-    public List<CartVO> orderList(Map<String, Object> map) {
+    public List<CartVO> orderList(int start, int end, String searchOption, String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("searchOption", searchOption);
+        map.put("id", id);
+        // BETWEEN #{start}, #{end}�뿉 �엯�젰�맆 媛믪쓣 留듭뿉 
+        map.put("start", start);
+        map.put("end", end);
         return sqlSession.selectList("business.orderList", map);
     }
     // 5. ��ٱ��� �ݾ� �հ�
@@ -83,6 +89,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 		}
     	
 	}
+	@Override
+	public int countArticle(String searchOption, String keyword, String id) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+    	map.put("searchOption", searchOption);
+    	map.put("keyword", keyword);
+    	map.put("id", id);
+    	return sqlSession.selectOne("business.countArticle", map);
+	}
+    
 }
 
 
