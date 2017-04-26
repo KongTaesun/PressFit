@@ -10,7 +10,7 @@
       	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
       	WHERE b.writer = m.id AND showdel = 'y'
 		<include refid="search"></include>
-		ORDER BY b.ref desc,b.turn,b.level
+		ORDER BY b.ref desc, b.turn,b.level
 		<include refid="pagingFooter"></include> 
 	</select>
 	 

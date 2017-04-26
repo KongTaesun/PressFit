@@ -22,7 +22,7 @@
   box-shadow: none;
   height: 50px;
   line-height: 50px;
-  width: 100%; 
+  width: 100%;  
   padding: 0 1em; 
   box-sizing: border-box;
   background: transparent;  
