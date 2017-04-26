@@ -24,14 +24,9 @@
  
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
         in the /WEB-INF/views directory -->
-<<<<<<< HEAD
     <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
     <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-    <beans:bean
-=======
-    <beans:bean 
->>>>>>> origin/TS
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/jsp/" />
         <beans:property name="suffix" value=".jsp" />
     </beans:bean>
