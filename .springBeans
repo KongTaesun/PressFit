@@ -9,7 +9,7 @@
 	<configs>
 	</configs>
 	<autoconfigs>
-		<config>src/main/webapp/WEB-INF/config/action-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/context/context-all.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
