@@ -24,6 +24,14 @@ width:100%
     margin-top: 50px;
     margin-left: 100px;
 }     
+
+.breadcrumbs-area { 
+ background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');
+}
+
+.orderlist_scroll{
+overflow-y:scroll; width:100%; height:400px; 
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -33,15 +41,33 @@ width:100%
 		});
 
 		
-		$("#allCheck").click(function(){
+		$("#allCheck1").click(function(){
 			
-			if($("#allCheck").prop("checked")){
-				$("input[type=checkbox]").prop("checked", true);
+			if($("#allCheck1").prop("checked")){
+				$(".check_id1").prop("checked", true);
 			}
 			else{
-				$("input[type=checkbox]").prop("checked", false);
+				$(".check_id1").prop("checked", false);
 			}
-		})
+		});
+		$("#allCheck2").click(function(){
+					
+			if($("#allCheck2").prop("checked")){
+				$(".check_id2").prop("checked", true);
+			}
+			else{
+				$(".check_id2").prop("checked", false);
+			}
+		});
+		$("#allCheck3").click(function(){
+			
+			if($("#allCheck3").prop("checked")){
+				$(".check_id3").prop("checked", true);
+			}
+			else{
+				$(".check_id3").prop("checked", false);
+			}
+		});
 		
 		
 		$('input[type=checkbox]').click(function() {
@@ -80,7 +106,6 @@ width:100%
  		for (var i = 0; i < idx.length; i++) {
 			if (idx[i].checked == true) {
 				var list = new Array(idx[i].value);
-				alert(list);
 			}
 		}
  		 list;
@@ -103,12 +128,7 @@ width:100%
 				+ "&keyword=${map.keyword}"; */
 	}
 </script>
-<style> 
-.breadcrumbs-area { 
- background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');
-}
 
-</style>
 
 
 </head>
@@ -120,7 +140,7 @@ width:100%
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					    <div class="breadcrumbs">
+					    <div style="padding: 140px 0;">
 					       <h2>SHOPPING CART</h2> 
 					       <ul class="breadcrumbs-list">
 						        <li>
@@ -128,27 +148,408 @@ width:100%
 						        </li>
 						        <li>Shopping Cart</li>
 						    </ul>
+						    
+						    <!-- layer 2 -->      
+					<div >
+						<div class="col-md-1 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".9999s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.9999s;">
+								<div class="counter-info">
+															
+								</div>
+							</div>		                
+			            </div>    
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>누적검색횟수</h3>								
+								</div>
+							</div>		                
+			            </div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>마우스 매출액</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">286</span>
+									</span>
+									<h3>키보드 매출액</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">550</span>
+									</span>
+									<h3>총 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">2485</span>
+									</span>
+									<h3>총 매출액</h3>								
+								</div>
+							</div>		                
+			            </div> 
+					</div>
+						    
 					    </div>
+					    
+					    
+					    
 					</div>
 				</div>
 			</div>
 		</div> 
 		<!-- Breadcrumbs Area Start --> 
 		
+		
+
+<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
+<script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
+<script>
+	var randomScalingFactor = function() {
+		return Math.round(Math.random() * 100)
+	};
+
+	var lineBarChartData = {
+		labels : [ "January", "February", "March", "April", "May", "June",
+				"July" ],
+		datasets : [
+				{
+					type : "line",
+					fillColor : "rgba(151,187,205,0)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [ randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor() ]
+				},
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,0.8)",
+					highlightFill : "rgba(220,220,220,0.75)",
+					highlightStroke : "rgba(220,220,220,1)",
+					data : [ randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor() ]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,0.8)",
+					highlightFill : "rgba(151,187,205,0.75)",
+					highlightStroke : "rgba(151,187,205,1)",
+					data : [ randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor() ]
+				} ]
+
+	}
+
+	var chart = null;
+	$(function() {
+		var ctx = document.getElementById("canvas3").getContext("2d");
+		chart = new Chart(ctx).LineBar(lineBarChartData, {
+			responsive : true
+		});
+	});
+</script>
+<script type="text/javascript">
+	var randomScalingFactor = function() {
+		return Math.round(Math.random() * 300)
+	};
+	var chartData = [ {
+		value : randomScalingFactor(),
+		color : "#F7464A",
+		highlight : "#FF5A5E",
+		label : "Red"
+	}, {
+		value : randomScalingFactor(),
+		color : "#46BFBD",
+		highlight : "#5AD3D1",
+		label : "Green"
+	}, {
+		value : randomScalingFactor(),
+		color : "#FDB45C",
+		highlight : "#FFC870",
+		label : "Yellow"
+	}, {
+		value : randomScalingFactor(),
+		color : "#949FB1",
+		highlight : "#A8B3C5",
+		label : "Grey"
+	}, {
+		value : randomScalingFactor(),
+		color : "#4D5360",
+		highlight : "#616774",
+		label : "Dark Grey"
+	}
+
+	];
+
+	var chart = null;
+	var canvas = null;
+	var ctx = null;
+	var legendHolder = null;
+	var helpers = Chart.helpers;
+	$(function() {
+		canvas = document.getElementById("canvas4");
+		legendHolder = document.createElement('div');
+		ctx = canvas.getContext("2d");
+		chart = new Chart(ctx).PolarArea(chartData, {
+			scaleShowLabelBackdrop : true,
+			scaleBackdropColor : "rgba(255,255,255,0.75)",
+			scaleBeginAtZero : true,
+			scaleBackdropPaddingY : 2,
+			scaleBackdropPaddingX : 2,
+			scaleShowLine : true,
+			segmentShowStroke : true,
+			segmentStrokeColor : "#fff",
+			segmentStrokeWidth : 2,
+			animationSteps : 100,
+			animationEasing : "easeOutBounce",
+			animateRotate : true,
+			animateScale : false,
+			responsive : true,
+			onAnimationProgress : function() {
+				console.log("onAnimationProgress");
+			},
+			onAnimationComplete : function() {
+				console.log("onAnimationComplete");
+			}
+		});
+
+		legendHolder.innerHTML = chart.generateLegend();
+		helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
+				index) {
+			helpers.addEvent(legendNode, 'mouseover', function() {
+				var activeSegment = chart.segments[index];
+				activeSegment.save();
+				activeSegment.fillColor = activeSegment.highlightColor;
+				chart.showTooltip([ activeSegment ]);
+				activeSegment.restore();
+			});
+		});
+		helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
+			chart.draw();
+		});
+		//canvas.parentNode.appendChild(legendHolder.firstChild);
+	});
+
+	$("input#btnAdd").on("click", function() {
+		chart.addData({
+			value : randomScalingFactor(),
+			color : "#B48EAD",
+			highlight : "#C69CBE",
+			label : "Purple"
+		});
+	});
+
+	$("input#btnPolar").on("click", function() {
+		chart.destroy();
+		chart = new Chart(ctx).PolarArea(chartData, {
+			segmentStrokeColor : "#000000",
+			animation : true,
+			responsive : true,
+		});
+	});
+
+	$("input#btnPie").on("click", function() {
+		chart.destroy();
+		chart = new Chart(ctx).Pie(chartData, {
+			animateScale : true,
+			animation : true,
+			responsive : true,
+		});
+	});
+
+	$("input#btnDoughnut").on("click", function() {
+		chart.destroy();
+		chart = new Chart(ctx).Doughnut(chartData, {
+			animateScale : true,
+			animation : true,
+			responsive : true,
+		});
+	});
+
+	$("canvas4").on("click", function(e) {
+		var activePoints = chart.getSegmentsAtEvent(e);
+		console.log(activePoints);
+		for ( var i in activePoints) {
+			console.log(activePoints[i].value);
+		}
+	});
+</script>
+<script type="text/javascript">
+		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+		var months = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
+		var radarChart = null;
+		var radarChartData = {
+			labels : ["January","February","March","April","May","June","July"],
+			datasets: [
+				{
+					label: "My First dataset",
+					fillColor: "rgba(220,220,220,0.2)",
+					strokeColor: "rgba(220,220,220,1)",
+					pointColor: "rgba(220,220,220,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(220,220,220,1)",
+					data: [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				},
+				{
+					label: "My Second dataset",
+					fillColor: "rgba(151,187,205,0.2)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(151,187,205,1)",
+					data: [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				}
+			]
+		};
+
+		$(function() {
+			var ctx = document.getElementById("canvas").getContext("2d");
+			radarChart = new Chart(ctx).Radar(radarChartData, {
+				//Boolean - Whether to show lines for each scale point
+				scaleShowLine : true,
+				//Boolean - Whether we show the angle lines out of the radar
+				angleShowLineOut : true,
+				//Boolean - Whether to show labels on the scale
+				scaleShowLabels : false,
+				// Boolean - Whether the scale should begin at zero
+				scaleBeginAtZero : true,
+				//String - Colour of the angle line
+				angleLineColor : "rgba(0,0,0,0.1)",
+				//Number - Pixel width of the angle line
+				angleLineWidth : 1,
+				//String - Point label font declaration
+				pointLabelFontFamily : "'Arial'",
+				//String - Point label font weight
+				pointLabelFontStyle : "normal",
+				//Number - Point label font size in pixels
+				pointLabelFontSize : 10,
+				//String - Point label font colour
+				pointLabelFontColor : "#666",
+				//Boolean - Whether to show a dot for each point
+				pointDot : true,
+				//Number - Radius of each point dot in pixels
+				pointDotRadius : 3,
+				//Number - Pixel width of point dot stroke
+				pointDotStrokeWidth : 1,
+				//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+				pointHitDetectionRadius : 20,
+				//Boolean - Whether to show a stroke for datasets
+				datasetStroke : true,
+				//Number - Pixel width of dataset stroke
+				datasetStrokeWidth : 2,
+				//Boolean - Whether to fill the dataset with a colour
+				datasetFill : false,
+				onAnimationProgress: function() {
+					console.log("onAnimationProgress");
+				},
+				onAnimationComplete: function() {
+					console.log("onAnimationComplete");
+				}
+			});
+		});
+
+		$("input#btnAdd").on("click", function() {
+			radarChart.addData(
+				[randomScalingFactor(),randomScalingFactor()], 
+				months[(radarChart.datasets[0].points.length)%12]
+			);
+		});
+
+		$("canvas").on("click", function(e) {
+			var activePoints = radarChart.getPointsAtEvent(e);
+			console.log(activePoints);
+
+			for(var i in activePoints) {
+				console.log(activePoints[i].value);
+			}
+		});
+	</script>
+		
+		
+		<div class="online-banner">
+	<div class="container">
+		<!-- <div class="banner-title text-center">
+			<h1>
+				당신을위한 <span>PressFit</span>의 노력<br>
+			</h1>
+			<h3>
+				-<span>PressFit</span>정보수집 현황-
+			</h3>
+		</div> -->
+		<div class="row">
+			<div class="banner-list">
+				<div class="col-md-4 col-sm-6">
+					<div class="single-banner" style="padding:5%">
+						<div style="height=350;width=350">
+						<canvas id="canvas4" style="width: 322px; height: 322px;" height="402" width="402"></canvas></div>
+						<div class="banner-bottom text-center">
+							<a href="#">NEW RELEASE 2016</a>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4 hidden-sm">
+					<div class="single-banner" style="padding:5%">
+					<div style="height=350;width=350">
+					<canvas id="canvas3" style="width: 322px; height: 322px;" height="402" width="402"></canvas></div>
+						<div class="banner-bottom text-center">
+							<a href="#">NEW RELEASE 2016</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		
+		
+		
 		<!-- Cart Area Start -->
-		<div class="shopping-cart-area section-padding">
+		<div class="shopping-cart-area">
 		    <!-- <div class="col-md-1"></div> -->
 		    <div class="col-md-1"></div>
 		    <div class="col-md-10">
 		    	
-			        <div class="row">
 			        
-			            <div class="col-md-12">
+			        
+			            
 			            	
 	                        <div class="wishlist-table-area table-responsive">
 	                        
 						        
-						        <div class="row">
+						        <div  >
 					<div class="col-md-12">
                         <div class="p-details-tab-content">
                             <div class="p-details-tab">
@@ -162,6 +563,7 @@ width:100%
                             <div class="tab-content review">
                                 <div role="tabpanel" class="tab-pane active" id="more-info">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=order" onsubmit="return order();">
+                                <div class="orderlist_scroll">
                                 <c:choose>
 						        <c:when test="${map.listcount1 == 0}">
 						           	주문들어온 내역이 없습니다.
@@ -170,15 +572,15 @@ width:100%
 									<table>
 	                                <thead>
 						                 <tr>
-						                	<th><input type="checkbox" id="allCheck"/></th>
+						                	<th><input type="checkbox" id="allCheck1"/></th>
 						                	<th>상품번호</th>
 						                    <th>상품명</th>
 						                    <th>단가</th>
 						                    <th>수량</th>
 						                    <th>금액</th>
 						                    <th>구매자</th>
+						                   	<th>상태</th>
 						                   	<th>주문날짜</th>
-						                   	<th><select value="상태"><option></option></select></th>
 	
 						                    <!-- <th>취소</th> -->
 						                </tr>
@@ -189,7 +591,7 @@ width:100%
 					         			 <input type="hidden"  name="idx" value="${row1.idx}"> 
 					         			 <input type="hidden"  name="kind" value="${row1.kind}"> 
 						                <tr>
-						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row1.cart_id }" ></td>
+						                	<td name="cart_id"><input type="checkbox" class="check_id1" name="check" value="${row1.cart_id }" ></td>
 						                	<td>${row1.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row1.cart_id}"/></td>
 						                	
 						                	
@@ -257,32 +659,10 @@ width:100%
 	                            </table>
 	                            </c:otherwise>
 							    </c:choose>
-							    <!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
-									<c:if test="${map.boardPager1.curBlock > 1}">
-										<a href="javascript:list('1')">[처음]</a>
-									</c:if> 
-									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --> 
-									<c:if test="${map.boardPager1.curBlock > 1}">
-										<a href="javascript:list('${map.boardPager1.prevPage}')">[이전]</a>
-									</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> 
-									<c:forEach var="num" begin="${map.boardPager1.blockBegin}" end="${map.boardPager1.blockEnd}">
-									<!-- 현재페이지이면 하이퍼링크 제거 -->
-									<c:choose>
-										<c:when test="${num == map.boardPager1.curPage}">
-											<span style="color: red">${num}</span>&nbsp;
-						                </c:when>
-										<c:otherwise>
-											<a href="javascript:list('${num}')">${num}</a>&nbsp;
-						                </c:otherwise>
-										</c:choose>
-										</c:forEach> <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-										<c:if test="${map.boardPager1.curBlock <= map.boardPager1.totBlock}">
-											<a href="javascript:list('${map.boardPager1.nextPage}')">[다음]</a>
-										</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --> 
-										<c:if test="${map.boardPager.curPage <= map.boardPager1.totPage}">
-											<a href="javascript:list('${map.boardPager1.totPage}')">[끝]</a>
-										</c:if>
-	                            <div class="shopingcart-bottom-area">
+							    
+	                            
+	                        </div>
+	                        <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="배송시작"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
 	                            text-transform: uppercase;float: right !important;"/>
@@ -291,8 +671,10 @@ width:100%
 	                        </form>
                                 </div>
                                 
+                                
                                 <div role="tabpanel" class="tab-pane" id="data">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=refund" onsubmit="return order();">
+                                <div class="orderlist_scroll">
                                 <c:choose>
 						        <c:when test="${map.listcount2 == 0}">
 						           	환불내역이 없습니다.
@@ -301,15 +683,15 @@ width:100%
                                     <table>
 	                                <thead>
 						                 <tr>
-						                	<th><input type="checkbox" id="allCheck"/></th>
+						                	<th><input type="checkbox" id="allCheck2"/></th>
 						                	<th>상품번호</th>
 						                    <th>상품명</th>
 						                    <th>단가</th>
 						                    <th>수량</th>
 						                    <th>금액</th>
 						                    <th>구매자</th>
+						                   	<th>상태</th>
 						                   	<th>주문날짜</th>
-						                   	<th><select value="상태"><option></option></select></th>
 	
 						                    <!-- <th>취소</th> -->
 						                </tr>
@@ -319,7 +701,7 @@ width:100%
 						                 <input type="hidden" id="idx" name="idx" value="${row2.idx}"> 
 					         			 <input type="hidden" id="kind" name="kind" value="${row2.kind}"> 
 						                <tr>
-						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row2.cart_id }" ></td>
+						                	<td name="cart_id"><input type="checkbox" class="check_id2" name="check" value="${row2.cart_id }" ></td>
 						                	<td>${row2.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row2.cart_id}"/></td>
 						                	
 						                	
@@ -387,7 +769,10 @@ width:100%
 	                            </table>
 	                            </c:otherwise>
 							    </c:choose>
-	                            <div class="shopingcart-bottom-area">
+	                            
+                                
+	                        </div>
+	                        <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="환불승인"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
 	                            text-transform: uppercase;float: right !important;"/>
@@ -395,8 +780,10 @@ width:100%
 	                        </div>
 	                        </form>
                                 </div>
+                                
                                 <div role="tabpanel" class="tab-pane" id="reviews">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=exchange" onsubmit="return order();">
+                                <div class="orderlist_scroll">
                                 <c:choose>
 						        <c:when test="${map.listcount3 == 0}">
 						           	교환내역이 없습니다.
@@ -405,15 +792,15 @@ width:100%
                                     <table>
 	                                <thead>
 						                 <tr>
-						                	<th><input type="checkbox" id="allCheck"/></th>
+						                	<th><input type="checkbox" id="allCheck3"/></th>
 						                	<th>상품번호</th>
 						                    <th>상품명</th>
 						                    <th>단가</th>
 						                    <th>수량</th>
 						                    <th>금액</th>
 						                    <th>구매자</th>
+						                   	<th>상태</th>
 						                   	<th>주문날짜</th>
-						                   	<th><select value="상태"><option></option></select></th>
 	
 						                    <!-- <th>취소</th> -->
 						                </tr>
@@ -423,7 +810,7 @@ width:100%
 						                 <input type="hidden"  name="idx" value="${row3.idx}"> 
 					         			 <input type="hidden"  name="kind" value="${row3.kind}"> 
 						                <tr>
-						                	<td name="cart_id"><input type="checkbox" id="check_id" name="check" value="${row3.cart_id }" ></td>
+						                	<td name="cart_id"><input type="checkbox" class="check_id3" name="check" value="${row3.cart_id }" ></td>
 						                	<td>${row3.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row3.cart_id}"/></td>
 						                	
 						                	
@@ -491,7 +878,10 @@ width:100%
 	                            </table>
 	                            </c:otherwise>
 							    </c:choose>
-	                            <div class="shopingcart-bottom-area">
+	                            
+                                
+	                        </div>
+	                        <div class="shopingcart-bottom-area">
 	                        	<input type="submit" id="order" name="order" value="교환승인"
 	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
 	                            text-transform: uppercase;float: right !important;"/>
@@ -508,8 +898,8 @@ width:100%
 	                            
 	                        </div>	
 	                        	                
-			            </div>
-			        </div>
+			            
+			        
 		        
 		    </div>
 		</div>
