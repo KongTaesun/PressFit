@@ -24,6 +24,7 @@
 	text-align: left;
 	color: #FF0000;
 	margin-left: 20px;
+	font-weight: 900;
 }
 
 table.type08 {
@@ -166,7 +167,7 @@ table.type08 td {
 																<th style="width: 5%;">번 호</th>
 																<th style="width: 25%;">제 목</th>
 																<th style="width: 10%;">작 성 자</th>
-																<th style="width: 10%;">등 록 일</th>
+																<th style="width: 15%;">등 록 일</th>
 																<th style="width: 5%;">조 회 수</th>
 															</tr>
 														</thead>
@@ -176,10 +177,10 @@ table.type08 td {
 																	<td>${row.idx}</td>
 																	<td class="title-text-align"><a
 																		href="${path}/community/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.title}
-																			<!-- ** 댓글이 있으면 게시글 이름 옆에 출력하기 --> <c:if
+																			<!-- ** 댓글이 있으면 게시글 이름 옆에 출력하기  <c:if
 																				test="${row.recnt >= 0}">
 																				<span style="color: red;">(${row.recnt}) </span>
-																			</c:if>
+																			</c:if>-->
 																	</a></td>
 																	<td>${row.writer}</td>
 																	<td><fmt:formatDate value="${row.regdate}"
