@@ -13,18 +13,6 @@
 <script>
 
 
-$("#allCheck").click(function(){
-	
-	if($("#allCheck").prop("checked")){
-		$("input[type=checkbox]").prop("checked", true);
-	}
-	else{
-		$("input[type=checkbox]").prop("checked", false);
-	}
-})
-
-		
-
 	$(document).ready(function() {
 		$('#btn1').click(function() {
 			$.ajax({
@@ -42,6 +30,16 @@ $("#allCheck").click(function(){
 				}
 			});  
 		});
+		
+		$("#allCheck").click(function(){
+			
+			if($("#allCheck").prop("checked")){
+				$("input[type=checkbox]").prop("checked", true);
+			}
+			else{
+				$("input[type=checkbox]").prop("checked", false);
+			}
+		})
 	});
 
 	function callback(data) {
@@ -87,36 +85,33 @@ $("#allCheck").click(function(){
 
 				<div>
 
-					<form action="${path}/member/writer.do" autocomplete="off"
-						class="create-account-form" method="post">
+					<form action="${path}/member/writer.do" autocomplete="off" class="create-account-form" method="post">
 						<h2 class="heading-title">동의페이지</h2>
 						<p class="form-row">
-							<input type="hidden" name="sns_tmp_id" value=""> <input
-								type="hidden" name="redirect" value="/ko/signup"> <input
-								type="hidden" name="marketing_email" value="false">
+							<input type="hidden" name="sns_tmp_id" value=""> <input type="hidden" name="redirect" value="/ko/signup"> 
+							<input type="hidden" name="marketing_email" value="false">
 						<div id="signup-agree" class="create-account-form">
+						
+						
 							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> <!-- 볼드처리 -->
 							</label>
  
 							<div class="signup-agree-labelwrap">
-								<label><input class="agree-tos" type="checkbox"
-									name="agree-tos"> <i></i> <span> 이용약관<b>
+								<label><input class="agree-tos" type="checkbox" name="agree-tos"> <i></i> <span> 이용약관<b>
 											(필수)</b>
 								</span>
 								
-								</label> <a href="${path}/agreement/provision.do"
-									target="_blank">상세보기</a>
+								</label> <a href="${path}/resource/agreement/provision.do" target="_blank">상세보기</a>
 							</div>
 							<div class="signup-agree-labelwrap">
-								<label><input class="agree-pp" type="checkbox"
-									name="agree-pp"><i></i><span>개인정보 수집 및 이용에 대한 안내<b>
-											(필수)</b> 
-								</span></label> <a href="${path}/agreement/helprule_private.do"
-									target="_blank">상세보기</a>
+								<label><input class="agree-pp" type="checkbox" name="agree-pp"><i></i>
+								
+								<span>개인정보 수집 및 이용에 대한 안내<b>(필수)</b> 
+								</span></label> <a href="${path}/agreement/helprule_private.do" target="_blank">상세보기</a>
 							</div>
-							<label><input class="agree-event" type="checkbox"
-								name="agree_market_email"><i></i><span>이벤트 등 혜택정보
-									알림(이메일/SMS) (선택)</span></label>
+							<label><input class="agree-event" type="checkbox" name="agree_market_email"><i></i>
+							
+							<span>이벤트 등 혜택정보 알림(이메일/SMS) (선택)</span></label>
 						
 						<p class="form-row">
 					<label> <input class="agree-adult" type="checkbox"
@@ -150,11 +145,7 @@ $("#allCheck").click(function(){
 				</div>
 				</form> 
 				</div>
-			
-
-
-
-
+		
 			<div>
 				<form action="${path}/member/insert.do" name="form1" class="create-account-form" method="post">
 
@@ -174,9 +165,10 @@ $("#allCheck").click(function(){
 						이름 <input type="text" name="name" placeholder="이름" />
 					</p>
 
-					<p class="form-row">
-						성별 <input type="checkbox" name="gender" placeholder="남자" value="0" /> <input
-							type="checkbox" name="gender" placeholder="여자" value="1" />
+					<p>
+						성별 <br/> 
+						<input type="radio" name="gender" placeholder="남자" value="0" />남자
+						 <input type="radio" name="gender" placeholder="여자" value="1" />여자
 					</p> 
 
 					<p class="form-row">

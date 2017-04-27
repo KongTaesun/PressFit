@@ -164,7 +164,7 @@
 						    </ul>
 					    </div>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 		<!-- Breadcrumbs Area Start --> 
