@@ -52,6 +52,12 @@ $("#allCheck").click(function(){
 <%@ include file="/resources/include/header.jsp"%>
 
 </head>
+<style> 
+.breadcrumbs-area { 
+ background-image: url('${path}/resources/writer/img/bigpicture/join_img.png');
+}
+
+</style>
 <body>
 
 
@@ -198,6 +204,7 @@ $("#allCheck").click(function(){
 		</div>
 	</div>
 
-
+ 
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

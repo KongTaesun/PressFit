@@ -103,6 +103,14 @@ width:100%
 				+ "&keyword=${map.keyword}"; */
 	}
 </script>
+<style> 
+.breadcrumbs-area { 
+ background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');
+}
+
+</style>
+
+
 </head>
 <body>
 

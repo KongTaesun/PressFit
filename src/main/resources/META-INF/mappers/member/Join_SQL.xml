@@ -41,6 +41,13 @@ resultType="kr.co.pressfit.vo.MemberVO">
 		select count(*) from Cmember
 		where id=#{id} and pw=#{pw}
 	</select>
+	
+	
+	<select id="mypage" resultType="kr.co.pressfit.vo.MemberVO">
+	select * from Cmember
+	where id=#{id}
+	</select>
+	
 </mapper>
 
  

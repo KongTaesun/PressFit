@@ -6,8 +6,23 @@
 <!-- context 경로 -->
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+    	 console.log(document.form1);
+        $("#btnLogin").click(function(){
+           alert("asdasd");
+        	
+            var id = $("#id").val();
+            var pw = $("#pw").val();
+            document.form1.action="loginCheck.do" 
+            document.form1.submit();
+        });
+    });
+    </script>
 </head> 
 
    <!-- favicon -->
@@ -47,6 +62,16 @@
         <style>
         @font-face{font-family: 'Connoisseurs';src: url('${path}/resources/font/Connoisseurs.ttf')}
         </style>
+          <style>
+        .login-form{
+        padding:15px 15px 0 15px;
+        }
+        .string{
+        	color: #333;
+        }
+        </style>
+        
+         
   <!--Header Area Start-->
         <div class="header-area">
             <div class="container" style="font-size: 15px;">
@@ -61,8 +86,20 @@
                     <div class="col-md-1 col-sm-6 visible-sm  col-xs-6">
                         <div class="header-right">
                             <ul>
-                                <li>
-                                    <a href="${path}/login/login.do"><i class="flaticon-people"></i></a>
+                            <li class="dropdown">
+    <a href="#"<%-- "${path}/login/login.do"  --%> data-toggle="dropdown"> <i class="flaticon-people"></i></a>  
+                                <div class="dropdown-menu login-form">
+								<form name="form1" method="post" accept-charset="UTF-8" action="${path}/login/loginCheck.do">
+									<input type="text" name="id" id="id" placeholder="ID">
+									<input type="password" name="pw" id="pw" placeholder="Password">
+					<!-- 				<input type="checkbox" name="remember-me" id="remember-me" value="1">
+									<label class="string optional" for="user_remember_me"> 기억하기</label>
+					 -->				<input class="btn btn-primary btn-block" type="submit" id="btnLogin" value="로그인">
+					<!-- 			        <button type="submit" class="btn btn-block"><i class="icon-google-plus"></i> 구글 로그인</button>
+									<button type="submit" class="btn btn-block"><i class="icon-twitter"></i> 트위터 로그인</button> -->
+								</form>
+								</div> 
+
                                 </li>
                                 <li class="shoping-cart">
                                     <a href="${path}/shop/cart/cartList.do">   
@@ -85,7 +122,7 @@
                                                 <a href="single-product.html">S, Orange</a>
                                                 <span class="cart-price">$ 140.00</span>
                                             </div>
-                                            <div class="cart-product-remove">
+                                            <div class="cart-product-remove"> 
                                                 <i class="fa fa-times"></i>
                                             </div>
                                         </div>
@@ -146,11 +183,11 @@
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
-												<li><a href="${path}/auth/providerid">카카오로그인</a></li> 
+												<li><a href="${path}/member/mypage.do?id=${id}">마이페이지</a></li> 
 												<li><a href="${path}/order/orderList.do">주문내역</a></li> 
 												<li><a href="about.html">취소및교환</a></li> 
-												<li><a href="${path}/order/orderList.do">1:1문의</a></li>
-											</ul></li>
+												<li><a href="${path}/order/orderList.do">1:1문의</a></li> 
+											</ul></li> 
 									</c:when>
 									<c:when test="${ kind  eq 'business'}">
 										<li><a href="#">BUSINESS</a>
@@ -166,6 +203,7 @@
 										<li><a href="#">MYPAGE</a> 
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
+													<li><a href="${path}/member/mypage.do?id=${id}">마이페이지</a></li>
 												<li><a href="${path}/order/orderList.do">주문내역</a></li>
 												<li><a href="about.html">취소및교환</a></li>
 												<li><a href="about.html">1:1문의</a></li>
@@ -221,9 +259,20 @@
                     <div class="col-md-1 hidden-sm">  
                         <div class="header-right">
                             <ul>
-                                <li>
-                                    <a href="${path}/login/login.do"><i class="flaticon-people">
-                                        </i></a>
+                            <li class="dropdown">
+                      <a href="#"<%-- "${path}/login/login.do"  --%>class="dropdown-toggle" data-toggle="dropdown"> <i class="flaticon-people"></i></a>  
+                                <div class="dropdown-menu login-form">
+								<form name="form1" method="post" accept-charset="UTF-8" action="${path}/login/loginCheck.do">
+									<input type="text" name="id" id="id" placeholder="ID">
+									<input type="password" name="pw" id="pw" placeholder="Password">
+					<!-- 				<input type="checkbox" name="remember-me" id="remember-me" value="1">
+									<label class="string optional" for="user_remember_me"> 기억하기</label>
+					 -->				<input class="btn btn-primary btn-block" type="submit" id="btnLogin" value="로그인">
+					<!-- 			        <button type="submit" class="btn btn-block"><i class="icon-google-plus"></i> 구글 로그인</button>
+									<button type="submit" class="btn btn-block"><i class="icon-twitter"></i> 트위터 로그인</button> -->
+								</form>
+								</div>  
+                                      
                                                                
                                 </li>
                                 <li class="shoping-cart">

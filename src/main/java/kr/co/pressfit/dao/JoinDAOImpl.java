@@ -59,7 +59,10 @@ public class JoinDAOImpl implements JoinDAO {
 		if(count==1) result=true;
 		return result;
 	}
-
+	@Override
+	public MemberVO mypage(String id) {
+		return sqlSession.selectOne("join.mypage" , id);
+	}
 } 
 
 

@@ -15,6 +15,12 @@
 				+ "&keyword=${map.keyword}";
 	}
 </script>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/keyboard_img.jpg');
+}
+
+</style>
 </head>
 <body>
 <!-- Breadcrumbs Area Start -->
@@ -23,12 +29,12 @@
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>SHOPPING CART</h2> 
+					       <h2>KEYBOARD UPLOAD</h2> 
 					       <ul class="breadcrumbs-list">
 						        <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
-						        <li>Shopping Cart</li>
+						        </li> 
+						        <li>Keyboard Upload</li>
 						    </ul>
 					    </div>
 					</div>

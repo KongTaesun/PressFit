@@ -13,4 +13,7 @@ public interface JoinService {
 	public void updateMember(MemberVO vo);
 	//비밀번호 체크
 	public boolean checkPw(String id, String pw);
+	
+	public MemberVO mypage(String id);
+	
 }

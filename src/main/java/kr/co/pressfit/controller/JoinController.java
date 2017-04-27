@@ -105,6 +105,15 @@ public class JoinController {
 		}		
 		
 	}
+	
+	@RequestMapping("member/mypage.do")
+	public String mypage(@RequestParam  String id, Model model){
+		
+		logger.info("클릭한 아이디:"+id);
+		model.addAttribute("vo", joinService.mypage(id));
+		
+		return "member/mypage";
+	}
 }
 
 
