@@ -22,18 +22,11 @@
     <resources mapping="/WEB-INF/ckediter/**" location="/WEB-INF/ckediter/" />
     <resources mapping="/WEB-INF/include/**" location="/WEB-INF/include/" />
  
-    <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-        in the /WEB-INF/views directory -->
-<<<<<<< HEAD
 
     <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
     <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
  
-=======
-    <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
-    <beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
->>>>>>> origin/tesuk
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/jsp/" />
         <beans:property name="suffix" value=".jsp" />

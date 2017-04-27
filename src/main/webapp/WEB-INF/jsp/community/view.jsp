@@ -11,9 +11,64 @@
 	background-image:
 		url('${path}/resources/writer/img/bigpicture/office_img.png');
 }
+.title{
+width: 100%;
+font-weight: bold;
+border-bottom: 1px solid #e8e8e8;
+padding: 5px 0 5px 15px;
+}
+
+.single-product-details1 .info1{
+width: 100%;
+border-bottom: 1px solid #e8e8e8;
+overflow: hidden;
+}
+.single-product-details1 .info1 .writer{
+float: left;
+padding: 11px 0 5px 15px;
+font-weight: bold;
+color: #255361;
+}
+.single-product-details1 .info1 .info2{
+float : right;
+color: #888;
+}
+.single-product-details1 .info1 .info2 .date{
+display: block;
+float: left;
+width: 200px;
+padding: 9px 12px 7px 0;
+text-align: right;
+}
+.single-product-details1 .info1 .info2 .hit{
+display: block;
+float: left;
+padding: 9px 0 7px 10px;
+}
+
+.single-product-details1 .content1 {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 9px 0 7px 10px;
+    border-bottom: 2px solid #444444;
+}
 
 .lineheight {
   border: solid 3px;
+  margin-bottom: 5px;
+}
+
+.single-product-details1 .social-share .social-share-left {
+padding: 9px 0 7px 10px;
+float: left;
+color: #888;
+}
+
+.single-product-details1 .social-share .social-share-right {
+display: block;
+float: right;
+padding: 9px 0 7px 10px;
 }
 </style>
 <script>
@@ -126,25 +181,38 @@
         <div class="single-product-area section-padding">
             <div class="container">
                 <div class="row">
-                    <div class=""></div>
+                    <div class="col-md-12"></div>
                     <div class="">
-                        <div class="single-product-details">
-                            <h2>${dto.title}</h2>
+                        <div class="single-product-details1 col-md-10">
+                            <h2>공지사항</h2>
                             <hr class="lineheight"/>
-                            ${dto.writer} / 	 
-                            <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/> / 조회수 : ${dto.viewcnt} <br/><br/>
-                            <p>${dto.content}</p>
+                            <div class="title">${dto.title}</div>
+                            <div class="info1">
+                            	
+                            	<div class="writer">${dto.writer}</div>
+                            	
+                            	<div class="info2">
+                            		<span class="date"><fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/></span>
+									<span class="hit">|&nbsp; &nbsp; 조회수 : ${dto.viewcnt}</span>
+                           		</div>
+                           	</div>
+                           	<br/>
+                           	<div class="content1">
+                            ${dto.content}
+                            </div>
 		         			<!-- 게시물번호를 hidden으로 처리 -->
 		            		<input type="hidden" name="boardno" value="${dto.idx}">
                             <div class="social-share">
+                            	<span class="social-share-left">
                                 <label>Share: </label>
                                 <ul class="social-share-icon">
                                     <li><a href="#"><i class="flaticon-social"></i></a></li>
                                     <li><a href="#"><i class="flaticon-social-1"></i></a></li>
                                     <li><a href="#"><i class="flaticon-social-2"></i></a></li>
                                 </ul> 
+                                </span>
+                                <span class="social-share-right"><button type="button" id="btnList">목록</button></span>
                             </div>
-                            <button type="button" id="btnList">목록</button>
 							</div>
                         </div>
                     </div>
@@ -154,43 +222,6 @@
         <!-- Single Product Area End -->
         </body>
         </html>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   
 <%@ include file="/resources/include/footer.jsp" %>
 </body>
 </html>

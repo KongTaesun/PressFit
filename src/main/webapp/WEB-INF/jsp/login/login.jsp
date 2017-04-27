@@ -15,12 +15,15 @@
  height: 200px;
  margin: 0 auto; */
  }
+ .section-padding{
+ padding: 70px 0 0 0;
+ }
  .login-account section-padding {
   margin: 0 auto;
 }
  .create-account-form1 {
-  background-color: ;
-  border: 1px solid #cfcfcf;
+  background-color: #FFF2E6;
+  /* border: 1px solid #cfcfcf; */
   min-height: 380px;
   padding: 36px 17px;
 }
@@ -54,7 +57,7 @@
 }
 .tabWrap {
 	width: 450px;
-	height: 500px;
+	height: 430px;
 }
 
 .tab_Menu {
@@ -82,8 +85,8 @@
 }
 
 .current {
-	background-color: #BDBDBD;
-	border: 1px solid gray;
+	background-color: #FFF2E6; 
+/* 	border: 1px solid gray; */
 	border-bottom: hidden;
 }
 
@@ -91,7 +94,7 @@
  	width: 450px;
 	height: 382px; 
 	float: left;
-	border: 1px solid gray;
+/* 	border: 1px solid gray; */
 }
 </style>
 
@@ -373,7 +376,8 @@
                                     </span></a> 
                                 </button> 
                             </div>
-     <br>
+     <br/>
+     <br/>
 <%@ include file="/resources/include/footer.jsp" %>
     
 </body>

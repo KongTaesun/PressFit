@@ -1,5 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<style>
+.footer-top-area1 {
+background: #ffffff none repeat scroll 0 0;
+    color: #d4d4d4;
+    padding: 20px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+.footer-bottom1 .footer-bottom-left {
+padding: 5px;
+}
+.footer-bottom1 .footer-bottom-right {
+float:left; 
+font-size: 10px;
+color: #000000;
+padding: 10px;
+}
+.footer-bottom1 {
+    background: #ffffff none repeat scroll 0 0;
+    color: #ffffff;
+    line-height: 1;
+    padding: 5px 0;
+}
+.footer-top-area1 {
+	background: #ffffff none repeat scroll 0 0;
+    color: #d4d4d4;
+    border-top: 2px solid;
+}
+.footer-top-area1 .container .row .utilmenu {
+    position: relative;
+    width: 100%;
+    height: 23px;
+    padding: 5px 0 15px 0;
+    font-size: 13px;
+}
+.footer-top-area1 .container .row .utilmenu li.info {
+
+    position: relative;
+    float: left;
+    margin: 0;
+    padding: 0 12px 0 8px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.footer-top-area1 .container .row .utilmenu li.pressfitfriends {
+padding: 0 12px 0 8px;
+vertical-align: middle;
+display: inline-block;
+}
+.footer-top-area1 .container .row .utilmenu li a {
+    color: #666;
+    letter-spacing: -0.9px;
+}
+ul li {
+    list-style-type: none !important;
+}
+ul li:after{
+	position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 14px;
+    background: #d8d8d8;
+    content: '';
+}
+a {
+	text-decoration: none;
+}
+
+
+
+</style>
 </head> 
  
    <!-- favicon -->
@@ -11,114 +83,45 @@
  
 				<!-- Footer Area Start -->
 		<footer>
-		    <div class="footer-top-area">
+		    <div class="footer-top-area1">
 		        <div class="container">
-		            <div class="row">
-		                <div class="col-md-3 col-sm-8">
-		                    <div class="footer-left">
-		                        <a href="#">
-		                            <img src="resources/writer/img/logo-2.png" alt="">
-		                        </a>
-		                        <p>사업자등록번호 : 211-87-00620 / 통신판매업 신고번호 : 제 01-1968호</p>
-		                        <ul class="footer-contact">
-		                            <li>
-		                                <i class="flaticon-location"></i>
-		                                	서울시 종로구 대학로12길 31 자유빌딩 5층 (03086) / 대표이사 : 최은희
-		                            </li>
-		                            <li>
-		                                <i class="flaticon-technology"></i>
-		                                010 6238 5615
-		                            </li>
-		                            <li> 
-		                                <i class="flaticon-web"></i>
-		                                osd0126@pressfit.com
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </div>  
-		                <div class="col-md-2 col-sm-4">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">회사소개</h2>
-		                        <ul class="footer-list">
-		                             <li><a href="${path}/resources/agreement/.jsp">회사소개</a></li>
-		                            <!--<li><a href="#">Delivery Information</a></li>
-		                            <li><a href="#">Privacy & Policy</a></li>
-		                            <li><a href="#">Terms & Conditions</a></li> -->
-		    
-		                            <li><a href="${path}/resources/agreement/Directions.jsp">오시는 길</a></li>
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 hidden-sm">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title">이용약관 및 개인정보 처리방침</h2>
-		                        <ul class="footer-list">
-		                            <li><a href="${path}/resources/agreement/provision.jsp">이용약관</a></li>
-		                            <li><a href="${path}/resources/agreement/helprule_private.jsp">개인정보 처리방침</a></li>
-		                            <!-- <li><a href="cart.html">My Cart</a></li>
-		                            <li><a href="wishlist.html">Wishlist</a></li>
-		                            <li><a href="checkout.html">Checkout</a></li>  -->
-		                        </ul>
-		                    </div>
-		                </div>
-		                <div class="col-md-2 hidden-sm">
-		                    <div class="single-footer">
-		                        <h2 class="footer-title"> 프레스핏 소셜 친구들 </h2>
-		                        <ul class="social-icon">
-		                            <li>
-		                                <a href="https://www.facebook.com">
-		                                    <i class="flaticon-social"></i>
-		                                </a>
-		                            </li> 
-		                            <li>
-		                                <a href="https://www.google.com">
-		                                    <i class="flaticon-social-1"></i>
-		                                </a> 
-		                            </li>
-		                            <li>
-		                                <a href="https://www.flickr.com">
-		                                    <i class="flaticon-social-2"></i>
-		                                </a>
-		                            </li>
-		                            <li>
-		                                <a href="https://www.youtube.com">
-		                                    <i class="flaticon-video"></i>
-		                                </a>
-		                            </li>
-		                        </ul>
-		                        </div>
-		                </div>
-		                <div class="col-md-3 col-sm-8">
-		                    <div class="single-footer footer-newsletter">
-		                        <h2 class="footer-title">고객행복센터</h2>
-		                        
-		                        <p>평일 9:00~18:00 / 점심시간 12:00~13:00 주말 및 공휴일은 1:1문의하기를 이용해주세요. 업무가 시작되면 바로 처리해 드립니다.</p>
-		                        <form action=" " method="post">
-		                            <div>
-		                                <input type="text" placeholder="customer@pressfit.co.kr">
-		                            </div>
-		                            <button class="btn btn-search btn-small" type="submit">SUBSCRIBE</button>
-		                            <i class="flaticon-networking"></i>
-		                        </form>
-		                        
-		                    </div>
-		                </div>
-		               
+		            <div class="row">  
+		            	<ul class="utilmenu">
+		            		<li class="bizinfo info">
+		            			<a href="${path}/resources/agreement/.jsp">회사소개</a>
+		            		</li>
+							<li class="waytocome info">
+		            			<a href="${path}/resources/agreement/Directions.jsp">오시는길</a>
+		            		</li>
+		            		<li class="agreement info">
+		            			<a href="${path}/resources/agreement/provision.jsp">이용약관</a>
+		            		</li>
+		            		<li class="privacy info">
+		            			<a href="${path}/resources/agreement/helprule_private.jsp">개인정보 처리방침</a>
+		            		</li>
+							<li class="pressfitfriends last">
+							<div>
+								<a href="${path}/resources/agreement/helprule_private.jsp">PressFit 소셜 친구들</a>
+								</div>
+		            		</li>
+		            	</ul>
+
 		            </div>
 		        </div>
 		    </div>
-		    <div class="footer-bottom">
+		    <div class="footer-bottom1">
 		        <div class="container">
 		            <div class="row">
-		                <div class="col-md-6">
+		                <div class="col-md-12">
                             <div class="footer-bottom-left pull-left">
-                                <p>Copyright &copy; 2017 <span><a href="#">Pressfit</a></span>. All Right Reserved.</p>
+                            <a href="${path}/index.jsp">
+                            	<img src="${path}/resources/writer/img/bigpicture/bottom_Logo.png">
+                            </a>
                             </div>
-		                </div>
-		                <div class="col-md-6">
-		                    <div class="footer-bottom-right pull-right">
-		                        <img src="resources/writer/img/paypal.png" alt="">
-		                    </div>
+                            <div class="footer-bottom-right">
+			                    (주)PressFit 서울시 종로구 대학로 12길 31 자유빌딩 5층(03086) 대표 최은희  사업자 등록번호 211-87-00620 통신판매업신고 제 01-1968호<br/>
+			                    고객상담 010 6238 5615 이메일 osd0126@pressfit.com
+                            </div>
 		                </div>
 		            </div>
 		        </div>
