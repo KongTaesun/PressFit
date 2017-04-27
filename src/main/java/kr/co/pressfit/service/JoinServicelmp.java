@@ -62,4 +62,10 @@ public void updateMember(MemberVO vo) {
 public boolean checkPw(String id, String pw) {
 	return joinDao.checkPw(id, pw); 
 }
+
+@Override 
+public MemberVO mypage(String id) {
+	return joinDao.mypage(id); 
+}
+
 }

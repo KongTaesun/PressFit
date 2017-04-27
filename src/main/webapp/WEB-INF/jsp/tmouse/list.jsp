@@ -125,7 +125,7 @@
                            <li><a href="${path}/tmouse/list.do?searchOption=switch1"> <i class="fa fa-angle-double-right"></i>
                                  무소음 마우스 <span></span>
                            </a></li>
-								</ul>
+								</ul> 
 							</aside>
 							<aside class="widget shop-filter">
                         <h2 class="sidebar-title text-center">PRICE SLIDER</h2>
@@ -212,7 +212,7 @@
 							<div class="shop-tab-pill pull-right">
 								<ul>
 									<li class="product-size-deatils">
-										<div class="show-label">
+										<!-- <div class="show-label">
 											<label>Show : </label> <select>
 												<option value="10" selected="selected">10</option>
 												<option value="09">09</option>
@@ -220,7 +220,7 @@
 												<option value="07">07</option>
 												<option value="06">06</option>
 											</select>
-										</div>
+										</div> -->
 									</li>
 									<li class="product-size-deatils">
 										<div class="show-label">

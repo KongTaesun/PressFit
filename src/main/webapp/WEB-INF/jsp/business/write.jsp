@@ -10,7 +10,8 @@
 	
 </script>
 
-<script>
+<%@ include file="/resources/include/header.jsp"%>
+<script> 
 	$(document).ready(function() {
 		$('#btn1').click(function() {
 			$.ajax({
@@ -34,8 +35,14 @@
 		$('#searchResult').text(data);
 	}
 </script>
+<style> 
+.breadcrumbs-area { 
+ background-image: url('${path}/resources/writer/img/bigpicture/join_img.png');
+}
 
-<%@ include file="/resources/include/header.jsp"%>
+</style>
+
+
 </head>
 <body>
 
@@ -223,5 +230,6 @@
 
 
 
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

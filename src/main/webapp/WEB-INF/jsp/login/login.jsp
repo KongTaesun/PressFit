@@ -100,25 +100,12 @@
     $(document).ready(function(){
     	 console.log(document.form1);
         $("#btnLogin").click(function(){
-            // 태크.val() : 태그에 입력된 값
-            // 태크.val("값") : 태그의 값을 변경 
+   
             var id = $("#id").val();
             var pw = $("#pw").val();
-           /*  if(id == ""){
-                alert("아이디를 입력하세요.");
-                $("#id").focus(); // 입력포커스 이동
-                return; // 함수 종료
-            }
-            if(pw == ""){
-                alert("패스워드를 입력하세요.");
-                $("#pw").focus();
-                return;
-            } */
-            // 폼 내부의 데이터를 전송할 주소
-            alert("ss");
-           
+      
+         
             document.form1.action="loginCheck.do"
-            // 제출
             document.form1.submit();
         });
     });
@@ -177,7 +164,7 @@
 						    </ul>
 					    </div>
 					</div>
-				</div>
+				</div> 
 			</div>
 		</div>
 		<!-- Breadcrumbs Area Start --> 

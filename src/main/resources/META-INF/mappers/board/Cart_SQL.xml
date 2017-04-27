@@ -109,7 +109,7 @@
 		where idx = #{idx}
 		</if>
 		</update> -->
-		 
+		  
 		<update id="amounttest_keyboard" parameterType="kr.co.pressfit.vo.CartVO">
 		update KeyboardBoard
 		set amount = amount - #{amount}, salesTotal = salesTotal + #{amount}
@@ -143,6 +143,6 @@
         where id = #{id}
     </select>
 
-	
+	 
 	
 </mapper>

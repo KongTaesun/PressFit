@@ -20,12 +20,12 @@
 .search-bar input {
   outline: none;
   box-shadow: none;
-  height: 50px;\
+  height: 50px; 
   line-height: 50px;
-  width: 100%; 
+  width: 100%;  
   padding: 0 1em; 
-  box-sizing: border-box;
-  background: transparent;  
+  box-sizing: border-box; 
+  background: transparent;   
   color: white;
   border: 4px solid white;  
   border-radius: 50px;  

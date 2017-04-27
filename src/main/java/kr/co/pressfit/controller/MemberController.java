@@ -34,15 +34,17 @@ public class MemberController {
     
     @RequestMapping("loginCheck.do")
     public ModelAndView loginCheck(@ModelAttribute MemberVO vo, HttpSession session){
-        boolean result = memberService.loginCheck(vo, session);
+      
+    	boolean result = memberService.loginCheck(vo, session);
         ModelAndView mav = new ModelAndView();
       
         if (result == true) { 
-           
-            mav.setViewName(folder+"/login");
+
+            mav.setViewName(folder+"/login");  
             session.setAttribute("id", vo.getId());
             session.setAttribute("kind", "member");
-            mav.addObject("msg", "success");
+
+            
         } else {    
         	
             mav.setViewName(folder+"/login");

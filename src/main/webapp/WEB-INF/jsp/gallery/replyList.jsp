@@ -14,8 +14,8 @@
         <!-- 댓글 목록 -->
         <c:forEach var="row" items="${list}">
         <tr>    
-            <td>
-                ${row.replayer}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)
+            <td> 
+                ${row.replayer}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>) 
                 <br>
                 ${row.idx}
                 <br>
