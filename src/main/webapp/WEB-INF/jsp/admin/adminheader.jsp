@@ -6,7 +6,8 @@
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<style>@font-face{font-family: 'Connoisseurs';src: url('${path}/resources/font/Connoisseurs.ttf')}</style>
+	<style>@font-face{font-family: 'Connoisseurs';src: url('${path}/resources/font/Connoisseurs.ttf')}
+	@font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}</style>
 	<title>Admin</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -31,8 +32,6 @@
 	<script src="${path}/resources/admin/assets/js/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="${path}/resources/admin/assets/js/bootstrap-notify.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="${path}/resources/admin/assets/js/light-bootstrap-dashboard.js"></script>
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->

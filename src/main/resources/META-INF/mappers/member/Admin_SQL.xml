@@ -67,6 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
       	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = m.id AND showdel = 'y'
 	    ]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
@@ -78,6 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM FaqReply WHERE boardno=b.idx) AS recnt
       	FROM FaqBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = m.id AND showdel = 'y'
 		]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
@@ -90,6 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
       	(SELECT COUNT(*) FROM GalleryReply WHERE boardno=b.idx) AS recnt,
       	(SELECT fullname FROM GalleryFile WHERE idx=b.idx ORDER BY GalleryFile.regdate limit 1) AS fullname
       	FROM GalleryBoard b, Cmember m,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = m.id AND showdel = 'y'
 		]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
@@ -102,6 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	      (SELECT COUNT(*) FROM TMouseReply WHERE boardno=b.idx) AS recnt,
 	      (SELECT fullName FROM TMouseFile WHERE idx=b.idx ORDER BY TMouseFile.regdate limit 1) AS fullName
 	      FROM TMouseBoard b, Cbusiness m,(SELECT @ROWNUM := 0) R
+	      WHERE b.crea_id = m.id  AND showdel = 'y' 
 	    ]]>
 	    <include refid="search"></include>
 	    ORDER BY rownum
@@ -114,6 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(SELECT COUNT(*) FROM KeyboardReply WHERE boardno=b.idx) AS recnt,
 		(SELECT fullName FROM KeyboardFile WHERE idx=b.idx ORDER BY KeyboardFile.regdate limit 1) AS fullName
 		FROM KeyboardBoard b, Cbusiness m,(SELECT @ROWNUM := 0) R
+		WHERE b.crea_id = m.id  AND showdel = 'y' 
 	    ]]>
 		<include refid="search"></include>
 		ORDER BY rownum

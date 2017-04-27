@@ -17,13 +17,25 @@
                 <li>
                     <a href="${path}/admin/member.do">
                         <i class="pe-7s-user"></i>
-                        <p>회 원 현 황</p>
+                        <p>회 원 관 리</p>
                     </a>
                 </li>
                 <li>
                     <a href="${path}/admin/board.do">
                         <i class="pe-7s-note2"></i>
-                        <p>게시판 현황</p>
+                        <p>게시판 관리</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="${path}/admin/product.do">
+                        <i class="pe-7s-note2"></i>
+                        <p>제품 관리</p>
+                    </a>	
+                </li>
+                <li>
+                    <a href="${path}/admin/faq.do">
+                        <i class="pe-7s-bell"></i>
+                        <p>QnA</p>
                     </a>
                 </li>
                 <li>
@@ -41,7 +53,7 @@
 				<li class="active-pro">
                     <a href="#">
                         <i class="pe-7s-rocket"></i>
-                        <p style="font-family: Connoisseurs;text-transform: none;font-size: 40px">Maker</p>
+                        <p >Maker</p>
                     </a>
                 </li>
             </ul>

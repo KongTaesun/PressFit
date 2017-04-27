@@ -8,38 +8,38 @@
 <link rel="stylesheet" href="${path}/resources/admin/css/style.css">
 <script type="text/javascript">
 $(document).ready(function () {
-	tmouseBoardList(1);
-    keyboardBoardList(1);
+	communityBoardList(1);
+    galleryBoardList(1);
     $('#faq-links div').click(function(){
     	_movePage(1);
     });
 });
-function tmouseBoardList(pageNo){
+function communityBoardList(pageNo){
     var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/tmouse/list.do' />");
-    comAjax.setCallback("tmouseBoardListCallback");
-    comAjax.addParam("tmousePAGEINDEX",pageNo);
+    comAjax.setUrl("<c:url value='/admin/community/list.do' />");
+    comAjax.setCallback("communityBoardListCallback");
+    comAjax.addParam("communityPAGEINDEX",pageNo);
     comAjax.addParam("PAGE_ROW", 5);
     comAjax.ajax();
 }
 
-function tmouseBoardListCallback(data){
+function communityBoardListCallback(data){
     var total = data.TOTAL;
 
-    var body = $("#tmouselist");
+    var body = $("#communitylist");
     body.empty();
     if(total == 0){
         var str = "<tr>" +
-                        "<td colspan='4'>조회된 결과가 없습니다.</td>" +
-                    "</tr>";
+                  "<td colspan='4'>조회된 결과가 없습니다.</td>" +
+                  "</tr>";
         body.append(str);
     }
     else{
         var params = {
-            divId : "tmousePAGE",
-            pageIndex : "tmousePAGEINDEX",
+            divId : "communityPAGE",
+            pageIndex : "communityPAGEINDEX",
             totalCount : total,
-            eventName : "tmouseBoardList",
+            eventName : "communityBoardList",
             Movename  :  "_movePage"
         };
         gfn_renderPaging(params);
@@ -48,52 +48,51 @@ function tmouseBoardListCallback(data){
         $.each(data.list, function(key, value){
             str += 
 				"<li><a href='#'>" +
-				"<span class='col-md-2'>" + value.manufacturecompany + "</span> " + 
-				"<span class='col-md-5'>" + value.modelname + "("+value.recnt+")</span> " + 
-				"<span class='col-md-2'>" + value.price + "</span> " +
-				"<span class='col-md-1'>" + value.crea_id + "</span> " + 
-				"<span class='col-md-1'>" + value.hit_cnt + "</span> " + 
-			"</a>" +
-			"<ul class='faq-content'>" +
-				"<li><div><p>" +
-				"<img src='${path}/resources/upload/"+value.fullName+"' style='width:570 ;height:550'>" +
-					value.content +
-				"</p></div></li>" +
-			"</ul></li>";
+					"<span class='col-md-1'>" + value.idx + "</span> " + 
+					"<span class='col-md-3'>" + value.title + "("+value.recnt+")</span> " + 
+					"<span class='col-md-2'>" + value.writer + "</span> " +
+					"<span class='col-md-2'>" + value.viewcnt + "</span> " + 
+					"<span class='col-md-2'>" + value.regdate + "</span> " + 
+				"</a>" +
+				"<ul class='faq-content'>" +
+					"<li><div><p>" +
+						value.content +
+					"</p></div></li>" +
+				"</ul></li>";
         });
         body.append(str);
         
     }
 }
 function _movePage(value){
-    $("#tmousePAGEINDEX").val(value);
-    if(typeof(tmouseBoardList) == "function"){
-    	tmouseBoardList(value);
+    $("#communityPAGEINDEX").val(value);
+    if(typeof(communityBoardList) == "function"){
+    	communityBoardList(value);
     }
     else {
-        eval(tmouseBoardList + "(value);");
+        eval(communityBoardList + "(value);");
     }
-    $("#keyboardPAGEINDEX").val(value);
-    if(typeof(keyboardBoardList) == "function"){
-    	keyboardBoardList(value);
+    $("#galleryPAGEINDEX").val(value);
+    if(typeof(galleryBoardList) == "function"){
+    	galleryBoardList(value);
     }
     else {
-        eval(keyboardBoardList + "(value);");
+        eval(galleryBoardList + "(value);");
     }
     accordWithPage();
 }
-function keyboardBoardList(pageNo){
+function galleryBoardList(pageNo){
     var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/keyboard/list.do' />");
-    comAjax.setCallback("keyboardBoardListCallback");
-    comAjax.addParam("keyboardPAGEINDEX",pageNo);
+    comAjax.setUrl("<c:url value='/admin/gallery/list.do' />");
+    comAjax.setCallback("galleryBoardListCallback");
+    comAjax.addParam("galleryPAGEINDEX",pageNo);
     comAjax.addParam("PAGE_ROW", 5);
     comAjax.ajax();
 }
-function keyboardBoardListCallback(data){
+function galleryBoardListCallback(data){
     var total = data.TOTAL;
 
-    var body = $("#keyboardlist");
+    var body = $("#gallerylist");
     body.empty();
     if(total == 0){
         var str = "<tr>" +
@@ -103,10 +102,10 @@ function keyboardBoardListCallback(data){
     }
     else{
         var params = {
-            divId : "keyboardPAGE",
-            pageIndex : "keyboardPAGEINDEX",
+            divId : "galleryPAGE",
+            pageIndex : "galleryPAGEINDEX",
             totalCount : total,
-            eventName : "keyboardBoardList",
+            eventName : "galleryBoardList",
             Movename  :  "_movePage"
         };
         gfn_renderPaging(params);
@@ -115,15 +114,14 @@ function keyboardBoardListCallback(data){
         $.each(data.list, function(key, value){
             str += 
 				"<li><a href='#'>" +
-				"<span class='col-md-2'>" + value.manufacturecompany + "</span> " + 
-				"<span class='col-md-5'>" + value.modelname + "("+value.recnt+")</span> " + 
-				"<span class='col-md-2'>" + value.price + "</span> " +
-				"<span class='col-md-1'>" + value.crea_id + "</span> " + 
-				"<span class='col-md-1'>" + value.hit_cnt + "</span> " + 
+				"<span class='col-md-1'>" + value.idx + "</span> " + 
+				"<span class='col-md-3'>" + value.title + "("+value.recnt+")</span> " + 
+				"<span class='col-md-2'>" + value.writer + "</span> " +
+				"<span class='col-md-2'>" + value.viewcnt + "</span> " + 
+				"<span class='col-md-2'>" + value.regdate + "</span> " + 
 			"</a>" +
 			"<ul class='faq-content'>" +
 				"<li><div><p>" +
-				"<img src='${path}/resources/upload/"+value.fullName+"' style='width:570 ;height:550'>" +
 					value.content +
 				"</p></div></li>" +
 			"</ul></li>";
@@ -145,22 +143,22 @@ function keyboardBoardListCallback(data){
 			</div>
             <div class="row">
             	<div id="faq-links">
-				    <div id="service" class="faq-selected col-md-6">tmouse</div>
-				    <div id="installation" class="col-md-6">keyboard</div>
+				    <div id="service" class="faq-selected col-md-6">community</div>
+				    <div id="installation" class="col-md-6">gallery</div>
 				    <div id="mobile" > </div>
 				</div>
 						<div id="faq-wrapper" class="about-service">
 							<div class="faq-group">
 								<div class="slide-left">
-									<div id="tmousePAGE"></div>
-   		 							<input type="hidden" id="tmousePAGEINDEX" name="tmousePAGEINDEX"/>
+									<div id="communityPAGE"></div>
+   		 							<input type="hidden" id="communityPAGEINDEX" name="communityPAGEINDEX"/>
 								</div>
 								<hr>
 							</div>
 							<!--faq-group-->
 							<div class="slide-left">
 								<div class="faq">
-									<ul class="faq-accordion" id="tmouselist">
+									<ul class="faq-accordion" id="communitylist">
 
 									</ul>
 								</div>
@@ -169,14 +167,14 @@ function keyboardBoardListCallback(data){
 						<div class="about-installation faq-hide">
 							<div class="faq-group">
 								<div class="slide-left">
-									<div id="keyboardPAGE"></div>
-   		 							<input type="hidden" id="keyboardPAGEINDEX" name="keyboardPAGEINDEX"/>
+									<div id="galleryPAGE"></div>
+   		 							<input type="hidden" id="galleryPAGEINDEX" name="galleryPAGEINDEX"/>
 								</div>
 								<hr>
 							</div>
 
 							<div class="slide-left">
-								<ul class="faq-accordion" id="keyboardlist">
+								<ul class="faq-accordion" id="gallerylist">
 
 								</ul>
 							</div>

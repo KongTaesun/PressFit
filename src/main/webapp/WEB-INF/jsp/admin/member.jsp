@@ -4,10 +4,15 @@
 <html lang="en">
 <%@ include file="adminheader.jsp"%>
 <script src="${path}/resources/admin/admin.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="${path}/resources/admin/css/style.css">
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function () {
 	businessBoardList(1);
-	memberBoardList(1);
+    memberBoardList(1);
+    $('#faq-links div').click(function(){
+    	_movePage(1);
+    });
 });
 function businessBoardList(pageNo){
     var comAjax = new ComAjax();
@@ -41,23 +46,20 @@ function businessBoardListCallback(data){
          
         var str = "";
         $.each(data.list, function(key, value){
-            str += "<tr>" +
-                        "<td>" + value.idx + "</td>" +
-                        "<td class='title'>" +
-                            "<a href='#this' name='title'>" + value.title + "</a>" +
-                            "<input type='hidden' name='title' value=" + value.idx + ">" +
-                            "<span style='color: red;'>("+value.recnt+")"+
-                        "</td>" +
-                        "<td>" + value.viewcnt + "</td>" +
-	                    "<td>"+value.regdate+"</td>"+
-                    "</tr>";
+            str += 
+				"<li><a href='#'>" +
+					"<span class='col-md-1'>" + value.idx + "</span> " + 
+					"<span class='col-md-3'>" + value.id + "</span> " + 
+					"<span class='col-md-2'>" + value.name + "</span> " +
+				"</a>" +
+				"<ul class='faq-content'>" +
+					"<li><div><p>" +
+						value.content +
+					"</p></div></li>" +
+				"</ul></li>";
         });
         body.append(str);
-         
-        $("a[name='title']").on("click", function(e){ //제목
-            e.preventDefault();
-            fn_openBoardDetail($(this));
-        });
+        
     }
 }
 function _movePage(value){
@@ -68,6 +70,14 @@ function _movePage(value){
     else {
         eval(businessBoardList + "(value);");
     }
+    $("#memberPAGEINDEX").val(value);
+    if(typeof(memberBoardList) == "function"){
+    	memberBoardList(value);
+    }
+    else {
+        eval(memberBoardList + "(value);");
+    }
+    accordWithPage();
 }
 function memberBoardList(pageNo){
     var comAjax = new ComAjax();
@@ -94,47 +104,29 @@ function memberBoardListCallback(data){
             pageIndex : "memberPAGEINDEX",
             totalCount : total,
             eventName : "memberBoardList",
-            Movename  :  "_movePage2"
+            Movename  :  "_movePage"
         };
         gfn_renderPaging(params);
          
         var str = "";
         $.each(data.list, function(key, value){
-            str += "<tr>" +
-                        "<td>" + value.idx + "</td>" +
-                        "<td class='title'>" +
-                            "<a href='#this' name='title'>" + value.title + "</a>" +
-                            "<input type='hidden' name='title' value=" + value.idx + ">" +
-                            "<span style='color: red;'>("+value.recnt+")"+
-                        "</td>" +
-                        "<td>" + value.viewcnt + "</td>" +
-	                    "<td>"+value.regdate+"</td>"+
-                    "</tr>";
+            str += 
+				"<li><a href='#'>" +
+				"<span class='col-md-1'>" + value.idx + "</span> " + 
+				"<span class='col-md-3'>" + value.id + "</span> " + 
+				"<span class='col-md-2'>" + value.name + "</span> " +
+			"</a>" +
+			"<ul class='faq-content'>" +
+				"<li><div><p>" +
+					value.content +
+				"</p></div></li>" +
+			"</ul></li>";
         });
         body.append(str);
-         
-        $("a[name='title']").on("click", function(e){ //제목
-            e.preventDefault();
-            fn_openBoardDetail($(this));
-        });
-    }
-}
-function _movePage2(value){
-    $("#memberPAGEINDEX").val(value);
-    if(typeof(memberBoardList) == "function"){
-    	memberBoardList(value);
-    }
-    else {
-        eval(memberBoardList + "(value);");
     }
 }
 
-</script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel="stylesheet" href="${path}/resources/admin/css/style.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.0.1/normalize.css">
-<link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.6/prefixfree.min.js"></script>
+</script>	
 <body>
 <div class="wrapper">
 <%@ include file="adminsidebar.jsp"%>
@@ -143,55 +135,50 @@ function _movePage2(value){
         <div class="content">
             <div class="container-fluid">
             <div class="row">
-			  <div class="tabbed" style="margin: 10px">
-			    <input type="radio" name="tabs" id="tab-nav-1" checked>
-			    <label for="tab-nav-1">business</label>
-			    <input type="radio" name="tabs" id="tab-nav-2">
-			    <label for="tab-nav-2">member</label>
-			    <div class="tabs" style="perspective:none">
-			      <div style="width: 90%;font-size: 15px;">
-			      <h2>business</h2>
-			      <table class="table table-hover">
-					<thead>
-						<tr>
-							<th class="number">Number</th>
-							<th class="title">Title</th>
-							<th class="regdate">Regdate</th>
-							<th class="count">Count</th>
-						</tr>
-					</thead>
-					<tbody id="businesslist">
-					
-					</tbody>
-					</table>
-					<div id="businessPAGE"></div>
-   		 			<input type="hidden" id="businessPAGEINDEX" name="businessPAGEINDEX"/>
-   		 			</div>
-   		 		 <div style="width: 90%;font-size: 15px;">
-			      <h2>member</h2>
-			      <table class="table table-hover">
-					<thead>
-						<tr>
-							<th class="number">Number</th>
-							<th class="title">Title</th>
-							<th class="regdate">Regdate</th>
-							<th class="count">Count</th>
-						</tr>
-					</thead>
-					<tbody id="memberlist">
-					
-					</tbody>
-					</table>
-					<div id="memberPAGE"></div>
-   		 			<input type="hidden" id="memberPAGEINDEX" name="memberPAGEINDEX"/>
-   		 			</div>
-			  	</div>
-	           </div>
-            </div>
-        </div>
+				<div><input type="text" /><button>검색</button></div>
+			</div>
+            <div class="row">
+            	<div id="faq-links">
+				    <div id="service" class="faq-selected col-md-6">business</div>
+				    <div id="installation" class="col-md-6">member</div>
+				    <div id="mobile" > </div>
+				</div>
+					<div id="faq-wrapper" class="about-service">
+						<div class="faq-group">
+							<div class="slide-left">
+								<div id="businessPAGE"></div>
+   	 							<input type="hidden" id="businessPAGEINDEX" name="businessPAGEINDEX"/>
+							</div>
+							<hr>
+						</div>
+						<!--faq-group-->
+						<div class="slide-left">
+							<div class="faq">
+								<ul class="faq-accordion" id="businesslist">
+									</ul>
+							</div>
+						</div>
+					</div>
+					<div class="about-installation faq-hide">
+						<div class="faq-group">
+							<div class="slide-left">
+								<div id="memberPAGE"></div>
+  		 							<input type="hidden" id="memberPAGEINDEX" name="memberPAGEINDEX"/>
+							</div>
+							<hr>
+						</div>
+							<div class="slide-left">
+							<ul class="faq-accordion" id="memberlist">
+								</ul>
+						</div>
+					</div>
+	            </div>
+        	</div>
         </div>
 <%@ include file="adminfooter.jsp"%>
     </div>
 </div>
+<script src="${path}/resources/admin/js/index.js"></script>
+    
 </body>
 </html>

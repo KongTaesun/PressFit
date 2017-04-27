@@ -70,6 +70,10 @@ public class Admin {
 	public String board(Model model, HttpSession session){
 		return "admin/board"; 
 	}
+	@RequestMapping("faq.do")
+	public String faq(Model model, HttpSession session){
+		return "admin/faq"; 
+	}
 	@RequestMapping("product.do")
 	public String product(Model model, HttpSession session){
 		return "admin/product"; 
@@ -132,7 +136,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<CommunityVO> list = adminService.communityList(vo);
 
@@ -155,7 +159,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<FaqVO> list = adminService.faqList(vo);
 
@@ -178,7 +182,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<GalleryVO> list = adminService.galleryList(vo);
 
@@ -201,7 +205,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<TMouseVO> list = adminService.tmouseList(vo);
 
@@ -224,7 +228,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<KeyboardVO> list = adminService.keyboardList(vo);
 
@@ -247,7 +251,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<BusinessVO> list = adminService.businessList(vo);
 
@@ -270,7 +274,7 @@ public class Admin {
 	        nPageIndex = pageindex-1;
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow) + 1);
+    	vo.setSTART((nPageIndex * pagerow));
     	vo.setEND(pagerow);
     	List<MemberVO> list = adminService.memberList(vo);
 
