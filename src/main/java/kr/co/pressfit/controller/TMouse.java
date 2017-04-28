@@ -109,6 +109,9 @@ public class TMouse {
         mav.setViewName(folder+"/view");
         mav.addObject("count", tmouseservice.replycount(idx)); 
         mav.addObject("dto", tmouseservice.read(idx));
+        TMouseVO vo = tmouseservice.read(idx);
+        
+        System.out.println("vo:"+vo);
         mav.addObject("curPage", curPage);
         mav.addObject("searchOption", searchOption);
         mav.addObject("keyword", keyword);

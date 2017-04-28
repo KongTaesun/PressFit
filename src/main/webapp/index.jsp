@@ -13,19 +13,19 @@
   -webkit-transition-delay: 0.25s;
   transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
   position: relative;
-  width: 300px;
+  width: 300px; 
   height: 50px;
   margin: 0 auto;
 } 
-.search-bar input {
+.search-bar input { 
   outline: none;
   box-shadow: none;
   height: 50px; 
   line-height: 50px;
   width: 100%;  
   padding: 0 1em; 
-  box-sizing: border-box; 
-  background: transparent;   
+  box-sizing: border-box;  
+  background: transparent;    
   color: white;
   border: 4px solid white;  
   border-radius: 50px;  

@@ -351,8 +351,8 @@
                                     <span>
                                     <a href="${path}/member/write.do">
                                         <i class="fa fa-user left"></i>
-                                        개인회원가입 
-                                    </span></a>
+                                        	개인회원가입 
+                                    </a></span>
                                 </button> 
                                  
                                     <button name="submitcreate" id="submitcreate" type="submit" class="btn-default">

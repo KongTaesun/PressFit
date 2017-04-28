@@ -37,6 +37,11 @@
 
 
 </style>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/keyboard_img3.png');
+} 
+</style>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
     $(document).ready(function(){

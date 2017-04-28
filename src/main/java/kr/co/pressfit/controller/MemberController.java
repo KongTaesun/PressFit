@@ -40,7 +40,7 @@ public class MemberController {
       
         if (result == true) { 
 
-            mav.setViewName(folder+"/login");  
+            mav.setViewName("../../index");  
             session.setAttribute("id", vo.getId());
             session.setAttribute("kind", "member");
 
