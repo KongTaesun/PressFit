@@ -9,7 +9,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	communityBoardList(1);
-    galleryBoardList(1);
+    faqBoardList(1);
     $('#faq-links div').click(function(){
     	_movePage(1);
     });
@@ -72,27 +72,27 @@ function _movePage(value){
     else {
         eval(communityBoardList + "(value);");
     }
-    $("#galleryPAGEINDEX").val(value);
-    if(typeof(galleryBoardList) == "function"){
-    	galleryBoardList(value);
+    $("#faqPAGEINDEX").val(value);
+    if(typeof(faqBoardList) == "function"){
+    	faqBoardList(value);
     }
     else {
-        eval(galleryBoardList + "(value);");
+        eval(faqBoardList + "(value);");
     }
     accordWithPage();
 }
-function galleryBoardList(pageNo){
+function faqBoardList(pageNo){
     var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/gallery/list.do' />");
-    comAjax.setCallback("galleryBoardListCallback");
-    comAjax.addParam("galleryPAGEINDEX",pageNo);
+    comAjax.setUrl("<c:url value='/admin/faq/list.do' />");
+    comAjax.setCallback("faqBoardListCallback");
+    comAjax.addParam("faqPAGEINDEX",pageNo);
     comAjax.addParam("PAGE_ROW", 5);
     comAjax.ajax();
 }
-function galleryBoardListCallback(data){
+function faqBoardListCallback(data){
     var total = data.TOTAL;
 
-    var body = $("#gallerylist");
+    var body = $("#faqlist");
     body.empty();
     if(total == 0){
         var str = "<tr>" +
@@ -102,10 +102,10 @@ function galleryBoardListCallback(data){
     }
     else{
         var params = {
-            divId : "galleryPAGE",
-            pageIndex : "galleryPAGEINDEX",
+            divId : "faqPAGE",
+            pageIndex : "faqPAGEINDEX",
             totalCount : total,
-            eventName : "galleryBoardList",
+            eventName : "faqBoardList",
             Movename  :  "_movePage"
         };
         gfn_renderPaging(params);
@@ -143,8 +143,8 @@ function galleryBoardListCallback(data){
 			</div>
             <div class="row">
             	<div id="faq-links">
-				    <div id="service" class="faq-selected col-md-6">community</div>
-				    <div id="installation" class="col-md-6">gallery</div>
+				    <div id="service" class="faq-selected col-md-6">공지사항</div>
+				    <div id="installation" class="col-md-6">QnA</div>
 				    <div id="mobile" > </div>
 				</div>
 						<div id="faq-wrapper" class="about-service">
@@ -167,14 +167,14 @@ function galleryBoardListCallback(data){
 						<div class="about-installation faq-hide">
 							<div class="faq-group">
 								<div class="slide-left">
-									<div id="galleryPAGE"></div>
-   		 							<input type="hidden" id="galleryPAGEINDEX" name="galleryPAGEINDEX"/>
+									<div id="faqPAGE"></div>
+   		 							<input type="hidden" id="faqPAGEINDEX" name="faqPAGEINDEX"/>
 								</div>
 								<hr>
 							</div>
 
 							<div class="slide-left">
-								<ul class="faq-accordion" id="gallerylist">
+								<ul class="faq-accordion" id="faqlist">
 
 								</ul>
 							</div>

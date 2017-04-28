@@ -23,7 +23,7 @@
                 <li>
                     <a href="${path}/admin/board.do">
                         <i class="pe-7s-note2"></i>
-                        <p>게시판 관리</p>
+                        <p>갤러리 관리</p>
                     </a>
                 </li>
                 <li>
@@ -35,7 +35,7 @@
                 <li>
                     <a href="${path}/admin/faq.do">
                         <i class="pe-7s-bell"></i>
-                        <p>QnA</p>
+                        <p>공지 & QnA</p>
                     </a>
                 </li>
                 <li>
@@ -51,7 +51,7 @@
                     </a>
                 </li>
 				<li class="active-pro">
-                    <a href="#">
+                    <a href="${path}/admin/maker.do">
                         <i class="pe-7s-rocket"></i>
                         <p >Maker</p>
                     </a>

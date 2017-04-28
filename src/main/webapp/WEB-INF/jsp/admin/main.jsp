@@ -4,8 +4,6 @@
 <%@ include file="adminheader.jsp"%>
 <script src="${path}/resources/admin/num/jquery.color.min.js"></script>
 <script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
-	<script src="covervid.js"></script>
-	<script src="assets/scripts/scripts.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#lines').animateNumber({ number: 165 });
