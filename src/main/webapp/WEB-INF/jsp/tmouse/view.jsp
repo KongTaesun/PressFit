@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,9 +36,25 @@
 .table-data-sheet1 tr td:nth-child(3){
   font-weight: 900;
 }
+.availability1 > span{
+    background: #32b5f3 none repeat scroll 0 0;
+    border: 1px solid #0a74a7;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 3px 12px;
+}
+.availability2 {
+    background: #32b5f3 none repeat scroll 0 0;
+    border: 1px solid #0a74a7;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 3px 12px;
+}
 
-</style>
-<style>
 .breadcrumbs-area {
  background-image: url('${path}/resources/writer/img/bigpicture/mouse_img3.png');
 }
@@ -276,20 +294,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Nav tabs -->
-                            <ul class="product-tabs" role="tablist">
-                                <li role="presentation" class="active">
-                                <a href="#one" aria-controls="one" role="tab" data-toggle="tab">
-                                <img src="img/single-product/1.jpg" alt=""></a></li>
-                                <li role="presentation">
-                                <a href="#two" aria-controls="two" role="tab" data-toggle="tab">
-                                <img src="img/single-product/2.jpg" alt="">
-                                </a></li>
-                                <li role="presentation">
-                                <a href="#three" aria-controls="three" role="tab" data-toggle="tab">
-                                <img src="img/single-product/3.jpg" alt="">
-                                </a></li>
-                            </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-5">
@@ -303,8 +307,27 @@
                             </div> -->
                             <h2>${dto.modelname}</h2>
                             
-                            <div class="availability"> 
-                                <span>마우스</span>
+                            <div class="availability1"> 
+                                 <c:if test="${dto.gamingmouse eq '○'}">
+      							    <a href="${path}/tmouse/list.do?searchOption=gamingmouse">
+      							    	<span class="availability2">게이밍 마우스</span>
+      							    </a>
+						     	 </c:if>
+						     	 <c:if test="${fn:contains(dto.connectionmethod,'무선')||fn:contains(dto.connectionmethod,'블루투스')}">
+							        <a href="${path}/tmouse/list.do?searchOption=connectionmethod">
+							        	<span class="availability2">${dto.connectionmethod}</span>
+							        </a>
+							      </c:if>
+ 							      <c:if test="${dto.wristtunnelsyndrome eq '○'}">
+ 							      	<a href="${path}/tmouse/list.do?searchOption=wristtunnelsyndrome">
+							        	<span class="availability2">손목보호 마우스</span>
+							       	</a>
+							      </c:if>
+							      <c:if test="${dto.connectionmethod eq '무소음 스위치'}">
+							      	<a href="${path}/tmouse/list.do?searchOption=switch1">
+							         	<span class="availability2">무소음 마우스</span>
+							         </a>
+							      </c:if>
                             </div>
                             <p> 제조사 : ${dto.manufacturecompany} </p>
                             <p> 등록년월 : ${dto.regdate} </p>
@@ -352,26 +375,6 @@
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
 						        <button type="button" id="btnList">목록</button>
                             </div>
-                            <!-- <div class="single-product-categories"> 
-                               <label>Categories:</label>
-                                <span>e-book, biological, business</span>
-                            </div>
-                             --> 
-                             <div class="social-share">
-                                <label>Share: </label>
-                                <ul class="social-share-icon">
-                                    <li><a href="#"><i class="flaticon-social"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-social-1"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-social-2"></i></a></li>
-                                </ul> 
-                            </div>
-                            <div id="product-comments-block-extra">
-								<ul class="comments-advices">
-									<li>
-										<a href="#" class="open-comment-form">Write a review</a>
-									</li>
-								</ul>
-							</div>
                         </div>
                     </div>
                 </div>
@@ -535,8 +538,8 @@
             </div>
         </div>
         <!-- Single Product Area End -->
-        <!-- Related Product Area Start -->
-        <div class="related-product-area">
+         <!-- Related Product Area Start -->
+    <!--    <div class="related-product-area">
             <h2 class="section-title">RELATED PRODUCTS</h2>
             <div class="container">
                 <div class="row">
@@ -742,7 +745,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Related Product Area End -->
 	<!-- Footer Area Start -->
 	<%@ include file="/resources/include/footer.jsp"%>
