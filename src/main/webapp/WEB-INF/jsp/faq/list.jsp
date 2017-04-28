@@ -107,7 +107,7 @@
                
                                         </td>
                                         <td class="regdate">
-                                         <fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                         ${row.regdate}
 											</td>
                                         <td class="count">
 									 	   ${row.viewcnt}

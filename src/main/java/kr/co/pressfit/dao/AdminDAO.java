@@ -26,6 +26,9 @@ public interface AdminDAO {
 	public List<KeyboardVO> keyboardList(PageVO vo);
 	public List<BusinessVO> businessList(PageVO vo);
 	public List<MemberVO> memberList(PageVO vo);
+	public void update1(MemberVO vo);
+	public void update2(MemberVO vo);
+	public void delete1(MemberVO vo);
 }
 
  

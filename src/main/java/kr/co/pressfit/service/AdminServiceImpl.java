@@ -93,6 +93,26 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> memberList(PageVO vo) {
 		return adminDao.memberList(vo);
 	}
-	
-    
+	@Override
+	public void update1(String board, int idx, String pw) {
+		MemberVO vo = new MemberVO();
+		vo.setId(board);
+		vo.setIdx(idx);
+		vo.setPw(pw);
+		adminDao.update1(vo);
+	}
+	@Override
+	public void update2(String board, int idx) {
+		MemberVO vo = new MemberVO();
+		vo.setId(board);
+		vo.setIdx(idx);
+		adminDao.update2(vo);
+	}
+	@Override
+	public void delete1(String board, int idx) {
+		MemberVO vo = new MemberVO();
+		vo.setId(board);
+		vo.setIdx(idx);
+		adminDao.delete1(vo);
+	}
 }

@@ -22,8 +22,15 @@ public class BusinessVO {
 	private	String typeofbusiness;
 	private	String itemsofbusiness;
 	private	String companyaddress;
+	private	int warn;
 	private int TOTAL;
 	
+	public int getWarn() {
+		return warn;
+	}
+	public void setWarn(int warn) {
+		this.warn = warn;
+	}
 	public int getTOTAL() {
 		return TOTAL;
 	}
@@ -145,6 +152,6 @@ public class BusinessVO {
 				+ regdate + ", updatedate=" + updatedate + ", companyname=" + companyname + ", companytp=" + companytp
 				+ ", representative=" + representative + ", corporateregistrationnumber=" + corporateregistrationnumber
 				+ ", typeofbusiness=" + typeofbusiness + ", itemsofbusiness=" + itemsofbusiness + ", companyaddress="
-				+ companyaddress + ", TOTAL=" + TOTAL + "]";
+				+ companyaddress + ", warn=" + warn + ", TOTAL=" + TOTAL + "]";
 	}
 }

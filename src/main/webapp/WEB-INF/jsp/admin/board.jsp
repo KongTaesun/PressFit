@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="${path}/resources/admin/css/style.css">
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	$(".hover").mouseleave(function () {
@@ -16,6 +19,20 @@ $(document).ready(function () {
     $('#faq-links div').click(function(){
     	_movePage(1);
     });
+    $.datepicker.setDefaults({
+        dateFormat: 'yy-mm-dd',
+        prevText: '이전 달',
+        nextText: '다음 달',
+        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+        showMonthAfterYear: true,
+        yearSuffix: '년'
+      });
+	 $("#datepicker1, #datepicker2").datepicker();
+
 });
 function _movePage(value){
     $("#galleryPAGEINDEX").val(value);
@@ -59,7 +76,7 @@ function galleryBoardListCallback(data){
         var str = "";
         $.each(data.list, function(key, value){
             str += 
-            	"<figure class='snip1384' style='width: 250px;height:250px;'>" +
+            	"<figure class='snip1384' style='width: 200px;height:200px;'>" +
 				"  <img src='${path}/resources/upload/" + value.fullName + "' alt='sample83' />" +
 				 " <figcaption>" +
 				 "   <h3>" + value.title + "("+value.recnt+")</h3>" +
@@ -84,8 +101,9 @@ function galleryBoardread(idx){
 function galleryBoardreadCallback(data){
     var body = $("#galleryread");
     body.empty();
-    var str = "<div class='header'>" +
-                "<h4 class='title'>" + data.gallery.title + "</h4>" +
+    var str = "<button class='dialog__trigger' onclick='galleryBoarddelete("+ data.gallery.idx +")'>삭제</button></h4>" + 
+    		"<div class='header'>" +
+                "<h4 class='title'>" + data.gallery.title + 
                 "<p class='category'>작성자:" + data.gallery.writer + "조회수:" + data.gallery.viewcnt + "날짜:" + data.gallery.regdate + "</p>" +
             "</div>" +
             "<div class='content'>" +
@@ -96,23 +114,21 @@ function galleryBoardreadCallback(data){
 function galleryBoardcreate(){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/gallery/create.do' />");
-    comAjax.setCallback("");
     comAjax.addParam("galleryPAGEINDEX",pageNo);
     comAjax.ajax();
 }
 function galleryBoardupdate(pageNo){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/gallery/update.do' />");
-    comAjax.setCallback("");
     comAjax.addParam("galleryPAGEINDEX",pageNo);
     comAjax.ajax();
 }
 function galleryBoarddelete(idx){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/gallery/delete.do' />");
-    comAjax.setCallback("");
     comAjax.addParam("galleryidx",idx);
     comAjax.ajax();
+    _movePage($("#galleryPAGEINDEX").val());
 }
 function galleryBoardcreateeditor(){
     var body = $("#galleryread");
@@ -145,6 +161,10 @@ function changeeditor(){
     "</sc"+"ript>";
     body.empty();
     body.append(str);
+}
+function editorcloses(){
+	var body = $("#galleryread");
+	body.empty();
 }
 </script>
 <style>
@@ -267,23 +287,40 @@ figure.snip1384.hover i {
     <div class="main-panel">
 <%@ include file="admininsideheader.jsp"%>
         <div class="content">
+        <div class="row">
             <div class="container-fluid">
-			<div><input type="text" /><button>검색</button></div>
-			<div id="galleryPAGE"></div>
-   		 	<input type="hidden" id="galleryPAGEINDEX" name="galleryPAGEINDEX"/>
-   		 	<div id="gallerylist">
 						
-            </div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="header" style="text-align: center">
+										<div id="galleryPAGE"></div>
+										<input type="hidden" id="galleryPAGEINDEX" name="galleryPAGEINDEX" />
+									</div>
+									<div class="content">
+										<div id="gallerylist"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> 
+          <div class="row">
+                   <div class="col-md-2"></div>
+                   <div class="col-md-8">
+                    <div class="card">
+                        <div>
+                        <button class="dialog__trigger" onclick="galleryBoardcreateeditor()">새글</button>
+                        <button class="dialog__trigger" onclick="galleryBoardcreate()">작성</button>
+                        <button class="dialog__trigger" onclick="changeeditor()">수정</button>
+                        <button class="dialog__trigger" onclick="galleryBoardupdate()">저장</button>
+                        <button class="dialog__trigger" onclick="editorcloses()">닫기</button>
+                        </div>
+                        </div>
+                    </div>
+                </div> 
             <div class="row">
                    <div class="col-md-2"></div>
                    <div class="col-md-8">
-                        <div>
-                        <button onclick="galleryBoardcreateeditor()">새글</button>
-                        <button onclick="">작성</button>
-                        <button onclick="changeeditor()">수정</button>
-                        <button onclick="">저장</button>
-                        <button onclick="">삭제</button>
-                        </div>
                        	<div class="card" id="galleryread">
                            
                         </div>

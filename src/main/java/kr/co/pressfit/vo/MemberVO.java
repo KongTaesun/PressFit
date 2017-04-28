@@ -15,7 +15,13 @@ public class MemberVO {
 	private Date regdate; // java.sql.Date
 	private Date updatedate;
 	private int TOTAL;
-	
+	private	int warn;
+	public int getWarn() {
+		return warn;
+	}
+	public void setWarn(int warn) {
+		this.warn = warn;
+	}
 	public int getTOTAL() {
 		return TOTAL;
 	}
@@ -82,7 +88,7 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender
 				+ ", birth=" + birth + ", address=" + address + ", hp=" + hp + ", email=" + email + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + "]";
+				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + ", warn=" + warn + "]";
 	}
 	public Date getRegdate() {
 		return regdate;
