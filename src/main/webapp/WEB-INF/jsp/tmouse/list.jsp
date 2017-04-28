@@ -17,6 +17,39 @@
  background-image: url('${path}/resources/writer/img/bigpicture/mouse_img1.png');
 }
 
+.product-description {
+  left: 75%;
+  margin-top: 15px;     /* -22 */
+  opacity: 0;
+  position: absolute;
+  top: 73%;
+  transition: all 0.3s ease 0s;
+  width: 20%;
+}
+.product-description1 {
+  left: 25%;
+  margin-top: 15px;     /* -22 */
+  opacity: 0;
+  position: absolute;
+  top: 40%;
+  transition: all 0.3s ease 0s;
+  width: 50%;
+  color: #FFFFFF;
+ 
+}
+
+.single-banner:hover .product-description1{
+  opacity: 1;
+}
+.product-description1:hover {
+  color: #000000;
+}
+.price1 {
+padding: 10px 10px 10px 10px;
+
+}
+
+
 </style>
 <script>
 	$(document).ready(
@@ -104,7 +137,7 @@
 	<div class="shopping-area section-padding">
 		<div class="container">
 			<!-- 레코드의 갯수를 출력 -->
-			${map.count}개의 게시물이 있습니다.
+			${map.count}개의 제품이 있습니다.
 			<!-- Shop Area Start -->
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-12">
@@ -137,8 +170,10 @@
                                     placeholder="Add Your Price" />
                                     
                                  <div class="widget-buttom">
-                                    <input type="button" value="Filter" id="btnPrice" />
-                                     <input type="reset" value="CLEAR" />
+                                 <div class="filterbtn">
+                                    <span class="btn-left"><input type="button" value="Filter" id="btnPrice" style="width:112px;"/></span>
+                                     <span class="btn-right"><input type="reset" value="CLEAR" style="width:112px;"/></span>
+                                 </div>
                                  </div>
                               </div>
                            </div>
@@ -146,7 +181,7 @@
                      </aside>
 						</div>
 						<div class="shop-widget-bottom">
-							<aside class="widget widget-tag">
+							<!-- <aside class="widget widget-tag">
 								<h2 class="sidebar-title">POPULAR TAG</h2>
 								<ul class="tag-list">
 									<li><a href="#">e-book</a></li>
@@ -156,7 +191,7 @@
 									<li><a href="#">nice</a></li>
 									<li><a href="#">author</a></li>
 								</ul>
-							</aside>
+							</aside> -->
 							<aside class="widget widget-seller">
 								<h2 class="sidebar-title">TOP SELLERS</h2>
 								<div class="single-seller">
@@ -200,7 +235,7 @@
 						<div class="shop-tab-list">
 							<div class="shop-tab-pill pull-left">
 								<ul>
-								
+									마우스 &nbsp;
 									<li class="active" id="left"><a data-toggle="pill"
 										href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
 										
@@ -222,7 +257,7 @@
 											</select>
 										</div> -->
 									</li>
-									<li class="product-size-deatils">
+<!-- 									<li class="product-size-deatils">
 										<div class="show-label">
 											<label><i class="fa fa-sort-amount-asc"></i>Sort by :
 											</label> <select>
@@ -231,7 +266,7 @@
 												<option value="Price">Price</option>
 											</select>
 										</div>
-									</li>
+									</li> -->
 									<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
 									<c:if test="${map.boardPager.curBlock > 1}">
 										<a href="javascript:list('1')">[처음]</a>
@@ -276,43 +311,53 @@
 									<c:forEach var="row" items="${map.list}">
 										<div class="col-md-4 col-sm-6">
 											<div class="single-banner" >
+													
 												<div class="product-wrapper" style="width:260px; height:260px;">
 													<a
 														href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
 														class="single-banner-image-wrapper">
 														<img src="${path}/resources/upload/${row.fullName}" style="width:260px; height:260px;">
-														<div class="price">
-															<span>\</span>${row.price}<br />${row.crea_id}</div>
+													</a>
+													<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
+													<div class="product-description1">
+													<div style="text-align:center;">
+														자세히보기
+													</div>
+													</div>
 													</a>
 													<div class="product-description">
 														<div class="functional-buttons">
 															<a href="${path}/shop/cart/insert.do?price=${row.price}&modelname=${row.modelname}&idx=${row.idx}&fullName=${row.fullName}&kind=tmouse&crea_id=${row.crea_id}&amount=1" title="Add to Cart"> <i
 																class="fa fa-shopping-cart"></i>
-															</a> <a href="#" title="Add to Wishlist"> <i
+															</a> <!-- <a href="#" title="Add to Wishlist"> <i
 																class="fa fa-heart-o"></i>
 															</a> <a href="#" title="Quick view" data-toggle="modal"
 																data-target="#productModal"> <i
 																class="fa fa-compress"></i>
-															</a>
+															</a> -->
+															
 														</div>
 													</div>
 												</div>
-												<div class="banner-bottom text-center">
-													<div class="banner-bottom-title" style="width:100%; height:60px; overflow: hidden; top:50%; margin-top: 15px; margin-bottom: 0px;">
+												<div class="banner-bottom1 text-center">
+													<div class="banner-bottom-title" style="width:80%; height:40px; overflow: hidden; top:50%; margin-top: 15px; margin-bottom: 0px; margin-left: 25px; margin-right: 25px;"> 
 														<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}&crea_id=${row.crea_id}">${row.modelname} <c:if
 																test="${row.recnt >= 0}">
-																<span style="color: red;">(${row.recnt}) </span>
 															</c:if>
 														</a>
 													</div>
+													<div class="price1">
+															${row.price}원
+															</div>
+													<input type="hidden" name="crea_id" id="crea_id" value="${row.crea_id}">
 												<div style="display-table:table-cell">
 												</div> 
-													<div class="rating-icon">
+													<!-- <div class="rating-icon">
 														<i class="fa fa-star icolor"></i> <i
 															class="fa fa-star icolor"></i> <i
 															class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
