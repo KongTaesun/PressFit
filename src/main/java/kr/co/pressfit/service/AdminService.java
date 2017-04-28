@@ -27,4 +27,7 @@ public interface AdminService {
 	public List<KeyboardVO> keyboardList(PageVO vo);
 	public List<BusinessVO> businessList(PageVO vo);
 	public List<MemberVO> memberList(PageVO vo);
+	public void update1(String board, int idx, String pw);
+	public void update2(String board, int idx);
+	public void delete1(String board, int idx);
 } 

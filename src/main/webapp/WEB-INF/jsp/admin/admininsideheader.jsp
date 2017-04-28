@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script>
+function searchcard(){
+  if($("#searchcard").css("display") == "none"){
+      $("#searchcard").show();
+  } else {
+      $("#searchcard").hide();
+  }
+}
+</script>
 <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -34,12 +43,12 @@
                               </ul>
                         </li>
                         <li>
-                           <a href="">
+                           <a href="#" onclick="searchcard()">
                                 <i class="fa fa-search"></i>
                             </a>
                         </li>
                     </ul>
-
+					
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                            <a href="">
@@ -69,6 +78,41 @@
 						<li class="separator hidden-lg hidden-md"></li>
                     </ul>
                 </div>
+                 <div class="row" id="searchcard" style="display:none">
+		                    <div class="col-md-12">
+		                        <div class="card">
+		                            <div class="content">
+		                                <form>
+		                                    <div class="row">
+		                                        <div class="col-md-6">
+		                                            <div class="form-group">
+		                                                <label>기간~</label>
+		                                                <input type="text" id="datepicker1" class="form-control" placeholder="" >
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-md-6">
+		                                            <div class="form-group">
+		                                                <label>기간</label>
+		                                                <input type="text"  id="datepicker2"class="form-control" placeholder="">
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                    <div class="row">
+		                                        <div class="col-md-8">
+		                                            <div class="form-group">
+		                                                <label>검색어</label>
+		                                                <input type="text" class="form-control" placeholder="" >
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-md-4" style=" padding: 27px 1% 1% 1%;">
+		                                            <button type="submit" class=" " style="margin 0;width:80px;">검색</button>                                       
+		                                        </div>
+		                                    </div>
+		                                    <div class="clearfix"></div>
+		                                </form>
+		                            </div>
+		                        </div>
+		                    </div>
             </div>
+		   		 	</div>
         </nav>
-

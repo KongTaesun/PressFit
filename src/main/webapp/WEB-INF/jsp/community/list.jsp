@@ -183,8 +183,7 @@ table.type08 td {
 																			</c:if>-->
 																	</a></td>
 																	<td>${row.writer}</td>
-																	<td><fmt:formatDate value="${row.regdate}"
-																			pattern="yyyy-MM-dd HH:mm:ss" /></td>
+																	<td>${row.regdate}</td>
 																	<td>${row.viewcnt}</td>
 																</tr>
 															</c:forEach>

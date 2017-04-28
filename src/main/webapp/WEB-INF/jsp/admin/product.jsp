@@ -141,9 +141,6 @@ function keyboardBoardListCallback(data){
         <div class="content">
             <div class="container-fluid">
             <div class="row">
-				<div><input type="text" /><button>검색</button></div>
-			</div>
-            <div class="row">
             	<div id="faq-links">
 				    <div id="service" class="faq-selected col-md-6">tmouse</div>
 				    <div id="installation" class="col-md-6">keyboard</div>
