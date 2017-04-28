@@ -35,9 +35,12 @@
   font-weight: 900;
 }
 
-
 </style>
-
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/mouse_img3.png');
+}
+</style>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
     $(document).ready(function(){
@@ -225,16 +228,16 @@
 	<!-- 업로드된 파일 목록 -->
 	<!-- <div class="uploadedList" id="uploadedList"></div> -->
  <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area"><form>
+        <div class="breadcrumbs-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>PRODUCT DETAILS</h2> 
+					       <h2>MOUSE PRODUCT</h2> 
 					       <ul class="breadcrumbs-list">
-						        <li>
+						        <!-- <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
+						        </li> --> 
 						        <li>Product Details</li>
 						    </ul>
 					    </div>
@@ -291,19 +294,21 @@
                     </div>
                     <div class="col-md-6 col-sm-5">
                         <div class="single-product-details">
-                            <div class="list-pro-rating">
+                           <!--  <div class="list-pro-rating">
                                 <i class="fa fa-star icolor"></i>
                                 <i class="fa fa-star icolor"></i>
                                 <i class="fa fa-star icolor"></i>
                                 <i class="fa fa-star icolor"></i>
                                 <i class="fa fa-star"></i>
-                            </div>
+                            </div> -->
                             <h2>${dto.modelname}</h2>
                             
                             <div class="availability"> 
                                 <span>마우스</span>
                             </div>
-                            <p> 제조사 : ${manufacturecompany} </p>
+                            <p> 제조사 : ${dto.manufacturecompany} </p>
+                            <p> 등록년월 : ${dto.regdate} </p>
+                            
                             <div class="single-product-price">
                                 <h2>${dto.price}$</h2>
                                 <input type="hidden" name="price" value="${dto.price}" />
@@ -329,12 +334,12 @@
                             
                             <!-- ================================================================================================================================================================================================================ -->
                             
-                            <div class="add-to-wishlist">
+                           <!--  <div class="add-to-wishlist">
                                 <a class="wish-btn" href="cart.html">
                                     <i class="fa fa-heart-o"></i>
                                     ADD TO WISHLIST
                                 </a>
-                            </div>
+                            </div> -->
                             <div>
                             	<!-- 게시물번호를 hidden으로 처리 -->
 						        <input type="hidden" name="boardno" value="${dto.idx}">
@@ -347,11 +352,12 @@
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
 						        <button type="button" id="btnList">목록</button>
                             </div>
-                            <div class="single-product-categories">
+                            <!-- <div class="single-product-categories"> 
                                <label>Categories:</label>
                                 <span>e-book, biological, business</span>
                             </div>
-                            <div class="social-share">
+                             --> 
+                             <div class="social-share">
                                 <label>Share: </label>
                                 <ul class="social-share-icon">
                                     <li><a href="#"><i class="flaticon-social"></i></a></li>
@@ -370,7 +376,7 @@
                     </div>
                 </div>
                 <div class="row">
-					<div class="col-md-9">
+					<div class="col-md-12">
                         <div class="p-details-tab-content">
                             <div class="p-details-tab">
                                 <ul class="p-details-nav-tab" role="tablist">
@@ -390,7 +396,7 @@
                                             <tr class="odd">
                                                 <td>제조사</td>
                                                 <td>${dto.manufacturecompany}</td>
-                                                <td>등록년월</td>
+                                                <td>출시년월</td>
                                                 <td>${dto.registrationyear}</td>
                                             </tr>
                                             <tr class="even">

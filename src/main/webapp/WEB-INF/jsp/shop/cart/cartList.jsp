@@ -6,6 +6,11 @@
 <title>상품장바구니</title>
 <%@ include file="/resources/include/header.jsp" %>
 <style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/buket_img1.png');
+} 
+</style>
+<style>
 .image{
     height: 100px;
     width: 100px;

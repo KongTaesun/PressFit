@@ -46,7 +46,14 @@ public class TMouseVO {
 	private String content;
 	private int amount;
 	private int TOTAL;
+	private String regdate;
 	
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
 	public int getTOTAL() {
 		return TOTAL;
 	}
@@ -336,7 +343,8 @@ public class TMouseVO {
 				+ ", dpishift=" + dpishift + ", multipairing=" + multipairing + ", switch1=" + switch1 + ", length="
 				+ length + ", width=" + width + ", height=" + height + ", weight=" + weight + ", analysis=" + analysis
 				+ ", crea_id=" + crea_id + ", hit_cnt=" + hit_cnt + ", fullName=" + fullName + ", recnt=" + recnt
-				+ ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + "]";
+				+ ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + ", regdate=" + regdate + "]";
 	}
+	
 		
 }

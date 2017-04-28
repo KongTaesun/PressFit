@@ -25,7 +25,7 @@ function tmouseBoardList(pageNo){
 
 function tmouseBoardListCallback(data){
     var total = data.TOTAL;
-
+ 
     var body = $("#tmouselist");
     body.empty();
     if(total == 0){
