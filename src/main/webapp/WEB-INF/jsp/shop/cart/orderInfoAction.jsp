@@ -130,15 +130,15 @@ text-align: left;
         <div class="check-out-area section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
 								<div class="panel-heading" role="tab" id="headingTwo">
 									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 										   <span>1</span>
 										   배송 정보
-										</a>
+										</a> 
 									</h4>
 								</div>
 								<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
