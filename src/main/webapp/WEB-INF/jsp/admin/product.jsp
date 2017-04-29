@@ -49,10 +49,11 @@ function tmouseBoardListCallback(data){
             str += 
 				"<li><a href='#'>" +
 				"<span class='col-md-2'>" + value.manufacturecompany + "</span> " + 
-				"<span class='col-md-5'>" + value.modelname + "("+value.recnt+")</span> " + 
-				"<span class='col-md-2'>" + value.price + "</span> " +
-				"<span class='col-md-1'>" + value.crea_id + "</span> " + 
-				"<span class='col-md-1'>" + value.hit_cnt + "</span> " + 
+				"<span class='col-md-4'>" + value.modelname + "("+value.recnt+")</span> " + 
+				"<span class='col-md-1'>" + value.price + "￦</span> " +
+				"<span class='col-md-1'>" + value.crea_id + "</span>"+
+				"<span class='col-md-1'><button class='btn btn-default btn-block' onclick='businessdelete("+ value.idx +")'>삭제</button></span>" +
+				"<span class='col-md-1'><button class='btn btn-default btn-block' onclick='businessupdate2("+ value.idx +")'>경고:" + value.warn +"</button></span>" +
 			"</a>" +
 			"<ul class='faq-content'>" +
 				"<li><div><p>" +
@@ -116,11 +117,13 @@ function keyboardBoardListCallback(data){
             str += 
 				"<li><a href='#'>" +
 				"<span class='col-md-2'>" + value.manufacturecompany + "</span> " + 
-				"<span class='col-md-5'>" + value.modelname + "("+value.recnt+")</span> " + 
-				"<span class='col-md-2'>" + value.price + "</span> " +
-				"<span class='col-md-1'>" + value.crea_id + "</span> " + 
-				"<span class='col-md-1'>" + value.hit_cnt + "</span> " + 
-			"</a>" +
+				"<span class='col-md-4'>" + value.modelname + "("+value.recnt+")</span> " + 
+				"<span class='col-md-1'>" + value.price + "￦</span> " +
+				"<span class='col-md-1'>" + value.crea_id + "</span>"+
+				"<span class='col-md-1'><button class='btn btn-default btn-block' onclick='businessdelete("+ value.idx +")'>삭제</button></span>" +
+				"<span class='col-md-1'><button class='btn btn-default btn-block' onclick='businessupdate2("+ value.idx +")'>경고:" + value.warn +"</button></span>" +
+				"<span class='col-md-1'><button class='btn btn-default btn-block' onclick='businessupdate2("+ value.idx +")'>경고:" + value.warn +"</button></span>" +
+			"</a>" + 
 			"<ul class='faq-content'>" +
 				"<li><div><p>" +
 				"<img src='${path}/resources/upload/"+value.fullName+"' style='width:570 ;height:550'>" +

@@ -157,7 +157,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/community/create.do")
-	public void communitycreate(@RequestParam(name="communityVO") CommunityVO vo)throws Exception{
+	public void communitycreate(@ModelAttribute(name="communityVO") CommunityVO vo)throws Exception{
 		communityservice.create(vo);
     }
 	@RequestMapping(value="/community/read.do")
@@ -167,7 +167,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/community/update.do")
-	public void communityupdate(@RequestParam(name="communityVO") CommunityVO vo)throws Exception{
+	public void communityupdate(@ModelAttribute(name="communityVO") CommunityVO vo)throws Exception{
 		communityservice.update(vo);
     }
 	@RequestMapping(value="/community/delete.do")
@@ -199,7 +199,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/faq/create.do")
-	public void faqcreate(@RequestParam(name="faqVO") FaqVO vo)throws Exception{
+	public void faqcreate(@ModelAttribute(name="faqVO") FaqVO vo)throws Exception{
 		faqservice.create(vo);
     }
 	@RequestMapping(value="/faq/read.do")
@@ -209,7 +209,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/faq/update.do")
-	public void faqupdate(@RequestParam(name="faqVO") FaqVO vo)throws Exception{
+	public void faqupdate(@ModelAttribute(name="faqVO") FaqVO vo)throws Exception{
 		faqservice.update(vo);
     }
 	@RequestMapping(value="/faq/delete.do")
@@ -241,7 +241,8 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/gallery/create.do")
-	public void gallerycreate(@RequestParam(name="galleryVO") GalleryVO vo)throws Exception{
+	public void gallerycreate(@ModelAttribute(name="galleryVO") GalleryVO vo)throws Exception{
+		vo.setWriter("admin");
 		galleryservice.create(vo);
     }
 	@RequestMapping(value="/gallery/read.do")
@@ -251,9 +252,17 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/gallery/update.do")
-	public void galleryupdate(@RequestParam(name="galleryVO") GalleryVO vo)throws Exception{
+	public void galleryupdate(@ModelAttribute(name="galleryVO") GalleryVO vo)throws Exception{
 		galleryservice.update(vo);
     }
+	@RequestMapping(value="/gallery/warn.do")
+	public void gallerywarn(@RequestParam(name="galleryidx") int idx)throws Exception{
+		GalleryVO vo = new GalleryVO();
+		vo.setTitle("이 게시물은 관리자에 의해 차단되었습니다.");
+		vo.setContent("");
+		galleryservice.update(vo);
+    }
+	
 	@RequestMapping(value="/gallery/delete.do")
 	public void gallerydelete(@RequestParam(name="galleryidx") int idx)throws Exception{
 		galleryservice.delete(idx);
@@ -283,7 +292,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/tmouse/create.do")
-	public void tmousecreate(@RequestParam(name="tmouseVO") TMouseVO vo)throws Exception{
+	public void tmousecreate(@ModelAttribute(name="tmouseVO") TMouseVO vo)throws Exception{
 		tmouseservice.create(vo);
     }
 	@RequestMapping(value="/tmouse/read.do")
@@ -293,8 +302,12 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/tmouse/update.do")
-	public void tmouseupdate(@RequestParam(name="tmouseVO") TMouseVO vo)throws Exception{
+	public void tmouseupdate(@ModelAttribute(name="tmouseVO") TMouseVO vo)throws Exception{
 		tmouseservice.update(vo);
+    }
+	@RequestMapping(value="/tmouse/update2.do")
+	public void tmouseupdate2(@RequestParam(name="tmouseidx") int idx)throws Exception{
+			adminservice.update2("TMouseBoard", idx);
     }
 	@RequestMapping(value="/tmouse/delete.do")
 	public void tmousedelete(@RequestParam(name="tmouseidx") int idx)throws Exception{
@@ -325,7 +338,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/keyboard/create.do")
-	public void keyboardcreate(@RequestParam(name="keyboardVO") KeyboardVO vo)throws Exception{
+	public void keyboardcreate(@ModelAttribute(name="keyboardVO") KeyboardVO vo)throws Exception{
 		keyboardservice.create(vo);
     }
 	@RequestMapping(value="/keyboard/read.do")
@@ -335,8 +348,12 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/keyboard/update.do")
-	public void keyboardupdate(@RequestParam(name="keyboardVO") KeyboardVO vo)throws Exception{
+	public void keyboardupdate(@ModelAttribute(name="keyboardVO") KeyboardVO vo)throws Exception{
 		keyboardservice.update(vo);
+    }
+	@RequestMapping(value="/keyboard/update2.do")
+	public void keyboardupdate2(@RequestParam(name="keyboardidx") int idx)throws Exception{
+			adminservice.update2("KeyboardBoard", idx);
     }
 	@RequestMapping(value="/keyboard/delete.do")
 	public void keyboarddelete(@RequestParam(name="keyboardidx") int idx)throws Exception{
@@ -367,7 +384,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/business/create.do")
-	public void businesscreate(@RequestParam(name="businessVO") BusinessVO vo)throws Exception{
+	public void businesscreate(@ModelAttribute(name="businessVO") BusinessVO vo)throws Exception{
 		businessservice.insertBusiness(vo);
     }
 	@RequestMapping(value="/business/read.do")
@@ -414,7 +431,7 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/member/create.do")
-	public void membercreate(@RequestParam(name="memberVO") MemberVO vo)throws Exception{
+	public void membercreate(@ModelAttribute(name="memberVO") MemberVO vo)throws Exception{
 		joinservice.insertMember(vo);
     }
 	@RequestMapping(value="/member/read.do")

@@ -47,7 +47,14 @@ public class TMouseVO {
 	private int amount;
 	private int TOTAL;
 	private String regdate;
+	private int warn;
 	
+	public int getWarn() {
+		return warn;
+	}
+	public void setWarn(int warn) {
+		this.warn = warn;
+	}
 	public String getRegdate() {
 		return regdate;
 	}
@@ -60,8 +67,6 @@ public class TMouseVO {
 	public void setTOTAL(int tOTAL) {
 		TOTAL = tOTAL;
 	}
-	
-	
 	public int getAmount() {
 		return amount;
 	}
@@ -343,7 +348,8 @@ public class TMouseVO {
 				+ ", dpishift=" + dpishift + ", multipairing=" + multipairing + ", switch1=" + switch1 + ", length="
 				+ length + ", width=" + width + ", height=" + height + ", weight=" + weight + ", analysis=" + analysis
 				+ ", crea_id=" + crea_id + ", hit_cnt=" + hit_cnt + ", fullName=" + fullName + ", recnt=" + recnt
-				+ ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + ", regdate=" + regdate + "]";
+				+ ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + ", regdate=" + regdate
+				+ ", warn=" + warn + "]";
 	}
 	
 		

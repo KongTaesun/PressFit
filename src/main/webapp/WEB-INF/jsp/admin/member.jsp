@@ -66,11 +66,11 @@ function businessBoardListCallback(data){
 					"<span class='col-md-2'>" + value.name + "</span> " +
 					"<span class='col-md-2'>경고:" + value.warn + "</span> " +
 					"<span class='col-md-1'>"+
-					"<button onclick='businessdelete("+ value.idx +")'>삭제</button></span> " +
+					"<button class='btn btn-default btn-block' onclick='businessdelete("+ value.idx +")'>삭제</button></span> " +
 					"<span class='col-md-1'>"+
-					"<button onclick='businessupdate1("+ value.idx +")'>PW변경</button></span> " +
+					"<button class='btn btn-default btn-block' onclick='businessupdate1("+ value.idx +")'>PW변경</button></span> " +
 					"<span class='col-md-1'>"+
-					"<button onclick='businessupdate2("+ value.idx +")'>경고</button></span> " +
+					"<button class='btn btn-default btn-block' onclick='businessupdate2("+ value.idx +")'>경고</button></span> " +
 				"</a>" +
 				"<ul class='faq-content'>" +
 					"<li><div>" +
@@ -137,12 +137,14 @@ function businessupdate1(idx){
     alert(password);
     comAjax.addParam("password",password);
     comAjax.ajax();
+    _movePage($("#businessPAGEINDEX").val());
 }
 function businessupdate2(idx){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/business/update2.do' />");
     comAjax.addParam("businessidx",idx);
     comAjax.ajax();
+    _movePage($("#businessPAGEINDEX").val());
 }
 function _movePage(value){
     $("#businessPAGEINDEX").val(value);
@@ -269,7 +271,7 @@ function memberupdate2(idx){
 <%@ include file="admininsideheader.jsp"%>
         <div class="content">
             <div class="container-fluid">
-            
+            <div class="row"><hr> </div>
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-3">

@@ -12,6 +12,11 @@
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	$("#galleryBoardcreateeditor").show();
+	$("#galleryBoardcreate").hide();
+	$("#changeeditor").hide();
+	$("#galleryBoardupdate").hide();
+	
 	$(".hover").mouseleave(function () {
 		$(this).removeClass("hover");
 	});
@@ -103,25 +108,44 @@ function galleryBoardreadCallback(data){
     body.empty();
     var str = "<button class='dialog__trigger' onclick='galleryBoarddelete("+ data.gallery.idx +")'>삭제</button></h4>" + 
     		"<div class='header'>" +
-                "<h4 class='title'>" + data.gallery.title + 
+                "<h4 class='title' id='readtitle'>" + data.gallery.title + 
                 "<p class='category'>작성자:" + data.gallery.writer + "조회수:" + data.gallery.viewcnt + "날짜:" + data.gallery.regdate + "</p>" +
             "</div>" +
             "<div class='content'>" +
             	data.gallery.content +
             "</div>";
-    body.append(str);
+    body.append(str);	
+    $("#galleryBoardcreateeditor").hide();
+	$("#galleryBoardcreate").hide();
+	$("#changeeditor").show();
+	$("#galleryBoardupdate").hide();
 }
 function galleryBoardcreate(){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/gallery/create.do' />");
-    comAjax.addParam("galleryPAGEINDEX",pageNo);
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
     comAjax.ajax();
+    location.reload();
 }
-function galleryBoardupdate(pageNo){
+function galleryBoardupdate(){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/gallery/update.do' />");
-    comAjax.addParam("galleryPAGEINDEX",pageNo);
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
     comAjax.ajax();
+    location.reload();
+}
+function galleryBoardwarn(idx){
+    var comAjax = new ComAjax();
+    comAjax.setUrl("<c:url value='/admin/gallery/warn.do' />");
+    comAjax.addParam("galleryidx",idx);
+    comAjax.ajax();
+    location.reload();
 }
 function galleryBoarddelete(idx){
     var comAjax = new ComAjax();
@@ -137,7 +161,7 @@ function galleryBoardcreateeditor(){
     }    
     var str = "<div class='header'>" +
     			"<h4 class='title'>제목 " +
-                "<input type='text'></input></h4>" +
+                "<input type='text' id='title'></input></h4>" +
             "</div>" +
             "<div class='content'>" +
             "<textarea name='content' id='content'>"+body.html()+"</textarea>"+
@@ -149,22 +173,33 @@ function galleryBoardcreateeditor(){
             "</sc"+"ript>"+
             "</div>";
     body.append(str);
+	$("#galleryBoardcreateeditor").hide();
+	$("#galleryBoardcreate").show();
+	$("#changeeditor").hide();
+	$("#galleryBoardupdate").hide();
 }
 function changeeditor(){
     var body = $("#galleryread .content");
-    str="<textarea name='content' id='content'>"+body.html()+"</textarea>"+
+    str= "<textarea name='content' id='content'>"+body.html()+"</textarea>"+
     "<script>"+
     "CKEDITOR.replace('content',{"+
     	"height : '600px',"+
     	"filebrowserUploadUrl : '${path}/gallery/imageUpload.do'"+
     "});"+
-    "</sc"+"ript>";
+    "</sc"+"ript>"
+    "</div>";
+
     body.empty();
     body.append(str);
+	$("#galleryBoardupdate").show();
 }
 function editorcloses(){
 	var body = $("#galleryread");
 	body.empty();
+	$("#galleryBoardcreateeditor").show();
+	$("#galleryBoardcreate").hide();
+	$("#changeeditor").hide();
+	$("#galleryBoardupdate").hide();
 }
 </script>
 <style>
@@ -309,11 +344,12 @@ figure.snip1384.hover i {
                    <div class="col-md-8">
                     <div class="card">
                         <div>
-                        <button class="dialog__trigger" onclick="galleryBoardcreateeditor()">새글</button>
-                        <button class="dialog__trigger" onclick="galleryBoardcreate()">작성</button>
-                        <button class="dialog__trigger" onclick="changeeditor()">수정</button>
-                        <button class="dialog__trigger" onclick="galleryBoardupdate()">저장</button>
-                        <button class="dialog__trigger" onclick="editorcloses()">닫기</button>
+                        <button class="dialog__trigger" id="galleryBoardcreateeditor" onclick="galleryBoardcreateeditor()">새글</button>
+                        <button class="dialog__trigger" id="galleryBoardcreate" onclick="galleryBoardcreate()">작성</button>
+                        <button class="dialog__trigger" id="changeeditor" onclick="changeeditor()">수정</button>
+                        <button class="dialog__trigger" id="galleryBoardwarn" onclick="galleryBoardwarn()">경고</button>
+                        <button class="dialog__trigger" id="galleryBoardupdate" onclick="galleryBoardupdate()">저장</button>
+                        <button class="dialog__trigger" id="editorcloses" onclick="editorcloses()">닫기</button>
                         </div>
                         </div>
                     </div>
