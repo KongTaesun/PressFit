@@ -15,13 +15,6 @@ $(document).ready(function () {
     $('#faq-links div').click(function(){
     	_movePage(1);
     });
-    var percent_number_step = $.animateNumber.numberStepFactories.append(' 명')
-	$('#allcnt').animateNumber({
-		number: 10,
-		color: 'black','font-size': '37px',
-		easing: 'easeInQuad',numberStep: percent_number_step
-	}, 2000);
-
 });
 function businessBoardList(pageNo){
     var comAjax = new ComAjax();
@@ -273,8 +266,8 @@ function memberupdate2(idx){
             <div class="container-fluid">
             <div class="row"><hr> </div>
 			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-3">
+				<div class="col-md-2"></div>
+				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
 							<h4 class="title" style="font-family: yanolja; font-size: 37px">사업자</h4>
@@ -284,7 +277,7 @@ function memberupdate2(idx){
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
 							<h4 class="title" style="font-family: yanolja; font-size: 37px">멤버</h4>
@@ -294,17 +287,6 @@ function memberupdate2(idx){
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-	             	<div class="card">
-						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">총원</h4>
-						</div>
-						<div class="content">
-							<div id="allcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
-						</div>
-					</div>
-				</div>
-				
 			</div>
             <div class="row">
 				<div class="col-md-12">

@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	$(".hover").mouseleave(function () {
@@ -17,21 +19,6 @@ $(document).ready(function () {
 	});
     communityBoardList(1);
     faqBoardList(1);
-    
-    $.datepicker.setDefaults({
-        dateFormat: 'yy-mm-dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-        showMonthAfterYear: true,
-        yearSuffix: '년'
-      });
-	 $("#datepicker1, #datepicker2").datepicker();
-
 });
 function _movePage(value){
     $("#communityPAGEINDEX").val(value);
@@ -52,7 +39,11 @@ function communityBoardList(pageNo){
 }
 function communityBoardListCallback(data){
     var total = data.TOTAL;
-
+    var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
+	$('#communityBoardcnt').animateNumber({
+		number: total,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: percent_number_step
+	}, 500);
     var body = $("#communitylist");
     body.empty();
     if(total == 0){
@@ -93,29 +84,26 @@ function communityBoardread(idx){
     comAjax.ajax();
 }
 function communityBoardreadCallback(data){
-    var body = $("#communityread");
+    var body = $("#read");
     body.empty();
     var str = "<button class='dialog__trigger' onclick='communityBoarddelete("+ data.community.idx +")'>삭제</button></h4>" + 
     		"<div class='header'>" +
-                "<h4 class='title'>" + data.community.title + 
+                "<h4 class='title' id='title'>" + data.community.title + "</h4>" +
+                "<input type='hidden' id='idx' value='"+ data.community.idx +"' />"+
                 "<p class='category'>작성자:" + data.community.writer + "조회수:" + data.community.viewcnt + "날짜:" + data.community.regdate + "</p>" +
             "</div>" +
             "<div class='content'>" +
             	data.community.content +
             "</div>";
     body.append(str);
-}
-function communityBoardcreate(){
-    var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/community/create.do' />");
-    comAjax.addParam("communityPAGEINDEX",pageNo);
-    comAjax.ajax();
-}
-function communityBoardupdate(pageNo){
-    var comAjax = new ComAjax();
-    comAjax.setUrl("<c:url value='/admin/community/update.do' />");
-    comAjax.addParam("communityPAGEINDEX",pageNo);
-    comAjax.ajax();
+	$('#editorcommunity').hide();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').hide();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').show();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
 }
 function communityBoarddelete(idx){
     var comAjax = new ComAjax();
@@ -143,7 +131,11 @@ function faqBoardList(pageNo){
 }
 function faqBoardListCallback(data){
     var total = data.TOTAL;
-
+    var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
+	$('#faqBoardcnt').animateNumber({
+		number: total,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: percent_number_step
+	}, 500);
     var body = $("#faqlist");
     body.empty();
     if(total == 0){
@@ -184,29 +176,74 @@ function faqBoardread(idx){
     comAjax.ajax();
 }
 function faqBoardreadCallback(data){
-    var body = $("#faqread");
+    var body = $("#read");
     body.empty();
-    var str = "<button class='dialog__trigger' onclick='faqBoarddelete("+ data.faq.idx +")'>삭제</button></h4>" + 
+    var str = 
+    	"<button class='dialog__trigger' onclick='faqBoarddelete("+ data.faq.idx +")'>삭제</button></h4>" + 
     		"<div class='header'>" +
-                "<h4 class='title'>" + data.faq.title + 
+                "<h4 class='title' id='title'>" + data.faq.title + "</h4>" +
+                "<input type='hidden' id='idx' value='"+ data.faq.idx +"' />"+
                 "<p class='category'>작성자:" + data.faq.writer + "조회수:" + data.faq.viewcnt + "날짜:" + data.faq.regdate + "</p>" +
             "</div>" +
             "<div class='content'>" +
             	data.faq.content +
             "</div>";
     body.append(str);
+	$('#editorcommunity').hide();
+	$('#faqBoardcreate').hide();
+	$('#editorfaq').hide();
+	$('#communityBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').show();
+	$('#faqBoardupdate').hide();
+}
+function communityBoardcreate(){
+    var comAjax = new ComAjax();
+    comAjax.setUrl("<c:url value='/admin/community/create.do' />");
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
+    comAjax.ajax();
+    location.reload();
 }
 function faqBoardcreate(){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/faq/create.do' />");
-    comAjax.addParam("faqPAGEINDEX",pageNo);
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
     comAjax.ajax();
+    location.reload();
 }
-function faqBoardupdate(pageNo){
+function communityBoardupdate(){
+    var comAjax = new ComAjax();
+    comAjax.setUrl("<c:url value='/admin/community/update.do' />");
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    var idx = $('#idx').val();
+    comAjax.addParam("idx",idx);
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
+    comAjax.ajax();
+    location.reload();
+}
+function faqBoardupdate(){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/faq/update.do' />");
-    comAjax.addParam("faqPAGEINDEX",pageNo);
+    var title = $("#title").val();
+    var content = CKEDITOR.instances.content.document.getBody().getText();
+    var idx = $('#idx').val();
+    console.log(idx);
+    console.log(content);
+    console.log(title);
+    comAjax.addParam("idx",idx);
+    comAjax.addParam("title",title);
+    comAjax.addParam("content",content);
     comAjax.ajax();
+    location.reload();
 }
 function faqBoarddelete(idx){
     var comAjax = new ComAjax();
@@ -215,48 +252,131 @@ function faqBoarddelete(idx){
     comAjax.ajax();
     _movePage($("#faqPAGEINDEX").val());
 }
-function createeditor(){
+
+function editorcommunity(){
     var body = $("#read");
-    if(body.html()!=null){
-    	body.empty();    	
-    }    
-    var str = "<div class='header'>" +
-    			"<h4 class='title'>제목 " +
-                "<input type='text'></input></h4>" +
-            "</div>" +
-            "<div class='content'>" +
-            "<textarea name='content' id='content'>"+body.html()+"</textarea>"+
-            "<script>"+
-            "CKEDITOR.replace('content',{"+
-            	"height : '600px',"+
-            	"filebrowserUploadUrl : '${path}/gallery/imageUpload.do'"+
-            "});"+
-            "</sc"+"ript>"+
-            "</div>";
-    body.empty();
-    body.append(str);
-}
-function changeeditor(){
-    var body = $("#read .content");
     str="<div class='header'>" +
 		"<h4 class='title'>제목 " +
-	    "<input type='text'></input></h4>" +
+	    "<input type='text' id='title'></input></h4>" +
 	"</div>" +
 	"<div class='content'>" +
-	"<textarea name='content' id='content'>"+body.html()+"</textarea>"+
+	"<textarea name='content' id='content'></textarea>"+
 	"<script>"+
 	"CKEDITOR.replace('content',{"+
 		"height : '600px',"+
-		"filebrowserUploadUrl : '${path}/gallery/imageUpload.do'"+
+		"filebrowserUploadUrl : '${path}/community/imageUpload.do'"+
 	"});"+
 	"</sc"+"ript>"+
 	"</div>";
     body.empty();
     body.append(str);
+	$('#editorcommunity').hide();
+	$('#communityBoardcreate').show();
+	$('#editorfaq').hide();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
+}
+function editorfaq(){
+    var body = $("#read");
+    str="<div class='header'>" +
+		"<h4 class='title'>제목 " +
+	    "<input type='text' id='title'></input></h4>" +
+	"</div>" +
+	"<div class='content'>" +
+	"<textarea name='content' id='content'></textarea>"+
+	"<script>"+
+	"CKEDITOR.replace('content',{"+
+		"height : '600px',"+
+		"filebrowserUploadUrl : '${path}/faq/imageUpload.do'"+
+	"});"+
+	"</sc"+"ript>"+
+	"</div>";
+    body.empty();
+    body.append(str);
+	$('#editorcommunity').hide();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').hide();
+	$('#faqBoardcreate').show();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();	
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
+}
+function changeeditorcommunity(){
+    var body = $("#read");
+    var content = $("#read .content");
+    var title = $("#title").text();
+    var idx = $('#idx').val();
+    str="<div class='header'>" +
+		"<h4 class='title'>제목 " +
+	    "<input type='text' id='title' value='"+title+"'></input></h4>" +
+        "<input type='hidden' id='idx' value='"+ idx +"' />"+
+	"</div>" +
+	"<div class='content'>" +
+	"<textarea name='content' id='content'>"+content.html()+"</textarea>"+
+	"<script>"+
+	"CKEDITOR.replace('content',{"+
+		"height : '600px',"+
+		"filebrowserUploadUrl : '${path}/community/imageUpload.do'"+
+	"});"+
+	"</sc"+"ript>"+ 
+	"</div>"; 
+	body.empty();
+    body.append(str);
+	$('#editorcommunity').hide();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').hide();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').show();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
+    
+}
+function changeeditorfaq(){
+    var body = $("#read");
+    var content = $("#read .content");
+    var title = $("#title").text();
+    var idx = $('#idx').val();
+    str="<div class='header'>" +
+		"<h4 class='title'>제목 " +
+	    "<input type='text' id='title' value='"+title+"'></input></h4>" +
+        "<input type='hidden' id='idx' value='"+ idx +"' />"+
+	"</div>" +
+	"<div class='content'>" +
+	"<textarea name='content' id='content'>"+content.html()+"</textarea>"+
+	"<script>"+
+	"CKEDITOR.replace('content',{"+
+		"height : '600px',"+
+		"filebrowserUploadUrl : '${path}/faq/imageUpload.do'"+
+	"});"+
+	"</sc"+"ript>"+ 
+	"</div>"; 
+	body.empty();
+    body.append(str);
+	$('#editorcommunity').hide();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').hide();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').show();
 }
 function editorcloses(){
 	var body = $("#read");
 	body.empty();
+	$('#editorcommunity').show();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').show();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
 }
 </script>
 <body>
@@ -266,6 +386,32 @@ function editorcloses(){
 <%@ include file="admininsideheader.jsp"%>
         <div class="content">
             <div class="container-fluid">
+            <div class="row"><hr> </div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-2">
+	             	<div class="card">
+						<div class="header" style="text-align: center">
+							<h4 class="title" style="font-family: yanolja; font-size: 37px">공지사항</h4>
+						</div>
+						<div class="content">
+							<div id="communityBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4"></div>
+				<div class="col-md-2">
+	             	<div class="card">
+						<div class="header" style="text-align: center">
+							<h4 class="title" style="font-family: yanolja; font-size: 37px">QnA</h4>
+						</div>
+						<div class="content">
+							<div id="faqBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="row">
                    <div class="col-md-6">
                    <div class="card">
@@ -310,12 +456,15 @@ function editorcloses(){
                    <div class="col-md-2"></div>
                    <div class="col-md-8">
                         <div>
-                        <button class="dialog__trigger" onclick="createeditor()">새글</button>
-                        <button class="dialog__trigger" onclick="communityBoardcreate()">공지작성</button>
-                        <button class="dialog__trigger" onclick="faqBoardcreate()">QnA작성</button>
-                        <button class="dialog__trigger" onclick="changeeditor()">수정</button>
-                        <button class="dialog__trigger" onclick="communityBoardupdate()">저장</button>
-                        <button class="dialog__trigger" onclick="editorcloses()">닫기</button>
+                        <button class="dialog__trigger" id="editorcommunity" onclick="editorcommunity()">공지작성</button>
+                        <button class="dialog__trigger" id="communityBoardcreate" onclick="communityBoardcreate()">공지저장</button>
+                        <button class="dialog__trigger" id="editorfaq" onclick="editorfaq()">QnA작성</button>
+                        <button class="dialog__trigger" id="faqBoardcreate" onclick="faqBoardcreate()">QnA저장</button>
+                        <button class="dialog__trigger" id="changeeditorcommunity" onclick="changeeditorcommunity()">공지수정</button>
+                        <button class="dialog__trigger" id="communityBoardupdate" onclick="communityBoardupdate()">공지수정저장</button>
+                        <button class="dialog__trigger" id="changeeditorfaq" onclick="changeeditorfaq()">QnA수정</button>
+                        <button class="dialog__trigger" id="faqBoardupdate" onclick="faqBoardupdate()">QnA수정저장</button>
+                        <button class="dialog__trigger" id="editorcloses" onclick="editorcloses()">닫기</button>
                         </div>
                     </div>
                 </div> 

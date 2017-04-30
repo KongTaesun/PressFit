@@ -39,7 +39,6 @@ import kr.co.pressfit.vo.TMouseVO;
 @RequestMapping("/admin/*")
 public class Admin {
 	
-	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
 	@Inject  
@@ -65,6 +64,7 @@ public class Admin {
 	
 	@RequestMapping("main.do")
 	public String main(Model model, HttpSession session){
+		logger.info("왜 안되?");
 		return "admin/main"; 
 	}
 	@RequestMapping("board.do")
@@ -158,6 +158,7 @@ public class Admin {
     }
 	@RequestMapping(value="/community/create.do")
 	public void communitycreate(@ModelAttribute(name="communityVO") CommunityVO vo)throws Exception{
+		vo.setWriter("admin");
 		communityservice.create(vo);
     }
 	@RequestMapping(value="/community/read.do")
@@ -200,6 +201,7 @@ public class Admin {
     }
 	@RequestMapping(value="/faq/create.do")
 	public void faqcreate(@ModelAttribute(name="faqVO") FaqVO vo)throws Exception{
+		vo.setWriter("admin");
 		faqservice.create(vo);
     }
 	@RequestMapping(value="/faq/read.do")

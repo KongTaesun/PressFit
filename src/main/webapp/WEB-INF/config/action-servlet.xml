@@ -56,8 +56,9 @@
 				<beans:ref bean="adminclearInterceptor" />
 		</interceptor>
 	</interceptors>
-	
-	<!-- 
+
+
+<!-- 
 	<interceptors>
 	
 관리자 세션 체크를 위한 인터셉터 설정	

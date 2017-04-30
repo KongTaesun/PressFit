@@ -10,12 +10,13 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	$("#galleryBoardcreateeditor").show();
 	$("#galleryBoardcreate").hide();
 	$("#changeeditor").hide();
-	$("#galleryBoardupdate").hide();
 	
 	$(".hover").mouseleave(function () {
 		$(this).removeClass("hover");
@@ -24,20 +25,6 @@ $(document).ready(function () {
     $('#faq-links div').click(function(){
     	_movePage(1);
     });
-    $.datepicker.setDefaults({
-        dateFormat: 'yy-mm-dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-        showMonthAfterYear: true,
-        yearSuffix: '년'
-      });
-	 $("#datepicker1, #datepicker2").datepicker();
-
 });
 function _movePage(value){
     $("#galleryPAGEINDEX").val(value);
@@ -59,7 +46,11 @@ function galleryBoardList(pageNo){
 }
 function galleryBoardListCallback(data){
     var total = data.TOTAL;
-
+    var percent_number_step = $.animateNumber.numberStepFactories.append(' 개');
+	$('#galleryBoardcnt').animateNumber({
+		number: total,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: percent_number_step
+	}, 500);
     var body = $("#gallerylist");
     body.empty();
     if(total == 0){
@@ -322,6 +313,21 @@ figure.snip1384.hover i {
     <div class="main-panel">
 <%@ include file="admininsideheader.jsp"%>
         <div class="content">
+         <div class="row"><hr> </div>
+			<div class="row">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+	             	<div class="card">
+						<div class="header" style="text-align: center">
+							<h4 class="title" style="font-family: yanolja; font-size: 37px">갤러리</h4>
+						</div>
+						<div class="content">
+							<div id="galleryBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
         <div class="row">
             <div class="container-fluid">
 						
@@ -346,7 +352,6 @@ figure.snip1384.hover i {
                         <div>
                         <button class="dialog__trigger" id="galleryBoardcreateeditor" onclick="galleryBoardcreateeditor()">새글</button>
                         <button class="dialog__trigger" id="galleryBoardcreate" onclick="galleryBoardcreate()">작성</button>
-                        <button class="dialog__trigger" id="changeeditor" onclick="changeeditor()">수정</button>
                         <button class="dialog__trigger" id="galleryBoardwarn" onclick="galleryBoardwarn()">경고</button>
                         <button class="dialog__trigger" id="galleryBoardupdate" onclick="galleryBoardupdate()">저장</button>
                         <button class="dialog__trigger" id="editorcloses" onclick="editorcloses()">닫기</button>
