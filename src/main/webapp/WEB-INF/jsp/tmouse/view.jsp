@@ -373,10 +373,11 @@
 						            <button type="button" id="btnDelete">삭제</button>
 						        </c:if>
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-						        <button type="button" id="btnList">목록</button>
-                            </div>
-                        </div>
+						        <button type="button" class="btn-default" id="btnList">목록</button>
+                            </div> 
+                        </div> 
                     </div>
+                    
                 </div>
                 <div class="row">
 					<div class="col-md-12">

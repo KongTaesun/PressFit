@@ -8,13 +8,56 @@
 <%@ include file="/resources/include/header.jsp"%>
 <style>
 .left-item1 img {
-  width: 200px;
-  height: 200px;
+	width: 200px;
+	height: 200px;
 }
 
 .breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/keyboard_img.jpg');
+	background-image:
+		url('${path}/resources/writer/img/bigpicture/keyboard_img.jpg');
 }
+
+.product-description {
+	left: 75%;
+	margin-top: 15px; /* -22 */
+	opacity: 0;
+	position: absolute;
+	top: 73%;
+	transition: all 0.3s ease 0s;
+	width: 20%;
+}
+
+.product-description1 {
+	left: 25%;
+	margin-top: 15px; /* -22 */
+	opacity: 0;
+	position: absolute;
+	top: 40%;
+	transition: all 0.3s ease 0s;
+	width: 50%;
+	color: #FFFFFF;
+}
+
+.single-banner:hover .product-description1 {
+	opacity: 1;
+}
+
+.product-description1:hover {
+	color: #000000;
+}
+
+.price1 {
+	padding: 10px 10px 10px 10px;
+}
+
+.keyboard-solid{
+	font-weight: bold;
+    font-size: 20px;
+    padding: 5px;
+    width: 10%;
+    float: left;
+}
+
 </style>
 
 <script>
@@ -64,26 +107,24 @@
 </script>
 </head>
 <body>
- <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					    <div class="breadcrumbs">
-					      
-					       <h2>NOTICE</h2> 
-					       <ul class="breadcrumbs-list">
-						        <li>
-						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
-						        <li>NOTICE</li>
-						    </ul>
-					    </div>
+	<!-- Breadcrumbs Area Start -->
+	<div class="breadcrumbs-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumbs">
+
+						<h2>NOTICE</h2>
+						<ul class="breadcrumbs-list">
+							<li><a title="Return to Home" href="index.html">Home</a></li>
+							<li>NOTICE</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-		</div> 
-		<!-- Breadcrumbs Area Start --> 
+		</div>
+	</div>
+	<!-- Breadcrumbs Area Start -->
 	<div class="shopping-area section-padding">
 		<div class="container">
 			<!-- 레코드의 갯수를 출력 -->
@@ -96,14 +137,17 @@
 							<aside class="widget widget-categories">
 								<h2 class="sidebar-title text-center">CATEGORY</h2>
 								<ul class="sidebar-menu">
-									<li><a href="${path}/keyboard/list.do?searchOption=contactsystem"> <i class="fa fa-angle-double-right"></i>
-											기계식 키보드 
+									<li><a
+										href="${path}/keyboard/list.do?searchOption=contactsystem">
+											<i class="fa fa-angle-double-right"></i> 기계식 키보드
 									</a></li>
-									<li><a href="${path}/keyboard/list.do?searchOption=functionkey"> <i class="fa fa-angle-double-right"></i>
-											게이밍 키보드 
-											</a></li>
-									<li><a href="${path}/keyboard/list.do?searchOption=keyboardform"> <i class="fa fa-angle-double-right"></i>
-											텐키레스 키보드 
+									<li><a
+										href="${path}/keyboard/list.do?searchOption=functionkey">
+											<i class="fa fa-angle-double-right"></i> 게이밍 키보드
+									</a></li>
+									<li><a
+										href="${path}/keyboard/list.do?searchOption=keyboardform">
+											<i class="fa fa-angle-double-right"></i> 텐키레스 키보드
 									</a></li>
 								</ul>
 							</aside>
@@ -115,10 +159,12 @@
 										<div class="price-slider-amount">
 											<input type="text" id="rangeamount" name="price"
 												placeholder="Add Your Price" />
+
 											<div class="widget-buttom">
-												<input type="button" value="Filter" id="btnPrice"/> 
-												<input type="reset"
-													value="CLEAR" />
+												<span class="btn-left"><input type="button"
+													value="Filter" id="btnPrice" style="width: 112px;" /></span> <span
+													class="btn-right"><input type="reset" value="CLEAR"
+													style="width: 112px;" /></span>
 											</div>
 										</div>
 									</div>
@@ -126,7 +172,7 @@
 							</aside>
 						</div>
 						<div class="shop-widget-bottom">
-							<aside class="widget widget-tag">
+							<!-- <aside class="widget widget-tag">
 								<h2 class="sidebar-title">POPULAR TAG</h2>
 								<ul class="tag-list">
 									<li><a href="#">e-book</a></li>
@@ -136,7 +182,7 @@
 									<li><a href="#">nice</a></li>
 									<li><a href="#">author</a></li>
 								</ul>
-							</aside>
+							</aside> -->
 							<aside class="widget widget-seller">
 								<h2 class="sidebar-title">TOP SELLERS</h2>
 								<div class="single-seller">
@@ -178,10 +224,12 @@
 				<div class="col-md-9 col-sm-9 col-xs-12">
 					<div class="shop-tab-area">
 						<div class="shop-tab-list">
+						<div class="keyboard-solid">키보드 &nbsp;</div>
 							<div class="shop-tab-pill pull-left">
 								<ul>
 									<li class="active" id="left"><a data-toggle="pill"
 										href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
+
 									<li><a data-toggle="pill" href="#menu1"><i
 											class="fa fa-th-list"></i><span>List</span></a></li>
 								</ul>
@@ -189,7 +237,7 @@
 							<div class="shop-tab-pill pull-right">
 								<ul>
 									<li class="product-size-deatils">
-										<div class="show-label">
+										<!-- 	<div class="show-label">
 											<label>Show : </label> <select>
 												<option value="10" selected="selected">10</option>
 												<option value="09">09</option>
@@ -197,9 +245,9 @@
 												<option value="07">07</option>
 												<option value="06">06</option>
 											</select>
-										</div>
+										</div> -->
 									</li>
-									<li class="product-size-deatils">
+									<!-- <li class="product-size-deatils">
 										<div class="show-label">
 											<label><i class="fa fa-sort-amount-asc"></i>Sort by :
 											</label> <select>
@@ -208,36 +256,42 @@
 												<option value="Price">Price</option>
 											</select>
 										</div>
-									</li>
-									<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
+									</li> -->
+									<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
 									<c:if test="${map.boardPager.curBlock > 1}">
 										<a href="javascript:list('1')">[처음]</a>
-									</c:if> 
-									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --> 
+									</c:if>
+									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
 									<c:if test="${map.boardPager.curBlock > 1}">
 										<a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
-									</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> 
-									<c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
-									<!-- 현재페이지이면 하이퍼링크 제거 -->
-									<c:choose>
-										<c:when test="${num == map.boardPager.curPage}">
-											<span style="color: red">${num}</span>&nbsp;
+									</c:if>
+									<!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 -->
+									<c:forEach var="num" begin="${map.boardPager.blockBegin}"
+										end="${map.boardPager.blockEnd}">
+										<!-- 현재페이지이면 하이퍼링크 제거 -->
+										<c:choose>
+											<c:when test="${num == map.boardPager.curPage}">
+												<span style="color: red">${num}</span>&nbsp;
 						                </c:when>
-										<c:otherwise>
-											<a href="javascript:list('${num}')">${num}</a>&nbsp;
+											<c:otherwise>
+												<a href="javascript:list('${num}')">${num}</a>&nbsp;
 						                </c:otherwise>
 										</c:choose>
-										</c:forEach> <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-										<c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-											<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
-										</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --> 
-										<c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
-											<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
-										</c:if>
+									</c:forEach>
+									<!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
+									<c:if
+										test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
+										<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
+									</c:if>
+									<!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
+									<c:if
+										test="${map.boardPager.curPage <= map.boardPager.totPage}">
+										<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
+									</c:if>
 									<c:if test="${sessionScope.id != null}">
 										<button type="button" id="btnWrite">글쓰기</button>
-									</c:if>							
-									</ul>
+									</c:if>
+								</ul>
 							</div>
 						</div>
 						<div class="tab-content">
@@ -246,54 +300,54 @@
 									<c:forEach var="row" items="${map.list}">
 										<div class="col-md-4 col-sm-6">
 											<div class="single-banner">
-												<div class="product-wrapper" style="width:260px; height:260px;">
+
+												<div class="product-wrapper"
+													style="width: 260px; height: 260px;">
 													<a
 														href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
-														class="single-banner-image-wrapper">
-														<img src="${path}/resources/upload/${row.fullName}"  style="width:260px; height:260px;">
-														<div class="price">
-															<span>\</span>${row.price}<br />${row.crea_id}</div>
+														class="single-banner-image-wrapper"> <img
+														src="${path}/resources/upload/${row.fullName}"
+														style="width: 260px; height: 260px;">
+													</a> <a
+														href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
+														<div class="product-description1">
+															<div style="text-align: center;">자세히보기</div>
+														</div>
 													</a>
-													
-													
-													<!-- ============================================================================================================ -->
-													<!-- ============================================================================================================ -->
-													<!-- ============================================================================================================ -->
-													
-													
 													<div class="product-description">
 														<div class="functional-buttons">
-															<a href="${path}/shop/cart/insert.do?price=${row.price}&modelname=${row.modelname}&manufacturecompany=${row.manufacturecompany}&idx=${row.idx}&fullName=${row.fullName}&kind=keyboard&amount=1&crea_id=${row.crea_id}" title="Add to Cart"> <i
-																class="fa fa-shopping-cart"></i>
-															</a> <a href="#" title="Add to Wishlist"> <i
+															<a
+																href="${path}/shop/cart/insert.do?price=${row.price}&modelname=${row.modelname}&manufacturecompany=${row.manufacturecompany}&idx=${row.idx}&fullName=${row.fullName}&kind=keyboard&amount=1&crea_id=${row.crea_id}"
+																title="Add to Cart"> <i class="fa fa-shopping-cart"></i>
+															</a>
+															<!-- <a href="#" title="Add to Wishlist"> <i
 																class="fa fa-heart-o"></i>
 															</a> <a href="#" title="Quick view" data-toggle="modal"
 																data-target="#productModal"> <i
 																class="fa fa-compress"></i>
-															</a>
+															</a> -->
 														</div>
 													</div>
-													
-													<!-- ============================================================================================================ -->
-													<!-- ============================================================================================================ -->
-													<!-- ============================================================================================================ -->
-													
-													
 												</div>
-												<div class="banner-bottom text-center">
-													<div class="banner-bottom-title" style="width:100%; height:60px; overflow: hidden; top:50%; margin-top: 15px; margin-bottom: 0px;">
-														<a href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.modelname} <c:if
-																test="${row.recnt >= 0}">
-																<span style="color: red;">(${row.recnt}) </span>
+												<div class="banner-bottom1 text-center">
+													<div class="banner-bottom-title"
+														style="width: 80%; height: 40px; overflow: hidden; top: 50%; margin-top: 15px; margin-bottom: 0px; margin-left: 25px; margin-right: 25px;">
+														<a
+															href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.modelname}
+															<c:if test="${row.recnt >= 0}">
 															</c:if>
 														</a>
 													</div>
-													<div class="rating-icon">
+													<div class="price1">${row.price}원</div>
+													<input type="hidden" name="crea_id" id="crea_id"
+														value="${row.crea_id}">
+													<div style="display-table: table-cell"></div>
+													<!-- <div class="rating-icon">
 														<i class="fa fa-star icolor"></i> <i
 															class="fa fa-star icolor"></i> <i
 															class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
-													</div>
+													</div> -->
 												</div>
 											</div>
 										</div>
@@ -301,45 +355,53 @@
 
 								</div>
 							</div>
-							
+
 							<div id="menu1" class="tab-pane fade">
 								<div class="row">
 									<div class="single-shop-product">
-									<c:forEach var="row" items="${map.list}">
-										<div class="col-xs-12 col-sm-5 col-md-4">
-											<div class="left-item1">
-												<a href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
-												<img src="${path}/resources/upload/${row.fullName}" />
-												</a>
-											</div>
-										</div>
-										<div class="col-xs-12 col-sm-7 col-md-8">
-											<div class="deal-product-content">
-												<h4>
-													<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" title="${row.modelname }">
-													${row.modelname}</a>
-												</h4>
-												<div class="product-price">
-													<span class="new-price">${row.price}￦</span>
-												</div>
-												<div class="list-rating-icon">
-													<i class="fa fa-star icolor"></i> <i
-														class="fa fa-star icolor"></i> <i
-														class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
-													<i class="fa fa-star"></i>
-												</div>
-												<p>글 내용을 바꿔야함</p>
-												<div class="availability">
-													<span>In stock</span> <span><a href="cart.html">Add
-															to cart</a></span>
+
+
+
+
+
+										<c:forEach var="row" items="${map.list}">
+											<div class="col-xs-12 col-sm-5 col-md-4">
+												<div class="left-item1">
+													<a
+														href="${path}/keyboard/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
+														title="${row.modelname }"> <img
+														src="${path}/resources/upload/${row.fullName}" />
+													</a>
 												</div>
 											</div>
-										</div>
+											<div class="col-xs-12 col-sm-7 col-md-8">
+												<div class="deal-product-content">
+													<h4>
+														<a
+															href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}"
+															title="${row.modelname }"> ${row.modelname}</a>
+													</h4>
+													<div class="product-price">
+														<span class="new-price">${row.price}￦</span>
+													</div>
+													<div class="list-rating-icon">
+														<i class="fa fa-star icolor"></i> <i
+															class="fa fa-star icolor"></i> <i
+															class="fa fa-star icolor"></i> <i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+													</div>
+													<p>글 내용을 바꿔야함</p>
+													<div class="availability">
+														<span>In stock</span> <span><a href="cart.html">Add
+																to cart</a></span>
+													</div>
+												</div>
+											</div>
 										</c:forEach>
 									</div>
 								</div>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>
