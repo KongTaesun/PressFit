@@ -70,8 +70,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-    public List<CartVO> orderList(int start, int end, String searchOption, String id) throws Exception {
-        return BusinessDao.orderList(start, end, searchOption, id);
+    public List<CartVO> orderList(String startDate, String endDate,  String searchOption, String id) throws Exception {
+        return BusinessDao.orderList(startDate, endDate, searchOption, id);
     }
     // 5. ��ٱ��� �ݾ� �հ�
     @Override

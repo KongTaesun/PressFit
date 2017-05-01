@@ -50,6 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <sql id="search">
+    	and orderdate between #{startDate} and #{endDate}
       <if test="searchOption=='order'">
          and (shippingStatus = '0'
          or shippingStatus = '1')

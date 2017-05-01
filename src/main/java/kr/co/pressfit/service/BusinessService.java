@@ -18,7 +18,7 @@ public interface BusinessService {
 	public boolean checkPw(String id, String pw);
 	
 	// 주문 리스트
-	public List<CartVO> orderList(int start, int end, String searchOption, String id) throws Exception;
+	public List<CartVO> orderList(String startDate, String endDate, String searchOption, String id) throws Exception;
 	public int sumMoney(String id) throws Exception;
 	
 	public int countArticle(String searchOption, String keyword, String id) throws Exception;
