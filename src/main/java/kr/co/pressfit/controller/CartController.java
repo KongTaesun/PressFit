@@ -60,14 +60,16 @@ public class CartController {
         
         return mav;
     }
-
+    
+    @ResponseBody 
     @RequestMapping(value="buy.do", method=RequestMethod.GET)
     public String buy(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
         // session占쎈퓠 占쏙옙占쎌삢占쎈쭆 userId�몴占� writer占쎈퓠 占쏙옙占쎌삢
         String crea_id = (String) session.getAttribute("id");
         vo.setCrea_id(crea_id);
         cartService.buy(vo);
-        return "redirect:/tmouse/list.do";
+        System.out.println("컨트롤러"+vo);
+        return "redirect:/tmouse/orderInfoAction";
     }
    
     @RequestMapping("cartList.do")

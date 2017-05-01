@@ -26,5 +26,5 @@ public interface TMouseService {
     public void replyupdate(ReplyVO vo);
     public void replydelete(Integer boardno);
     public int replycount(Integer boardno);
-	public void buy(TMouseVO vo) throws Exception;
+
 }

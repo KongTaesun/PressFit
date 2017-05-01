@@ -159,8 +159,8 @@
         	} else{
         		$.ajax({
                     type: "get",
-                    url: "${path}/shop/cart/insert.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}",
-                    success: function(){
+                    url: "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C",
+                    success: function(){ 
                     	var result = confirm("구매 페이지로 넘어갑니다.");
                 		if(result){
                 			location.href="${path}/shop/cart/buy.do";

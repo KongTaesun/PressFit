@@ -21,13 +21,49 @@
             #{price},
             #{amount},
             #{modelname},
-            manufacturecompany,
+            #{manufacturecompany},
             #{user_id},
             #{fullName},
             #{kind},
             #{crea_id}
         )
     </insert>
+    
+    <!-- 바로구매 -->
+    <insert id="buy">
+        INSERT INTO cart_board(
+        	idx, 
+        	price, 
+        	amount, 
+        	modelname,
+        	manufacturecompany,
+        	payment,
+        	user_id,
+        	fullName,
+        	kind,
+        	crea_id
+        	)
+        VALUES (
+            #{idx},
+            #{price},
+            #{amount},
+            #{modelname},
+            #{manufacturecompany},
+            #{payment},
+            #{user_id},
+            #{fullName},
+            #{kind},
+            #{crea_id}
+        )
+    </insert>
+    
+    <select id="buyselect" resultType="int">
+    	select cart_id
+    	from cart_board
+    	where payment = 'C'
+    </select>
+    
+    
     
     <!-- 2. 장바구니 목록 -->
     <select id="listCart" resultType="kr.co.pressfit.vo.CartVO">
@@ -80,6 +116,7 @@
         WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </update>
+    
     
     
     

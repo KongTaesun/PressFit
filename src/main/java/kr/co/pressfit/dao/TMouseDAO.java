@@ -42,5 +42,5 @@ public interface TMouseDAO {
     public void replydelete(Integer idx);
     // 6. �뙎湲� 媛��닔
     public int replycount(Integer boardno);
-    public void buy(TMouseVO vo) throws Exception;
+    
 }

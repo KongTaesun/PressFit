@@ -126,7 +126,9 @@ public class CartDAOImpl implements CartDAO {
 		
 	}
 	@Override
-	public void buy(CartVO vo) throws Exception {
-		SqlSession.insert("cart.buy", vo);
+	public int buy(CartVO vo) throws Exception {
+		System.out.println("dao임플"+vo);
+		sqlSession.insert("cart.buy", vo);
+		return sqlSession.selectOne("cart.buyselect");
 	}
 }

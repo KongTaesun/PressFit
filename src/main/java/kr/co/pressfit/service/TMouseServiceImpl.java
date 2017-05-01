@@ -144,11 +144,7 @@ public class TMouseServiceImpl implements TMouseService {
     public int replycount(Integer boardno) {
         return TMouseDAO.replycount(boardno);
     }
-	@Override
-	public void buy(TMouseVO vo) throws Exception {
-		TMouseDAO.buy(vo);
-		
-	}
+	
     
     
 }
