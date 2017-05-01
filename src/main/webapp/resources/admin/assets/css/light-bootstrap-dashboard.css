@@ -459,7 +459,7 @@ body > .navbar-collapse {
   font-weight: 400;
   opacity: 0.8;
   filter: alpha(opacity=80);
-  padding: 8px 16px;
+  padding: 0;
   border-color: #888888;
   color: #888888; }
   .btn:hover, .btn:focus, .btn:active, .btn.active, .open > .btn.dropdown-toggle {
@@ -898,7 +898,7 @@ body > .navbar-collapse {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 12px 8px;
+  padding: 0;
   vertical-align: middle; }
 .table > thead > tr > th {
   border-bottom-width: 1px;

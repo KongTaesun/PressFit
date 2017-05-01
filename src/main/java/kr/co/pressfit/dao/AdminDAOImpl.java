@@ -76,7 +76,17 @@ public class AdminDAOImpl implements AdminDAO {
 	public List<MemberVO> memberList(PageVO vo) {
 		return sqlSession.selectList("admin.memberlist", vo);
 	}
-	
+	@Override
+	public void update1(MemberVO vo) {
+		sqlSession.update("admin.update1",vo);
+	}
+	@Override
+	public void update2(MemberVO vo) {
+		sqlSession.update("admin.update2",vo);
+	}
+	public void delete1(MemberVO vo) {
+		sqlSession.delete("admin.delete1",vo);
+	}
 }
 
 

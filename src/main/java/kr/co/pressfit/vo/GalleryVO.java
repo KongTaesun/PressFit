@@ -8,7 +8,7 @@ public class GalleryVO {
 	private String title;
 	private String content;
 	private String writer;
-	private Date regdate;
+	private String regdate;
 	private int viewcnt;
 	private String[] filelist;
 	private String showdel;
@@ -55,10 +55,10 @@ public class GalleryVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public int getViewcnt() {

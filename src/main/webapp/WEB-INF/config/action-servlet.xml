@@ -35,6 +35,7 @@
     <!-- 스프링 빈을 태그로 등록하지 않고 자동으로 검색(auto scan) --> 
     <context:component-scan base-package="kr.co.pressfit" />
 
+<<<<<<< HEAD
    <beans:bean id="sampleInterceptor" class= "kr.co.pressfit.interceptor.SampleInterceptor"/> 
    <beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
    <beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
@@ -83,6 +84,59 @@
       </interceptor>
       
    </interceptors>  
+=======
+	<beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
+	<beans:bean id="loggerInterceptor" class= "kr.co.pressfit.interceptor.LoggerInterceptor"/>
+	<beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
+	<beans:bean id="adminclearInterceptor" class= "kr.co.pressfit.interceptor.AdminclearInterceptor"/>
+	<interceptors> 
+		<interceptor> 
+				<mapping path="/admin/*.do"/>
+				<beans:ref bean="adminInterceptor" />
+		</interceptor>
+		<interceptor> 
+				<mapping path="/tmouse/*.do"/>
+				<mapping path="/keyboard/*.do"/>
+				<mapping path="/gallery/*.do"/>
+				<mapping path="/business/*.do"/>
+				<mapping path="/shop/cart/*.do"/>
+				<mapping path="/community/*.do"/>
+				<mapping path="/faq/*.do"/>
+				<mapping path="/member/*.do"/>
+				<beans:ref bean="adminclearInterceptor" />
+		</interceptor>
+		<interceptor> 
+				<mapping path="/**"/>
+				<beans:ref bean="loggerInterceptor" />
+		</interceptor>
+	</interceptors>
+
+
+<!-- 
+	<interceptors
+관리자 세션 체크를 위한 인터셉터 설정	
+		<interceptor>
+			<mapping path="/tmouse/write.do"/>
+			<mapping path="/tmouse/insert.do"/>
+			<mapping path="/keyboard/write.do"/>
+			<mapping path="/keyboard/insert.do"/>
+			<beans:ref bean="adminInterceptor" />
+		</interceptor> 
+		<interceptor> 
+		
+			<mapping path="/gallery/write.do"/>
+			<mapping path="/gallery/insert.do"/> 
+			<mapping path="/gallery/update.do"/>
+			<mapping path="/gallery/delete.do"/>
+			<mapping path="/gallery/view.do"/>
+			
+			<mapping path="/shop/cart/insert.do"/>
+			<mapping path="/shop/cart/list.do"/> 
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+		
+	</interceptors>  
+>>>>>>> origin/tesuk
 
  -->
  </beans:beans> 

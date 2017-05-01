@@ -39,7 +39,6 @@ import kr.co.pressfit.vo.TMouseVO;
 @RequestMapping("/admin/*")
 public class Admin {
 	
-	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
 	@Inject   
@@ -65,6 +64,7 @@ public class Admin {
 	
 	@RequestMapping("main.do")
 	public String main(Model model, HttpSession session){
+		logger.info("왜 안되?");
 		return "admin/main"; 
 	}
 	@RequestMapping("board.do")
@@ -97,7 +97,6 @@ public class Admin {
 	}
 	@RequestMapping("/inter/login.do")
 	public String login(Model model, HttpSession session){
-		System.out.println(session.getAttribute("admin"));
 		return "admin/login";
 	} 
 	@RequestMapping("/inter/passwordcheck.do")
@@ -158,10 +157,9 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/community/create.do")
-	public ModelAndView communitycreate(@RequestParam(name="communityVO") CommunityVO vo)throws Exception{
+	public void communitycreate(@ModelAttribute(name="communityVO") CommunityVO vo)throws Exception{
+		vo.setWriter("admin");
 		communityservice.create(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/community/read.do")
 	public ModelAndView communityread(@RequestParam(name="communityidx") int idx)throws Exception{
@@ -170,16 +168,12 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/community/update.do")
-	public ModelAndView communityupdate(@RequestParam(name="communityVO") CommunityVO vo)throws Exception{
+	public void communityupdate(@ModelAttribute(name="communityVO") CommunityVO vo)throws Exception{
 		communityservice.update(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/community/delete.do")
-	public ModelAndView communitydelete(@RequestParam(name="communityidx") int idx)throws Exception{
+	public void communitydelete(@RequestParam(name="communityidx") int idx)throws Exception{
 		communityservice.delete(idx);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	
 	@RequestMapping(value="/faq/list.do")
@@ -206,10 +200,9 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/faq/create.do")
-	public ModelAndView faqcreate(@RequestParam(name="faqVO") FaqVO vo)throws Exception{
+	public void faqcreate(@ModelAttribute(name="faqVO") FaqVO vo)throws Exception{
+		vo.setWriter("admin");
 		faqservice.create(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/faq/read.do")
 	public ModelAndView faqread(@RequestParam(name="faqidx") int idx)throws Exception{
@@ -218,16 +211,12 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/faq/update.do")
-	public ModelAndView faqupdate(@RequestParam(name="faqVO") FaqVO vo)throws Exception{
+	public void faqupdate(@ModelAttribute(name="faqVO") FaqVO vo)throws Exception{
 		faqservice.update(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/faq/delete.do")
-	public ModelAndView faqdelete(@RequestParam(name="faqidx") int idx)throws Exception{
+	public void faqdelete(@RequestParam(name="faqidx") int idx)throws Exception{
 		faqservice.delete(idx);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	
 	@RequestMapping(value="/gallery/list.do")
@@ -254,10 +243,9 @@ public class Admin {
     	return mv;
     } 
 	@RequestMapping(value="/gallery/create.do")
-	public ModelAndView gallerycreate(@RequestParam(name="galleryVO") GalleryVO vo)throws Exception{
+	public void gallerycreate(@ModelAttribute(name="galleryVO") GalleryVO vo)throws Exception{
+		vo.setWriter("admin");
 		galleryservice.create(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/gallery/read.do")
 	public ModelAndView galleryread(@RequestParam(name="galleryidx") int idx)throws Exception{
@@ -266,16 +254,20 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/gallery/update.do")
-	public ModelAndView galleryupdate(@RequestParam(name="galleryVO") GalleryVO vo)throws Exception{
+	public void galleryupdate(@ModelAttribute(name="galleryVO") GalleryVO vo)throws Exception{
 		galleryservice.update(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
+	@RequestMapping(value="/gallery/warn.do")
+	public void gallerywarn(@RequestParam(name="galleryidx") int idx)throws Exception{
+		GalleryVO vo = new GalleryVO();
+		vo.setTitle("이 게시물은 관리자에 의해 차단되었습니다.");
+		vo.setContent("");
+		galleryservice.update(vo);
+    }
+	
 	@RequestMapping(value="/gallery/delete.do")
-	public ModelAndView gallerydelete(@RequestParam(name="galleryidx") int idx)throws Exception{
+	public void gallerydelete(@RequestParam(name="galleryidx") int idx)throws Exception{
 		galleryservice.delete(idx);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	
 	@RequestMapping(value="/tmouse/list.do")
@@ -302,10 +294,8 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/tmouse/create.do")
-	public ModelAndView tmousecreate(@RequestParam(name="tmouseVO") TMouseVO vo)throws Exception{
+	public void tmousecreate(@ModelAttribute(name="tmouseVO") TMouseVO vo)throws Exception{
 		tmouseservice.create(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/tmouse/read.do")
 	public ModelAndView tmouseread(@RequestParam(name="tmouseidx") int idx)throws Exception{
@@ -314,16 +304,16 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/tmouse/update.do")
-	public ModelAndView tmouseupdate(@RequestParam(name="tmouseVO") TMouseVO vo)throws Exception{
+	public void tmouseupdate(@ModelAttribute(name="tmouseVO") TMouseVO vo)throws Exception{
 		tmouseservice.update(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+    }
+	@RequestMapping(value="/tmouse/update2.do")
+	public void tmouseupdate2(@RequestParam(name="tmouseidx") int idx)throws Exception{
+			adminservice.update2("TMouseBoard", idx);
     }
 	@RequestMapping(value="/tmouse/delete.do")
-	public ModelAndView tmousedelete(@RequestParam(name="tmouseidx") int idx)throws Exception{
+	public void tmousedelete(@RequestParam(name="tmouseidx") int idx)throws Exception{
 		tmouseservice.delete(idx);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	
 	@RequestMapping(value="/keyboard/list.do")
@@ -350,10 +340,8 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/keyboard/create.do")
-	public ModelAndView keyboardcreate(@RequestParam(name="keyboardVO") KeyboardVO vo)throws Exception{
+	public void keyboardcreate(@ModelAttribute(name="keyboardVO") KeyboardVO vo)throws Exception{
 		keyboardservice.create(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/keyboard/read.do")
 	public ModelAndView keyboardread(@RequestParam(name="keyboardidx") int idx)throws Exception{
@@ -362,16 +350,16 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/keyboard/update.do")
-	public ModelAndView keyboardupdate(@RequestParam(name="keyboardVO") KeyboardVO vo)throws Exception{
+	public void keyboardupdate(@ModelAttribute(name="keyboardVO") KeyboardVO vo)throws Exception{
 		keyboardservice.update(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+    }
+	@RequestMapping(value="/keyboard/update2.do")
+	public void keyboardupdate2(@RequestParam(name="keyboardidx") int idx)throws Exception{
+			adminservice.update2("KeyboardBoard", idx);
     }
 	@RequestMapping(value="/keyboard/delete.do")
-	public ModelAndView keyboarddelete(@RequestParam(name="keyboardidx") int idx)throws Exception{
+	public void keyboarddelete(@RequestParam(name="keyboardidx") int idx)throws Exception{
 		keyboardservice.delete(idx);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	
 	@RequestMapping(value="/business/list.do")
@@ -398,10 +386,8 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/business/create.do")
-	public ModelAndView businesscreate(@RequestParam(name="businessVO") BusinessVO vo)throws Exception{
+	public void businesscreate(@ModelAttribute(name="businessVO") BusinessVO vo)throws Exception{
 		businessservice.insertBusiness(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/business/read.do")
 	public ModelAndView businessread(@RequestParam(name="businessid") String id)throws Exception{
@@ -409,17 +395,18 @@ public class Admin {
     	mv.addObject("business", businessservice.viewBusiness(id));
     	return mv;
     }
-	@RequestMapping(value="/business/update.do")
-	public ModelAndView businessupdate(@RequestParam(name="businessVO") BusinessVO vo)throws Exception{
-		businessservice.updateBusiness(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+	@RequestMapping(value="/business/update1.do")
+	public void businessupdate1(@RequestParam(name="businessidx") int idx,
+			@RequestParam(name="password") String pw)throws Exception{
+			adminservice.update1("Cbusiness", idx, pw);
+    }
+	@RequestMapping(value="/business/update2.do")
+	public void businessupdate2(@RequestParam(name="businessidx") int idx)throws Exception{
+			adminservice.update2("Cbusiness", idx);
     }
 	@RequestMapping(value="/business/delete.do")
-	public ModelAndView businessdelete(@RequestParam(name="businessid") String id)throws Exception{
-		businessservice.deleteBusiness(id);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+	public void businessdelete(@RequestParam(name="businessidx") int idx)throws Exception{
+		adminservice.delete1("Cmember", idx);
     }
 	
 	@RequestMapping(value="/member/list.do")
@@ -446,10 +433,8 @@ public class Admin {
     	return mv;
     }
 	@RequestMapping(value="/member/create.do")
-	public ModelAndView membercreate(@RequestParam(name="memberVO") MemberVO vo)throws Exception{
+	public void membercreate(@ModelAttribute(name="memberVO") MemberVO vo)throws Exception{
 		joinservice.insertMember(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
     }
 	@RequestMapping(value="/member/read.do")
 	public ModelAndView memberread(@RequestParam(name="memberidx") String id)throws Exception{
@@ -457,17 +442,18 @@ public class Admin {
     	mv.addObject("member", joinservice.viewMember(id));
     	return mv;
     }
-	@RequestMapping(value="/member/update.do")
-	public ModelAndView memberupdate(@RequestParam(name="memberVO") MemberVO vo)throws Exception{
-		joinservice.updateMember(vo);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+	@RequestMapping(value="/member/update1.do")
+	public void memberupdate1(@RequestParam(name="memberidx") int idx,
+			@RequestParam(name="password") String pw)throws Exception{
+		adminservice.update1("Cmember", idx, pw);
+    }
+	@RequestMapping(value="/member/update2.do")
+	public void memberupdate2(@RequestParam(name="memberidx") int idx)throws Exception{
+		adminservice.update2("Cmember", idx);
     }
 	@RequestMapping(value="/member/delete.do")
-	public ModelAndView memberdelete(@RequestParam(name="memberidx") String id)throws Exception{
-		joinservice.deleteMember(id);
-    	ModelAndView mv = new ModelAndView("jsonView");
-    	return mv;
+	public void memberdelete(@RequestParam(name="memberidx") int idx)throws Exception{
+		adminservice.delete1("Cmember", idx);
     }
 	
 }
