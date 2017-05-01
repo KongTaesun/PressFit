@@ -1,4 +1,4 @@
-package kr.co.pressfit.service;
+package kr.co.pressfit.memo;
 
 import java.util.List;
 
@@ -13,3 +13,4 @@ public interface MemoService {
 	public void update(MemoVO vo);
 	public void delete(int idx);
 }
+ 

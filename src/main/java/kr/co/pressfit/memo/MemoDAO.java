@@ -1,4 +1,4 @@
-package kr.co.pressfit.dao;
+package kr.co.pressfit.memo;
 
 import java.util.List;
 
@@ -11,8 +11,6 @@ import org.apache.ibatis.annotations.Update;
 import kr.co.pressfit.vo.MemoVO;
 
 
-// interface+Íµ¨ÌòÑ ?Å¥?ûò?ä§+mapper
-//@Repository // ?ïàÎ∂ôÏó¨?èÑ ?ê®
 public interface MemoDAO {
 	String list_memo = "select * from memo order by idx desc";	
 	String insert_memo = "insert into memo (writer,memo) "
@@ -21,18 +19,16 @@ public interface MemoDAO {
 	@Select(list_memo)
 	public List<MemoVO> list();
 	
-//	@Insert(insert_memo)
-//	public void insert(MemoVO vo);
 	
 	@Insert(insert_memo)
 	public void insert(
-@Param("writer") String writer, @Param("memo") String memo);
+    @Param("writer") String writer, @Param("memo") String memo);
 	
 	@Select("select * from memo where idx=#{idx}")
 	public MemoVO memo_view(@Param("idx") int idx);
 	
 	@Update(
-"update memo set writer=#{writer}, memo=#{memo} where idx=#{idx}")
+			"update memo set writer=#{writer}, memo=#{memo} where idx=#{idx}")
 	public void memo_update(MemoVO vo);
 	
 	@Delete("delete memo where idx=#{idx}")

@@ -1,4 +1,4 @@
-package kr.co.pressfit.service;
+package kr.co.pressfit.memo;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import kr.co.pressfit.dao.MemoDAO;
 import kr.co.pressfit.vo.MemoVO;
 
 
@@ -16,6 +15,8 @@ public class MemoServiceImpl implements MemoService {
 
 	@Inject 
 	MemoDAO memoDao;
+	
+	
 	@Override
 	public List<MemoVO> list() {
 		return memoDao.list();

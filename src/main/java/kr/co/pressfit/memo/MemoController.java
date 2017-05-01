@@ -1,4 +1,4 @@
-package kr.co.pressfit.controller;
+package kr.co.pressfit.memo;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.co.pressfit.service.MemoService;
 import kr.co.pressfit.vo.MemoVO;
 
 
@@ -23,15 +22,15 @@ public class MemoController {
 	
 	@RequestMapping("delete/{idx}")
 	public String delete(@PathVariable int idx){
-		memoService.delete(idx); //? ˆì½”ë“œ ?‚­? œ
-		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?Š¸ë¡? ?´?™
+		memoService.delete(idx); //?ï¿½ï¿½ì½”ë“œ ?ï¿½ï¿½?ï¿½ï¿½
+		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	}	 
 	
 	@RequestMapping("update/{idx}")
 	public String update(
 			@PathVariable int idx, MemoVO vo){
-		memoService.update(vo); //? ˆì½”ë“œ ?ˆ˜? •
-		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?Š¸ë¡? ?´?™
+		memoService.update(vo); //?ï¿½ï¿½ì½”ë“œ ?ï¿½ï¿½?ï¿½ï¿½
+		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	}
 	
 //http://localhost:8080/spring02/memo/view/7	
@@ -46,25 +45,25 @@ public class MemoController {
 	
 	@RequestMapping("insert.do")
 	public String insert(MemoVO vo){
-		//memoService.insert(vo); //ê¸??“°ê¸?
+		//memoService.insert(vo); //ï¿½??ï¿½ï¿½ï¿½?
 		memoService.insert(vo.getWriter(), vo.getMemo()); 
-		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?Š¸ë¡? ?´?™
+		return "redirect:/memo/list.do"; //ë¦¬ìŠ¤?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 	}
 	
 	@RequestMapping("list.do")
 	public ModelAndView list(ModelAndView mav){
-		//ë©”ëª¨ ëª©ë¡?„ ë¦¬í„´ë°›ìŒ
+		//ë©”ëª¨ ëª©ë¡?ï¿½ï¿½ ë¦¬í„´ë°›ìŒ
 		List<MemoVO> items=memoService.list();
-		//ë·°ì˜ ?´ë¦? ?„¤? • : views/memo/memo_list.jsp
+		//ë·°ì˜ ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ : views/memo/memo_list.jsp
 		mav.setViewName("memo/memo_list");
-		//ë·°ì— ì¶œë ¥?•  ?°?´?„° ???¥
+		//ë·°ì— ì¶œë ¥?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ???ï¿½ï¿½
 		mav.addObject("list", items);
-		// ?™”ë©? ? „?™˜
+		// ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½
 		return mav;
 	}
 }
 
-
+ 
 
 
 
