@@ -3,21 +3,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<%@ include file="/resources/include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/diction.png');
+}
+</style>
 </head>
-<body>
 
-			
-				<script type="text/javascript">
+<script type="text/javascript">
 				jQuery(document).ready(function($){ new $("FORM#srchFRM_TOP").danawaSearchAutoComplete({"gnbCode":2}); });
 				</script>
+<body>
+      <!-- Breadcrumbs Area Start -->
+        <div class="breadcrumbs-area">
+			 <div class="container" >
+				<div class="row">
+					<div class="col-md-12">
+					    <div class="breadcrumbs">
+					       <h2>개인정보처리방침</h2> 
+					       <ul class="breadcrumbs-list">
+						        <li>
+						        </li>
+						        <li>개인정보처리방침</li>
+						    </ul>
+					    </div>
+					</div>
+				</div> 
 			</div>
 		</div>
-	</div>
- 
-	<div id="danawa_container">
-<!-- navigation -->
+	
+	 <!-- Shop Area Start -->
+        <div class="shopping-area section-padding">
+            <div class="container">
+                <div class="row">       
+                    <div class="col-md-12">
+                           			
 <div id="navigation">
 	<h2 class="blind">정책정보 메뉴</h2>
 	<ul class="menuList_Policy">
@@ -33,7 +57,7 @@
 <!-- //navigation -->
 
 	<div id="individual">
-		<h4 class="style01"><em>다나와 개인정보처리방침</em></h4>
+		<h4 class="style01"><em> 개인정보처리방침</em></h4>
 		<div class="headCon">
 		<p>㈜다나와(danawa.com 이하 "회사"라 함)는 통신비밀보호법, 전기통신사업법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 등 정보통신서비스제공자가 준수하여야 할 관련 법령상의 개인정보보호 규정을 준수하며, 관련 법령에 의거한 개인정보처리방침을 정하여 이용자 권익 보호에 최선을 다하고 있습니다. 본 개인정보처리방침은 개인정보보호와 관련한 법령 또는 지침의 변경 및 회사 정책의 변화에 따라 변경될 수 있으니 회원께서는 당사 사이트를 방문 시 수시로 확인하여 주시기 바랍니다. 다나와의 개인정보처리방침은 다음과 같습니다.</p>
 		<div class="top_left top_title">
@@ -398,8 +422,14 @@
         </p>
       </div>
       <!-- 부칙 끝 -->
+</div>
 
 
+                        </div>
+                        </div>
+                        </div>
+
+<%@ include file="/resources/include/footer.jsp"%>
 
 </body>
 </html>

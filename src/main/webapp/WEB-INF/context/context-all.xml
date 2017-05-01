@@ -54,5 +54,8 @@
 	</bean>
 	  
     <tx:annotation-driven />
+
+	<mybatis-spring:scan base-package="kr.co.pressfit.memo"/>
+
 </beans>
 
