@@ -154,26 +154,8 @@
     	
     	function btnBuy(){
     		var amount=$("#amount").val();
-    		if(amount < 1){
-        		alert("수량을 체크해주세요!");
-        	} else{
-        		$.ajax({
-                    type: "get",
-                    url: "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C",
-                    success: function(){ 
-                    	var result = confirm("구매 페이지로 넘어갑니다.");
-                		if(result){
-                			location.href="${path}/shop/cart/buy.do";
-                		} else{
-                		}
-                    },
-                    error: function(){
-                    	alert("실패");
-                    }
-                });
-        	}
+    		location.href = "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C";
     	}
-    	
     	
  	// 첨부파일 목록 ajax요청 처리
     function listAttach(){

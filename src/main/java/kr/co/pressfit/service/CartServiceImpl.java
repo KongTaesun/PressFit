@@ -68,10 +68,14 @@ public class CartServiceImpl implements CartService {
 		cartDao.amounttest(vo);
 	}
 	@Override
-	public void buy(CartVO vo) throws Exception {
-		cartDao.buy(vo);
+	public CartVO buy(CartVO vo) throws Exception {
+		return cartDao.buy(vo);
 	}
-	
+	@Override
+	public int sumBuyMoney(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return cartDao.sumBuyMoney(id);
+	}
 	
 }
 

@@ -1,6 +1,7 @@
 package kr.co.pressfit.controller;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,13 +64,32 @@ public class CartController {
     
     @ResponseBody 
     @RequestMapping(value="buy.do", method=RequestMethod.GET)
-    public String buy(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
+    public ModelAndView buy(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
         // session占쎈퓠 占쏙옙占쎌삢占쎈쭆 userId�몴占� writer占쎈퓠 占쏙옙占쎌삢
-        String crea_id = (String) session.getAttribute("id");
+        /*String crea_id = (String) session.getAttribute("id");
         vo.setCrea_id(crea_id);
-        cartService.buy(vo);
-        System.out.println("컨트롤러"+vo);
-        return "redirect:/tmouse/orderInfoAction";
+        ModelAndView mav = new ModelAndView();
+        Map<String, Object> map = new HashMap<String, Object>();
+        */
+    	ModelAndView mav = new ModelAndView();
+    	String id = (String) session.getAttribute("id"); 
+        Map<String, Object> map = new HashMap<String, Object>();
+           
+        List<CartVO> list = new ArrayList<CartVO>();
+        list.add(cartService.buy(vo));
+        List<CartVO> memberInfo = cartService.memberInfo(id);
+        int sumMoney = cartService.sumBuyMoney(id); 
+        
+        int fee = sumMoney >= 100000 ? 0 : 2500;
+        map.put("list", list);
+        map.put("memberInfo", memberInfo);
+        /*map.put("count", list.size());*/
+        map.put("sumMoney", sumMoney);
+        map.put("fee", fee);
+        map.put("allSum", sumMoney+fee);
+        mav.setViewName("/shop/cart/orderInfoAction");
+        mav.addObject("map", map);
+        return mav;
     }
    
     @RequestMapping("cartList.do")
