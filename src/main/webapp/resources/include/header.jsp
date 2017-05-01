@@ -149,7 +149,7 @@ height: 95px;
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 visible-sm  col-xs-6">
-				<div class="header-right">
+				<div class="header-right"> 
 					<ul>
 						<li><a href="account.html"><i class="flaticon-people"></i></a>
 						</li>

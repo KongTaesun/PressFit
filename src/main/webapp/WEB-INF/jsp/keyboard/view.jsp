@@ -35,6 +35,19 @@
   font-weight: 900;
 }
 
+.single-product-details > p {
+  color: #191919;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.single-product-price > h2 {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 11px 0;
+  position: relative;
+}
 
 </style>
 <style>
@@ -309,14 +322,14 @@
                             </div>
                             <p> 제조사 : ${manufacturecompany} </p>
                             <div class="single-product-price">
-                                <h2>${dto.price}$</h2>
+                                <h2>${dto.price}￦</h2>
                                 <input type="hidden" name="price" value="${dto.price}" />
                             </div>
                             
                             <div class="product-attributes clearfix">
                                 <p><span class="pull-left" id="quantity-wanted-p">
 									<!-- <span class="dec qtybutton">-</span> -->
-									수량 : <input type="number" style="width: 40px" id="amount" name="amount" value="0" min="0" class="cart-plus-minus-box" >
+									수량 : <input type="number" style="width: 50px" id="amount" name="amount" value="1" min="1" class="cart-plus-minus-box" >
 									<!-- <span class="inc qtybutton">+</span> -->	
 								</span></p> 
                                <span>
@@ -340,7 +353,7 @@
 						            <button type="button" id="btnDelete">삭제</button>
 						        </c:if>
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-						        <button type="button" id="btnList">목록</button>
+						        <button type="button" class="btn-default" id="btnList">목록</button>
                             </div>
                             <div class="single-product-categories">
                                <label>Categories:</label>
@@ -371,11 +384,12 @@
                                 <ul class="p-details-nav-tab" role="tablist">
                                     <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">판매자제공</a></li>
                                     <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">스펙</a></li>
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">댓글</a></li>
+                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">상품문의 / 구매후기</a></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
                             <div class="tab-content review">
+                            	<hr class="tab-content-review-hr"/>
                                 <div role="tabpanel" class="tab-pane active" id="more-info">
                                     <p>${dto.content}</p>
                                 </div>
@@ -556,7 +570,7 @@
 									        </c:if>
 									    </div>
 									    <!-- 댓글 목록 출력할 위치 -->
-									    <div id="listReply"></div>
+									    <div id="listReply"><</div>
                                     </div>
                                 </div>
                             </div>
@@ -577,7 +591,7 @@
                                 <div class="product-wrapper">
                                     <a href="#" class="single-banner-image-wrapper">
                                         <img alt="" src="img/featured/1.jpg">
-                                        <div class="price"><span>$</span>160</div>
+                                        <div class="price"><span>￦</span>160</div>
                                         <div class="rating-icon">
                                             <i class="fa fa-star icolor"></i>
                                             <i class="fa fa-star icolor"></i>

@@ -55,6 +55,20 @@
     padding: 3px 12px;
 }
 
+.single-product-details > p {
+  color: #191919;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.single-product-price > h2 {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 11px 0;
+  position: relative;
+}
+
 .breadcrumbs-area {
  background-image: url('${path}/resources/writer/img/bigpicture/mouse_img3.png');
 }
@@ -111,6 +125,10 @@
     	$("#inCart").click(function() {
     		addCart();
     	});
+    	
+    	$("#btnBuy").click(function(){
+    		btnBuy();
+    	});
     });
     	function addCart(){
     		var amount=$("#amount").val();
@@ -133,6 +151,28 @@
                 });
         	}
         }    
+    	
+    	function btnBuy(){
+    		var amount=$("#amount").val();
+    		if(amount < 1){
+        		alert("수량을 체크해주세요!");
+        	} else{
+        		$.ajax({
+                    type: "get",
+                    url: "${path}/shop/cart/insert.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}",
+                    success: function(){
+                    	var result = confirm("구매 페이지로 넘어갑니다.");
+                		if(result){
+                			location.href="${path}/shop/cart/buy.do";
+                		} else{
+                		}
+                    },
+                    error: function(){
+                    	alert("실패");
+                    }
+                });
+        	}
+    	}
     	
     	
  	// 첨부파일 목록 ajax요청 처리
@@ -333,7 +373,7 @@
                             <p> 등록년월 : ${dto.regdate} </p>
                             
                             <div class="single-product-price">
-                                <h2>${dto.price}$</h2>
+                                <h2>${dto.price}￦</h2>
                                 <input type="hidden" name="price" value="${dto.price}" />
                             </div>
                             
@@ -342,9 +382,9 @@
                             <!-- ================================================================================================================================================================================================================ -->
                             
                             <div class="product-attributes clearfix">
-                                <p><span class="pull-left" id="quantity-wanted-p">
+                                <p  style="margin-bottom: 5px;"><span class="pull-left" id="quantity-wanted-p">
 									<!-- <span class="dec qtybutton">-</span> -->
-									수량 : <input type="number" style="width: 40px" id="amount" name="amount" value="0" min="0" class="cart-plus-minus-box" >
+									수량 : <input type="number" style="width: 50px" id="amount" name="amount" value="1" min="1" max="10"/>
 									<!-- <span class="inc qtybutton">+</span> -->	
 								</span></p> 
                                <span>
@@ -372,6 +412,9 @@
 						            <button type="button" id="btnUpdete">수정</button>
 						            <button type="button" id="btnDelete">삭제</button>
 						        </c:if>
+						        
+						        <!-- 바로 구매하기 버튼 -->
+						        <button type="button" class="btn-default" id="btnBuy">구매하기</button>
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
 						        <button type="button" class="btn-default" id="btnList">목록</button>
                             </div> 
@@ -384,9 +427,9 @@
                         <div class="p-details-tab-content">
                             <div class="p-details-tab">
                                 <ul class="p-details-nav-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">판매자 제공</a></li>
+                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">판매자제공</a></li>
                                     <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">스펙</a></li>
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">댓글</a></li>
+                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">상품문의 / 구매후기</a></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>

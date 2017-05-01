@@ -97,6 +97,15 @@ public class TMouse {
         return "redirect:list.do";
     }
     
+    @RequestMapping(value="buy.do", method=RequestMethod.GET)
+    public String buy(@ModelAttribute TMouseVO vo, HttpSession session) throws Exception{
+        // session占쎈퓠 占쏙옙占쎌삢占쎈쭆 userId�몴占� writer占쎈퓠 占쏙옙占쎌삢
+        String crea_id = (String) session.getAttribute("id");
+        vo.setCrea_id(crea_id);
+        tmouseservice.create(vo);
+        return "redirect:list.do";
+    }
+    
     // 03. 野껊슣�뻻疫뀐옙 占쎄맒占쎄쉭占쎄땀占쎌뒠 鈺곌퀬�돳, 野껊슣�뻻疫뀐옙 鈺곌퀬�돳占쎈땾 筌앹빓占� 筌ｌ꼶�봺
     // @RequestParam : get/post獄쎻뫗�뻼占쎌몵嚥∽옙 占쎌읈占쎈뼎占쎈쭆 癰귨옙占쎈땾 1揶쏉옙
     // HttpSession 占쎄쉭占쎈�▼첎�빘猿�
@@ -162,6 +171,9 @@ public class TMouse {
     public List<String> getAttach(@PathVariable("idx") int idx){
         return tmouseservice.getAttach(idx);
     }
+    
+    
+    
     
     @RequestMapping("imageUpload.do")
     public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {

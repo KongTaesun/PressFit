@@ -256,6 +256,7 @@
 
 								</ul>
 							</div>
+							<div class="shopingcart-bottom-area1">
 							<div class="shop-tab-pill pull-right">
 								<ul>
 									<li class="product-size-deatils">
@@ -314,6 +315,7 @@
 										<button type="button" id="btnWrite">글쓰기</button>
 									</c:if>
 								</ul>
+							</div>
 							</div>
 						</div>
 
