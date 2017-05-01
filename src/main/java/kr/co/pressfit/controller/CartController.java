@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.pressfit.service.CartService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.TMouseVO;
 
 @Controller
 @RequestMapping("/shop/cart/*")
@@ -59,7 +61,14 @@ public class CartController {
         return mav;
     }
 
-    
+    @RequestMapping(value="buy.do", method=RequestMethod.GET)
+    public String buy(@ModelAttribute CartVO vo, HttpSession session) throws Exception{
+        // session占쎈퓠 占쏙옙占쎌삢占쎈쭆 userId�몴占� writer占쎈퓠 占쏙옙占쎌삢
+        String crea_id = (String) session.getAttribute("id");
+        vo.setCrea_id(crea_id);
+        cartService.buy(vo);
+        return "redirect:/tmouse/list.do";
+    }
    
     @RequestMapping("cartList.do")
     public ModelAndView list(HttpSession session, ModelAndView mav) throws Exception{
