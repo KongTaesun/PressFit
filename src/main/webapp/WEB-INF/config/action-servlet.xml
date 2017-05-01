@@ -35,8 +35,8 @@
     <!-- 스프링 빈을 태그로 등록하지 않고 자동으로 검색(auto scan) --> 
     <context:component-scan base-package="kr.co.pressfit" />
 
-	<beans:bean id="sampleInterceptor" class= "kr.co.pressfit.interceptor.SampleInterceptor"/> 
 	<beans:bean id="loginInterceptor" class= "kr.co.pressfit.interceptor.LoginInterceptor"/>
+	<beans:bean id="loggerInterceptor" class= "kr.co.pressfit.interceptor.LoggerInterceptor"/>
 	<beans:bean id="adminInterceptor" class= "kr.co.pressfit.interceptor.AdminInterceptor"/>
 	<beans:bean id="adminclearInterceptor" class= "kr.co.pressfit.interceptor.AdminclearInterceptor"/>
 	<interceptors> 
@@ -55,14 +55,16 @@
 				<mapping path="/member/*.do"/>
 				<beans:ref bean="adminclearInterceptor" />
 		</interceptor>
+		<interceptor> 
+				<mapping path="/**"/>
+				<beans:ref bean="loggerInterceptor" />
+		</interceptor>
 	</interceptors>
 
 
 <!-- 
-	<interceptors>
-	
+	<interceptors
 관리자 세션 체크를 위한 인터셉터 설정	
-		 
 		<interceptor>
 			<mapping path="/tmouse/write.do"/>
 			<mapping path="/tmouse/insert.do"/>

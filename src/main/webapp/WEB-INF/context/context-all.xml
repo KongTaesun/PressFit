@@ -15,7 +15,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://centosdbserver.cnqiy75vsfyr.ap-northeast-2.rds.amazonaws.com/pressfit"/>
         <property name="username" value="pressfit"/>
-        <property name="password" value="pressfit"/> 
+        <property name="password" value="pressfit"/>
     </bean>
     <!-- SqlSessionFactory 객체 주입 --> 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
