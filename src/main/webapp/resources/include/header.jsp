@@ -143,7 +143,7 @@ height: 95px;
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-6">
 				<div class="header-logo">
-					<a href="${path}/index.jsp"> <img
+					<a href="${path}/"> <img
 						src="${path}/resources/writer/img/logo/logo.png" alt="">
 					</a>
 				</div>
@@ -220,7 +220,7 @@ height: 95px;
 
 
 						<ul id="nav">
-							<li><a href="${path}/index.jsp">HOME</a></li>
+							<li><a href="${path}/">HOME</a></li>
 							<li><a href="#">CATEGORY</a>
 								<ul class="sub-menu">
 									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>

@@ -12,14 +12,14 @@ import kr.co.pressfit.vo.AdminVO;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CommunityVO;
 import kr.co.pressfit.vo.FaqVO;
-import kr.co.pressfit.vo.GalleryVO;
+import kr.co.pressfit.vo.GalleryVO; 
 import kr.co.pressfit.vo.KeyboardVO;
 import kr.co.pressfit.vo.MemberVO;
 import kr.co.pressfit.vo.PageVO;
 import kr.co.pressfit.vo.TMouseVO;
 
  
-@Service // 현재 클래스를 스프링에서 관리하는 service bean으로 등록
+@Service
 public class AdminServiceImpl implements AdminService {
     
     @Inject

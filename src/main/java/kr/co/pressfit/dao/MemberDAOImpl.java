@@ -9,25 +9,25 @@ import org.springframework.stereotype.Repository;
 import kr.co.pressfit.vo.MemberVO;
 
  
-@Repository // í˜„ì¬ í´ë˜ìŠ¤ë¥¼ ìŠ¤í”„ë§ì—ì„œ ê´€ë¦¬í•˜ëŠ” dao beanìœ¼ë¡œ ë“±ë¡
+@Repository // ÇöÀç Å¬·¡½º¸¦ ½ºÇÁ¸µ¿¡¼­ °ü¸®ÇÏ´Â dao beanÀ¸·Î µî·Ï
 public class MemberDAOImpl implements MemberDAO {
-    // SqlSession ê°ì²´ë¥¼ ìŠ¤í”„í•‘ì—ì„œ ìƒì„±í•˜ì—¬ ì£¼ì…
-    // ì˜ì¡´ê´€ê³„ ì£¼ì…(Dependency Injection), ëŠìŠ¨í•œ ê²°í•©
+    // SqlSession °´Ã¼¸¦ ½ºÇÁÇÎ¿¡¼­ »ı¼ºÇÏ¿© ÁÖÀÔ
+    // ÀÇÁ¸°ü°è ÁÖÀÔ(Dependency Injection), ´À½¼ÇÑ °áÇÕ
     @Inject
-    SqlSession sqlSession; // mybatis ì‹¤í–‰ ê°ì²´
-    
-    // 01_01. íšŒì› ë¡œê·¸ì¸ì²´í¬
+    SqlSession sqlSession; // mybatis ½ÇÇà °´Ã¼
+     
+    // 01_01. È¸¿ø ·Î±×ÀÎÃ¼Å©
     @Override
     public boolean loginCheck(MemberVO vo) {
         String name = sqlSession.selectOne("login.loginCheck", vo); 
         return (name == null) ? false : true;
     }
-    // 01_02. íšŒì› ë¡œê·¸ì¸ ì •ë³´
+    // 01_02. È¸¿ø ·Î±×ÀÎ Á¤º¸
     @Override
     public MemberVO viewMember(MemberVO vo) {
         return sqlSession.selectOne("login.viewMember", vo);
     }
-    // 02. íšŒì› ë¡œê·¸ì•„ì›ƒ
+    // 02. È¸¿ø ·Î±×¾Æ¿ô
     @Override
     public void logout(HttpSession sessin) {
     }

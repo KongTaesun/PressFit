@@ -106,6 +106,7 @@ public class Admin {
         if (result == true) { 
             mav.setViewName("admin/main");
             session.setAttribute("admin", vo.getId());
+            session.setAttribute("kind", "admin");
             session.setAttribute("adminlevel", vo.getLevel());
             session.setMaxInactiveInterval(60*40);
             mav.addObject("msg", "success");

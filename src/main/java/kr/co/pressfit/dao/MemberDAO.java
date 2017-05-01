@@ -5,10 +5,10 @@ import javax.servlet.http.HttpSession;
 import kr.co.pressfit.vo.MemberVO;
  
 public interface MemberDAO {
-    // 01_01. íšŒì› ë¡œê·¸ì¸ ì²´í¬
+    // 01_01. È¸¿ø ·Î±×ÀÎ Ã¼Å©
     public boolean loginCheck(MemberVO vo);
-    // 01_02. íšŒì› ë¡œê·¸ì¸ ì •ë³´
+    // 01_02. È¸¿ø ·Î±×ÀÎ Á¤º¸
     public MemberVO viewMember(MemberVO vo);
-    // 02. íšŒì› ë¡œê·¸ì•„ì›ƒ
+    // 02. È¸¿ø ·Î±×¾Æ¿ô
     public void logout(HttpSession session);
 }
