@@ -36,14 +36,14 @@ public class CartVO {
 	}
 	public String getKind() {
 		return kind;
-	}
+	} 
 	public void setKind(String kind) {
 		this.kind = kind;
 	}
 	public String getFullName() {
 		return fullName;
 	}
-	public void setFullName(String fullName) {
+	public void setFullName(String fullName) { 
 		this.fullName = fullName;
 	}
 	public int getIdx() {

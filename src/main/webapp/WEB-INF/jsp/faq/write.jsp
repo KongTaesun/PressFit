@@ -83,6 +83,26 @@
     background-color: gray;
 }
 </style>
+
+<script>
+$("#undercover").on(
+		"change", function() {
+			//체크박스가 선택된(checked) 상태인지 확인하는 방법
+			if ($(this).is(":checked")) {
+				//show() 메소드 특정 영역이 화면에 나타나도록 설정
+				$("#myQABoardInsertForm").find("#pwForm").show();
+				//removeAttr() 메소드 기존 속성 제거
+				$("#myQABoardInsertForm").find("#pwForm").find("#pw").removeAttr("disabled");
+			} else {
+				//hide() 메소드 특정 영역이 화면에 보이지 않도록 설정
+				$("#myQABoardInsertForm").find("#pwForm").hide();
+				$("#myQABoardInsertForm").find("#pwForm").find("#pw").attr("disabled", "disabled");
+			}
+		});
+</script>
+
+
+
 </head>
 <body>
 
@@ -139,10 +159,27 @@ CKEDITOR.replace("content",{
 	    <!-- 첨부파일의 목록 출력영역 -->
 	    <div id="uploadedList"></div>
 	</div>
+	
+	 <div class="checkbox">
+		<label><input type="checkbox" value="" id="undercover">비밀글
+			<span class="small">(비밀글을 체크하면 글내용 보기를 할 때 패스워드를 확인하는
+				게시물이 됩니다.)</span></label> <label class="text-danger small">* <!-- 수강 신청 확인
+			등 신원 확인이 필요한 문의는 이름, 전화번호, 이메일을 적어주시고, 비밀글 체크를 해주시기 바랍니다. --></label>
+	</div>
+    <div class="form-group" id="pwForm" style="display: none;">
+		<input type="password" class="form-control " id="pw" name="pw"
+			placeholder="패스워드 (4자리)" maxlength="4" required="required"
+			disabled="disabled">
+	</div>
+
+    
+    
     <div style="width:1000px; text-align: center;">
         <button type="button" id="btnSave">확인</button>
         <button type="reset">취소</button>
     </div>
+    
+   
     
 </form>
 </div>

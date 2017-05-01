@@ -15,19 +15,19 @@
   position: relative;
   width: 300px; 
   height: 50px;
-  margin: 0 auto;
+  margin: 0 auto;  
 } 
 .search-bar input { 
-  outline: none;
+  outline: none; 
   box-shadow: none;
   height: 50px; 
-  line-height: 50px;
-  width: 100%;  
+  line-height: 50px; 
+  width: 100%;   
   padding: 0 1em; 
   box-sizing: border-box;  
   background: transparent;    
   color: white;
-  border: 4px solid white;  
+  border: 4px solid white;   
   border-radius: 50px;  
 }
 .search-bar .toggle {
@@ -40,7 +40,7 @@
   width: 50px;
   height: 50px;
   cursor: pointer;
-  right: 0;
+  right: 0; 
   top: 0;
   border-radius: 50px;
 }
@@ -121,7 +121,7 @@
   60% {
     height: 0px;
     -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
+    transform: translate(-8px, 8px) rotate(45deg); 
   }
   100% {
     height: 0px;
@@ -133,7 +133,7 @@
   0% {
     height: 25px;
     -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    transform: translate(-25px, 12.5px) rotate(45deg); 
   }
   10% {
     height: 25px;
@@ -996,7 +996,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 </div>
 <!-- Testimonial Area End -->
 <!-- Map Area Start -->
@@ -1010,12 +1010,12 @@ $(document).ready(function() {
 		        center: new daum.maps.LatLng(37.4946571, 127.0276173), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
 		    };
-	
+	 
 			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 			
 			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 			var mapTypeControl = new daum.maps.MapTypeControl();
-
+ 
 			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
 			// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 			map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
