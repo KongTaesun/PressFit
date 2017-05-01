@@ -21,13 +21,49 @@
             #{price},
             #{amount},
             #{modelname},
-            manufacturecompany,
+            #{manufacturecompany},
             #{user_id},
             #{fullName},
             #{kind},
             #{crea_id}
         )
     </insert>
+    
+    <!-- 바로구매 -->
+    <insert id="buy">
+        INSERT INTO cart_board(
+        	idx, 
+        	price, 
+        	amount, 
+        	modelname,
+        	manufacturecompany,
+        	payment,
+        	user_id,
+        	fullName,
+        	kind,
+        	crea_id
+        	)
+        VALUES (
+            #{idx},
+            #{price},
+            #{amount},
+            #{modelname},
+            #{manufacturecompany},
+            #{payment},
+            #{user_id},
+            #{fullName},
+            #{kind},
+            #{crea_id}
+        )
+    </insert>
+    
+    <select id="buyselect" resultType="kr.co.pressfit.vo.CartVO">
+    	select * from cart_board
+     	 where payment ='c'
+     	 and cart_id = (select MAX(cart_id) FROM cart_board);
+    </select>
+    
+    
     
     <!-- 2. 장바구니 목록 -->
     <select id="listCart" resultType="kr.co.pressfit.vo.CartVO">
@@ -44,6 +80,14 @@
         SELECT ifnull(SUM(c.price * c.amount), 0) money
         FROM cart_board c, TMouseBoard p
         WHERE c.idx = p.idx AND c.payment = 'N' AND c.user_id = #{user_id} 
+    </select>
+    
+    <!-- 3-2. 바로구매 금액 계산 -->
+    <select id="sumBuyMoney" resultType="int">
+        SELECT ifnull(SUM(c.price * c.amount), 0) money
+        FROM cart_board c
+        where payment ='c'
+     	and cart_id = (select MAX(cart_id) FROM cart_board);
     </select>
     
     <!-- 4. 장바구니 수정 -->
@@ -80,6 +124,7 @@
         WHERE user_id= #{user_id} 
         AND idx = #{idx}
     </update>
+    
     
     
     

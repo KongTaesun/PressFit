@@ -94,7 +94,7 @@ text-align: left;
 					                    
 					                    
 					                    <td style="width: 80px" align="center">
-					                        <fmt:formatNumber pattern="###,###,###" value="${row.price}"/>원
+					                        <fmt:formatNumber pattern="###,###,###" value="${map.allSum }"/>원
 					                        <%-- <input type="hidden" name="price" value="${row.price}"> --%>
 					                    </td>
 					                    

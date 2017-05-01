@@ -140,4 +140,6 @@ public class TMouseDAOImpl implements TMouseDAO {
     public int replycount(Integer boardno) {
         return SqlSession.selectOne(name+".countReply", boardno);
     }
+	
+    
 }

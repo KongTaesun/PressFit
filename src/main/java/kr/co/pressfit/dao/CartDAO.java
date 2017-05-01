@@ -3,6 +3,7 @@ package kr.co.pressfit.dao;
 import java.util.List;
 
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.TMouseVO;
 
 public interface CartDAO {
 
@@ -18,4 +19,6 @@ public interface CartDAO {
 	public List<CartVO> order(List<String> chkArr) throws Exception;
 	public List<CartVO> memberInfo(String id) throws Exception;
 	public void amounttest(CartVO vo) throws Exception;
+	public CartVO buy(CartVO vo) throws Exception;
+	public int sumBuyMoney(String id)throws Exception;
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.pressfit.dao.CartDAO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.TMouseVO;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -66,7 +67,15 @@ public class CartServiceImpl implements CartService {
 	public void amounttest(CartVO vo) throws Exception {
 		cartDao.amounttest(vo);
 	}
-	
+	@Override
+	public CartVO buy(CartVO vo) throws Exception {
+		return cartDao.buy(vo);
+	}
+	@Override
+	public int sumBuyMoney(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return cartDao.sumBuyMoney(id);
+	}
 	
 }
 

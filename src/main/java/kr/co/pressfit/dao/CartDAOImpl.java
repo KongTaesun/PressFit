@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.TMouseVO;
 
 @Repository
 public class CartDAOImpl implements CartDAO {
@@ -124,5 +125,17 @@ public class CartDAOImpl implements CartDAO {
 			sqlSession.update("cart.amounttest_mouse", vo);
 		
 	}
+	@Override
+	public CartVO buy(CartVO vo) throws Exception {
+		System.out.println("dao임플"+vo);
+		sqlSession.insert("cart.buy", vo);
+		return sqlSession.selectOne("cart.buyselect");
+	}
 
+	@Override
+	public int sumBuyMoney(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("cart.sumBuyMoney", id);
+	}
+	
 }
