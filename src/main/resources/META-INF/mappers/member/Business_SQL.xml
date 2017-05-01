@@ -52,12 +52,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <sql id="search">
       <if test="searchOption=='order'">
          and (shippingStatus = '0'
-         or shippingStatus = '1'
-         or shippingStatus = '2')
+         or shippingStatus = '1')
       </if>
       <if test="searchOption=='refund'">
-         and (shippingStatus = '3'
-         or shippingStatus = '4')
+         and (shippingStatus = '3')
       </if>
       <if test="searchOption=='exchange'">
          and (shippingStatus = '5'
