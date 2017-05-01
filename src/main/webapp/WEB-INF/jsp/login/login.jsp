@@ -338,6 +338,13 @@
                 </div>               
            </div>   
     </div> 
+    
+    <div style="background-color:#15a181; width: 100%; height: 50px;text-align: center; color: white; "><h3>SIST Login</h3></div>
+<br>
+    
+    <div id="naver_id_login" style="text-align:center"><a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/img/naver_Bn_Green.PNG"/></a></div>
+<br>
+    
          
    <!--      <a class="btn btn-block btn-social btn-kakao" onclick="document.kakao.submit();">
         <span class="fa fa-kakao"></span>카카오톡 계정으로 로그인하기</a> 

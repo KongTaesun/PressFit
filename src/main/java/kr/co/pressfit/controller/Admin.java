@@ -42,7 +42,7 @@ public class Admin {
 	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(SearchController.class);
 	
-	@Inject  
+	@Inject   
 	TMouseService tmouseservice;
     @Inject
     KeyboardService keyboardservice;
@@ -139,10 +139,10 @@ public class Admin {
 			@RequestParam(defaultValue="PAGE_ROW",name="PAGE_ROW") int pagerow) throws Exception{
 		int nPageIndex = 0;
 	    if(StringUtils.isEmpty(pageindex) == false){
-	        nPageIndex = pageindex-1;
+	        nPageIndex = pageindex-1; 
 	    }
     	PageVO vo = new PageVO();
-    	vo.setSTART((nPageIndex * pagerow));
+    	vo.setSTART((nPageIndex * pagerow));  
     	vo.setEND(pagerow);
     	List<CommunityVO> list = adminservice.communityList(vo);
 
@@ -252,7 +252,7 @@ public class Admin {
     	}
     	
     	return mv;
-    }
+    } 
 	@RequestMapping(value="/gallery/create.do")
 	public ModelAndView gallerycreate(@RequestParam(name="galleryVO") GalleryVO vo)throws Exception{
 		galleryservice.create(vo);
