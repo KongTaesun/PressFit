@@ -2,21 +2,54 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
+
+<%@ include file="/resources/include/header.jsp"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/diction.png');
+}
+</style>
 <body>
 
-
-				<script type="text/javascript">
+<script type="text/javascript">
 				jQuery(document).ready(function($){ new $("FORM#srchFRM_TOP").danawaSearchAutoComplete({"gnbCode":2}); });
 				</script>
+		
+</head>
+<body>
+
+<div class="breadcrumbs-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumbs">
+
+
+						<h2>사업자 이용약관</h2>
+						<ul class="breadcrumbs-list">
+
+							<li>사업자 이용약관</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<div id="danawa_container">
+	
+	 <!-- Shop Area Start -->
+        <div class="shopping-area section-padding">
+            <div class="container">
+                <div class="row">       
+                    <div class="col-md-12">
+                           		
+		
+		
+		
 <!-- navigation -->
 <div id="navigation">
 	<h2 class="blind">정책정보 메뉴</h2>
@@ -420,9 +453,10 @@
 </div>
 <hr />
 
+                        </div>
+                        </div>
+                        </div>
 
-
-
-
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

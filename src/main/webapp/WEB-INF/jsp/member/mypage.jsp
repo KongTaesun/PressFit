@@ -200,6 +200,8 @@ function checkImageType(fileName){
 <!-- 파일을 업로드할 영역 -->
 <div class="fileDrop"></div>
 
+	    <div class="fileDrop"></div>
+	    <div id="uploadedList"></div>
          
          
          
