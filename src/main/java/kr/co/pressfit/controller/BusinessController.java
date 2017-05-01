@@ -66,9 +66,6 @@ public class BusinessController {
 	 
 	@RequestMapping("view.do")
 	public String view(@RequestParam  String id, Model model){
-		
-		logger.info("클릭한 아이디:"+id);
-		
 		model.addAttribute("vo", businessService.viewBusiness(id));
 		return "business/view";
 	}

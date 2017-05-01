@@ -70,9 +70,6 @@ public class KeyboardDAOImpl implements KeyboardDAO {
     @Override
     public int countArticle(String searchOption, String keyword, String id) throws Exception {
     	// 검색옵션, 키워드 맵에 저장
-    	System.out.println("dao----------------------------");
-    	System.out.println(searchOption);
-    	System.out.println(id);
     	Map<String, String> map = new HashMap<String, String>();
     	map.put("searchOption", searchOption);
     	map.put("keyword", keyword);

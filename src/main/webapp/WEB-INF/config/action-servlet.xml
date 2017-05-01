@@ -56,7 +56,8 @@
 				<beans:ref bean="adminclearInterceptor" />
 		</interceptor>
 		<interceptor> 
-				<mapping path="/**"/>
+				<mapping path="*/"/>
+				<mapping path="/**/*.do"/>
 				<beans:ref bean="loggerInterceptor" />
 		</interceptor>
 	</interceptors>

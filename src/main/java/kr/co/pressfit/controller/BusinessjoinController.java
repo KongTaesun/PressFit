@@ -38,8 +38,8 @@ public class BusinessjoinController {
         if (result == true) { 
             mav.setViewName("login/login");
             session.setAttribute("id", vo.getId());
-
             session.setAttribute("kind", "business");
+            session.setMaxInactiveInterval(20*60);
             mav.addObject("msg", "success");
         } else {    
         	 

@@ -23,6 +23,8 @@ public class MemberServiceImpl implements MemberService {
             // 세션 변수 등록
             session.setAttribute("id", vo2.getId());
             session.setAttribute("name", vo2.getName());
+            session.setAttribute("kind", "member");
+            session.setMaxInactiveInterval(20*60);
         } 
         return result;
     }
