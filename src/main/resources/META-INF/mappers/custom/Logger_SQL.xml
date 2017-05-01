@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="logger">
+ 
+    <insert id="requesttime" parameterType="kr.co.pressfit.vo.LoggerVO">
+    	insert into visitant(ip,start,login,id,kind,uri) 
+   		value(#{ip},#{start},#{login},#{id},#{kind},#{uri})
+    </insert>
+    <update id="responsetime" parameterType="kr.co.pressfit.vo.LoggerVO">
+    	update visitant set processtime=#{processtime}, end=#{end}
+    </update>
+    
+</mapper>
