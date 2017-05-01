@@ -3,9 +3,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <title>주문내역</title>
 <%@ include file="/resources/include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <style>
 .image{
     height: 100px;
@@ -32,15 +36,79 @@ width:100%
 .orderlist_scroll{
 overflow-y:scroll; width:100%; height:400px; 
 }
+
+.btn-default{
+background:#32b5f3 none repeat scroll 0 0;
+border-radius: 20px;
+color: #ffffff;
+display: inline-block;
+font-weight: 500;
+padding: 10px 25px;
+text-transform: uppercase;
+float: right !important;
+}
+
+.p-details-tab ul.p-details-nav-tab li.active a {
+    color: #444444;
+    display: block;
+    position: relative;
+}
+
+.p-details-tab ul.p-details-nav-tab li a {
+    color: #c8c8c8;
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    position: relative;
+    text-transform: capitalize;
+}
 </style>
+<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
+<script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
+
 <script>
 	$(document).ready(function() {
-		$("#clear").click(function() {
-			// 장바구니 비우기
-			alldelete();
+		$('#one').show();
+		$('#two').hide();
+		$('#three').hide();
+		$('#btnone').click(function(){
+			$('#one').show();
+			$('#two').hide();
+			$('#three').hide();
 		});
+		$('#btntwo').click(function(){
+			$('#one').hide();
+			$('#two').show();
+			$('#three').hide();
+			
+		});
+		$('#btnthree').click(function(){
+			$('#one').hide();
+			$('#two').hide();
+			$('#three').show();
+			
+		});
+		$.datepicker.setDefaults({
+		    dateFormat: 'yy-mm-dd',
+		    prevText: '이전 달',
+		    nextText: '다음 달',
+		    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		    showMonthAfterYear: true,
+		    yearSuffix: '년'
+		  });
 
-		
+		  
+		    $("#datepicker1, #datepicker2").datepicker();
+		  
+		//전체 체크(주문)
 		$("#allCheck1").click(function(){
 			
 			if($("#allCheck1").prop("checked")){
@@ -50,6 +118,7 @@ overflow-y:scroll; width:100%; height:400px;
 				$(".check_id1").prop("checked", false);
 			}
 		});
+		//전체 체크(환불)
 		$("#allCheck2").click(function(){
 					
 			if($("#allCheck2").prop("checked")){
@@ -59,6 +128,7 @@ overflow-y:scroll; width:100%; height:400px;
 				$(".check_id2").prop("checked", false);
 			}
 		});
+		//전체 체크(교환)
 		$("#allCheck3").click(function(){
 			
 			if($("#allCheck3").prop("checked")){
@@ -100,7 +170,7 @@ overflow-y:scroll; width:100%; height:400px;
 		
 	});
 
-	
+	// 체크된 항목(cart_id) 배열생성
  	function order() {
  		var idx = document.getElementsByName("check");
  		for (var i = 0; i < idx.length; i++) {
@@ -111,121 +181,8 @@ overflow-y:scroll; width:100%; height:400px;
  		 list;
 	}	
  	
-	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
-	function list(page) {
-		var link = location.href = "${path}/tmouse/list.do?curPage=" + page
-		+ "&searchOption=${map.searchOption}"
-		+ "&keyword=${map.keyword}";
-		
-        var tab = link.split('/').pop();
-        $('a[href$='+tab+']').trigger("click");
-		
-		
-		
-		
-		/* location.href = "${path}/tmouse/list.do?curPage=" + page
-				+ "&searchOption=${map.searchOption}"
-				+ "&keyword=${map.keyword}"; */
-	}
-</script>
-
-
-
-</head>
-<body>
-
-  
-        <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					    <div style="padding: 140px 0;">
-					       <h2>SHOPPING CART</h2> 
-					       <ul class="breadcrumbs-list">
-						        <li>
-						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
-						        <li>Shopping Cart</li>
-						    </ul>
-						    
-						    <!-- layer 2 -->      
-					<div >
-						<div class="col-md-1 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".9999s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.9999s;">
-								<div class="counter-info">
-															
-								</div>
-							</div>		                
-			            </div>    
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>누적검색횟수</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>마우스 매출액</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">286</span>
-									</span>
-									<h3>키보드 매출액</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">550</span>
-									</span>
-									<h3>총 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">2485</span>
-									</span>
-									<h3>총 매출액</h3>								
-								</div>
-							</div>		                
-			            </div> 
-					</div>
-						    
-					    </div>
-					    
-					    
-					    
-					</div>
-				</div>
-			</div>
-		</div> 
-		<!-- Breadcrumbs Area Start --> 
-		
-		
-
-<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
-<script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
-<script>
+	/////////////////////////////////////////////
+	// 그래프 1
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 100)
 	};
@@ -277,8 +234,8 @@ overflow-y:scroll; width:100%; height:400px;
 			responsive : true
 		});
 	});
-</script>
-<script type="text/javascript">
+	
+	// 그래프 2
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 300)
 	};
@@ -406,34 +363,123 @@ overflow-y:scroll; width:100%; height:400px;
 </script>
 
 
+
+</head>
+<body>
+
+  
+        <!-- Breadcrumbs Area Start -->
+        <div class="breadcrumbs-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					    <div style="padding: 100px 0;">
+					       <h2>SHOPPING CART</h2> 
+					       <ul class="breadcrumbs-list">
+						        <li>
+						            <a title="Return to Home" href="index.html">Home</a>
+						        </li>
+						        <li>Shopping Cart</li>
+						    </ul>
+						    
+						    
+						    
+					    </div>
+					    
+					    <!-- layer 2 -->      
+					<div>
+						<div class="col-md-1 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".9999s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.9999s;">
+								<div class="counter-info">
+															
+								</div>
+							</div>		                
+			            </div>    
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>누적검색횟수</h3>								
+								</div>
+							</div>		                
+			            </div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>마우스 매출액</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">286</span>
+									</span>
+									<h3>키보드 매출액</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">550</span>
+									</span>
+									<h3>총 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">2485</span>
+									</span>
+									<h3>총 매출액</h3>								
+								</div>
+							</div>		                
+			            </div> 
+					</div>
+					    
+					    
+					    
+					</div>
+				</div>
+			</div>
+		</div> 
+		<!-- Breadcrumbs Area Start --> 
+		
+	
 		<!-- Cart Area Start -->
 		<div class="shopping-cart-area">
 		    <!-- <div class="col-md-1"></div> -->
 		    <div class="col-md-1"></div>
 		    <div class="col-md-10">
-		    	
-			        
-			        
-			            
-			            	
-	                        <div class="wishlist-table-area table-responsive">
-	                        
-						        
-						        <div  >
+	          <div class="wishlist-table-area table-responsive">
+	              <div>
 					<div class="col-md-12">
                         <div class="p-details-tab-content">
-                            <div class="p-details-tab">
-                                <ul class="p-details-nav-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#more-info" aria-controls="more-info" role="tab" data-toggle="tab">주문내역</a></li>
-                                    <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">환불내역</a></li>
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">교환내역</a></li>
+                        <div style="margin-top:50px;">
+                       	 조회날짜 : <input type="text" id="datepicker1"> ~ <input type="text" id="datepicker2">
+                            </div>
+                            <div>
+                                <ul>
+                                    <li role="presentation" class="active"><a href="#" id="btnone">주문내역</a></li>
+                                    <li role="presentation"><a href="#" id="btntwo">환불내역</a></li>
+                                    <li role="presentation"><a href="#" id="btnthree">교환내역</a></li>
                                 </ul>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="tab-content review">
-                                <div role="tabpanel" class="tab-pane active" id="more-info">
+                            <div>
+                                <div id="one">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=order" onsubmit="return order();">
-                                <div class="orderlist_scroll">
+                                <div  class="orderlist_scroll">
                                 <c:choose>
 						        <c:when test="${map.listcount1 == 0}">
 						           	주문들어온 내역이 없습니다.
@@ -451,8 +497,6 @@ overflow-y:scroll; width:100%; height:400px;
 						                    <th>구매자</th>
 						                   	<th>상태</th>
 						                   	<th>주문날짜</th>
-	
-						                    <!-- <th>취소</th> -->
 						                </tr>
 	                                </thead>
 	                                <tbody>
@@ -533,16 +577,13 @@ overflow-y:scroll; width:100%; height:400px;
 	                            
 	                        </div>
 	                        <div class="shopingcart-bottom-area">
-	                        	<input type="submit" id="order" name="order" value="배송시작"
-	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
-	                            text-transform: uppercase;float: right !important;"/>
-	                            
+	                        	<input type="submit" id="order" class="btn-default" name="order" value="배송시작"/>
 	                        </div>
 	                        </form>
                                 </div>
                                 
                                 
-                                <div role="tabpanel" class="tab-pane" id="data">
+                                <div id="two">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=refund" onsubmit="return order();">
                                 <div class="orderlist_scroll">
                                 <c:choose>
@@ -643,15 +684,13 @@ overflow-y:scroll; width:100%; height:400px;
                                 
 	                        </div>
 	                        <div class="shopingcart-bottom-area">
-	                        	<input type="submit" id="order" name="order" value="환불승인"
-	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
-	                            text-transform: uppercase;float: right !important;"/>
+	                        	<input type="submit" id="order" class="btn-default" name="order" value="환불승인"/>
 	                            
 	                        </div>
 	                        </form>
-                                </div>
+                            </div>
                                 
-                                <div role="tabpanel" class="tab-pane" id="reviews">
+                                <div id="three">
                                 <form name="frm" method="post" action="${path}/business/payment.do?searchOption=exchange" onsubmit="return order();">
                                 <div class="orderlist_scroll">
                                 <c:choose>
@@ -752,9 +791,7 @@ overflow-y:scroll; width:100%; height:400px;
                                 
 	                        </div>
 	                        <div class="shopingcart-bottom-area">
-	                        	<input type="submit" id="order" name="order" value="교환승인"
-	                            style="background:#32b5f3 none repeat scroll 0 0;border-radius: 20px;color: #ffffff;display: inline-block;font-weight: 500;padding: 10px 25px;
-	                            text-transform: uppercase;float: right !important;"/>
+	                        	<input type="submit" id="order" class="btn-default" name="order" value="교환승인"/>
 	                            
 	                        </div>
 	                        </form>
@@ -824,5 +861,6 @@ overflow-y:scroll; width:100%; height:400px;
         <!-- Discount Area End -->
         
 		<%@ include file="/resources/include/footer.jsp" %>
+		
     </body>
 </html>

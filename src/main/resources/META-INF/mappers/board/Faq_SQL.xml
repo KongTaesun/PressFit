@@ -109,8 +109,7 @@
     <update id="updateArticle">
         UPDATE FaqBoard SET
             title = #{title},
-            content = #{content},
-            writer = #{writer}
+            content = #{content}
         WHERE idx = #{idx}
     </update>
     <!-- 06. 게시글 삭제처리 -->

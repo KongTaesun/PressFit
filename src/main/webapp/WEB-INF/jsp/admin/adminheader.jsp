@@ -32,8 +32,95 @@
 	<script src="${path}/resources/admin/assets/js/chartist.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="${path}/resources/admin/assets/js/bootstrap-notify.js"></script>
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-	<script src="${path}/resources/admin/assets/js/light-bootstrap-dashboard.js"></script>
-	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-	<script src="${path}/resources/admin/assets/js/demo.js"></script>
+        <!--  Light Bootstrap Table core CSS    -->
+    <link href="${path}/resources/admin/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="${path}/resources/admin/assets/css/demo.css" rel="stylesheet" />
 </head>
+<style>
+.dialog__trigger, .dialog__action {
+  border: 3px solid #ffffff;
+  background: #f1f1f1;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  display: block;
+  -webkit-transition: all 150ms ease-out;
+  transition: all 150ms ease-out;
+  float: left;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+}
+.dialog__trigger:hover, .dialog__trigger:focus, .dialog__action:hover, .dialog__action:focus {
+  outline: 0;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  box-shadow: 0 5px 10px rgba(51, 51, 51, 0.4);
+  float: left;
+}
+.dialog__trigger:active, .dialog__action:active {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+}
+
+.dialog {
+  background: #f1f1f1;
+  width: 70%;
+  position: absolute;
+  left: calc(50% - 35%);
+  top: 0;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(51, 51, 51, 0.4);
+  border: 3px solid #333333;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 180ms ease-in;
+  transition: all 180ms ease-in;
+  float: left;
+}
+@media (max-width: 600px) {
+  .dialog {
+    width: 90%;
+    left: calc(50% - 45%);
+  }
+}
+.dialog.dialog--active {
+  top: 10%;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: all 250ms ease-out;
+  transition: all 250ms ease-out;
+}
+.dialog .dialog__close {
+  font-size: 2rem;
+  line-height: 2rem;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  padding: 15px;
+  -webkit-transition: color 150ms ease;
+  transition: color 150ms ease;
+}
+.dialog .dialog__close:hover {
+  color: #E74C3C;
+}
+.dialog .dialog__title {
+  font-size: 2rem;
+  font-family: 'Slabo 27px', serif;
+  font-weight: 100;
+  margin: 0;
+  padding: 0 0 15px 0;
+  border-bottom: 2px solid #333333;
+}
+.dialog .dialog__content {
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+.dialog .dialog__action {
+  margin: 0;
+  font-size: 1rem;
+}
+</style>

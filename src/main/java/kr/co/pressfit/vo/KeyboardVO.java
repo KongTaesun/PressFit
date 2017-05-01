@@ -59,15 +59,21 @@ public class KeyboardVO {
 	private String content;
 	private int amount;
 	private int TOTAL;
+	private int warn;
 	
+
+	public int getWarn() {
+		return warn;
+	}
+	public void setWarn(int warn) {
+		this.warn = warn;
+	}
 	public int getTOTAL() {
 		return TOTAL;
 	}
 	public void setTOTAL(int tOTAL) {
 		TOTAL = tOTAL;
 	}
-	
-	
     public int getAmount() {
 		return amount;
 	}
@@ -440,8 +446,8 @@ public class KeyboardVO {
 				+ ", cleaningbrush=" + cleaningbrush + ", replacementkeycaps=" + replacementkeycaps + ", width=" + width
 				+ ", length=" + length + ", height=" + height + ", weight=" + weight + ", cablelength=" + cablelength
 				+ ", analysis=" + analysis + ", crea_id=" + crea_id + ", showdel=" + showdel + ", hit_cnt=" + hit_cnt
-				+ ", recnt=" + recnt + ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL
-				+ ", fullName=" + fullName + "]";
+				+ ", recnt=" + recnt + ", content=" + content + ", amount=" + amount + ", TOTAL=" + TOTAL + ", warn="
+				+ warn + ", fullName=" + fullName + "]";
 	}
 	
 }

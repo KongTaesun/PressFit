@@ -3,12 +3,30 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
                         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<<<<<<< HEAD
+    <welcome-file-list>
+       <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+       <welcome-file>index.jsp</welcome-file>
+       
+    </welcome-file-list>
+ 
+=======
  	<welcome-file-list>
  		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
  		<welcome-file>index.jsp</welcome-file>
  		
  	</welcome-file-list>
- 
+ 	<!-- error page setup -->
+	 <error-page>
+	  <error-code>404</error-code>
+	  <location>/WEB-INF/jsp/error/code404.jsp</location>
+	 </error-page>
+	
+	 <error-page>
+	  <error-code>500</error-code>
+	  <location>/WEB-INF/jsp/error/code500.jsp</location>
+	 </error-page>
+>>>>>>> origin/tesuk
  
     <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
     <context-param>
@@ -21,8 +39,12 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
- 	
+<<<<<<< HEAD
+    
+     <filter>
+=======
  	 <filter>
+>>>>>>> origin/tesuk
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
         <init-param>
@@ -36,7 +58,7 @@
         <!-- DispatcherServlet이 모든 요청을 가로챌 수 있도록 등록 -->
         <!-- 특정 url으로 변경하여 사용가능 ex) *.do -->
     </filter-mapping>
- 	
+    
     <!-- Processes application requests -->
     <servlet>
         <servlet-name>appServlet</servlet-name>
@@ -59,4 +81,4 @@
         <!-- 특정 url으로 변경하여 사용가능 ex) *.do -->
     </servlet-mapping>
  
-</web-app>
+</web-app> 

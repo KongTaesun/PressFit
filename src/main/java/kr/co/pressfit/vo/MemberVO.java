@@ -15,7 +15,24 @@ public class MemberVO {
 	private Date regdate; // java.sql.Date
 	private Date updatedate;
 	private int TOTAL;
+<<<<<<< HEAD
+	private String cpicture;
 	
+	
+	public String getCpicture() {
+		return cpicture;
+	}
+	public void setCpicture(String cpicture) {
+		this.cpicture = cpicture;
+=======
+	private	int warn;
+	public int getWarn() {
+		return warn;
+	}
+	public void setWarn(int warn) {
+		this.warn = warn;
+>>>>>>> origin/tesuk
+	}
 	public int getTOTAL() {
 		return TOTAL;
 	}
@@ -78,12 +95,16 @@ public class MemberVO {
 	public void setEmail(String email) { 
 		this.email = email;
 	}
+<<<<<<< HEAD
+	
+=======
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender
 				+ ", birth=" + birth + ", address=" + address + ", hp=" + hp + ", email=" + email + ", regdate="
-				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + "]";
+				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + ", warn=" + warn + "]";
 	}
+>>>>>>> origin/tesuk
 	public Date getRegdate() {
 		return regdate;
 	}
@@ -96,5 +117,12 @@ public class MemberVO {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender
+				+ ", birth=" + birth + ", address=" + address + ", hp=" + hp + ", email=" + email + ", regdate="
+				+ regdate + ", updatedate=" + updatedate + ", TOTAL=" + TOTAL + ", picture=" + cpicture + "]";
+	}
+	
 	
 }

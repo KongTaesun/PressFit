@@ -34,8 +34,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set pw=#{pw}, pw2=#{pw2},name=#{name}
 		where id=#{id}
 	</update> 
+	<update id="update1"> 
+	<![CDATA[
+		update ${id}
+	]]>
+		set pw=#{pw}
+		where idx=#{idx}
+	</update> 
+	<update id="update2"> 
+	<![CDATA[
+		update ${id}
+		set warn=warn+1
+		where idx=#{idx}
+	]]>
+	</update> 
+	<delete id="delete1"> 
+	<![CDATA[
+		delete from ${id}
+		where idx=#{idx}
+	]]>
+	</delete> 
 	<delete id="delete">
-		delete from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2} 
+		delete from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2}
 	</delete>
 	<select id="passwordcheck" resultType="int">
 		select EXISTS(select * from Aadmin where id=#{id} and pw=#{pw} and pw2=#{pw2})
@@ -52,9 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		, AA.*
 		from(
 		]]>
-		</sql>
-		
-		<sql id="pagingPost">
+	</sql>
+	<sql id="pagingPost">
 		<![CDATA[
 		) AA, (select @i := 0, @j := 0) temp	
 		) AAA	
@@ -64,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="community" parameterType="kr.co.pressfit.vo.CommunityVO" resultType="kr.co.pressfit.vo.CommunityVO">
 	    <include refid="pagingPre"/>
 	    <![CDATA[
-		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
       	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
       	WHERE b.writer = m.id AND showdel = 'y'
@@ -76,7 +95,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="faq" resultType="kr.co.pressfit.vo.FaqVO">
 	<include refid="pagingPre"/>
 	    <![CDATA[
-		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM FaqReply WHERE boardno=b.idx) AS recnt
       	FROM FaqBoard b, Cmember m,(SELECT @ROWNUM := 0) R
       	WHERE b.writer = m.id AND showdel = 'y'
@@ -88,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="gallery" resultType="kr.co.pressfit.vo.GalleryVO">
 	    <include refid="pagingPre"/>
 	    <![CDATA[
-        SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+        SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM GalleryReply WHERE boardno=b.idx) AS recnt,
       	(SELECT fullname FROM GalleryFile WHERE idx=b.idx ORDER BY GalleryFile.regdate limit 1) AS fullname
       	FROM GalleryBoard b, Cmember m,(SELECT @ROWNUM := 0) R

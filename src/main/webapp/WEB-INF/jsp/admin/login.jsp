@@ -55,7 +55,7 @@
 								</div>
 								<div class="col-md-5"> </div>
 								<div class="col-md-2">
-								<button type="submit" class="btn btn-info btn-fill">Login</button>
+								<button type="submit" class="btn btn-info btn-fill" style="padding: 10px 12px">Login</button>
 								</div>
 								<div class="clearfix"></div>
 							</form>

@@ -20,17 +20,20 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	</insert>
 	
 	<select id="viewMember" resultType=
-"kr.co.pressfit.vo.MemberVO">
+	"kr.co.pressfit.vo.MemberVO">
 	select * from Cmember
 	where id=#{id}
 	</select>
+	
 	<!-- 회원정보 수정 -->
 	<update id="updateMember"> 
 	update Cmember 
-	set pw=#{pw}, name=#{name}
-		,email=#{email}, updatedate=now()
+	set pw=#{pw}, name=#{name} 
+		,email=#{email}, updatedate=now(), cpicture=#{cpicture}
 	where id=#{id}
 	</update>
+	
+	
 	<!-- 회원정보 삭제 -->
 	<delete id="deleteMember">
 		delete from Cmember
@@ -47,6 +50,8 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	select * from Cmember
 	where id=#{id}
 	</select>
+	
+	
 	
 </mapper>
 

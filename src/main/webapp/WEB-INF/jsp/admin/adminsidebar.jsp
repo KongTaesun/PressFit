@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="sidebar" data-color="azure" data-image="${path}/resources/admin/img/2.jpg">
-    <div class="sidebar-wrapper">
+<div class="sidebar">
+    <div class="sidebar-wrapper" style="background-image: url('${path}/resources/admin/img/2.jpg')">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text" style="font-family: Connoisseurs;text-transform: none;font-size: 50px">
+                <a href="${path}/admin/inter/login.do" class="simple-text" style="font-family: Connoisseurs;text-transform: none;font-size: 50px">
                     Press Fit
                 </a>
             </div>
