@@ -58,7 +58,7 @@
         </init-param>
         <!-- 가장 첫번째 우선순위를 뜻한다. -->
         <load-on-startup>1</load-on-startup>
-    </servlet>
+    </servlet> 
         
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
