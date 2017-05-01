@@ -60,7 +60,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	        String str = format.format(processedTime*0.001);
 	        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // HH=24h, hh=12h
 	        String Time = df.format(currentTime);
-	        System.out.println("\t\t\t Request 처리시간 	\t: " + str);
+	        System.out.println("\t\t\t Request 처리시간 	\t: " + str+"(단위:s)");
 	        System.out.println("\t\t\t Request 완료시간 	\t: " + Time);
 	        System.out.println("\t\t======================================           END          ======================================\n");
 	        log.info("\n\n");
