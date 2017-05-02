@@ -15,7 +15,7 @@
   position: relative;
   width: 300px; 
   height: 50px;
-  margin: 0 auto;  
+  margin: 0 auto;   
 } 
 .search-bar input { 
   outline: none; 
