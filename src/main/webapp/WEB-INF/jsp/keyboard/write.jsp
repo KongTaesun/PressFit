@@ -22,7 +22,7 @@
                 return;
             }
             document.form1.submit();
-        });
+        }); 
         // 파일 업로드 영역에서 기본효과를 제한
         $(".fileDrop").on("dragenter dragover", function(e){
             e.preventDefault(); // 기본효과 제한
