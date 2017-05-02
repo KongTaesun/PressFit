@@ -8,7 +8,7 @@ public class CommunityVO {
 	private String title;
 	private String content;
 	private String writer;
-	private String regdate;
+	private Date regdate;
 	private int viewcnt;
 	private String[] filelist;
 	private String showdel;
@@ -54,10 +54,10 @@ public class CommunityVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	public int getViewcnt() {

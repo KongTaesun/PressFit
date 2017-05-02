@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글</title>
 <%@ include file="/resources/include/header.jsp" %>
@@ -47,6 +49,24 @@
   margin-bottom: 20px;
   padding: 11px 0;
   position: relative;
+}
+.availability1 > span{
+    background: #32b5f3 none repeat scroll 0 0;
+    border: 1px solid #0a74a7;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 3px 12px;
+}
+.availability2 {
+    background: #32b5f3 none repeat scroll 0 0;
+    border: 1px solid #0a74a7;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 3px 12px;
 }
 
 </style>
@@ -107,7 +127,17 @@
     	$("#inCart").click(function() {
     		addCart();
     	});
+    	$("#btnBuy").click(function(){
+    		btnBuy();
+    	});
     });
+    
+ 	// 구매하기 
+	function btnBuy(){
+		var amount=$("#amount").val();
+		location.href = "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C";
+	}
+    
     	function addCart(){
     		var amount=$("#amount").val();
     		if(amount < 1){
@@ -316,10 +346,23 @@
                                 <i class="fa fa-star"></i>
                             </div>
                             <h2>${dto.modelname}</h2>
-                            
-                            <div class="availability"> 
-                                <span>마우스</span>
-                            </div>
+                            <div class="availability1"> 
+							      <c:if test="${dto.contactsystem eq '기계식'}">
+      							    <a href="${path}/keyboard/list.do?searchOption=gamingmouse">
+      							    	<span class="availability2">기계식</span>
+      							    </a>
+						     	 </c:if>
+						     	 <c:if test="${fn:contains(dto.contactsystem,'멤브레인') || fn:contains(dto.keyboardform, '텐키레스 키보드')}">
+ 							      	<a href="${path}/keyboard/list.do?searchOption=wristtunnelsyndrome">
+							        	<span class="availability2">텐키레스</span>
+							       	</a>
+							      </c:if>
+							      <c:if test="${fn:contains(dto.contactsystem,'게이밍') || (fn:contains{dto.keyboardform, '텐키레스 키보드'})">
+							      	<a href="${path}/keyboard/list.do?searchOption=switch1">
+							         	<span class="availability2">게이밍</span>
+							         </a>
+							      </c:if>
+ 							</div>
                             <p> 제조사 : ${manufacturecompany} </p>
                             <div class="single-product-price">
                                 <h2>${dto.price}￦</h2>
@@ -337,12 +380,7 @@
                                </span>
                             </div>
                             
-                            <div class="add-to-wishlist">
-                                <a class="wish-btn" href="cart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    ADD TO WISHLIST
-                                </a>
-                            </div>
+                            
                             <div>
                             	<!-- 게시물번호를 hidden으로 처리 -->
 						        <input type="hidden" name="boardno" value="${dto.idx}">
@@ -352,6 +390,8 @@
 						            <button type="button" id="btnUpdete">수정</button>
 						            <button type="button" id="btnDelete">삭제</button>
 						        </c:if>
+						        <!-- 바로 구매하기 버튼 -->
+						        <button type="button" class="btn-default" id="btnBuy">구매하기</button>
 						        <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
 						        <button type="button" class="btn-default" id="btnList">목록</button>
                             </div>

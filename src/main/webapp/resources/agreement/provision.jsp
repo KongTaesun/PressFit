@@ -4,49 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<%@ include file="/resources/include/header.jsp"%>
 <title>Insert title here</title>
-<style>
-.breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/diction.png');
-}
-</style>
+</head>
+<body>
 
+				
 				<script type="text/javascript">
 				jQuery(document).ready(function($){ new $("FORM#srchFRM_TOP").danawaSearchAutoComplete({"gnbCode":2}); });
 				</script>
-
-</head>
-
-<body>
-
-<div class="breadcrumbs-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="breadcrumbs">
-
-
-						<h2>이용약관</h2>
-						<ul class="breadcrumbs-list">
-
-							<li>이용약관</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
-	
-	 <!-- Shop Area Start -->
-        <div class="shopping-area section-padding">
-            <div class="container">
-                <div class="row">       
-                    <div class="col-md-12">
-                           
-                        
-                        
+
+	<div id="danawa_container">
 	<!-- navigation -->
 	<div id="navigation">
 		<h2 class="blind">정책정보 메뉴</h2>
@@ -496,11 +466,10 @@
     </div>
     <!--// dnw_content -->
 </div>
-                        </div>
-                        </div>
-                        </div>
 
-<%@ include file="/resources/include/footer.jsp"%>
+
+
+
 
 </body>
 </html>

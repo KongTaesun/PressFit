@@ -192,7 +192,7 @@ padding: 9px 0 7px 10px;
                             	<div class="writer">${dto.writer}</div>
                             	
                             	<div class="info2">
-                            		<span class="date"><fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/></span>
+                            		<span class="date"><fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd"/></span> 
 									<span class="hit">|&nbsp; &nbsp; 조회수 : ${dto.viewcnt}</span>
                            		</div>
                            	</div>

@@ -7,11 +7,7 @@
 
 <%@ include file="/resources/include/header.jsp"%>
 </head>
-<style>
-.breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/mouse_img2.png');
-}
-</style>
+
 
         
          

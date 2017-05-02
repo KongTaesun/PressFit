@@ -152,6 +152,7 @@
         	}
         }    
     	
+    	// 구매하기 
     	function btnBuy(){
     		var amount=$("#amount").val();
     		location.href = "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C";
@@ -379,13 +380,7 @@
                             
                             <!-- ================================================================================================================================================================================================================ -->
                             
-                           <!--  <div class="add-to-wishlist">
-                                <a class="wish-btn" href="cart.html">
-                                    <i class="fa fa-heart-o"></i>
-                                    ADD TO WISHLIST
-                                </a>
-                            </div> -->
-                            <div>
+                           <div>
                             	<!-- 게시물번호를 hidden으로 처리 -->
 						        <input type="hidden" name="boardno" value="${dto.idx}">
 
