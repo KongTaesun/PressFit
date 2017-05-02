@@ -15,11 +15,11 @@
   position: relative;
   width: 300px; 
   height: 50px;
-  margin: 0 auto;  
+  margin: 0 auto;   
 } 
 .search-bar input { 
   outline: none;  
-  box-shadow: none; 
+  box-shadow: none;  
   height: 50px;  
   line-height: 50px; 
   width: 100%;   
