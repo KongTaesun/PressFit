@@ -57,6 +57,7 @@ float: right !important;
     position: relative;
     text-transform: capitalize;
 }
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
@@ -493,7 +494,11 @@ float: right !important;
                         <div class="p-details-tab-content">
                         <div style="margin-top:20px;">
                         <form name="frm" method="post" action="${path}/business/orderList.do" >
-                       	 조회날짜 : <input type="text" name="startDate" id="datepicker1"> ~ <input type="text" name="endDate" id="datepicker2"> <input type="submit" value="조회" />
+                        	
+                        	
+                        	<input type="text" name="startDate" id="datepicker1">
+                        	<input type="text" name="endDate" id="datepicker2">
+                        	<input class="btnSearch fL" type="submit" value="조회" />
                        	 </form>
                             </div>
                             <div class="p-details-tab" style="margin-top: 30px;">
