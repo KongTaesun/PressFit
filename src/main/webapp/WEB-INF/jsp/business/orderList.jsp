@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<title>주문내역</title>
+<%@ include file="/resources/include/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <style>
 .image{
     height: 100px;
@@ -21,7 +29,7 @@ width:100%
     margin-left: 100px;
 }     
 
-.breadcrumbs-area1 { 
+.breadcrumbs-area { 
  background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');
 }
 
@@ -59,34 +67,6 @@ float: right !important;
 }
 
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<title>주문내역</title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<script type="text/javascript">
-	var jquery1_7 = $.noConflict();
-	
-	jquery1_7(document).ready(function() {
-	jquery1_7.datepicker.setDefaults({
-	    dateFormat: 'yy-mm-dd',
-	    prevText: '이전 달',
-	    nextText: '다음 달',
-	    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-	    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-	    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-	    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-	    showMonthAfterYear: true,
-	    yearSuffix: '년'
-	  });
-
-	  
-	jquery1_7("#datepicker1, #datepicker2").datepicker();
-	});
-</script>
-<%@ include file="/resources/include/header.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
 <script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
@@ -97,29 +77,23 @@ float: right !important;
 		$('#two').hide();
 		$('#three').hide();
 		$('#btnone').click(function(){
-			$('.p-details-nav-tab li').removeClass('active');
-			$('.p-details-nav-tab > li:nth-of-type(1)').addClass('active');
 			$('#one').show();
 			$('#two').hide();
 			$('#three').hide();
 		});
 		$('#btntwo').click(function(){
-			$('.p-details-nav-tab li').removeClass('active');
-			$('.p-details-nav-tab > li:nth-of-type(2)').addClass('active');
 			$('#one').hide();
 			$('#two').show();
 			$('#three').hide();
 			
 		});
 		$('#btnthree').click(function(){
-			$('.p-details-nav-tab li').removeClass('active');
-			$('.p-details-nav-tab > li:nth-of-type(3)').addClass('active');
 			$('#one').hide();
 			$('#two').hide();
 			$('#three').show();
 			
 		});
-		/* $.datepicker.setDefaults({
+		$.datepicker.setDefaults({
 		    dateFormat: 'yy-mm-dd',
 		    prevText: '이전 달',
 		    nextText: '다음 달',
@@ -133,7 +107,7 @@ float: right !important;
 		  });
 
 		  
-		    $("#datepicker1, #datepicker2").datepicker(); */
+		    $("#datepicker1, #datepicker2").datepicker();
 		  
 		//전체 체크(주문)
 		$("#allCheck1").click(function(){
@@ -396,12 +370,12 @@ float: right !important;
 
   
         <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area1">
+        <div class="breadcrumbs-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-					    <div style="padding: 90px 0; text-align: center;">
-					       <h2>사업자 페이지</h2> 
+					    <div style="padding: 100px 0;">
+					       <h2>SHOPPING CART</h2> 
 					       <ul class="breadcrumbs-list">
 						        <li>
 						            <a title="Return to Home" href="index.html">Home</a>
@@ -500,9 +474,10 @@ float: right !important;
                         	<input type="text" name="endDate" id="datepicker2">
                         	<input class="btnSearch fL" type="submit" value="조회" />
                        	 </form>
+
                             </div>
-                            <div class="p-details-tab" style="margin-top: 30px;">
-                                <ul class="p-details-nav-tab">
+                            <div>
+                                <ul>
                                     <li role="presentation" class="active"><a href="#" id="btnone">주문내역</a></li>
                                     <li role="presentation"><a href="#" id="btntwo">환불내역</a></li>
                                     <li role="presentation"><a href="#" id="btnthree">교환내역</a></li>

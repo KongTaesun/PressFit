@@ -171,7 +171,7 @@
 			</div>
 		</div>
 		<!-- Breadcrumbs Area Start --> 
-		  
+		 
         <!-- Loging Area Start --> 
         <div class="login-account section-padding">
            <div class="container" style="width:450px; height:450px;"> 

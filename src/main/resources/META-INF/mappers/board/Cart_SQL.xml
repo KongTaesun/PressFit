@@ -84,8 +84,8 @@
     
     <!-- 3-2. 바로구매 금액 계산 -->
     <select id="sumBuyMoney" resultType="int">
-        SELECT ifnull(SUM(c.price * c.amount), 0) money
-        FROM cart_board c
+        SELECT ifnull(SUM(price * amount), 0) money
+        FROM cart_board
         where payment ='c'
      	and cart_id = (select MAX(cart_id) FROM cart_board);
     </select>
@@ -188,6 +188,15 @@
         where id = #{id}
     </select>
 
-	 
+	 <select id="checksumMoney" resultType="int" parameterType="java.util.List">
+        SELECT ifnull(SUM(c.price * c.amount), 0) money
+        FROM cart_board c, TMouseBoard p
+        WHERE c.idx = p.idx 
+		and cart_id in
+        <foreach item="item" collection="list"
+     					open="(" separator="," close=")">
+       				#{item}
+		</foreach> 
+    </select>
 	
 </mapper>

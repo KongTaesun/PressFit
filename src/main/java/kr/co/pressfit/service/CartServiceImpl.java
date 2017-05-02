@@ -32,7 +32,12 @@ public class CartServiceImpl implements CartService {
     public void modifyCart(CartVO vo) throws Exception {
         cartDao.modifyCart(vo);
     }
+    
     @Override
+	public int checksumMoney(List<String> chkArr) throws Exception {
+		return cartDao.checksumMoney(chkArr);
+	}
+	@Override
     public int sumMoney(String userId) throws Exception {
         return cartDao.sumMoney(userId);
     }

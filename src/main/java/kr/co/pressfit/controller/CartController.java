@@ -79,7 +79,7 @@ public class CartController {
         list.add(cartService.buy(vo));
         List<CartVO> memberInfo = cartService.memberInfo(id);
         int sumMoney = cartService.sumBuyMoney(id); 
-        
+        System.out.println("바로구매루트섬머니"+sumMoney);
         int fee = sumMoney >= 100000 ? 0 : 2500;
         map.put("list", list);
         map.put("memberInfo", memberInfo);
@@ -181,16 +181,22 @@ public class CartController {
     	String id = (String) session.getAttribute("id"); 
         Map<String, Object> map = new HashMap<String, Object>();
         List<CartVO> list = cartService.order(chkArr);
+        int checksumMoney = cartService.checksumMoney(chkArr);
         List<CartVO> memberInfo = cartService.memberInfo(id);
-        int sumMoney = cartService.sumMoney(id); 
+        int sumMoney = cartService.sumMoney(id);
         
-        int fee = sumMoney >= 100000 ? 0 : 2500;
+        System.out.println("이거봐"+list);
+        
+        
+        
+        int fee = checksumMoney >= 100000 ? 0 : 2500;
         map.put("list", list);
         map.put("memberInfo", memberInfo);
         /*map.put("count", list.size());*/
+        map.put("checksumMoney", checksumMoney);
         map.put("sumMoney", sumMoney);
         map.put("fee", fee);
-        map.put("allSum", sumMoney+fee);
+        map.put("allSum", checksumMoney+fee);
         mav.setViewName("/shop/cart/orderInfoAction");
         mav.addObject("map", map);
         return mav;

@@ -193,27 +193,35 @@ public class BusinessController {
 	// 사업자 주문들어온 상품 리스트
 	@RequestMapping("orderList.do")
     public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
-			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1990-01-01") String startDate,
-			@RequestParam(defaultValue = "2020-12-31") String endDate, @RequestParam(defaultValue = "1") int curPage, HttpSession session, ModelAndView mav) throws Exception{
+			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int minPrice,
+			@RequestParam(defaultValue = "200000") int maxPrice, @RequestParam(defaultValue = "1") int curPage, HttpSession session, ModelAndView mav) throws Exception{
         String id = (String) session.getAttribute("id"); // session�� ����� userId
         Map<String, Object> map = new HashMap<String, Object>();
         
-        endDate += " 23:59:59";
         
         String searchOption1 = "order";
-        
-        List<CartVO> list1 = businessService.orderList(startDate, endDate, searchOption1, id); // ��ٱ��� ����
+        int count1 = businessService.countArticle(searchOption1, keyword, id);
+        BoardPager boardPager1 = new BoardPager(count1, curPage);
+		int start1 = boardPager1.getPageBegin();
+		int end1 = boardPager1.getPageEnd();
+        List<CartVO> list1 = businessService.orderList(start1, end1, searchOption1, id); // ��ٱ��� ����
         System.out.println("1"+list1);
         
         String searchOption2 = "refund";
-        
-        List<CartVO> list2 = businessService.orderList(startDate, endDate, searchOption2, id); // ��ٱ��� ���� 
+        int count2 = businessService.countArticle(searchOption2, keyword, id);
+        BoardPager boardPager2 = new BoardPager(count2, curPage);
+		int start2 = boardPager2.getPageBegin();
+		int end2 = boardPager2.getPageEnd();
+        List<CartVO> list2 = businessService.orderList(start2, end2, searchOption2, id); // ��ٱ��� ���� 
         System.out.println("2"+list2);
         
         
         String searchOption3 = "exchange";
-        
-        List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id); // ��ٱ��� ���� 
+        int count3 = businessService.countArticle(searchOption3, keyword, id);
+        BoardPager boardPager3 = new BoardPager(count3, curPage);
+		int start3 = boardPager3.getPageBegin();
+		int end3 = boardPager3.getPageEnd();
+        List<CartVO> list3 = businessService.orderList(start3, end3, searchOption3, id); // ��ٱ��� ���� 
         System.out.println("3"+list3);
         // ��ٱ��� ��ü ��׿� ���� ��ۺ� ����
         // ��۷�(10�����̻� => ����, �̸� => 2500��)
@@ -222,11 +230,15 @@ public class BusinessController {
         map.put("list1", list1);                // ��ٱ��� ������ map�� ����
         map.put("list2", list2);                // ��ٱ��� ������ map�� ����
         map.put("list3", list3);                // ��ٱ��� ������ map�� ����
-		
+		map.put("count1", count1);
+		map.put("count2", count2);
+		map.put("count3", count3);
 		map.put("searchOption1", searchOption1);
 		map.put("searchOption2", searchOption2);
 		map.put("searchOption3", searchOption3);
-		
+		map.put("boardPager1", boardPager1);
+		map.put("boardPager2", boardPager2);
+		map.put("boardPager3", boardPager3);
         map.put("listcount1", list1.size());        // ��ٱ��� ��ǰ�� ����
         map.put("listcount2", list2.size());        // ��ٱ��� ��ǰ�� ����
         map.put("listcount3", list3.size());        // ��ٱ��� ��ǰ�� ����

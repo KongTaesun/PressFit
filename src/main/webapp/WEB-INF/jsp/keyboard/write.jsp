@@ -141,7 +141,7 @@
 														<input type="text" id="registrationyear" name="registrationyear" placeholder="제조년월  *" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="amount" name="amount" placeholder="수량  *" />  
+														<input type="text"  name="amount" placeholder="수량  *" />  
 													</p> 
 												</div>											
 											</div>
