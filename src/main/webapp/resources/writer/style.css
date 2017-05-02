@@ -23,7 +23,7 @@
 	9.	Blog Area CSS
 	10.	Newsletter Area CSS
 	11.	Footer Area CSS
-	12.	Footer Bottom Area CSS
+	12.	Footer Bottom Area CSS 
 	13.	About Page CSS
 	14.	Checkout Area CSS
 	15.	Contact Us CSS
@@ -1200,7 +1200,7 @@ body {
 .form-row > input {
     background: #f6f6f6 none repeat scroll 0 0;
     border: medium none;
-    border-radius: 20px;
+/*     border-radius: 20px; */
     height: 40px;
     line-height: 40px;
     padding-left: 20px;

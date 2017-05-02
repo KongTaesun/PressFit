@@ -10,10 +10,16 @@
 	
 </script>
 
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 
 
+
 	$(document).ready(function() {
+		
+
+		$("#infoAgree").show();
+		$("#infoShow").hide();
 		$('#btn1').click(function() {
 			$.ajax({
 				url : "${pageContext.request.contextPath}/member/checkID.do",
@@ -40,14 +46,135 @@
 				$("input[type=checkbox]").prop("checked", false);
 			}
 		})
+		$("#btnAgree").click(function(){
+			if($(".agree-tos").prop("checked")){
+				$("#infoShow").show();
+				$("#infoAgree").hide();	
+			}
+			else {
+				alert('필수항목을 체크해주세요');
+			}
+			
+		});
 	});
 
 	function callback(data) {
 		$('#searchResult').text(data);
 	}
+	function checkSex(){
+		$('#radioman').click(function(){ 
+			$('#manLb').addClass('on');
+			$('#womanLb').removeClass('on');
+
+		});
+		$('#radiowoman').click(function(){
+			$('#manLb').removeClass('on');
+			$('#womanLb').addClass('on');
+
+		});
+	} 
+
+	
+	// 다음 주소 API
+	function DaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+				// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+				// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+				var fullAddr = ''; // 최종 주소 변수
+				var extraAddr = ''; // 조합형 주소 변수
+
+				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					fullAddr = data.roadAddress;
+
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					fullAddr = data.jibunAddress;
+				}
+
+				// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+				if (data.userSelectedType === 'R') {
+					//법정동명이 있을 경우 추가한다.
+					if (data.bname !== '') {
+						extraAddr += data.bname;
+					}
+					// 건물명이 있을 경우 추가한다.
+					if (data.buildingName !== '') {
+						extraAddr += (extraAddr !== '' ? ', '
+								+ data.buildingName
+								: data.buildingName);
+					}
+					// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+					fullAddr += (extraAddr !== '' ? ' ('
+							+ extraAddr + ')'
+							: '');
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				$("#post").val(data.zonecode);
+				$("#basic_addr").val(fullAddr);
+				$("#detail_addr").focus();
+
+			}
+		}).open();
+	}
 </script> 
 
 <%@ include file="/resources/include/header.jsp"%>
+<style>
+.sex {
+    display: block;
+    height: 31px;
+    margin-right: -3px;
+}
+.jender {
+    position: relative;
+    z-index: 10;
+    display: block;
+    float: left;
+    width: 49.8%;
+    height: 40px;
+    border: solid 1px #dcdcdc;
+    font-size: 12px;
+}
+.jender input {
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 31px;
+}
+.jender label {
+    line-height: 32px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 38px;
+    cursor: pointer;
+    text-align: center;
+    color: #999;
+    background: #fff;
+}
+.jender input:checked+label {
+    z-index: 100;
+    margin: -1px;
+    color: #337ab7;
+    border: solid 1px #337ab7;
+} 
+
+.join_row{
+        overflow: hidden;
+}
+
+</style>
+
+
 
 </head>
 <style> 
@@ -80,12 +207,8 @@
 	<!-- Loging Area Start -->
 	<div class="login-account section-padding">
 		<div class="container" style="display:table ;width: 700px;text-align: center">
-
-			<div>
-
-				<div>
-
-					<form action="${path}/member/writer.do" autocomplete="off" class="create-account-form" method="post">
+		<div id="infoAgree">
+			<form action="${path}/member/writer.do" autocomplete="off" class="create-account-form" method="post">
 						<h2 class="heading-title">동의페이지</h2>
 						<p class="form-row">
 							<input type="hidden" name="sns_tmp_id" value=""> <input type="hidden" name="redirect" value="/ko/signup"> 
@@ -104,7 +227,7 @@
 								</label> <a href="${path}/resource/agreement/provision.do" target="_blank">상세보기</a>
 							</div>
 							<div class="signup-agree-labelwrap">
-								<label><input class="agree-pp" type="checkbox" name="agree-pp"><i></i>
+								<label><input class="agree-tos" type="checkbox" name="agree-pp"><i></i>
 								
 								<span>개인정보 수집 및 이용에 대한 안내<b>(필수)</b> 
 								</span></label> <a href="${path}/agreement/helprule_private.do" target="_blank">상세보기</a>
@@ -114,7 +237,7 @@
 							<span>이벤트 등 혜택정보 알림(이메일/SMS) (선택)</span></label>
 						
 						<p class="form-row">
-					<label> <input class="agree-adult" type="checkbox"
+					<label> <input class="agree-tos" type="checkbox"
 								name="adult"><i></i><span>만 14세 이상입니다.<b>
 										(필수)</b>
 							</span></label>
@@ -122,8 +245,8 @@
 												<div class="signup-agree-foot">
 								<button class="button form-button" type="button"
 									data-action="cancel">취소</button>
-								<button class="button form-button" type="submit"
-									data-action="submit" disabled="disabled">동의</button>
+								<button class="button form-button" type="button"
+									data-action="submit" id="btnAgree">동의</button>
 							</div>
 						
 							<div id="signup-agree-error" class="signup-agree-error">이용약관과
@@ -145,34 +268,46 @@
 				</div>
 				</form> 
 				</div>
-		
-			<div>
-				<form action="${path}/member/insert.do" name="form1" class="create-account-form" method="post">
+
+
+			<div id="infoShow">
+				<form action="${path}/member/insert.do" name="form1"
+					class="create-account-form" method="post">
 
 					<h1 class="heading-title">개인정보입력</h1>
 
+
 					<p class="form-row">
-						회원아이디 <input type="text" name="id" placeholder="회원아이디">
+						<input type="text" name="id" placeholder="회원아이디">
 						<!-- <input type ="button" id="btn1" value="중복확인" /> <div ID="searchResult"></div> -->
 					</p>
 					<p class="form-row">
-						비밀번호 <input type="password" name="pw" placeholder="비밀번호">
+						<input type="password" name="pw" placeholder="비밀번호">
 					</p>
 					<!-- <p class="form-row">
 														<input type="password" placeholder="비밀번호확인" />
 													</p> -->
 					<p class="form-row">
-						이름 <input type="text" name="name" placeholder="이름" />
+						<input type="text" name="name" placeholder="이름" />
 					</p>
 
-					<p>
-						성별 <br/> 
-						<input type="radio" name="gender" placeholder="남자" value="0" />남자
-						 <input type="radio" name="gender" placeholder="여자" value="1" />여자
-					</p> 
-
 					<p class="form-row">
-						생년월일 <input type="text" name="birth" placeholder="생년월일" />
+					<div id="sexDiv" class="join_row">
+						<span class="row_title blind"> </span> <span class="sex"> <span
+							class="jender"> <input type="radio" name="sex"
+								id="radioman" placeholder="남자" value="0" onclick="checkSex()" />
+								<label for="radioman" id="manLb" class="">남자</label>
+						</span> <span class="jender"> <input type="radio" name="sex"
+								id="radiowoman" placeholder="여자" value="1" onclick="checkSex()" />
+								<label id="womanLb" for="radiowoman" class="">여자</label>
+						</span>
+
+						</span>
+					</div>
+
+					<br />
+					<p class="form-row">
+						<input type="text" name="birth" placeholder="생년월일" />
 					</p>
 
 					<p class="form-row">
@@ -184,15 +319,34 @@
 					</p>
 
 					<p class="form-row">
-						<input type="text" name="address" placeholder="주소" />
+						<input type="text" name="basic_addr" id="basic_addr"
+							readonly=readonly style="ime-mode: disabled" placeholder="주소" />
+					</p>
+
+					<p class="form-row">
+						<input type="text" name="detail_addr" id="detail_addr"
+							style="ime-mode: disabled" placeholder="상세주소" />
+					</p>
+
+					<p class="form-row">
+
+						<input type="text" id="post" name="post" readonly=readonly />
+
 					</p>
 					
-				<input type="submit" value="회원가입" />
-				<input type="reset" value="취소" />
+						<p class="form-row">
+
+						<input type="button" class="membtn" value="주소 검색" onclick="DaumPostcode()" style="ime-mode: disabled; width: 50%;"/>
+
+					</p>
+					<input type="submit" value="회원가입" /> <input type="reset" value="취소" />
+				
+				
 				</form>
+
 			</div>
-			
-			</div>
+
+
 		</div>
 	</div>
 

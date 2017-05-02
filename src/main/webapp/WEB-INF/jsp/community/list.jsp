@@ -3,6 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- jstl 코어 태그 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- jstl 시간 출력 태그 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp"%>
@@ -11,100 +18,67 @@
 	background-image:
 		url('${path}/resources/writer/img/bigpicture/office_img.png');
 }
-</style>
-<style>
-.searchbar1{
-
+.breadcrumbs-area {
+   background-image:
+      url('${path}/resources/writer/img/bigpicture/q&a_img.png');
 }
-.countlist {
-	text-align: right;
+.list_board {
+    border-bottom: 1px solid #222; 
 }
-
-.title-text-align {
-	text-align: left;
-	color: #FF0000;
-	margin-left: 20px;
-	font-weight: 900;
+.list_board li:first-child {
+    border-top: 0 none;
 }
-
-table.type08 {
-	border-collapse: collapse;
-	text-align: center;
-	line-height: 1.5;
-	border-left: 4px solid #FFFFFF;
-	margin: 2px 1px;
+.list_board li {
+    border-top: 1px solid #c7c7c7;
 }
-
-table.type08 thead th {
-	padding: 10px;
-	font-weight: bold;
-	color: #000054;
-	border-top: 1px solid #FFFFFF;
-	border-right: 3px solid #FFFFFF;
-	border-bottom: 1px solid #5AAEFF;
-	background: #EAEAEA;
+.list_board .link_board {
+    display: block;
+    position: relative;
+    padding: 31px 123px 57px 11px;
+    cursor: pointer;
 }
-
-table.type08 tbody th {
-	width: 100px;
-	padding: 10px;
-	font-weight: bold;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	background: #FFF6FF;
+.list_board .txt_info {
+    display: block;
+    font-size: 0;
 }
-
-table.type08 td {
-	width: 50px;
-	padding: 5px;
-	border-right: 1px solid #FFFFFF;
-	border-left: 0px solid #ccc;
-	border-bottom: 1px solid #ccc;
+.list_board .txt_info .txt_cate {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1e1e1e;
 }
-
-.about-title1>h2 {
-	font-size: 25px;
-	font-weight: 600;
-	line-height: 2;
-	margin-bottom: 30px;
-	padding-bottom: 1px; /* 글자 밑의 공백 */
-	position: relative; /* 밑줄위치 */
+.list_board .txt_info .txt_date {
+    padding-left: 8px;
+    font-size: 16px;
+    color: #999;
 }
-
-.about-title1>h2::before {
-	background: #bbbbbb none repeat scroll 0 0;
-	bottom: 0;
-	content: "";
-	height: 2px;
-	left: 0;
-	position: absolute;
-	width: 100px;
+.list_board .tit_board {
+    display: block;
+    padding-top: 48px;
+    font-weight: 400; 
+    font-size: 20px;
+    color: #1e1e1e;
 }
-
-.section-padding1 {
-	padding: 10px 0;
+.list_board .subject_board {
+    display: none;
+    padding: 26px 30px 41px;
+    font-size: 16px;
+    color: #1e1e1e;
+    background-color: #f9f9f9;
 }
-
-.about-top-inner1 {
-	margin-bottom: 30px;
-	overflow: hidden;
+.ico_friends {
+    
+    background: url('${path}/resources/writer/icon/icon_down.png');
+    vertical-align: top;
 }
-
-.shopingcart-bottom-area1 a {
-	border: 1px solid #dbdbdb;
-	padding: 3px 6px 4px 6px;
-	font-weight: 600;
-	font-family: verdana;
+.list_board .ico_arr {
+    position: absolute;
+    right: 12px;
 }
-
-.shopingcart-bottom-area1 .right-shoping-cart {
-	display: inline-block;
-}
-
-.shopingcart-bottom-area1 a:hover, .subtotal-main-area>a:hover,
-	.discount-middle>a:hover {
-	/*   border: 0px solid #0000C9; */
-	
+wishlist-table-area1 {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Apple SD Gothic Neo',AppleSDGothicNeo,'Malgun Gothic','맑은 고딕',sans-serif;
+    color: #333;
 }
 </style>
 
@@ -118,6 +92,7 @@ table.type08 td {
             // 페이지 주소 변경(이동)
             location.href = "${path}/community/list.do?curPage="+page+"&searchOption=${map.searchOption}"+"&keyword=${map.keyword}";
         });
+        
     });
     // 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
     function list(page){
@@ -133,7 +108,7 @@ table.type08 td {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>NOTICE</h2>
+						<h2>NOTICE</h2> 
 						<ul class="breadcrumbs-list">
 							<li><a title="Return to Home" href="index.html">Home</a></li>
 							<li>NOTICE</li>
@@ -143,125 +118,139 @@ table.type08 td {
 			</div>
 		</div>
 	</div>
-	<!-- Breadcrumbs Area Start -->
-	<!-- About Us Area Start -->
-	<div class="about-us-area section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="about-top-inner1">
-					<div class="col-md-3 col-sm-3 col-xs-12">
-						<div class="about-inner">
-							<div class="about-title1">
-								<h2>공지사항</h2>
-								<!-- Cart Area Start -->
-								<div class="shopping-cart-area section-padding1">
-									<div class="container">
-										<div class="row">
-											<div class="col-md-11">
-												<div class="wishlist-table-area1 table-responsive1">
-													<!-- 레코드 갯수 출력 -->
-													<div class="countlist">${map.count}개의 게시물이 있습니다.</div>
-													<table class="type08">
-														<thead>
-															<tr>
-																<th style="width: 5%;">번 호</th>
-																<th style="width: 25%;">제 목</th>
-																<th style="width: 10%;">작 성 자</th>
-																<th style="width: 15%;">등 록 일</th>
-																<th style="width: 5%;">조 회 수</th>
-															</tr>
-														</thead>
-														<tbody>
-															<c:forEach var="row" items="${map.list}">
-																<tr>
-																	<td>${row.idx}</td>
-																	<td class="title-text-align"><a
-																		href="${path}/community/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.title}
-																			<!-- ** 댓글이 있으면 게시글 이름 옆에 출력하기  <c:if
-																				test="${row.recnt >= 0}">
-																				<span style="color: red;">(${row.recnt}) </span>
-																			</c:if>-->
-																	</a></td>
-																	<td>${row.writer}</td>
-																	<td>${row.regdate}</td>
-																	<td>${row.viewcnt}</td>
-																</tr>
-															</c:forEach>
-														</tbody>
-													</table>
-												</div>
-												<br />
-												<div class="shopingcart-bottom-area1">
-													<div class="shopingcart-bottom-area1 pull-right">
-														<tr>
-															<td colspan="10">
-																<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> <c:if
-																	test="${map.boardPager.curBlock > 1}">
-																	<a href="javascript:list('1')">[처음]</a>
-																</c:if> <!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
-																<c:if test="${map.boardPager.curBlock > 1}">
-																	<a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
-																</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> <c:forEach
-																	var="num" begin="${map.boardPager.blockBegin}"
-																	end="${map.boardPager.blockEnd}">
-																	<!-- 현재페이지이면 하이퍼링크 제거 -->
-																	<c:choose>
-																		<c:when test="${num == map.boardPager.curPage}">
-																			<span style="color: red">${num}</span>&nbsp;
+	 <!-- About Us Area Start -->
+   <div class="about-us-area section-padding">
+      <div class="container">
+         <div class="about-inner">
+            <div class="about-title1">
+               <div class="p-details-tab" style="margin-top: 30px;">
+               	<ul class="p-details-nav-tab">
+               		<li role="presentation" class="active"><a href="#" id="btnone">공지사항</a></li>
+               		<li role="presentation"><a href="${path}/faq/list.do" id="btntwo">FAQ</a></li>
+               	</ul>
+               </div>
+               <div class="row"> 
+                  <div class="col-md-12">
+                     <div class="wishlist-table-area1 table-responsive1">
+                     <c:choose>
+                        <c:when test="${fn:length(map.list)>0 }">
+                           <div class="panel-group" id="accordion" role="tablist"
+                              aria-multiselectable="true">
+                              <ul class="list_board">
+                              <c:forEach var="row" items="${map.list}" varStatus="status">
+                              <li>
+                                 <div class="panel">
+                                 
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                       <h4 class="panel-title">
+                                          <a class="link_board" data-toggle="collapse" data-parent="#accordion"
+                                             href="#collapse${status.index}" aria-expanded="true"
+                                             aria-controls="collapseOne">
+                                             	<span class="txt_info">
+                                             	<span class="txt_cate">
+                                             	 번호 ${row.idx}
+                                             	 </span> 
+                                             	 <span class="txt_date">
+                                             	 등록일
+                                             	${row.regdate}
+                                             	 </span>
+                                             </span>
+                                             <strong class="tit_board">
+                                             	제목 ${row.title}
+                                             </strong>
+                                             <span class="ico_friends ico_arr">
+                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             </span>
+                                          </a>
+                                       </h4>
+                                    </div>
+                                    
+                                    <%-- <div id="collapse${status.index}"
+                                       class="${status.index eq 0 ? 'panel-collapse collapse in':'panel-collapse collapse ${i}'} "
+                                       role="tabpanel" aria-labelledby="headingOne"> --%>
+                                   <div id="collapse${status.index}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                       <div class="subject_board" style="display: block;">
+                                          	내용 "${row.content}"
+                                          <c:out escapeXml="false" value="${fn:replace(row.content,ENTER,'<br>')}" />
+                                       </div>
+                                    </div>
+                                    
+                                 </div>
+                                 </li>
+                              </c:forEach>
+                              </ul>
+                           </div>
                         </c:when>
-																		<c:otherwise>
-																			<a href="javascript:list('${num}')">${num}</a>&nbsp;
-                        </c:otherwise>
-																	</c:choose>
-																</c:forEach> <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-																<c:if
-																	test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-																	<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
-																</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
-																<c:if
-																	test="${map.boardPager.curPage <= map.boardPager.totPage}">
-																	<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
-																</c:if>
-															</td>
-														</tr>
-														<br> <br />
-														<div class="searchbar1">
-														<form name="form1" method="post"
-															action="${path}/community/list.do">
-															<select name="searchOption">
-																<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
-																<option value="all"
-																	<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
-																<option value="name"
-																	<c:out value="${map.searchOption == 'writer'?'selected':''}"/>>이름</option>
-																<option value="content"
-																	<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
-																<option value="title"
-																	<c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
-															</select> <input name="keyword" value="${map.keyword}"> <input
-																type="submit" value="조회">
-															<!-- 로그인한 사용자만 글쓰기 버튼을 활성화 -->
-															<c:if test="${sessionScope.id != null}">
-																<button type="button" id="btnWrite">글쓰기</button>
-															</c:if>
-														</form>
-														</div>
-														<br /> 
-													</div>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+                        </c:choose>
+                     
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%@ include file="/resources/include/footer.jsp"%>
+                        <div class="searchbar1">
+                           <form name="form1" method="post" action="${path}/faq/list.do">
+                              <select name="searchOption">
+                                 <!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
+                                 <option value="all"
+                                    <c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
+                                 <option value="name"
+                                    <c:out value="${map.searchOption == 'writer'?'selected':''}"/>>이름</option>
+                                 <option value="content"
+                                    <c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
+                                 <option value="title"
+                                    <c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
+                              </select> <input name="keyword" value="${map.keyword}"> <input
+                                 type="submit" class="btn-default" value="조회">
+                              <!-- 로그인한 사용자만 글쓰기 버튼을 활성화 -->
+                              <c:if test="${sessionScope.id != null}">
+                                 <button type="button" id="btnWrite">글쓰기</button>
+                              </c:if>
+                           </form>
+                        </div>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      
+   <td colspan="10">
+                <!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
+                <c:if test="${map.boardPager.curBlock > 1}">
+                    <a href="javascript:list('1')">[처음]</a>
+                </c:if>
+                
+                <!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
+                <c:if test="${map.boardPager.curBlock > 1}">
+                    <a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
+                </c:if>
+                
+                <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 -->
+                <c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
+                    <!-- 현재페이지이면 하이퍼링크 제거 -->
+                    <c:choose>
+                        <c:when test="${num == map.boardPager.curPage}">
+                            <span class = btn-default >${num}</span>&nbsp;
+                        </c:when>
+                        <c:otherwise>
+                            <a href="javascript:list('${num}')">${num}</a>&nbsp;
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+                
+                <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
+                <c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
+                    <a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
+                </c:if>
+                
+                <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
+                <c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
+                    <a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
+                </c:if>
+                            
+            </td>
+            </div>   
+            </div>
+                
+               
+              
 </body>
+<%@ include file="/resources/include/footer.jsp"%>
 </html>

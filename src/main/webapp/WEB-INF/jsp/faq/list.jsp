@@ -68,6 +68,12 @@
     position: absolute;
     right: 12px;
 }
+wishlist-table-area1 {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Apple SD Gothic Neo',AppleSDGothicNeo,'Malgun Gothic','맑은 고딕',sans-serif;
+    color: #333;
+}
 </style>
 <script>
 
@@ -102,12 +108,9 @@
    <!-- Breadcrumbs Area Start -->
    <div class="breadcrumbs-area">
       <div class="container">
-
          <div class="row">
             <div class="col-md-12">
-
                <div class="breadcrumbs">
-
                   <h2>FAQ</h2>
                   <ul class="breadcrumbs-list">
                      <li><a title="Return to Home" href="index.html">Home</a></li>
@@ -123,9 +126,14 @@
       <div class="container">
          <div class="about-inner">
             <div class="about-title1">
-               <h2>FAQ</h2>
+               <div class="p-details-tab" style="margin-top: 30px;">
+               	<ul class="p-details-nav-tab">
+               		<li role="presentation" ><a href="${path}/community/list.do" id="btnone">공지사항</a></li>
+               		<li role="presentation" class="active"><a href="#" id="btntwo">FAQ</a></li>
+               	</ul>
+               </div>
                <div class="row"> 
-                  <div class="col-md-11">
+                  <div class="col-md-12">
                      <div class="wishlist-table-area1 table-responsive1">
                      <c:choose>
                         <c:when test="${fn:length(map.list)>0 }">
