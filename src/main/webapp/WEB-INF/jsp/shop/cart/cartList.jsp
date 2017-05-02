@@ -190,24 +190,21 @@ background: #444444 none repeat scroll 0 0;
 
 
 
-													<td style="width: 80px" align="right"><fmt:formatNumber
-															pattern="###,###,###" value="${row.price}" /> <%-- <input type="hidden" name="price" value="${row.price}"> --%>
+													<td style="width: 80px" align="right">
+														<fmt:formatNumber pattern="###,###,###" value="${row.price}" />
 													</td>
-													<td style="width: 80px" align="right"><input
-														type="text" style="width: 10px; border: none;"
-														name="amount" value="${row.amount}" readonly="readonly">개
-														<input type="hidden" id="amount" name="amount"
-														value="${row.amount}"></td>
+													<td style="width: 80px" align="right">
+														<input type="text" style="width: 10px; border: none;" name="amount" value="${row.amount}" readonly="readonly">개
+														<input type="hidden" name="amount" value="${row.amount}"></td>
 
 													<td name="price" style="width: 100px" align="right">
-														<%-- <input type="hidden" value="${row.money}"/> --%> <fmt:formatNumber
-															pattern="###,###,###" value="${row.money}" />
+														<fmt:formatNumber pattern="###,###,###" value="${row.money}" />
+														<input type="hidden" name="price" id="price" value="${row.money}" />
 													</td>
-													<td><a
-														href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">
-															<input type="hidden" name="cart_id"
-															value="${row.cart_id}">삭제
-													</a></td>
+													<td>
+													<a href="${path}/shop/cart/delete.do?cart_id=${row.cart_id}">
+													<input type="hidden" name="cart_id" value="${row.cart_id}">삭제</a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>

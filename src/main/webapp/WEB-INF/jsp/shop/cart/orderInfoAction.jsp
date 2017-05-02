@@ -199,7 +199,12 @@ text-align: left;
 													<tfoot id="bbb">
 														<tr>
 															<td colspan="2">전체 합계 금액 : </td>
-															<td><fmt:formatNumber pattern="###,###,###" value="${map.sumMoney}"/>원</td>
+															
+															
+															
+															
+															
+															<td><fmt:formatNumber pattern="###,###,###" value="${map.checksumMoney}"/>원</td>
 															<td></td>
 														</tr>
 														<tr>

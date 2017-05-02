@@ -40,7 +40,13 @@ public class CartDAOImpl implements CartDAO {
         sqlSession.update("cart.modifyCart", vo);
     }
     
+    
     @Override
+	public int checksumMoney(List<String> chkArr) throws Exception {
+		return sqlSession.selectOne("cart.checksumMoney", chkArr);
+	}
+
+	@Override
     public int sumMoney(String userId) {
         return sqlSession.selectOne("cart.sumMoney", userId);
     }
