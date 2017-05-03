@@ -106,15 +106,9 @@ background: #444444 none repeat scroll 0 0;
 			return;
 		}
 	}
-	
-
-	
-	
 </script>
 </head>
 <body>
-
-
 	<!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
 		<div class="container">
@@ -122,19 +116,14 @@ background: #444444 none repeat scroll 0 0;
 				<div class="col-md-12">
 					<div class="breadcrumbs">
 						<h2>SHOPPING CART</h2>
-						<ul class="breadcrumbs-list">
-							<li><a title="Return to Home" href="index.html">Home</a></li>
-							<li>Shopping Cart</li>
-						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Breadcrumbs Area Start -->
-	<form name="frm" method="post"
-		action="${path}/shop/cart/orderInfoAction.do"
-		onsubmit="return order();">
+	<!-- Breadcrumbs Area End -->
+	
+	<form name="frm" method="post" action="${path}/shop/cart/orderInfoAction.do" onsubmit="return order();">
 		<!-- Cart Area Start -->
 		<div class="shopping-cart-area section-padding">
 			<div class="container">
@@ -143,10 +132,9 @@ background: #444444 none repeat scroll 0 0;
 						<div class="wishlist-table-area table-responsive">
 							<c:choose>
 								<c:when test="${map.count == 0}">
-					            장바구니가 비어있습니다.
-					        </c:when>
+					            	장바구니가 비어있습니다.
+								</c:when>
 								<c:otherwise>
-
 									<table>
 										<thead>
 											<tr>
@@ -234,19 +222,7 @@ background: #444444 none repeat scroll 0 0;
 		<div class="discount-area">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-6 col-sm-6">
-						<div class="discount-main-area">
-							<div class="discount-top">
-								<h3>DISCOUNT CODE</h3>
-								<p>Enter your coupon code if have one</p>
-							</div>
-							<div class="discount-middle">
-								<input type="text" placeholder=""> <a class="" href="#">APPLY
-									COUPON</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-6">
+					<div class="col-md-12 col-sm-12">
 						<div class="subtotal-main-area">
 							<div class="subtotal-area">
 								<h2>

@@ -6,6 +6,36 @@
 <title>게시글 작성</title>
 <%@ include file="/resources/include/header.jsp" %>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/gallery_img.png');
+}
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover {
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
+.replytextdiv {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    background: lavenderblush;
+    height: 195px;
+}
+</style>
 <script>
     $(document).ready(function(){
         /* 게시글 관련 */
@@ -30,9 +60,9 @@
 		    }
 		    // 댓글의 수가 0이면 삭제처리
 		    if(confirm("삭제하시겠습니까?")){
-		        document.form1.action = "${path}/gallery/delete.do?idx=${dto.idx}";
-		        document.form1.submit();
-		        }
+		    	location.href = "${path}/gallery/delete.do?idx=${dto.idx}";
+		    }else{
+		    }
 		});
 
         
@@ -170,127 +200,75 @@
 </script>
 </head>
 <body>
-        <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					    <div class="breadcrumbs">
-					       <h2>PRODUCT DETAILS</h2> 
-					       <ul class="breadcrumbs-list">
-						        <li>
-						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
-						        <li>Product Details</li>
-						    </ul>
-					    </div>
+ 	<!-- Breadcrumbs Area Start -->
+	<div class="breadcrumbs-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				    <div class="breadcrumbs">
+				       <h2>GALLERY</h2> 
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<!-- Breadcrumbs Area Start --> 
+    <!-- Single Product Area Start -->
+    <div class="single-product-area section-padding"> 
+	    <div class="container">
+			<div class="row">
+ 				<div class="single-product-details">
+					<h2>${dto.title}</h2>
+                    ${dto.writer} / ${dto.regdate} / 조회수 : ${dto.viewcnt} <br/><br/>
+                    <p>${dto.content}</p>
+		         	<!-- 게시물번호를 hidden으로 처리 -->
+		            <input type="hidden" name="boardno" value="${dto.idx}">
+                    <div>
+						<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
+				        <c:if test="${sessionScope.id == dto.writer}">
+				            <button type="button" id="btnDelete" style="float:right; margin-right:5px">삭제</button>
+				            <button type="button" id="btnUpdete" style="float:right; margin-right:5px">수정</button>
+				        </c:if>
+			            <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
+			            <button type="button" id="btnList" style="float:right; margin-right:5px">목록</button>
 					</div>
 				</div>
 			</div>
-		</div> 
-		<!-- Breadcrumbs Area Start --> 
-        <!-- Single Product Area Start -->
-        <div class="single-product-area section-padding"> 
-            <div class="container">
-                <div class="row">
-                    <div class=""></div>
-                    <div class="">
-                        <div class="single-product-details">
-                            
-                            <h2>${dto.title}</h2>
-                            
-                            ${dto.writer} / 	 
-                            <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/> / 조회수 : ${dto.viewcnt} <br/><br/>
-                            <p>${dto.content}</p>
-		         			<!-- 게시물번호를 hidden으로 처리 -->
-		            		<input type="hidden" name="boardno" value="${dto.idx}">
-                            
-                            
-                            <div class="social-share">
-                                <label>Share: </label>
-                                <ul class="social-share-icon">
-                                    <li><a href="#"><i class="flaticon-social"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-social-1"></i></a></li>
-                                    <li><a href="#"><i class="flaticon-social-2"></i></a></li>
-                                </ul> 
-                            </div>
-                            <div id="product-comments-block-extra">
-								<ul class="comments-advices">
-									<li>
-										<a href="#" class="open-comment-form">Write a review</a>
-										<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
-								        <c:if test="${sessionScope.id == dto.writer}">
-								            <button type="button" id="btnUpdete">수정</button>
-								            <button type="button" id="btnDelete">삭제</button>
-								        </c:if>
-								            <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-								            <button type="button" id="btnList">목록</button>
-								            <button type="button" id="btnCmt">답글달기</button>
-								        </div>
-									</li>
-								</ul>
-							</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="container"><div class=""></div>
-					<div class="">
-                        <div class="p-details-tab-content">
-                            <div class="p-details-tab">
-                                <ul class="p-details-nav-tab" role="tablist">
-                                    
-                                    <li role="presentation"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reply</a></li>
-                                </ul>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="tab-content review">
-                               <!--  <div role="tabpanel" class="tab-pane active" id="more-info">
-                                    
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="data">
-                                    <table class="table-data-sheet">
-                                        <tbody>
-                                            <tr class="odd">
-                                                <td>Compositions</td>
-                                                <td>Cotton</td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td>Styles</td>
-                                                <td>Casual</td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td>Properties</td>
-                                                <td>Short Sleeve</td>
-                                            </tr>
-                                        </tbody>
-                                   </table>
-                                </div> -->
-                                <div role="tabpanel" class="tab-pane active" id="reviews">
-                                    <div id="product-comments-block-tab">
-                                        <a href="#" class="comment-btn"><span>Be the first to write your review!</span></a>
-                                        <div style=" text-align: center;">
-									        <br>
-									        <!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
-									        <c:if test="${sessionScope.id != null}">    
-									            <textarea rows="5" cols="160" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
-									            <br>
-									            <!-- 비밀댓글 체크박스 -->
-									            <input type="checkbox" id="secretReply">비밀 댓글
-									            <button type="button" id="btnReply">댓글 작성</button>
-									        </c:if>
-									    </div>
-                                        <!-- 댓글 목록 출력할 위치 -->
-    									<div id="listReply" ></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+			<div class="row">
+				<div class="p-details-tab-content">
+					<div class="p-details-tab">
+						<ul class="p-details-nav-tab" role="tablist">
+ 							<li role="presentation" class="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reply</a></li>
+						</ul>
 					</div>
-				</div>  
-            </div>
-        
-        <!-- Single Product Area End -->
-        
-	<%-- <%@ include file="/resources/include/footer.jsp" %> --%>
+                    <div class="clearfix"></div>
+					<div class="tab-content review">
+                       	<div role="tabpanel" class="tab-pane active" id="reviews">
+                           	<div id="product-comments-block-tab">
+                               	<div class="replytextdiv" style=" text-align: center;">
+                               		<br/>
+									<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
+								    <c:if test="${sessionScope.id != null}">    
+								    	<textarea rows="5" cols="160" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
+								    	<br/>
+								        <!-- 비밀댓글 체크박스 -->
+								        <input type="checkbox" id="secretReply">비밀 댓글
+								        <button type="button" id="btnReply">댓글 작성</button>
+								    </c:if>
+								</div>
+                                <!-- 댓글 목록 출력할 위치 -->
+   								<div id="listReply" ></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <!-- Single Product Area End -->
+     
+    <!-- Footer Start -->    
+	<%@ include file="/resources/include/footer.jsp" %>
+    <!-- Footer End -->    
     </body>
 </html>

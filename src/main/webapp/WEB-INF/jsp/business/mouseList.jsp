@@ -7,13 +7,22 @@
 <title>Insert title here</title>
 <%@ include file="/resources/include/header.jsp"%>
 <script>
-	
 	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
 	function list(page) {
 		location.href = "${path}/business/mouseList.do?curPage=" + page
 				+ "&searchOption=${map.searchOption}"
 				+ "&keyword=${map.keyword}";
 	}
+	$(document).ready(function() {
+		$("#btnWrite1").click(function() {
+			// 페이지 주소 변경(이동)
+			location.href = "${path}/tmouse/write.do";
+		});
+		$("#btnWrite2").click(function() {
+			// 페이지 주소 변경(이동)
+			location.href = "${path}/keyboard/write.do";
+		});
+	});
 </script>
 <style>
 .breadcrumbs-area {
@@ -127,41 +136,64 @@
     color: #666;
     text-align: center;
 }
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover {
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
 </style>
 </head>
 <body>
-<!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-					    <div class="breadcrumbs">
-					       <h2>마우스 제품리스트</h2> 
-					    </div>
-					</div>
+	<!-- Breadcrumbs Area Start -->
+    <div class="breadcrumbs-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				    <div class="breadcrumbs">
+				       <h2>마우스 제품리스트</h2> 
+				    </div>
 				</div>
 			</div>
-		</div> 
-		<!-- Breadcrumbs Area Start --> 
-		<!-- Cart Area Start -->
-		<div class="shopping-cart-area section-padding">
-		    <div class="container">
-		    	<div class="p-details-tab" style="margin-top: 30px;">
-	            	<ul class="p-details-nav-tab">
-	                	<li role="presentation" class="active"><a href="#" id="btnone">마우스</a></li>
-	                </ul>
-           		</div>
-		    	<div class="info_basket">
+		</div>
+	</div> 
+	<!-- Breadcrumbs Area End --> 
+
+	<!-- Cart Area Start -->
+	<div class="shopping-cart-area section-padding">
+	    <div class="container">
+	    	<div class="p-details-tab" style="margin-top: 30px;">
+            	<ul class="p-details-nav-tab">
+                	<li role="presentation" class="active"><a href="#" id="btnone">마우스</a></li>
+                	<li role="presentation" class=""><a href="${path}/business/keyboardList.do?searchOption=id" id="btntwo">키보드</a></li>
+                </ul>
+      		</div>
+	    	<div class="info_basket">
 				<p class="desc_total">총 <em class="emph_total">${map.count}개</em> 의 상품이 조회되었습니다.</p>
-				
 				<ul class="list_basket">
 					<c:forEach var="row" items="${map.list}">
 						<li class="check_on">
-							<a href="/kr/products/FRPBAF3F0473" class="link_thumb">
+							<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" class="link_thumb">
 								<img src="${path}/resources/upload/${row.fullName}" class="thumb_g" alt="">
 							</a>
 							<div class="desc_basket">
-								<strong class="tit_product"><a href="/kr/products/FRPBAF3F0473" class="link_product">${row.modelname}</a></strong>
+								<strong class="tit_product">
+									<a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" class="link_product">
+										${row.modelname}
+									</a>
+								</strong>
 								<ul class="list_append">
 									<li>
 										<em class="tit_append">금액 :</em>
@@ -208,108 +240,22 @@
 						<c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
 							<a href="javascript:list('${map.boardPager.totPage}')" class="link_page">[끝]</a>
 						</c:if>
-						<%-- <span class="screen_out">현재 페이지</span><em class="link_page">${num}</em>
-						<a href="/kr/products/groups/categories/69/pages/2?requestCategory=69" class="link_page">2</a> --%>
 					</span>
 				</div>
+				
+				<!-- 글작성 버튼 시작-->
+				<div class="paging_friends">
+	      			<button id="btnWrite2" style="float:right;">키보드 추가</button>
+	      			<button id="btnWrite1" style="float:right; margin-right:10px">마우스 추가</button>
+	      		</div>
+	      		<!-- 글작성 버튼 끝-->
 			</div>
-		    
-		    
-		    
-			<%-- <div class="p-details-tab" style="margin-top: 30px;">
-            	<ul class="p-details-nav-tab">
-                	<li role="presentation" class="active"><a href="#" id="btnone">마우스</a></li>
-                </ul>
-            </div>
-		    ${map.count}개의 게시물이 있습니다.
-		        <div class="row">
-		            <div class="col-md-12">
-                        <div class="wishlist-table-area table-responsive">
-                        
-							<div class="shopingcart-bottom-area">
-                            	<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
-									<c:if test="${map.boardPager.curBlock > 1}">
-										<a href="javascript:list('1')">[처음]</a>
-									</c:if> 
-									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --> 
-									<c:if test="${map.boardPager.curBlock > 1}">
-										<a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
-									</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> 
-									<c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
-									<!-- 현재페이지이면 하이퍼링크 제거 -->
-									<c:choose>
-										<c:when test="${num == map.boardPager.curPage}">
-											<span style="color: red">${num}</span>&nbsp;
-						                </c:when>
-										<c:otherwise>
-											<a href="javascript:list('${num}')">${num}</a>&nbsp;
-						                </c:otherwise>
-										</c:choose>
-										</c:forEach> <!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-										<c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-											<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
-										</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --> 
-										<c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
-											<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
-										</c:if>
-	                            <div class="shopingcart-bottom-area pull-right">
-									<a class="right-shoping-cart" href="${path}/tmouse/write.do">마우스 추가</a>
-									<a class="right-shoping-cart" href="${path}/keyboard/write.do">키보드 추가</a>
-								</div>
-	                        </div>		
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th width="15%">Remove</th>
-                                        <th width="15%">Image</th>
-                                        <th class="t-product-name">Product Name</th>
-                                        <th width="20%">Unit Price</th>
-                                        <th width="15%">Quantity</th>
-                                        
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <c:forEach var="row" items="${map.list}">
-                                    <tr>
-                                        <td class="product-remove">
-                                            <a href="${path}/business/mouseDelete.do?idx=${row.idx}">
-                                                <i class="flaticon-delete"></i>
-                                            </a>
-                                        </td>
-                                        <td class="product-image">
-                                            <a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
-                                                <img src="${path}/resources/upload/${row.fullName}" style="width:100px" alt="">
-                                            </a>
-                                        </td>
-                                        <td class="t-product-name">
-                                            <h3>
-                                                <a href="${path}/tmouse/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">${row.modelname}</a>
-                                            </h3>
-                                        </td>
-                                        <td class="product-unit-price">
-                                            <p>$ ${row.price}</p>
-                                        </td>
-                                        <td class="product-quantity product-cart-details">
-											${map.amount} 개
-										</td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>	
-                        	                
-		            </div>
-		        </div> --%>
-		        
-		        
-		        
-		        
-		    </div>
 		</div>
-		<!-- Cart Area End -->
+	</div>
+	<!-- Cart Area End -->
        
-        <!-- Footer Area Start -->
-		<%@ include file="/resources/include/footer.jsp"%>
-		 <!-- Footer Area End -->
+    <!-- Footer Area Start -->
+	<%@ include file="/resources/include/footer.jsp"%>
+	 <!-- Footer Area End -->
 </body>
 </html>

@@ -141,7 +141,7 @@
 														<input type="text" id="registrationyear" name="registrationyear" placeholder="제조년월  *"   value="${dto.registrationyear}" />
 													</p>
 													<p class="form-row">
-														<input type="text" id="amount" name="amount" placeholder="수량  *" value="${dto.amount}"/>  
+														<input type="text"  name="amount" placeholder="수량  *" value="${dto.amount}"/>  
 													</p> 
 													<input type="hidden" id="idx" name="idx" value="${dto.idx }" />
 												</div>											

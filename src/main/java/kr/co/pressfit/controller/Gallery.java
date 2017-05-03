@@ -119,6 +119,7 @@ public class Gallery {
         mav.setViewName(folder+"/view");
         // �뙎湲��쓽 �닔瑜� 留듭뿉 ���옣 : �뙎湲��씠 議댁옱�븯�뒗 寃뚯떆臾쇱쓽 �궘�젣泥섎━ 諛⑹��븯湲� �쐞�빐 
         mav.addObject("count", galleryservice.replycount(idx)); 
+        GalleryVO vo = galleryservice.read(idx);
         mav.addObject("dto", galleryservice.read(idx));
         mav.addObject("curPage", curPage);
         mav.addObject("searchOption", searchOption);
@@ -170,6 +171,7 @@ public class Gallery {
     // 05. 寃뚯떆湲� �궘�젣
     @RequestMapping("delete.do")
     public String delete(@RequestParam int idx) throws Exception{
+    	System.out.println("컨트롤러야 idx좀 찍자"+idx);
         galleryservice.delete(idx);
         return "redirect:list.do";
     }
@@ -189,7 +191,7 @@ public class Gallery {
     	String fileName = upload.getOriginalFilename();
     	galleryservice.addAttach(fileName);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	String uploadPath = "C:/Users/OSD/PressFit/eclipse-work/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");

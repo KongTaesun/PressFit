@@ -1212,7 +1212,7 @@ body {
 .shop-select select {
   background: #f6f6f6 none repeat scroll 0 0;
   border: medium none;
-  border-radius: 30px;
+  /* border-radius: 30px; */
   color: #9c9b9b;
   font-size: 12px;
   height: 40px;

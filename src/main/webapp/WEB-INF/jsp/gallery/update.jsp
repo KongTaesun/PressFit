@@ -147,7 +147,7 @@
     	<input type="hidden" name="idx" id="idx" size="80" value="${dto.idx}" >
     	<input type="hidden" name="writer" id="writer" size="80" value="${dto.writer}" >
         <div>        <!-- 원하는 날짜형식으로 출력하기 위해 fmt태그 사용 -->
-            작성일자 : <fmt:formatDate value="${dto.regdate}" pattern="yyyy-MM-dd a HH:mm:ss"/>
+            작성일자 : ${dto.regdate}
                     <!-- 날짜 형식 => yyyy 4자리연도, MM 월, dd 일, a 오전/오후, HH 24시간제, hh 12시간제, mm 분, ss 초 -->
         </div>
         <div>
