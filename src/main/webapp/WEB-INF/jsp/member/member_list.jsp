@@ -85,9 +85,9 @@
                                          <a> ${row.hp}</a>
                                         </td>
                                         
-                                          <td class="customer_address">
-                                         <a> ${row.address}</a>
-                                        </td>
+                                          <%-- <td class="customer_address">
+                                         <a> ${row.}</a>
+                                        </td> --%>
                                         
                                           <td class="customer_regdate">
                                          <a> ${row.regdate}</a>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- java Resource/src/main/resources/mappers/
+<!-- java Resource/src/main/resources/mappers/ 
     memberMapper.xml -->
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
 <mapper namespace="join">
@@ -10,14 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 resultType="kr.co.pressfit.vo.MemberVO">
 		select * from Cmember
 		order by name
-	</select>
+	</select> 
 	 
 	<insert id="insertMember"  parameterType="kr.co.pressfit.vo.MemberVO">
 	insert into Cmember 
-		(id,pw,name,gender,birth,email,hp,address) 
+		(id,pw,name,gender,birth,basic_addr,detail_addr,post,email,hp) 
 	values  
-	    (#{id},#{pw},#{name},#{gender},#{birth},#{email},#{hp},#{address}  )	
-	</insert>
+	    (#{id},#{pw},#{name},#{gender},#{birth},#{basic_addr},#{detail_addr},#{post},#{email},#{hp}  )	
+	</insert> 
 	
 	<select id="viewMember" resultType=
 	"kr.co.pressfit.vo.MemberVO">
@@ -39,6 +39,7 @@ resultType="kr.co.pressfit.vo.MemberVO">
 		delete from Cmember
 		where id=#{id} 
 	</delete>
+	
 	<!-- 비밀번호 체크 -->	
 	<select id="checkPw" resultType="int">
 		select count(*) from Cmember

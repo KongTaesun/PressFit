@@ -19,6 +19,7 @@ encoding//src/main/java/kr/co/pressfit/dao/TMouseDAO.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/dao/TMouseDAOImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/interceptor/AdminInterceptor.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/interceptor/LoggerInterceptor.java=UTF-8
+encoding//src/main/java/kr/co/pressfit/service=UTF-8
 encoding//src/main/java/kr/co/pressfit/service/AdminServiceImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/service/CartServiceImpl.java=UTF-8
 encoding//src/main/java/kr/co/pressfit/service/GalleryServiceImpl.java=UTF-8
