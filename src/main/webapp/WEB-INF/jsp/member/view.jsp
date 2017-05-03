@@ -80,10 +80,10 @@
 						<input name="hp" value="${vo.hp}">
 					</p>
 					
-					<p class="form-row">
+				<%-- 	<p class="form-row">
 						주소
 						<input name="address" value="${vo.address}" />
-					</p>
+					</p> --%>
 					
 					<p class="form-row">
 					

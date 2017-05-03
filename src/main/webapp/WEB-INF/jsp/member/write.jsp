@@ -11,9 +11,31 @@
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script>
+<script> 
+	$(document).ready(function() {
+		$('#btn1').click(function() {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/member/checkID.do",
+				type : "get", 
+				data : {
+					id : $('#id').val()
+				},
+				success : function(msg) {
+					if (resultCnt = 1) {
+						$('#searchResult').html(msg);
+					} else {
+						$('#searchResult').html(msg);
+					}
+				}
+			});
+		});
+	});
 
-
+	function callback(data) {
+		$('#searchResult').text(data);
+	}
+</script>
+<script> 
 
 	$(document).ready(function() {
 		
@@ -98,7 +120,7 @@
 				if (data.userSelectedType === 'R') {
 					//법정동명이 있을 경우 추가한다.
 					if (data.bname !== '') {
-						extraAddr += data.bname;
+						extraAddr += data.bname; 
 					}
 					// 건물명이 있을 경우 추가한다.
 					if (data.buildingName !== '') {
@@ -121,9 +143,69 @@
 		}).open();
 	}
 </script> 
+<style>
+
+.joinbutton{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #616161;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #dbe2ff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+
+button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #616161;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #dbe2ff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+button.btnbuy {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #879fff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+button.btnbuy:hover {
+	background: #32b5f3 none repeat scroll 0 0;
+	color: #ffffff;
+}
+</style>
 
 <%@ include file="/resources/include/header.jsp"%>
-<style>
+<style> 
 .sex {
     display: block;
     height: 31px;
@@ -165,13 +247,69 @@
     z-index: 100;
     margin: -1px;
     color: #337ab7;
-    border: solid 1px #337ab7;
+    border: solid 1px #4d90fe;
 } 
 
 .join_row{
         overflow: hidden;
 }
+.list_delivery {
 
+    overflow: hidden;
+    padding-top: 31px;
+}
+.list_delivery dt {
+    margin-bottom: 19px;
+    font-size: 16px;
+    line-height: 17px;
+    color: #666;
+}
+.list_delivery dd {
+    overflow: hidden;
+    min-height: 50px;
+    margin-bottom: 19px;
+}
+.list_delivery .box_input {
+    height: 48px;
+    padding: 0 19px;
+    border: 1px solid #d2d2d2;
+    background-color: #f9f9f9;
+}
+.list_delivery .box_input .tf_g {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #535353;
+    background-color: transparent;
+}
+.list_delivery .box_postal {
+    float: left;
+    width: 70%;
+}
+.list_delivery .box_input .tf_g:disabled {
+    opacity: 1;
+}
+.list_delivery .btn_postal {
+    float: left;
+    width: 25%; 
+    height: 50px;
+    margin-left: 22px;
+    /* border: 1px solid #d2d2d2;
+    font-size: 16px;
+    color: #1e1e1e;
+    line-height: 49px;
+    background-color: #fff;
+    text-align: center;  */
+}
+.box_input {
+input[type=text]:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+	}
+}
 </style>
 
 
@@ -213,7 +351,9 @@
 						<p class="form-row">
 							<input type="hidden" name="sns_tmp_id" value=""> <input type="hidden" name="redirect" value="/ko/signup"> 
 							<input type="hidden" name="marketing_email" value="false">
-						<div id="signup-agree" class="create-account-form">
+						
+						
+						<div id="signup-agree" class="create-account-form" style="">
 						
 						
 							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> <!-- 볼드처리 -->
@@ -237,26 +377,25 @@
 							<span>이벤트 등 혜택정보 알림(이메일/SMS) (선택)</span></label>
 						
 						<p class="form-row">
-					<label> <input class="agree-tos" type="checkbox"
-								name="adult"><i></i><span>만 14세 이상입니다.<b>
+					<label> <input class="agree-tos" type="checkbox" name="adult"><i></i><span>만 14세 이상입니다.<b>
 										(필수)</b>
 							</span></label>
-								
-												<div class="signup-agree-foot">
+								<br>
+								<div class="signup-agree-foot">
 								<button class="button form-button" type="button"
 									data-action="cancel">취소</button>
 								<button class="button form-button" type="button"
 									data-action="submit" id="btnAgree">동의</button>
 							</div>
-						
+						<br>
 							<div id="signup-agree-error" class="signup-agree-error">이용약관과
 								개인정보 수집 및 이용 모두 동의해주세요.</div>
 						</div>
 						
 						
 			
-					<div class="login-info">
 						<div class="form-help">
+				,
 							<p>
 								문제가 있거나 궁금한 점이 있으시면<br>아래 주소로 문의하시기 바랍니다.
 							</p>
@@ -264,7 +403,6 @@
 								고객지원&nbsp;:&nbsp;<a class="link" href='mailto:help@lezhin.com'>help@pressfit.com</a>
 							</p>
 							
-				</div>
 				</div>
 				</form> 
 				</div>
@@ -275,18 +413,78 @@
 					class="create-account-form" method="post">
 
 					<h1 class="heading-title">개인정보입력</h1>
+						<dl class="list_delivery">
+							<!-- <dt><label for="oaName">회원아이디</label><span class="ico_friends ico_star">필수입력</span></dt> -->
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaName" name="id" placeholder="회원아이디" type="text" value=""></div>
+							</dd>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaEmail" name="pw" placeholder="비밀번호" type="password" value=""></div>
+							</dd>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="name" placeholder="이름" type="text"  value=""></div>
+							</dd>
+							<dd>
+								<div id="sexDiv" class="join_row">
+									<span class="row_title blind"> </span> <span class="sex"> <span
+										class="jender"> <input type="radio" name="sex"
+											id="radioman" placeholder="남자" value="0" onclick="checkSex()" />
+											<label for="radioman" id="manLb" class="">남자</label>
+									</span> <span class="jender"> <input type="radio" name="sex"
+											id="radiowoman" placeholder="여자" value="1" onclick="checkSex()" />
+											<label id="womanLb" for="radiowoman" class="">여자</label>
+									</span>
+			
+									</span>
+								</div>
+							</dd>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="birth" placeholder="생년월일" type="text" ></div>
+							</dd> 
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="email" placeholder="이메일" type="text" ></div>
+							</dd>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="hp" placeholder="휴대폰" type="text" ></div>
+							</dd> 
+							<dd>
+								<div class="box_input box_postal">
+								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호"></div>
+								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
+							</dd>
+							<dd>
+								<div class="box_input">
+								
+								<input class="tf_g" id="basic_addr" name="basic_addr" type="text" readonly=readonly placeholder="주소" ></div>
+							</dd>
+							
+							
+							<dd> 
+								<div class="box_input"><input class="tf_g" id="detail_addr" name="detail_addr" type="text"  placeholder="상세주소" ></div>
+							</dd>
+						</dl>
+						
+						 
+						<input type="submit" value="회원가입" />
+				<input type="reset" value="취소" />
+					</form>
+
+			</div>
 
 
-					<p class="form-row">
+		</div>
+	</div>
+	
+					<!-- <p class="form-row">
 						<input type="text" name="id" placeholder="회원아이디">
-						<!-- <input type ="button" id="btn1" value="중복확인" /> <div ID="searchResult"></div> -->
+						<input type ="button" id="btn1" value="중복확인" /> <div ID="searchResult"></div>
 					</p>
 					<p class="form-row">
 						<input type="password" name="pw" placeholder="비밀번호">
 					</p>
-					<!-- <p class="form-row">
+					<p class="form-row">
 														<input type="password" placeholder="비밀번호확인" />
-													</p> -->
+													</p>
 					<p class="form-row">
 						<input type="text" name="name" placeholder="이름" />
 					</p>
@@ -319,8 +517,7 @@
 					</p>
 
 					<p class="form-row">
-						<input type="text" name="basic_addr" id="basic_addr"
-							readonly=readonly style="ime-mode: disabled" placeholder="주소" />
+						<input type="text" name="basic_addr" id="basic_addr" readonly=readonly style="ime-mode: disabled" placeholder="주소" />
 					</p>
 
 					<p class="form-row">
@@ -330,25 +527,19 @@
 
 					<p class="form-row">
 
-						<input type="text" id="post" name="post" readonly=readonly />
+						<input type="text" id="post" name="post" readonly=readonly placeholder="우편번호" />
 
 					</p>
 					
-						<p class="form-row">
+						<p class="button">
 
-						<input type="button" class="membtn" value="주소 검색" onclick="DaumPostcode()" style="ime-mode: disabled; width: 50%;"/>
+						<input type="button" class="joinbutton" value="주소 검색" onclick="DaumPostcode()" style="ime-mode: disabled; width: 50%;"/>
 
 					</p>
-					<input type="submit" value="회원가입" /> <input type="reset" value="취소" />
+					<input type="submit" class="joinbutton" value="회원가입" /> <input type="reset" class="joinbutton" value="취소" />
+				 -->
 				
 				
-				</form>
-
-			</div>
-
-
-		</div>
-	</div>
 
  
 <%@ include file="/resources/include/footer.jsp"%>

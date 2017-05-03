@@ -39,7 +39,7 @@ public class JoinController {
 	@Inject  
 	JoinService joinService;
 
-	private String uploadPath;
+	private String uploadPath; 
 	
 // url pattern mapping	
 	@RequestMapping("member/list.do")
@@ -58,7 +58,7 @@ public class JoinController {
 	//insert 泥섎━
 	@RequestMapping("member/insert.do")
 	public String insert(@ModelAttribute MemberVO vo){
-		// �뀒�씠釉붿뿉 �젅肄붾뱶瑜� �엯�젰
+	
 		joinService.insertMember(vo);
 		// member_list.jsp濡� 由щ뵒�젆�듃
 //   /member/list.do 猷⑦듃 �뵒�젆�넗由� 湲곗�
