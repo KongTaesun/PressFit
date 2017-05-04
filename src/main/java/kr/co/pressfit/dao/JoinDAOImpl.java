@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import kr.co.pressfit.vo.FileVO;
 import kr.co.pressfit.vo.MemberVO;
 
 
@@ -32,12 +33,14 @@ public class JoinDAOImpl implements JoinDAO {
 	public void insertMember(MemberVO vo) {
 		sqlSession.insert("join.insertMember", vo);
 	}
-
 	@Override
-	public MemberVO viewMember(String id) {
-		return sqlSession.selectOne("join.viewMember" , id);
+	public MemberVO mypage(String id) {
+		return sqlSession.selectOne("join.mypage" , id);
 	}
-
+	@Override
+	public MemberVO updatepage(String id) {
+		return sqlSession.selectOne("join.updatepage" , id);
+	}
 	@Override
 	public void deleteMember(String id) {
 		sqlSession.delete("join.deleteMember", id);
@@ -59,15 +62,17 @@ public class JoinDAOImpl implements JoinDAO {
 		if(count==1) result=true;
 		return result;
 	}
-	@Override
-	public MemberVO mypage(String id) {
-		return sqlSession.selectOne("join.mypage" , id);
-	}
+	 @Override
+	    public void addAttach(String fullName) {
+	    	FileVO file = new FileVO();
+	    	file.setFullname(fullName);
+	    	/*SqlSession.insert(name+".addAttach", file);
+	   */ }
 } 
 
 
 
 
-
+ 
 
 

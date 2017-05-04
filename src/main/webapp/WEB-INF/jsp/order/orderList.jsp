@@ -40,14 +40,24 @@
 		    <div class="container">
 		        <div class="row">
 		            <div class="col-md-12">
+                       <div class="p-details-tab" style="margin-top: 30px;">
+                                <ul class="p-details-nav-tab">
+                                    <li role="presentation"><a href="${path}/member/mypage.do?id=${sessionScope.id}" id="btnone">마이페이지</a></li>
+                                    <li role="presentation"><a href="${path}/member/updatepage.do?id=${sessionscope.id}" id="btntwo">내정보관리</a></li>
+                                    <li role="presentation" class="active"><a href="${path}/order/orderList.do" id="btnthree">내주문관리</a></li>
+                                    <li role="presentation"><a href="${path}/order/orderCancel.do" id="btnthree">취소및교환</a></li>
+                                  <!--   <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
+                                                           
+                                </ul> 
+                            </div>
+                           
                         <div class="wishlist-table-area table-responsive">
                         <c:choose>
 					        <c:when test="${map.count == 0}">
 					           	주문들어온 내역이 없습니다.
 					        </c:when>
 					        <c:otherwise>
-					        
-                            <table>
+					        <table>
                                 <thead>
 					                 <tr>
 					                				                  

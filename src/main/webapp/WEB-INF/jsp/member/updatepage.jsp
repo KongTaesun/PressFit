@@ -9,6 +9,55 @@
 <%@ include file="/resources/include/header.jsp"%>
 <script type="text/javascript" src="${path}/include/js/common.js"></script>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>
+
+<script>
+// 다음 주소 API
+function DaumPostcode() {
+	new daum.Postcode({
+		oncomplete : function(data) {
+			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var fullAddr = ''; // 최종 주소 변수
+			var extraAddr = ''; // 조합형 주소 변수
+
+			// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				fullAddr = data.roadAddress;
+
+			} else { // 사용자가 지번 주소를 선택했을 경우(J)
+				fullAddr = data.jibunAddress;
+			}
+
+			// 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+			if (data.userSelectedType === 'R') {
+				//법정동명이 있을 경우 추가한다.
+				if (data.bname !== '') {
+					extraAddr += data.bname; 
+				}
+				// 건물명이 있을 경우 추가한다.
+				if (data.buildingName !== '') {
+					extraAddr += (extraAddr !== '' ? ', '
+							+ data.buildingName
+							: data.buildingName);
+				}
+				// 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+				fullAddr += (extraAddr !== '' ? ' ('
+						+ extraAddr + ')'
+						: '');
+			}
+
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			$("#post").val(data.zonecode);
+			$("#basic_addr").val(fullAddr);
+			$("#detail_addr").focus();
+
+		}
+	}).open();
+}
+</script> 
+
 <style>
 .breadcrumbs-area {
 	background-image:
@@ -74,11 +123,6 @@ button.btnbuy:hover {
 	background: #32b5f3 none repeat scroll 0 0;
 	color: #ffffff;
 }
-</style>
-<style>
-.join_row{
-        overflow: hidden;
-}
 .list_delivery {
 
     overflow: hidden;
@@ -137,7 +181,7 @@ input[type=text]:focus {
 	}
 }
 </style>
-
+</head>
 <body>
 <!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
@@ -157,16 +201,17 @@ input[type=text]:focus {
 
 <div class="p-details-tab" style="margin-top: 30px;">
                                 <ul class="p-details-nav-tab">
-                                    <li role="presentation" class="active"><a href="#" id="btnone">마이페이지</a></li>
-                                    <li role="presentation"><a href="${path}/member/updatepage.do?id=${vo.id}" id="btntwo">내정보관리</a></li>
+                                    <li role="presentation"><a href="${path}/member/mypage.do?id=${sessionScope.id}" id="btnone">마이페이지</a></li>
+                                    <li role="presentation"class="active"><a href="#" id="btntwo">내정보관리</a></li>
                                     <li role="presentation"><a href="${path}/order/orderList.do" id="btnthree">내주문관리</a></li>
                                     <li role="presentation"><a href="${path}/order/orderCancel.do" id="btnthree">취소및교환</a></li>
-                                  <!--   <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
-                                                          
-                                </ul> 
+                                    <!-- <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
+                                
+                                
+                                </ul>
                             </div>
 
- 
+
 
 	<!-- About Us Area Start -->
 		<div class="about-us-area section-padding">
@@ -185,13 +230,13 @@ input[type=text]:focus {
 								<label for="oaName">회원아이디</label>
 							</dt>
 							<dd> 
-								<div class="box_input"><input class="tf_g" id="oaName" name="id" type="text" value="${vo.id}" readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaName" name="id" type="text" value="${vo.id}"></div>
 							</dd>
 							<dt>
 								<label for="oaName">비밀번호</label>
 							</dt>
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaEmail" name="pw" type="password" value="${vo.pw}" readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaEmail" name="pw" type="password" value="${vo.pw}"></div>
 							</dd>
 							<dt>
 								<label for="oaName">이름</label>
@@ -202,9 +247,8 @@ input[type=text]:focus {
 							<dt>
 								<label for="oaName">성별</label>
 							</dt>
-							
-							
-							<dd><c:choose>
+							<dd>
+							<c:choose>
 								<c:when test="${ vo.gender eq '0'}">
 									<div class="box_input"><input class="tf_g" id="oaPhone" name="name" type="text" 
 									 value="남자" readonly="readonly"></div>
@@ -221,31 +265,44 @@ input[type=text]:focus {
 								<label for="oaName">생년월일</label>
 							</dt>
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaPhone" name="birth" type="text" value="${vo.birth}" readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="birth" type="text" value="${vo.birth}" readonly="readonly" ></div>
 							</dd>
 							<dt>
 								<label for="oaName">이메일</label>
 							</dt> 
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaPhone" name="email" value="${vo.email}" type="text" readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="email" value="${vo.email}" type="text"></div>
 							</dd>
 							<dt>
 								<label for="oaName">전화번호</label>
 							</dt>
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaPhone" name="hp" value="${vo.hp}" type="text" readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="hp" value="${vo.hp}" type="text" ></div>
 							</dd>
 							<dt>
 								<label for="oaName">주소</label>
 							</dt> 
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaPhone" name="address" value="${vo.basic_addr} ${vo.detail_addr} ${vo.post}" type="text"  readonly="readonly"></div>
+								<div class="box_input box_postal">
+								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호" value="${vo.post}"></div>
+								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
 							</dd>
+							<dd>
+								<div class="box_input">
+								
+								<input class="tf_g" id="basic_addr" name="basic_addr" type="text" readonly=readonly value="${vo.basic_addr}" ></div>
+							</dd>
+							
+							
+							<dd> 
+								<div class="box_input"><input class="tf_g" id="detail_addr" name="detail_addr" type="text"  value=" ${vo.detail_addr}" ></div>
+							</dd>
+							
 							<dt>
 								<label for="oaName">가입일자</label>
 							</dt>
 							<dd>
-								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text"  readonly="readonly"></div>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text" readonly="readonly"></div>
 							</dd>
 						</dl>
 						
@@ -258,65 +315,16 @@ input[type=text]:focus {
                                 <div class="card animated fadeIn">
                                 
                                 
- <center>                               
+<center>                                
         <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar"></center>
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
 			});
 		</script>
-		</center>
-<center>
-         <p class="icons animated pulse"> 
-            <a href="https://twitter.com/" target="_blank">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle-thin fa-stack-2x"></i> 
-                <i class="fa fa-twitter fa-stack-1x"></i>
-            </span>
-            </a>
-            <a href="https://www.facebook.com/" target="_blank">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle-thin fa-3x fa-stack-2x"></i>     
-                <i class="fa fa-facebook fa-stack-1x"></i>
-            </span>
-            </a>
-            <a href="https://google.com/" target="_blank">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-google-plus fa-stack-1x"></i>
-            </span>
-            </a>
-            <a href="https://www.instagram.com/" target="_blank"> 
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-instagram fa-stack-1x"></i>
-            </span>
-            </a>
-            <a href="https://github.com/" target="_blank">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle-thin fa-stack-2x"></i>
-                <i class="fa fa-github fa-stack-1x"></i>
-            </span>
-            </a>
-         </p>
-         </center>
-         	</div>
-</div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-		    </div>
-		</div>
+</center>                                
 
-	<%@ include file="/resources/include/footer.jsp"%>
-	
-</body>
-</html>
-         
-         
-              <!--  	<div class="panel panel-default">
+             	<div class="panel panel-default">
 									<div class="panel-heading" role="tab" id="headingFour">
 										<h4 class="panel-title">
 											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -338,8 +346,25 @@ input[type=text]:focus {
 											</div>
 										</div>
 									</div>
-      </div>  -->
+   								   </div>  
          
+         						</div>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                </div>
+		    </div>
+		</div>
+
+	<%@ include file="/resources/include/footer.jsp"%>
+	
+</body>
+</html>
+         
+         
+            
          
         
             

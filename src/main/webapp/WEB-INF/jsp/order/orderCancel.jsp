@@ -6,6 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%@ include file="/resources/include/header.jsp"%>
+<style>
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/mouse_img2.png');
+}
+</style>
 </head>
 
 
@@ -36,6 +41,18 @@
 		    <div class="container">
 		        <div class="row">
 		            <div class="col-md-12">
+		            
+		            <div class="p-details-tab" style="margin-top: 30px;">
+                                <ul class="p-details-nav-tab">
+                                    <li role="presentation"><a href="${path}/member/mypage.do?id=${sessionScope.id}" id="btnone">마이페이지</a></li>
+                                    <li role="presentation"><a href="${path}/member/updatepage.do?id=${vo.id}" id="btntwo">내정보관리</a></li>
+                                    <li role="presentation"><a href="${path}/order/orderList.do" id="btnthree">내주문관리</a></li>
+                                    <li role="presentation" class="active"><a href="${path}/order/orderCancel.do" id="btnthree">취소및교환</a></li>
+                                  <!--   <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
+                                                           
+                                </ul> 
+                            </div>
+                           
                         <div class="wishlist-table-area table-responsive">
                         <c:choose>
 					        <c:when test="${map.count == 0}">
