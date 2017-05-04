@@ -150,7 +150,11 @@ text-align: left;
 													</p>
 											</div><br/>
 											<div class="col-md-12"><p>
-													주소 : <input type="text" value="${row.address}" style="border:0" readonly="readonly">
+													주소 : <input type="text" value="${row.post}" style="border:0" readonly="readonly">
+														  <input type="text" value="${row.basic_addr}" style="border:0" readonly="readonly">
+														  <input type="text" value="${row.detail_addr}" style="border:0" readonly="readonly">  
+													
+													<%-- <input type="text" value="${row.address}" style="border:0" readonly="readonly"> --%>
 													</p>
 											</div>
 											<div class="col-md-12"><p>
