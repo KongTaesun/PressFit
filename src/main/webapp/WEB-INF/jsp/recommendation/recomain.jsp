@@ -1,39 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 작성</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Home</title>
 <%@ include file="/resources/include/header.jsp"%>
-<script src="<c:url value='/resources/include/commons.js' />"></script>
-<script>
-$(document).ready(function() {
-	$('#close').click(function(){
-		$(this).parent().toggleClass('closed');
-	    $(this).prev().focus();
-	});
-	$('#q').keyup(function(e) {
-	    if (e.keyCode == 13){
-	    	if($('#q').val() != ''){
-		    	document.searchgo.submit();
-	    	}else{
-	    		alert('검색어를 입력하라');
-	    	}
-	    }
-	});
-
-	setTimeout(function() {
-	    $('#close').click();
-	}, 100);
-
-	});
-</script>
 <style>
-p {
-  margin-top: 3em;
-}
-
 .search-bar {
   -moz-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
   -o-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
@@ -41,22 +13,22 @@ p {
   -webkit-transition-delay: 0.25s;
   transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
   position: relative;
-  width: 500px;
-  height: 120px;
-  margin: 0 auto;
-}
-.search-bar input {
-  outline: none;
-  box-shadow: none;
+  width: 300px; 
   height: 50px;
-  line-height: 50px;
-  width: 100%;
-  padding: 0 1em;
-  box-sizing: border-box;
-  background: transparent;
+  margin: 0 auto;   
+} 
+.search-bar input { 
+  outline: none; 
+  box-shadow: none;
+  height: 50px; 
+  line-height: 50px; 
+  width: 100%;   
+  padding: 0 1em; 
+  box-sizing: border-box;  
+  background: transparent;    
   color: white;
-  border: 5px solid white;
-  border-radius: 50px;
+  border: 4px solid white;   
+  border-radius: 50px;  
 }
 .search-bar .toggle {
   -moz-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
@@ -64,11 +36,11 @@ p {
   -webkit-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99);
   -webkit-transition-delay: 0.25s;
   transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  position: absolute;
-  width: 70px;
-  height: 70px;
+  position: absolute; 
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  right: 0;
+  right: 0; 
   top: 0;
   border-radius: 50px;
 }
@@ -149,7 +121,7 @@ p {
   60% {
     height: 0px;
     -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
+    transform: translate(-8px, 8px) rotate(45deg); 
   }
   100% {
     height: 0px;
@@ -161,7 +133,7 @@ p {
   0% {
     height: 25px;
     -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    transform: translate(-25px, 12.5px) rotate(45deg); 
   }
   10% {
     height: 25px;
@@ -433,38 +405,60 @@ p {
 }
 	
 </style>
+<script>
+$(document).ready(function() {
+	$('#close').click(function(){
+		$(this).parent().toggleClass('closed');
+	    $(this).prev().focus();
+	});
+	$('#q').keyup(function(e) {
+	    if (e.keyCode == 13){
+	    	if($('#q').val() != ''){
+		    	document.searchgo.submit();
+	    	}else{
+	    		alert('검색어를 입력하라');
+	    	}
+	    }
+	});
+	setTimeout(function() {
+	    $('#close').click();
+	}, 100);
+	setTimeout(function() {
+	    $('#close').click();
+	}, 1000);
+	});
+</script>
 </head>
 <body>
         <!-- slider Area Start -->     
 		<div class="slider-area"> 
 			<div class="bend niceties preview-1">  
 				<div id="ensign-nivoslider" class="slides">	   
-					<img src="${path}/resources/writer/img/bigpicture/main.jpg" alt="" title="#slider-direction-1"  />
+					<img src="${path}/resources/writer/img/bigpicture/main.jpg" alt=""	title="#slider-direction-1" />
 				</div> 
 				 
 				<!-- direction 1 -->   
 				<div id="slider-direction-1" class="text-center slider-direction">   
 					<!-- layer 1 -->    
 					<div class="layer-1">
-			            <h2 class="title-1">Recommender system</h2> 
-		            </div> 
-					   
+			            <h2 class="title-1" >Recommender system</h2> 
+		            </div>
  					<!-- layer 2 -->      
 					<div class="layer-2">
 						<p class="title-2" style="font-size: 22px;">베이지안 뉴런 모듈을 통한 추천 시스템. <br/>아래 검색어를 입력해 보세요.</p>
 					</div>
 					<div class="layer-1"> 
-                        <div id="search-bar" class="search-bar">
                         <form id="searchgo" name="searchgo" action="${path}/search/answer.do">
-						    <input id="q" name="q" type="text" />
-						    <div id="close" class="toggle"></div>
-                        </form>
-						</div>
+	                        <div id="search-bar" class="search-bar">
+							    <input id="q" name="q" type="text" />
+							    <div id="close" class="toggle"></div>
+							</div>
+						</form>
 					</div>
 					<!-- layer 2 -->      
 					<div class="layer-2">
 						<div class="col-md-1 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".9999s">
 								<div class="counter-info">
 															
 								</div>
@@ -520,15 +514,12 @@ p {
 								</div>
 							</div>		                
 			            </div> 
-					</div>   
-					<!-- layer 3 --> 
-					<div class="layer-4"> 
-						<a href="#" class="title-4">설명이 필요하신가요?</a>  
 					</div>
 				</div>  
 			</div>  
 		</div>
-		<!-- slider Area End-->   
-	<%@ include file="/resources/include/footer.jsp" %>
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>
+
+

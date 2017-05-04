@@ -56,25 +56,8 @@ height: 95px;
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function(){
-        console.log(document.form1);
-        $("#btnLogin").click(function(){
-           alert("asdasd");
-           
-            var id = $("#id").val();
-            var pw = $("#pw").val();
-            document.form1.action="loginCheck.do" 
-            document.form1.submit();
-        });
-    });
-    </script>
 </head>
 
-<!-- favicon -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="resources/writer/img/favicon.ico">
-<!-- Place favicon.ico in the root directory -->
 <!-- Google Fonts -->
 <link
 	href='https://fonts.googleapis.com/css?family=Poppins:400,700,600,500,300'
