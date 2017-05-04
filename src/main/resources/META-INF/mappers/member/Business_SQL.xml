@@ -11,9 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	 
 	<insert id="insertBusiness" parameterType="kr.co.pressfit.vo.BusinessVO">
-	insert into Cbusiness (id,pw,name,gender,birth,email,hp,address,companyname,companytp, representative, corporateregistrationnumber, typeofbusiness, itemsofbusiness, companyaddress ) 
-	values (#{id},#{pw},#{name},#{gender},#{birth},#{email},#{hp},#{address},
-	#{companyname}, #{companytp}, #{representative}, #{corporateregistrationnumber}, #{typeofbusiness}, #{itemsofbusiness}, #{companyaddress}  )	
+	insert into Cbusiness 
+	(id,pw,name,gender,birth,basic_addr,detail_addr,post,email,hp,companyname,companytp, representative, corporateregistrationnumber, typeofbusiness, itemsofbusiness, companyaddress, regdate ) 
+	values (#{id},#{pw},#{name},#{gender},#{birth},#{basic_addr},#{detail_addr},#{post},#{email},#{hp},#{address},
+	#{companyname}, #{companytp}, #{representative}, #{corporateregistrationnumber}, #{typeofbusiness}, #{itemsofbusiness}, #{companyaddress}, NOW() )	
 	
 	</insert>
 	
@@ -21,7 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from Cbusiness
 	where id=#{id}
 	</select>
-	<!-- 회원정보 수정 -->
+	<!-- 회원정보 수정 --> 
 	<update id="updateBusiness"> 
 	update Cbusiness
 	set pw=#{pw}, name=#{name}

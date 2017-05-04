@@ -312,8 +312,6 @@ input[type=text]:focus {
 }
 </style>
 
-
-
 </head>
 <style> 
 .breadcrumbs-area { 
@@ -331,10 +329,7 @@ input[type=text]:focus {
 				<div class="col-md-12">
 					<div class="breadcrumbs">
 						<h2>My Account</h2>
-						<ul class="breadcrumbs-list">
-							<li><a title="Return to Home" href="index.html">Home</a></li>
-							<li>My Account</li>
-						</ul>
+						
 					</div>
 				</div>
 			</div>
@@ -356,7 +351,7 @@ input[type=text]:focus {
 						<div id="signup-agree" class="create-account-form" style="">
 						
 						
-							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> <!-- 볼드처리 -->
+							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> 
 							</label>
  
 							<div class="signup-agree-labelwrap">
@@ -370,7 +365,7 @@ input[type=text]:focus {
 								<label><input class="agree-tos" type="checkbox" name="agree-pp"><i></i>
 								
 								<span>개인정보 수집 및 이용에 대한 안내<b>(필수)</b> 
-								</span></label> <a href="${path}/agreement/helprule_private.do" target="_blank">상세보기</a>
+								</span></label> <a href="${path}/resource/agreement/helprule_private.do" target="_blank">상세보기</a>
 							</div>
 							<label><input class="agree-event" type="checkbox" name="agree_market_email"><i></i>
 							
@@ -392,8 +387,6 @@ input[type=text]:focus {
 								개인정보 수집 및 이용 모두 동의해주세요.</div>
 						</div>
 						
-						
-			
 						<div class="form-help">
 				,
 							<p>
