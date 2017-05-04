@@ -14,9 +14,9 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	 
 	<insert id="insertMember"  parameterType="kr.co.pressfit.vo.MemberVO">
 	insert into Cmember 
-		(id,pw,name,gender,birth,basic_addr,detail_addr,post,email,hp) 
+		(id,pw,name,gender,birth,basic_addr,detail_addr,post,email, hp, regdate) 
 	values  
-	    (#{id},#{pw},#{name},#{gender},#{birth},#{basic_addr},#{detail_addr},#{post},#{email},#{hp}  )	
+	    (#{id},#{pw},#{name},#{gender},#{birth},#{basic_addr},#{detail_addr},#{post},#{email},#{hp}, NOW()  )	
 	</insert> 
 	
 	<select id="viewMember" resultType=

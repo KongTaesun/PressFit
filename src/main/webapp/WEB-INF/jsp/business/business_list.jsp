@@ -48,7 +48,7 @@ onclick="location.href='${path}/business/write.do'">
     <td>
 <a href="${path}/business/view.do?id=${row.id}">
 ${row.name}</a></td>
-    <td>${row.email}</td>
+    <td>${row.email}</td> 
     <td>${row.regdate}</td> 
   </tr>
 </c:forEach>  

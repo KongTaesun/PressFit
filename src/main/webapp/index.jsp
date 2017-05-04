@@ -1127,7 +1127,7 @@ $(document).ready(function() {
 						<div class="product-images">
 							<div class="main-image images">
 								<img alt="" src="img/quick-view.jpg">
-							</div>
+							</div> 
 						</div>
 						<div class="product-info">
 							<h1>Frame Princes Cut Diamond</h1>

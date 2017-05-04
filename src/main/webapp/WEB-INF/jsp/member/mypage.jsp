@@ -15,6 +15,128 @@
 		url('${path}/resources/writer/img/bigpicture/mypage_img.png');
 }
 </style>
+<style>
+
+.joinbutton{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #616161;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #dbe2ff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+
+button {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #616161;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #dbe2ff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+button.btnbuy {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #879fff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+button.btnbuy:hover {
+	background: #32b5f3 none repeat scroll 0 0;
+	color: #ffffff;
+}
+</style>
+<style>
+.join_row{
+        overflow: hidden;
+}
+.list_delivery {
+
+    overflow: hidden;
+    padding-top: 31px;
+}
+.list_delivery dt {
+    margin-bottom: 19px;
+    font-size: 16px;
+    line-height: 17px;
+    color: #666;
+}
+.list_delivery dd {
+    overflow: hidden;
+    min-height: 50px;
+    margin-bottom: 19px;
+}
+.list_delivery .box_input {
+    height: 48px;
+    padding: 0 19px;
+    border: 1px solid #d2d2d2;
+    background-color: #f9f9f9;
+}
+.list_delivery .box_input .tf_g {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #535353;
+    background-color: transparent;
+}
+.list_delivery .box_postal {
+    float: left;
+    width: 70%;
+}
+.list_delivery .box_input .tf_g:disabled {
+    opacity: 1;
+}
+.list_delivery .btn_postal {
+    float: left;
+    width: 25%; 
+    height: 50px;
+    margin-left: 22px;
+    /* border: 1px solid #d2d2d2;
+    font-size: 16px;
+    color: #1e1e1e;
+    line-height: 49px;
+    background-color: #fff;
+    text-align: center;  */
+}
+.box_input {
+input[type=text]:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+	}
+}
+</style>
 
 <body>
 <!-- Breadcrumbs Area Start -->
@@ -55,40 +177,80 @@
                     <div class="about-top-inner">
                         <div class="col-md-6">
                             <div class="about-inner">
-                                <div class="about-title">
-                                    <h2>마이페이지</h2>
-                                </div>
-                                
+                                                              
                                 <div class="about-content">
+
+       <!-- <h2 class="heading-title">개인정보</h2> -->
+						<dl class="list_delivery">
+							<dt>
+								<label for="oaName">회원아이디</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaName" name="id" type="text" value="${vo.id}"></div>
+							</dd>
+							<dt>
+								<label for="oaName">비밀번호</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaEmail" name="pw" type="password" value="${vo.pw}"></div>
+							</dd>
+							<dt>
+								<label for="oaName">이름</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="name" type="text"  value="${vo.name}"></div>
+							</dd>
+							<dt>
+								<label for="oaName">성별</label>
+							</dt>
+							
+							
+							<dd><c:choose>
+								<c:when test="${ vo.gender eq '0'}">
+									<div class="box_input"><input class="tf_g" id="oaPhone" name="name" type="text" 
+									 value="남자"></div>
+							</c:when>
+								<c:otherwise>
+									<div class="box_input"><input class="tf_g" id="oaPhone" name="name" type="text" 
+									 value="여자"></div>
+							</c:otherwise>
+							</c:choose>
+							</dd>
+							
+							
+							<dt>
+								<label for="oaName">생년월일</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="birth" type="text" value="${vo.birth}"></div>
+							</dd>
+							<dt>
+								<label for="oaName">이메일</label>
+							</dt> 
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="email" value="${vo.email}" type="text" ></div>
+							</dd>
+							<dt>
+								<label for="oaName">전화번호</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="hp" value="${vo.hp}" type="text" ></div>
+							</dd>
+							<dt>
+								<label for="oaName">주소</label>
+							</dt> 
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="address" value="${vo.basic_addr} ${vo.detail_addr} ${vo.post}" type="text" ></div>
+							</dd>
+							<dt>
+								<label for="oaName">가입일자</label>
+							</dt>
+							<dd>
+								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text" ></div>
+							</dd>
+						</dl>
+						
       
-                                     <p class="form-row">
-						아이디 ${vo.id}
-					</p>
-								
-					<p class="form-row">
-						이름  ${vo.name} 
-					</p>
-
-					<p class="form-row">
-						성별
-					</p>
-
-					<p class="form-row">
-						생년월일 ${vo.birth} 
-					</p>
-
-					<p class="form-row">
-						이메일 ${vo.email}
-					</p>
-					<p class="form-row">
-						전화번호 ${vo.hp}
-					</p>					
-					<p class="form-row">
-						주소
-						${vo.address} 
-					</p>
-                                         
-                                    <p>
                                 </div>
                             </div>
                         </div>
@@ -136,9 +298,10 @@
                 <i class="fa fa-github fa-stack-1x"></i>
             </span>
             </a>
-            </center>
          </p>
+            </center>
       </div>
+       
 	</div>
 </div>
                             </div>
