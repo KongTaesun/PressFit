@@ -407,7 +407,6 @@ input[type=text]:focus {
 
 					<h1 class="heading-title">개인정보입력</h1>
 						<dl class="list_delivery">
-							<!-- <dt><label for="oaName">회원아이디</label><span class="ico_friends ico_star">필수입력</span></dt> -->
 							<dd>
 								<div class="box_input"><input class="tf_g" id="oaName" name="id" placeholder="회원아이디" type="text" value=""></div>
 							</dd>
@@ -419,8 +418,7 @@ input[type=text]:focus {
 							</dd>
 							<dd>
 								<div id="sexDiv" class="join_row">
-									<span class="row_title blind"> </span> <span class="sex"> <span
-										class="jender"> <input type="radio" name="sex"
+									<span class="row_title blind"> </span> <span class="sex"> <span class="jender"> <input type="radio" name="sex"
 											id="radioman" placeholder="남자" value="0" onclick="checkSex()" />
 											<label for="radioman" id="manLb" class="">남자</label>
 									</span> <span class="jender"> <input type="radio" name="sex"

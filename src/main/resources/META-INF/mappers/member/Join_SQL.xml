@@ -19,7 +19,7 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	    (#{id},#{pw},#{name},#{gender},#{birth},#{basic_addr},#{detail_addr},#{post},#{email},#{hp}, NOW()  )	
 	</insert> 
 	
-	<select id="viewMember" resultType=
+	<select id="updatepage" resultType=
 	"kr.co.pressfit.vo.MemberVO">
 	select * from Cmember
 	where id=#{id}
@@ -28,11 +28,10 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	<!-- 회원정보 수정 -->
 	<update id="updateMember"> 
 	update Cmember 
-	set pw=#{pw}, name=#{name} 
+	set pw=#{pw}, name=#{name}, basic_addr=#{basic_addr}, detail_addr={#detail_addr},post=#{post}, hp=#{hp}
 		,email=#{email}, updatedate=now(), cpicture=#{cpicture}
 	where id=#{id}
 	</update>
-	
 	
 	<!-- 회원정보 삭제 -->
 	<delete id="deleteMember">
@@ -52,7 +51,12 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	where id=#{id}
 	</select>
 	
-	
+	<update id="addAttach">
+		update Cmember 
+	set cpicture=#{cpicture} 
+	where id=#{id}
+		
+			</update>
 	
 </mapper>
 
