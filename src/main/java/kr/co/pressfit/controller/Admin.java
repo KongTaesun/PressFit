@@ -23,6 +23,7 @@ import kr.co.pressfit.service.FaqService;
 import kr.co.pressfit.service.GalleryService;
 import kr.co.pressfit.service.JoinService;
 import kr.co.pressfit.service.KeyboardService;
+import kr.co.pressfit.service.MemberService;
 import kr.co.pressfit.service.OrderService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.AdminVO;
@@ -60,7 +61,7 @@ public class Admin {
 	@Inject
 	AdminService adminservice;
 	@Inject  
-	JoinService joinservice;
+	MemberService memberservice;
 	
 	@RequestMapping("main.do")
 	public String main(Model model, HttpSession session){
@@ -435,12 +436,12 @@ public class Admin {
     }
 	@RequestMapping(value="/member/create.do")
 	public void membercreate(@ModelAttribute(name="memberVO") MemberVO vo)throws Exception{
-		joinservice.insertMember(vo);
+		//joinservice.insertMember(vo);
     }
 	@RequestMapping(value="/member/read.do")
 	public ModelAndView memberread(@RequestParam(name="memberidx") String id)throws Exception{
     	ModelAndView mv = new ModelAndView("jsonView");
-    	mv.addObject("member", joinservice.viewMember(id));
+    	//mv.addObject("member", memberservice.viewMember(vo)viewMember(id));
     	return mv;
     }
 	@RequestMapping(value="/member/update1.do")

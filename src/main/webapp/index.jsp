@@ -4,405 +4,6 @@
 <head>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Home</title>
-<style>
-.search-bar {
-  -moz-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  -o-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  -webkit-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97);
-  -webkit-transition-delay: 0.25s;
-  transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  position: relative;
-  width: 300px;
-  height: 50px;
-  margin: 0 auto;
-}
-.search-bar input {
-  outline: none;
-  box-shadow: none;
-  height: 50px;
-  line-height: 50px;
-  width: 100%;
-  padding: 0 1em;
-  box-sizing: border-box;
-  background: transparent;
-  color: black;
-  border: 4px solid black;
-  border-radius: 50px;
-}
-.search-bar .toggle {
-  -moz-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  -o-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  -webkit-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99);
-  -webkit-transition-delay: 0.25s;
-  transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  right: 0;
-  top: 0;
-  border-radius: 50px;
-}
-.search-bar .toggle .toggle:after, .search-bar .toggle .toggle:before {
-  border-color: black;
-}
-.search-bar .toggle:after, .search-bar .toggle:before {
-  -moz-transition: all 1s;
-  -o-transition: all 1s;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0;
-  width: 0;
-  height: 25px;
-  border-left: 4px solid black;
-  border-radius: 4px;
-  top: 0;
-}
-.search-bar .toggle:before {
-  -moz-animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-  -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-  -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-  transform: translate(-25px, 12.5px) rotate(45deg);
-}
-.search-bar .toggle:after {
-  -moz-animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-  -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-  -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-  transform: translate(-25px, 12.5px) rotate(-45deg);
-}
-.search-bar.closed {
-  width: 50px;
-}
-.search-bar.closed input {
-  color: black;
-}
-.search-bar.closed .toggle:before {
-  -moz-animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  height: 0px;
-  -moz-transform: translate(-8px, 8px) rotate(45deg);
-  -ms-transform: translate(-8px, 8px) rotate(45deg);
-  -webkit-transform: translate(-8px, 8px) rotate(45deg);
-  transform: translate(-8px, 8px) rotate(45deg);
-}
-.search-bar.closed .toggle:after {
-  -moz-animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  height: 25px;
-  -moz-transform: translate(0, 37.5px) rotate(-45deg);
-  -ms-transform: translate(0, 37.5px) rotate(-45deg);
-  -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-  transform: translate(0, 37.5px) rotate(-45deg);
-}
-
-@-moz-keyframes close-one {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  10% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  60% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  100% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-}
-@-webkit-keyframes close-one {
-  0% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  10% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  60% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  100% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-}
-@keyframes close-one {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  10% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  60% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  100% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-}
-@-moz-keyframes close-two {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@-webkit-keyframes close-two {
-  0% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@keyframes close-two {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    -ms-transform: translate(0, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@-moz-keyframes close-one-reverse {
-  0% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  40% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  80% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-}
-@-webkit-keyframes close-one-reverse {
-  0% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  40% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  80% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  100% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-}
-@keyframes close-one-reverse {
-  0% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  40% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  80% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-}
-@-moz-keyframes close-two-reverse {
-  0% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-  40% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  50% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-}
-@-webkit-keyframes close-two-reverse {
-  0% {
-    height: 25px;
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-  40% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  50% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-}
-@keyframes close-two-reverse {
-  0% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    -ms-transform: translate(0, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-  40% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  50% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-}
-</style>
 <%@ include file="/resources/include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/style.css" />
@@ -432,49 +33,47 @@ $(document).ready(function(){
 <body>
 <!-- Shop Area Start -->
         <div class="shopping-area section-padding" style="padding: 0;">
-            <div class="container" style="padding: 0;margin-left: 10%;margin-right: 10%">
+            <div class="container" style="padding: 0;margin-left: 12%;margin-right: 10%">
                 <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-12" style="padding: 0;">
+                    <div class="col-md-2 col-sm-3 col-xs-12" style="padding: 0;">
                         <div class="shop-widget">
                             <div class="shop-widget-top" style="padding-bottom: 0;">
                                 <aside class="widget widget-categories">
-                                    <h2 class="sidebar-title text-center">CATEGORY</h2>
-                                    <ul class="sidebar-menu">
-                                        <li>
-                                            <a href="#">
-                                               <i class="fa fa-angle-double-right"></i>
-                                                LEARNING
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                               <i class="fa fa-angle-double-right"></i>
-                                                LEARNING
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                               <i class="fa fa-angle-double-right"></i>
-                                                LEARNING
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                               <i class="fa fa-angle-double-right"></i>
-                                                LIGHTING
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
+                                    <h2 class="sidebar-title text-center">바로가기</h2>
+                                    <ul class="sidebar-menu" style="font-size: 16px;">
+                                    	<li>
+                                            <a href="${path}/community/list.do">
                                               <i class="fa fa-angle-double-right"></i>
-                                               LIVING ROOMS
+                                                	공지사항	
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <a href="${path}/tmouse/list.do">
                                                <i class="fa fa-angle-double-right"></i>
-                                                LAMP
+                                                	마우스 
                                             </a>
+                                        </li>
+                                        <li>
+                                            <a href="${path}/keyboard/list.do">
+                                               <i class="fa fa-angle-double-right"></i>
+                                                	키보드
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="${path}/login/login.do">
+                                               <i class="fa fa-angle-double-right"></i>
+                                              	  	로그인
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="${path}/gallery/list.do">
+                                               <i class="fa fa-angle-double-right"></i>
+                                                	갤러리
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                             
                                         </li>
                                     </ul>
                                 </aside>                   
@@ -536,12 +135,6 @@ $(document).ready(function(){
         <!-- Shop Area End -->
 <!-- Online Banner Area Start -->    
 		<div class="online-banner-area">
-		        <div class="banner-title text-center" style="margin:0">
-					<div id="search-bar" class="search-bar">
-					    <input type="text" />
-					    <div id="close" class="toggle"></div>
-					</div>
-		       	</div>
 		        <div class="row">
 		            <div class="banner-list">
 		                <div class="col-md-2"  ></div>
@@ -647,18 +240,9 @@ $(document).ready(function(){
 		        </div>
 		    </div>
 		<!-- Online Banner Area End -->   
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-	       <div class="single-banner">
-	       <a href="${path}/keyboard/list.do">
-	        	<img src="${path}/resources/index/ad2_LW_Gaming_109890_170329.jpg" alt="" style="width: 100%">
-		    </a>
-	 		</div>
-		</div>
-	</div>
+	
 <!-- Blog Area Start -->
-		<div class="blog-area section-padding">
+		<div class="blog-area section-padding" style="padding: 0">
             <h2 class="section-title">LATEST BLOG</h2>
             <p>The Latest Blog post for the biggest Blog for the books Library.</p>
 		    <div class="container">
@@ -753,6 +337,124 @@ $(document).ready(function(){
 		    </div>
 		</div>
 		<!-- Blog Area End -->
+		<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+	       <div class="single-banner">
+	       <a href="${path}/keyboard/list.do">
+	        	<img src="${path}/resources/index/ad2_LW_Gaming_109890_170329.jpg" alt="" style="width: 100%">
+		    </a>
+	 		</div>
+		</div>
+	</div>
+		<!-- Address Information Area Start -->
+	<div class="address-info-area section-padding">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 hidden-sm">
+					<div class="address-single">
+						<div class="all-adress-info">
+							<div class="icon">
+								<span><i class="fa fa-user-plus"></i></span>
+							</div>
+							<div class="info">
+								<h3>PHONE</h3>
+								<p>010-7106-5135</p>
+								<p>010-9927-8895</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6" onclick="panTo()">
+					<div class="address-single">
+						<div class="all-adress-info">
+							<div class="icon">
+								<span><i class="fa fa-map-marker"></i></span>
+							</div>
+							<div class="info" >
+								<h3>ADDRESS</h3>
+								<p>서울 서초구 서초대로</p>
+								<p>74길 33 비트빌3층</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6" onclick="location.href='${path}'";>
+					<div class="address-single no-margin">
+						<div class="all-adress-info">
+							<div class="icon">
+								<i class="fa fa-envelope"></i>
+							</div>
+							<div class="info">
+								<h3>E-MAIL</h3>
+								<p>pressfit@gpressfit.com</p>
+								<p>http://localhost:8080/pressfit</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Address Information Area End -->
+	<!-- Map Area Start -->
+	<div class="map-area">
+		<div id="map" style="width: 100%; height: 445px;"></div>
+		
+		<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cb3e3b4c8ce2e2d998fa2b1534a6b543"></script>
+		<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = { 
+		        center: new daum.maps.LatLng(37.4946571, 127.0276173), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };
+	
+			var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+			
+			// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+			var mapTypeControl = new daum.maps.MapTypeControl();
+
+			// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+			// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+			map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+			
+			// 지도 확대축소 막기
+			map.setZoomable(false);
+			// 지도 이동 막기
+			map.setDraggable(false); 
+			
+			// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+			var zoomControl = new daum.maps.ZoomControl();
+			map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+			
+			function panTo() {
+			    // 이동할 위도 경도 위치를 생성합니다 
+			    var moveLatLon = new daum.maps.LatLng(37.4946571, 127.0276173);
+			    
+			    // 지도 중심을 부드럽게 이동시킵니다
+			    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+			    map.panTo(moveLatLon);            
+			} 
+			
+			// 마커가 표시될 위치입니다 
+			var markerPosition  = new daum.maps.LatLng(37.4946571, 127.0276173); 
+
+			// 마커를 생성합니다
+			var marker = new daum.maps.Marker({
+			    position: markerPosition
+			});
+
+			// 마커가 지도 위에 표시되도록 설정합니다
+			marker.setMap(map);
+
+			// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+			// marker.setMap(null);
+			
+			
+		</script>
+	</div>
+	<!-- Map Area End -->
+
 <%@ include file="/resources/include/footer.jsp"%>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/resources/index/js/jquery.eislideshow.js"></script>

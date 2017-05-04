@@ -51,11 +51,31 @@ height: 95px;
 }
 
 </style>
-
+<style>
+@font-face {
+	font-family: 'Connoisseurs';
+	src: url('${path}/resources/font/Connoisseurs.ttf')
+}
+@font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+<script>
+    $(document).ready(function(){
+        console.log(document.form1);
+        $("#btnLogin").click(function(){
+           alert("asdasd");
+           
+            var id = $("#id").val();
+            var pw = $("#pw").val();
+            document.form1.action="loginCheck.do" 
+            document.form1.submit();
+        });
+        
+    });
+    </script>
 </head>
 
 <!-- Google Fonts -->
@@ -103,12 +123,7 @@ height: 95px;
 	href="${path}/resources/writer/css/responsive.css">
 <!-- modernizr css -->
 <script src="${path}/resources/writer/js/vendor/modernizr-2.8.3.min.js"></script>
-<style>
-@font-face {
-	font-family: 'Connoisseurs';
-	src: url('${path}/resources/font/Connoisseurs.ttf')
-}
-</style>
+
 <style>
 .login-form {
 	padding: 15px 15px 0 15px;
@@ -119,10 +134,49 @@ height: 95px;
 }
 </style>
 
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+
+.d5s {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.d5 input, .d5 button {
+  outline: none;
+  background: transparent;
+}
+.d5 input {
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  padding-left: 15px;
+  border: 4px solid #30b4f2;
+}
+.d5 button {
+  border: none;
+  height: 42px;
+  width: 42px;
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.d5 button:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 25px;
+  color: #30b4f2;
+}
+.d5 input:focus {
+  border-color: #30b4f2
+}
+</style>
 
 <!--Header Area Start-->
 <div class="header-area">
-	<div class="container" style="font-size: 15px;">
+	<div class="container" style="font-size: 17px;">
 		<div class="row">
 			<div class="col-md-2 col-sm-6 col-xs-6">
 				<div class="header-logo">
@@ -131,81 +185,15 @@ height: 95px;
 					</a>
 				</div>
 			</div>
-			<div class="col-md-3 col-sm-6 visible-sm  col-xs-6">
-				<div class="header-right"> 
-					<ul>
-						<li><a href="account.html"><i class="flaticon-people"></i></a>
-						</li>
-						<li class="shoping-cart"><a
-							href="${path}/shop/cart/cartList.do"> <i
-								class="flaticon-shop"></i>
-						</a>
-							</li>
-					</ul>
-				</div>
+			<div class="col-md-1 col-sm-6 col-xs-6"></div>
+			<div id="wrap" class="col-md-6 col-sm-12 hidden-xs" style="padding: 25px">
+				<div class="d5">
+				<form class="d5s">
+				  <input type="text" placeholder="뭘 찾으세요?? 추천해드려요~!">
+				  <button type="submit"></button>
+				</form>
+				</div>	
 			</div>
-
-			<div class="col-md-7 col-sm-12 hidden-xs">
-				<div class="mainmenu text-center">
-					<nav>
-
-
-						<ul id="nav">
-							<li><a href="${path}/">HOME</a></li>
-							<li><a href="#">CATEGORY</a>
-								<ul class="sub-menu">
-									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
-									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
-								</ul> <c:choose>
-									<c:when test="${empty sessionScope.id }">
-										<li><a href="#">MYPAGE</a>
-											<ul class="sub-menu">
-												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-												<li><a
-													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
-												<li><a href="${path}/order/orderList.do">주문내역</a></li>
-												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
-												<li><a href="${path}/faq/list.do">1:1문의</a></li>
-											</ul></li>
-									</c:when>
-									<c:when test="${ kind  eq 'business'}">
-										<li><a href="#">BUSINESS</a>
-											<ul class="sub-menu">
-												<li><a
-													href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
-												<li><a
-													href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
-												<li><a href="${path}/business/orderList.do">주문상품</a></li>
-												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-											</ul></li>
-									</c:when>
-									<c:otherwise>
-										<li><a href="#">MYPAGE</a>
-											<ul class="sub-menu">
-												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-												<li><a
-													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
-												<li><a href="${path}/order/orderList.do">주문내역</a></li>
-												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
-												<li><a href="${path}/faq/list.do">1:1문의</a></li>
-											</ul></li>
-									</c:otherwise>
-								</c:choose>
-							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
-							<li><a href="#">SERVICE CENTER</a>
-								<ul class="sub-menu">
-
-									<li><a href="${path}/community/list.do">공지사항</a></li>
-									<li><a href="${path}/faq/list.do">FAQ</a></li>
-
-
-								</ul>
-					</nav>
-				</div>
-			</div>
-
-
-
 			<div class="col-md-3 hidden-sm">
 				<div class="header-right">
 					<span class="login-light1">
@@ -217,9 +205,6 @@ height: 95px;
 								class="flaticon-people"></i></a>
 							</c:if>
 					</span>
-
-
-
 				<c:if test="${sessionScope.id != null}">
 				<ul>
 						<li class="shoping-cart"><a
@@ -228,51 +213,14 @@ height: 95px;
 						</a>
 							</li></ul>
 							</c:if>
-						
-							
-							
-							
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<%-- 			<div class="col-md-3 hidden-sm">
 				<div class="header-right">
 					<ul>
 						<li><a href="${path}/login/login.do"><i
 								class="flaticon-people"></i></a>
 						</li>
-								
-								
-								
-								
-								
 						<li class="shoping-cart"><a
 							href="${path}/shop/cart/cartList.do"> <i
 								class="flaticon-shop"></i> <span>2</span>
@@ -331,6 +279,67 @@ height: 95px;
 					</ul>
 				</div>
 			</div> --%>
+
+
+		</div>
+		<div class="row">
+			<div class="col-md-11" style="padding:0">
+			<div class="mainmenu text-center">
+					<nav>
+						<ul id="nav">
+							<li><a href="#">CATEGORY</a>
+								<ul class="sub-menu">
+									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
+									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
+								</ul> <c:choose>
+									<c:when test="${empty sessionScope.id }">
+										<li><a href="#">MYPAGE</a>
+											<ul class="sub-menu">
+												<li><a href="${path}/login/logout.do">로그아웃</a></li>
+												<li><a
+													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
+												<li><a href="${path}/order/orderList.do">주문내역</a></li>
+												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
+												<li><a href="${path}/faq/list.do">1:1문의</a></li>
+											</ul></li>
+									</c:when>
+									<c:when test="${ kind  eq 'business'}">
+										<li><a href="#">BUSINESS</a>
+											<ul class="sub-menu">
+												<li><a
+													href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
+												<li><a
+													href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
+												<li><a href="${path}/business/orderList.do">주문상품</a></li>
+												<li><a href="${path}/login/logout.do">로그아웃</a></li>
+											</ul></li>
+									</c:when>
+									<c:otherwise>
+										<li><a href="#">MYPAGE</a>
+											<ul class="sub-menu">
+												<li><a href="${path}/login/logout.do">로그아웃</a></li>
+												<li><a
+													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
+												<li><a href="${path}/order/orderList.do">주문내역</a></li>
+												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
+												<li><a href="${path}/faq/list.do">1:1문의</a></li>
+											</ul></li>
+									</c:otherwise>
+								</c:choose>
+							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
+							<li><a href="${path}/gallery/list.do">RECOMMEND</a></li>
+							<li><a href="#">SERVICE CENTER</a>
+								<ul class="sub-menu">
+
+									<li><a href="${path}/community/list.do">공지사항</a></li>
+									<li><a href="${path}/faq/list.do">FAQ</a></li>
+
+
+								</ul></li>
+								</ul>
+					</nav>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
