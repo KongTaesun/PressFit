@@ -94,9 +94,8 @@ button {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 	border: 1px solid #dbe2ff;
-	box-shadow:
-	0px 1px 3px rgba(000,000,000,0.3),
-	inset 0px 0px 2px rgba(255,255,255,0);
+	box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), inset 0px 0px 2px
+		rgba(255, 255, 255, 0);
 }
 
 button.btnbuy {
@@ -112,9 +111,8 @@ button.btnbuy {
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
 	border: 1px solid #879fff;
-	box-shadow:
-	0px 1px 3px rgba(000,000,000,0.3),
-	inset 0px 0px 2px rgba(255,255,255,0);
+	box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), inset 0px 0px 2px
+		rgba(255, 255, 255, 0);
 }
 
 button.btnbuy:hover {
@@ -126,7 +124,6 @@ button.btnbuy:hover {
 	border: #32b5f3;
 	color: #ffffff;
 } */
-
 #quantity-wanted-p {
 	background: #ffffff none repeat scroll 0 0;
 	border: 1px solid #dddddd;
@@ -144,10 +141,10 @@ button.btnplus {
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
 		to(#ffffff));
 	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px; 
+	-webkit-border-radius: 0px;
 	border-radius: 0px;
 	border: 0px solid #ffffff;
-		-moz-box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.1), inset 0px 0px 2px
+	-moz-box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.1), inset 0px 0px 2px
 		rgba(255, 255, 255, 1);
 	-webkit-box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.1), inset 0px 0px
 		2px rgba(255, 255, 255, 1);
@@ -159,240 +156,256 @@ button.btnplus {
 
 .product-attributes1 {
 	margin-bottom: 20px;
-	float:left;
+	float: left;
 	box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.1), inset 0px 0px 2px
 		rgba(255, 255, 255, 1);
 }
 
 .replytextstyle {
 	border: 1px solid #858585;
-    border-left: 1px solid #858585;
-    margin-top: 10px;
-    margin-bottom: 17px;
-    height: 75px;
+	border-left: 1px solid #858585;
+	margin-top: 10px;
+	margin-bottom: 17px;
+	height: 75px;
 }
 
 .replytextdiv {
 	width: 650px;
-    text-align: center;
-    margin-bottom: 50px;
-    background: lavenderblush;
-    height: 195px;
+	text-align: center;
+	margin-bottom: 50px;
+	background: lavenderblush;
+	height: 195px;
 }
-
 </style>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
-    $(document).ready(function(){
-        $("#btnCmt").click(function(){
-        	location.href="${path}/tmouse/cmt.do?idx=${dto.idx}";
-        });
-        // 2. 게시글 삭제
-        // 삭제 버튼 클릭 
-		$("#btnDelete").click(function(){
-		    // 댓글이 존재하는 게시물의 삭제처리 방지
-		    var count = "${count}";
-		    // 댓글의 수가 0보다 크면 팝업, 함수 종료
-		    if(count > 0) {
-		    	if(confirm("댓글이 많이 있습니다. 삭제하시겠습니까?")){
-		    		document.form1.action = "${path}/tmouse/delete.do?idx=${dto.idx}";
-			        document.form1.submit();
-		    	}else{return;}
-		    }
-		    // 댓글의 수가 0이면 삭제처리
-		    if(confirm("삭제하시겠습니까?")){
-		        location.href = "${path}/tmouse/delete.do?idx=${dto.idx}";
-		        }
-		    else{
-		    }
+	$(document)
+			.ready(
+					function() {
+						$("#btnCmt")
+								.click(
+										function() {
+											location.href = "${path}/tmouse/cmt.do?idx=${dto.idx}";
+										});
+						// 2. 게시글 삭제
+						// 삭제 버튼 클릭 
+						$("#btnDelete")
+								.click(
+										function() {
+											// 댓글이 존재하는 게시물의 삭제처리 방지
+											var count = "${count}";
+											// 댓글의 수가 0보다 크면 팝업, 함수 종료
+											if (count > 0) {
+												if (confirm("댓글이 많이 있습니다. 삭제하시겠습니까?")) {
+													document.form1.action = "${path}/tmouse/delete.do?idx=${dto.idx}";
+													document.form1.submit();
+												} else {
+													return;
+												}
+											}
+											// 댓글의 수가 0이면 삭제처리
+											if (confirm("삭제하시겠습니까?")) {
+												location.href = "${path}/tmouse/delete.do?idx=${dto.idx}";
+											} else {
+											}
+										});
+
+						// 3. 게시글 목록으로 이동 - 버튼 클릭시 상세보기화면에 있던 페이지, 검색옵션, 키워드 값을 가지로 목록으로 이동
+						$("#btnList")
+								.click(
+										function() {
+											location.href = "${path}/tmouse/list.do?curPage=${curPage}&searchOption=${searchOption}&keyword=${keyword}";
+										});
+
+						/* 댓글 관련 */
+						// 1. 댓글 입력
+						$("#btnReply").click(function() {
+							replyJson(); // json 형식으로 입력
+						});
+
+						// 2. 댓글 목록
+						listReply("1"); // rest방식
+
+						// 1. 첨부파일 목록 불러오기 함수 호출
+						listAttach();
+
+						// 4. 게시글 수정버튼 클릭 이벤트 처리
+						$("#btnUpdete")
+								.click(
+										function() {
+											location.href = "${path}/tmouse/update.do?idx=${dto.idx}";
+										});
+
+						$("#inCart").click(function() {
+							addCart();
+						});
+
+						$("#btnBuy").click(function() {
+							btnBuy();
+						});
+
+						$("#btnplus").click(function() {
+							var n = $("#btnplus").index(this);
+							var num = $(".amount:eq(" + n + ")").val();
+							num = $(".amount:eq(" + n + ")").val(num * 1 + 1);
+						});
+
+						$("#btnminus").click(function() {
+							var n = $("#btnbtnminus").index(this);
+							var num = $(".amount:eq(" + n + ")").val();
+							if (num <= 1)
+								num = $(".amount:eq(" + n + ")").val(1);
+							else
+								num = $(".amount:eq(" + n + ")").val(num - 1);
+						});
+					})
+
+	function addCart() {
+		var amount = $(".amount").val();
+		if (amount < 1) {
+			alert("수량을 체크해주세요!");
+		} else {
+			$
+					.ajax({
+						type : "get",
+						url : "${path}/shop/cart/insert.do?price=${dto.price}&amount="
+								+ amount
+								+ "&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}",
+						success : function() {
+							var result = confirm("장바구니에 추가되었습니다. 바로 확인하시겠습니까?");
+							if (result) {
+								location.href = "${path}/shop/cart/cartList.do";
+							} else {
+							}
+						},
+						error : function() {
+							alert("실패");
+						}
+					});
+		}
+	}
+
+	// 구매하기 
+	function btnBuy() {
+		var amount = $(".amount").val();
+		location.href = "${path}/shop/cart/buy.do?price=${dto.price}&amount="
+				+ amount
+				+ "&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C";
+	}
+
+	// 첨부파일 목록 ajax요청 처리
+	function listAttach() {
+		$
+				.ajax({
+					type : "post",
+					url : "${path}/keyboard/getAttach/${dto.idx}",
+					success : function(list) {
+						$(list)
+								.each(
+										function() {
+											var fileInfo = getFileInfo(this);
+											var str = "";
+											// 이미지 파일이면 썸네일 이미지 출력
+											if (checkImageType(this)) {
+												str = "<div><a href='"+fileInfo.imgsrc+fileInfo.fileName+"'>";
+												str += "<img src='"+fileInfo.imgsrc+fileInfo.fileName+"' ></a>";
+												// 일반파일이면 다운로드링크
+											} else {
+												str = "<div><a href='"+fileInfo.getLink+"'>"
+														+ fileInfo.fileName
+														+ "</a>";
+											}
+											// 삭제 버튼
+											//str += "<span data-src="+fileInfo.fileName+">[삭제]</span></div>";
+											$(".uploadedList").append(str);
+
+										});
+					}
+
+				});
+	}
+	// 1_2. 댓글 입력 함수(json방식)
+	function replyJson() {
+		var replytext = $("#replytext").val();
+		var idx = "${dto.idx}"
+		// 비밀댓글 체크여부
+		var secretReply = "n";
+		// 태그.is(":속성") 체크여부 true/false
+		if ($("#secretReply").is(":checked")) {
+			secretReply = "y";
+		}
+		$.ajax({
+			type : "post",
+			url : "${path}/keyboard/reply/insertRest.do",
+			headers : {
+				"Content-Type" : "application/json"
+			},
+			dateType : "text",
+			// param형식보다 간편
+			data : JSON.stringify({
+				boardno : idx,
+				replytext : replytext,
+				secretReply : secretReply
+			}),
+			success : function() {
+				alert("댓글이 등록되었습니다.");
+				// 댓글 입력 완료후 댓글 목록 불러오기 함수 호출
+				//listReply("1");     // 전통적인 Controller방식
+				//listReply2();     // json리턴 방식
+				listReply("1"); // Rest 방식
+			}
 		});
+	}
+	// 2_2. 댓글 목록 - 날짜 형식 변환 함수 작성
+	function changeDate(date) {
+		date = new Date(parseInt(date));
+		year = date.getFullYear();
+		month = date.getMonth();
+		day = date.getDate();
+		hour = date.getHours();
+		minute = date.getMinutes();
+		second = date.getSeconds();
+		strDate = year + "-" + month + "-" + day + " " + hour + ":" + minute
+				+ ":" + second;
+		return strDate;
+	}
 
-        
-        // 3. 게시글 목록으로 이동 - 버튼 클릭시 상세보기화면에 있던 페이지, 검색옵션, 키워드 값을 가지로 목록으로 이동
-        $("#btnList").click(function(){
-            location.href="${path}/tmouse/list.do?curPage=${curPage}&searchOption=${searchOption}&keyword=${keyword}";
-        });
-        
-        /* 댓글 관련 */
-        // 1. 댓글 입력
-        $("#btnReply").click(function(){
-            replyJson(); // json 형식으로 입력
-        });
-        
-        // 2. 댓글 목록
-        listReply("1"); // rest방식
-        
-     	// 1. 첨부파일 목록 불러오기 함수 호출
-        listAttach();
-        
-        // 4. 게시글 수정버튼 클릭 이벤트 처리
-        $("#btnUpdete").click(function(){
-        	location.href="${path}/tmouse/update.do?idx=${dto.idx}";
-        });
-    	 
-    	$("#inCart").click(function() {
-    		addCart();
-    	});
-    	
-    	$("#btnBuy").click(function(){
-    		btnBuy();
-    	});
-    	
-      	$("#btnplus").click(function(){ 
-      	    var n = $("#btnplus").index(this);
-      	    var num = $(".amount:eq("+n+")").val();
-      	    num = $(".amount:eq("+n+")").val(num*1+1); 
-      	});
-      	
-      	$("#btnminus").click(function(){ 
-      	    var n = $("#btnbtnminus").index(this);
-      	    var num = $(".amount:eq("+n+")").val();
-      	  if(num <= 1)
-        	    num = $(".amount:eq("+n+")").val(1);
-      	  else
-      		num = $(".amount:eq("+n+")").val(num-1);
-       });
-      })
-    	
+	// 2_3. 댓글 목록 - Rest방식
+	function listReply(num) {
+		$.ajax({
+			type : "get",
+			url : "${path}/keyboard/reply/list/${dto.idx}/" + num,
+			success : function(result) {
+				console.log(result);
+				// responseText가 result에 저장됨.
+				$("#listReply").html(result);
+			}
+		});
+	}
 
-    	function addCart(){
-    		var amount=$(".amount").val();
-    		if(amount < 1){
-        		alert("수량을 체크해주세요!");
-        	} else{
-        		$.ajax({
-                    type: "get",
-                    url: "${path}/shop/cart/insert.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}",
-                    success: function(){
-                    	var result = confirm("장바구니에 추가되었습니다. 바로 확인하시겠습니까?");
-                		if(result){
-                			location.href="${path}/shop/cart/cartList.do";
-                		} else{
-                		}
-                    },
-                    error: function(){
-                    	alert("실패");
-                    }
-                });
-        	}
-        }    
-    	
-    	// 구매하기 
-    	function btnBuy(){
-    		var amount=$(".amount").val();
-    		location.href = "${path}/shop/cart/buy.do?price=${dto.price}&amount="+ amount +"&modelname=${dto.modelname}&manufacturecompany=${dto.manufacturecompany}&idx=${dto.idx}&fullName=${dto.fullName}&kind=tmouse&crea_id=${dto.crea_id}&payment=C";
-    	}
-    	
- 	// 첨부파일 목록 ajax요청 처리
-    function listAttach(){
-        $.ajax({
-            type: "post",
-            url: "${path}/keyboard/getAttach/${dto.idx}",
-            success: function(list){
-                $(list).each(function(){ 
-                var fileInfo = getFileInfo(this);
-                var str = "";
-                // 이미지 파일이면 썸네일 이미지 출력
-                if(checkImageType(this)){ 
-                    str = "<div><a href='"+fileInfo.imgsrc+fileInfo.fileName+"'>";
-                    str += "<img src='"+fileInfo.imgsrc+fileInfo.fileName+"' ></a>";
-                // 일반파일이면 다운로드링크
-                } else { 
-                    str = "<div><a href='"+fileInfo.getLink+"'>"+fileInfo.fileName+"</a>";
-                }
-                // 삭제 버튼
-                //str += "<span data-src="+fileInfo.fileName+">[삭제]</span></div>";
-                $(".uploadedList").append(str);
-                
-                });
-            }
-            
-        });
-    }
-    // 1_2. 댓글 입력 함수(json방식)
-    function replyJson(){
-        var replytext=$("#replytext").val();
-        var idx="${dto.idx}"
-        // 비밀댓글 체크여부
-        var secretReply = "n";
-        // 태그.is(":속성") 체크여부 true/false
-        if( $("#secretReply").is(":checked") ){
-            secretReply = "y";
-        }
-        $.ajax({                
-            type: "post",
-            url: "${path}/keyboard/reply/insertRest.do",
-            headers: {
-                "Content-Type" : "application/json"
-            },
-            dateType: "text",
-            // param형식보다 간편
-            data: JSON.stringify({
-            	boardno : idx,
-                replytext : replytext,
-                secretReply : secretReply
-            }),
-            success: function(){
-                alert("댓글이 등록되었습니다.");
-                // 댓글 입력 완료후 댓글 목록 불러오기 함수 호출
-                //listReply("1");     // 전통적인 Controller방식
-                //listReply2();     // json리턴 방식
-                listReply("1"); // Rest 방식
-            }
-        });
-    }
-    // 2_2. 댓글 목록 - 날짜 형식 변환 함수 작성
-    function changeDate(date){
-        date = new Date(parseInt(date));
-        year = date.getFullYear();
-        month = date.getMonth();
-        day = date.getDate();
-        hour = date.getHours();
-        minute = date.getMinutes();
-        second = date.getSeconds();
-        strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
-        return strDate;
-    }
-    
-    // 2_3. 댓글 목록 - Rest방식
-    function listReply(num){
-        $.ajax({
-            type: "get",
-            url: "${path}/keyboard/reply/list/${dto.idx}/"+num,
-            success: function(result){
-            	console.log(result);
-            // responseText가 result에 저장됨.
-                $("#listReply").html(result);
-            }
-        });
-    }    
-    
-    // **댓글 수정화면 생성 함수
-    function showReplyModify(num){
-        $.ajax({
-            type: "get",
-            url: "${path}/keyboard/reply/detail/"+num,
-            success: function(result){
-                $("#modifyReply").html(result);
-                // 태그.css("속성", "값")
-                $("#modifyReply").css("visibility", "visible");
-            }
-        })
-    }
-    // **댓글 답글화면 생성 함수
-    function showReplyCmtModify(num){
-        $.ajax({
-            type: "get",
-            url: "${path}/keyboard/reply/Cmtdetail/"+num,
-            success: function(result){
-                $("#modifyReply").html(result);
-                $("#modifyReply").css("visibility", "visible");
-            }
-        })
-    }
-    
-
-    
+	// **댓글 수정화면 생성 함수
+	function showReplyModify(num) {
+		$.ajax({
+			type : "get",
+			url : "${path}/keyboard/reply/detail/" + num,
+			success : function(result) {
+				$("#modifyReply").html(result);
+				// 태그.css("속성", "값")
+				$("#modifyReply").css("visibility", "visible");
+			}
+		})
+	}
+	// **댓글 답글화면 생성 함수
+	function showReplyCmtModify(num) {
+		$.ajax({
+			type : "get",
+			url : "${path}/keyboard/reply/Cmtdetail/" + num,
+			success : function(result) {
+				$("#modifyReply").html(result);
+				$("#modifyReply").css("visibility", "visible");
+			}
+		})
+	}
 </script>
 <!-- 업로드된 파일 목록 -->
 <!-- <div class="uploadedList" id="uploadedList"></div> -->
@@ -419,7 +432,7 @@ button.btnplus {
 <div class="single-product-area section-padding">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-sm-7">
+			<div class="col-md-5 col-sm-7">
 				<div class="single-product-image-inner">
 					<!-- Tab panes -->
 					<div class="tab-content">
@@ -481,36 +494,32 @@ button.btnplus {
 							</a>
 						</c:if>
 					</div>
-					<p>제조사 : ${dto.manufacturecompany}</p>
-					<p>등록년월 : ${dto.regdate}</p>
-
+					<p style="font-weight:normal;">제조사 : ${dto.manufacturecompany}</p>
+					<p style="font-weight:normal;">등록년월 : ${dto.registrationyear}</p>
+					<p style="font-weight:normal;">배송비 : 10만원 이상 배송비 무료</p>
+					<p style="font-weight:normal;">평균배송일 : 1.9일</p>
+					
+					
+					
 					<div class="single-product-price">
 						<h2>가격 : ${dto.price}￦</h2>
 						<input type="hidden" name="price" value="${dto.price}" />
 					</div>
-
-
-
-					<!-- ================================================================================================================================================================================================================ -->
-
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-5" style="padding-right: 15px; padding-left: 15px;">
 					<div class="product-attributes1 clearfix">
 						<p style="margin-bottom: 5px;">
-							<span class="pull-left" id="quantity-wanted-p">
-								<input type="button" name="btnminus" id="btnminus" style="height:40px;" value="-">
-								
-								<input type="text" name="amount" value="1" style="width:40px;" class="amount"/>
-								
-								<input type="button" name="btnplus" id="btnplus" style="height:40px;" value="+">
+							<span class="pull-left" id="quantity-wanted-p"> <input
+								type="button" name="btnminus" id="btnminus"
+								style="height: 40px; border: 1px;" value="-"> <input
+								type="text" name="amount" value="1" style="width: 40px;"
+								class="amount" /> <input type="button" name="btnplus"
+								id="btnplus" style="height: 40px; border: 1px;" value="+">
 							</span>
 						</p>
 					</div>
-
-
-
-
-					<!-- ================================================================================================================================================================================================================ -->
-
-					<div style="float:left;">
+					<div>
 						<!-- 게시물번호를 hidden으로 처리 -->
 						<input type="hidden" name="boardno" value="${dto.idx}">
 
@@ -523,12 +532,10 @@ button.btnplus {
 						<button type="button" id="btnBuy" class="btnbuy">구매하기</button>
 						<!-- 장바구니 버튼 -->
 						<button type="button" id="inCart">장바구니</button>
+						<!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
+						<button type="button" id="btnList" style="float:right;">목록</button>
 					</div>
-				</div>
 			</div>
-			<!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-			<button type="button" id="btnList"
-				style="float: right; margin-top: 113px;">목록</button>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -672,17 +679,27 @@ button.btnplus {
 						</div>
 						<div role="tabpanel" class="tab-pane" id="reviews">
 							<div id="product-comments-block-tab">
-								<div style="width: 650px; text-align: center;" class="replytextdiv">
+								<div style="width: 650px; text-align: center;"
+									class="replytextdiv">
 									<br>
 									<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
 									<c:if test="${sessionScope.id != null}">
-										<textarea rows="5" cols="80" id="replytext" class="replytextstyle"
-											placeholder="댓글을 작성해주세요"></textarea>
+										<textarea rows="5" cols="80" id="replytext"
+											class="replytextstyle" placeholder="댓글을 작성해주세요"></textarea>
 										<br>
 										<!-- 비밀댓글 체크박스 -->
-									            <button type="button" id="btnReply" style="margin-left: 60px; color:black;">댓글 작성</button> &nbsp;
+										<button type="button" id="btnReply"
+											style="margin-left: 60px; color: black;">댓글 작성</button> &nbsp;
 									            <input type="checkbox" id="secretReply"> 비밀 댓글 
-									</c:if> 
+									</c:if>
+									<!-- 로그인하지 않았을 경우 -->
+									<c:if test="${sessionScope.id == null}">
+										<div style="margin-top: 65px;">
+											<a href="${path}/login/login.do"
+												style="background: lavenderblush; border: aliceblue; font-weight: bold; color: black;">로그인</a>
+											후 댓글 작성 가능합니다!
+										</div>
+									</c:if>
 								</div>
 								<!-- 댓글 목록 출력할 위치 -->
 								<div id="listReply"></div>
