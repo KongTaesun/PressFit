@@ -51,20 +51,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     
     <sql id="search">
-      <if test="searchOption=='order'">
-         and (shippingStatus = '0'
-         or shippingStatus = '1'
-         or shippingStatus = '2')
-      </if>
-      <if test="searchOption=='refund'">
-         and (shippingStatus = '3'
-         or shippingStatus = '4')
-      </if>
-      <if test="searchOption=='exchange'">
-         and (shippingStatus = '5'
-         or shippingStatus = '6')
-      </if>
-   </sql>
+		and orderdate between #{startDate} and #{endDate}
+		<if test="searchOption=='order'">
+			and (shippingStatus = '0'
+			or shippingStatus = '1')
+		</if>
+		<if test="searchOption=='refund'">
+			and (shippingStatus = '3')
+		</if>
+		<if test="searchOption=='exchange'">
+			and (shippingStatus = '5'
+			or shippingStatus = '6')
+		</if>
+	</sql>
     
     <!-- 페이징 sql -->
 	<sql id="pagingHeader">

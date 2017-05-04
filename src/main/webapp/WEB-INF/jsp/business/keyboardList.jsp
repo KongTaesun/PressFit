@@ -13,6 +13,16 @@
 				+ "&searchOption=${map.searchOption}"
 				+ "&keyword=${map.keyword}";
 	}
+	$(document).ready(function() {
+		$("#btnWrite1").click(function() {
+			// 페이지 주소 변경(이동)
+			location.href = "${path}/tmouse/write.do";
+		});
+		$("#btnWrite2").click(function() {
+			// 페이지 주소 변경(이동)
+			location.href = "${path}/keyboard/write.do";
+		});
+	});
 </script>
 <style>
 .breadcrumbs-area {
