@@ -138,61 +138,9 @@ height: 95px;
 						</li>
 						<li class="shoping-cart"><a
 							href="${path}/shop/cart/cartList.do"> <i
-								class="flaticon-shop"></i> <span>2</span>
+								class="flaticon-shop"></i>
 						</a>
-							<div class="add-to-cart-product">
-								<div class="cart-product">
-									<div class="cart-product-image">
-										<a href="resources/writer/single-product.html"> <img
-											src="${path}/resources/writer/img/shop/1.jpg" alt="">
-										</a>
-									</div>
-									<div class="cart-product-info">
-										<p>
-											<span>1</span> <a
-												href="${path}/resources/writer/single-product.html">East
-												of eden</a>
-										</p>
-										<a href="single-product.html">S, Orange</a> <span
-											class="cart-price">$ 140.00</span>
-									</div>
-									<div class="cart-product-remove">
-										<i class="fa fa-times"></i>
-									</div>
-								</div>
-								<div class="cart-product">
-									<div class="cart-product-image">
-										<a href="resources/writer/single-product.html"> <img
-											src="${path}/resources/writer/img/shop/1.jpg" alt="">
-										</a>
-									</div>
-									<div class="cart-product-info">
-										<p>
-											<span>1</span> x <a
-												href="${path}/resources/writer/single-product.html">East
-												of eden</a>
-										</p>
-										<a href="single-product.html">S, Orange</a> <span
-											class="cart-price">$ 140.00</span>
-									</div>
-									<div class="cart-product-remove">
-										<i class="fa fa-times"></i>
-									</div>
-								</div>
-								<div class="total-cart-price">
-									<div class="cart-product-line fast-line">
-										<span>Shipping</span> <span class="free-shiping">$10.50</span>
-									</div>
-									<div class="cart-product-line">
-										<span>Total</span> <span class="total">$ 140.00</span>
-									</div>
-								</div>
-								<div class="cart-checkout">
-									<a href="resources/writer/checkout.html"> Check out <i
-										class="fa fa-chevron-right"></i>
-									</a>
-								</div>
-							</div></li>
+							</li>
 					</ul>
 				</div>
 			</div>
@@ -276,59 +224,9 @@ height: 95px;
 				<ul>
 						<li class="shoping-cart"><a
 							href="${path}/shop/cart/cartList.do"> <i
-								class="flaticon-shop"></i> <span>2</span>
+								class="flaticon-shop"></i>
 						</a>
-							<div class="add-to-cart-product">
-								<div class="cart-product">
-									<div class="cart-product-image">
-										<a href="single-product.html"> <img
-											src="resources/writer/img/shop/1.jpg" alt="">
-										</a>
-									</div>
-									<div class="cart-product-info">
-										<p>
-											<span>1</span> x <a href="single-product.html">East of
-												eden</a>
-										</p>
-										<a href="single-product.html">S, Orange</a> <span
-											class="cart-price">$ 140.00</span>
-									</div>
-									<div class="cart-product-remove">
-										<i class="fa fa-times"></i>
-									</div>
-								</div>
-								<div class="cart-product">
-									<div class="cart-product-image">
-										<a href="resources/writer/single-product.html"> <img
-											src="resources/writer/img/shop/1.jpg" alt="">
-										</a>
-									</div>
-									<div class="cart-product-info">
-										<p>
-											<span>1</span> x <a href="single-product.html">East of
-												eden</a>
-										</p>
-										<a href="single-product.html">S, Orange</a> <span
-											class="cart-price">$ 140.00</span>
-									</div>
-									<div class="cart-product-remove">
-										<i class="fa fa-times"></i>
-									</div>
-								</div>
-								<div class="total-cart-price">
-									<div class="cart-product-line fast-line">
-										<span>Shipping</span> <span class="free-shiping">$10.50</span>
-									</div>
-									<div class="cart-product-line">
-										<span>Total</span> <span class="total">$ 140.00</span>
-									</div>
-								</div>
-								<div class="cart-checkout">
-									<a href="checkout.html"> Check out <i
-										class="fa fa-chevron-right"></i>
-									</a>
-								</div>
-							</div></li></ul>
+							</li></ul>
 							</c:if>
 						
 							

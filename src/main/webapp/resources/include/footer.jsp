@@ -87,6 +87,7 @@ a {
 		    <div class="footer-top-area1">
 		        <div class="container">
 		            <div class="row">  
+		            <div class="col-md-12">
 		            	<ul class="utilmenu">
 		            		<li class="bizinfo info">
 		            			<a href="${path}/resources/agreement/.jsp">회사소개</a>
@@ -110,6 +111,7 @@ a {
 		            </div>
 		        </div>
 		    </div>
+		 </div>
 		    <div class="footer-bottom1">
 		        <div class="container">
 		            <div class="row">

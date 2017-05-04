@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.pressfit.dao.JoinDAO;
 import kr.co.pressfit.dao.JoinDAOImpl;
 import kr.co.pressfit.vo.MemberVO;
 
@@ -44,11 +45,6 @@ public void insertMember(MemberVO vo) {
 }
 
 @Override
-public MemberVO viewMember(String id) {
-	return joinDao.viewMember(id); 
-}
-
-@Override
 public void deleteMember(String id) {
 	joinDao.deleteMember(id);
 }
@@ -67,5 +63,13 @@ public boolean checkPw(String id, String pw) {
 public MemberVO mypage(String id) {
 	return joinDao.mypage(id); 
 }
+@Override 
+public MemberVO updatepage(String id) {
+	return joinDao.updatepage(id); 
+}
 
+@Override
+public void addAttach(String fullName) {
+	joinDao.addAttach(fullName);
+}
 }

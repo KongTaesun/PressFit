@@ -192,7 +192,7 @@ public class CartController {
         int fee = checksumMoney >= 100000 ? 0 : 2500;
         map.put("list", list);
         map.put("memberInfo", memberInfo);
-        /*map.put("count", list.size());*/
+        map.put("count", list.size());
         map.put("checksumMoney", checksumMoney);
         map.put("sumMoney", sumMoney);
         map.put("fee", fee);
