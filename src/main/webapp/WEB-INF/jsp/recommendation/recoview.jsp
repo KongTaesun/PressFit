@@ -17,17 +17,85 @@
   <script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
   <script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
   <script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
+  <script src="<c:url value='/resources/recommendation/typeanswer.js' />"></script>
+  
 <script>
+function graph(){
+	var randomScalingFactor = function() {return Math.round(Math.random() * 200)};
+}
+function typeanswerlist(answerlist){
+	var i=0;
+	var inter = setInterval(function(){
+		$('#answerlist').html(answerlist[i]);
+		i++;
+		if(i>=answerlist.length){
+			$('#answerlist').html(answerlist[i]);
+			$('#answerlistbottom').html('<strong>.분석완료.</strong>');
+			clearInterval(inter);
+		    setTimeout(function(){
+				$('#answerlistend').hide();
+		    },1500);
+		}
+	}, 1500);
+};
+function type2answerlist(answerlist){
+	var i=0;
+	var inter = setInterval(function(){
+		$('#answerlist').html(answerlist[i]);
+		i++;
+		if(i>=answerlist.length){
+			$('#answerlist').html(answerlist[i]);
+			$('#answerlistbottom').html('<strong>.분석완료.</strong>');
+			clearInterval(inter);
+		    setTimeout(function(){
+				//$('#answerlistend').hide();
+		    },1500);
+		}
+	}, 1500);
+};
+function type1obj(obj){
+	
+};
+function type3obj(obj){
+	
+};
+function type4obj(obj){
+	
+};
+function type5obj(obj){
+	
+};
+function type6obj(obj){
+	
+};
+function type7obj(obj){
+	
+};
+function type8obj(obj){
+	
+};
+function type9obj(obj){
+	
+};
+function type10obj(obj){
+	
+};
 $(document).ready(function() {
+	$('#intro').css('margin-top', '-350px');
+	$('#first').hide();
+	$('#first1').hide();
+	$('#list').hide();
+	
 	var chart = null;
 	var canvas = null;
 	var ctx = null;
 	var legendHolder = null;
 	var helpers = Chart.helpers;
 	var months = [ "성능", "디자인", "가격", "관심도"];
+	var data = null;
 	$.ajax({
 		type : "POST",
-		url: "http://192.168.1.61:8900/?q=${q}",
+		url: "http://192.168.0.25:8900/?q=${q}",
 	 	contentType: "text/plain; charset=utf-8",
 	 	jsonp : "callback",
 	 	dataType : "jsonp",
@@ -40,218 +108,47 @@ $(document).ready(function() {
 	        },500, function () {
 	        	$('#loading').hide(); 
 	        });
-			(function( $ ) {
-			    "use strict";
-			    $(function() {
-			        function animated_contents() {
-			            $(".zt-skill-bar > div ").each(function (i) {
-			                var $this  = $(this),
-			                    skills = $this.data('width');
-
-			                $this.css({'width' : skills + '%'});
-
-			            });
-			        }
-			        
-			        if(jQuery().appear) {
-			            $('.zt-skill-bar').appear().on('appear', function() {
-			                animated_contents();
-			            });
-			        } else {
-			            animated_contents();
-			        }
-			    });
-			}(jQuery));
-			$(function() {
-				var canvas = document.getElementById("canvas4");
-				var legendHolder = document.createElement('div');
-				var ctx = canvas.getContext("2d");
-				var chart = new Chart(ctx).PolarArea([ {
-					value : randomScalingFactor(),
-					color : "#F7464A",
-					highlight : "#FF5A5E",
-					label : "성능"
-				}, {
-					value : randomScalingFactor(),
-					color : "#46BFBD",
-					highlight : "#5AD3D1",
-					label : "디자인"
-				}, {
-					value : randomScalingFactor(),
-					color : "#FDB45C",
-					highlight : "#FFC870",
-					label : "가격"
-				}, {
-					value : randomScalingFactor(),
-					color : "#4D5360",
-					highlight : "#A8B3C5",
-					label : "관심도"
-				}], {
-					scaleShowLabelBackdrop : true,
-					scaleBackdropColor : "rgba(255,255,255,0.75)",
-					scaleBeginAtZero : true,
-					scaleBackdropPaddingY : 2,
-					scaleBackdropPaddingX : 2,
-					scaleShowLine : true,
-					segmentShowStroke : true,
-					segmentStrokeColor : "#fff",
-					segmentStrokeWidth : 2,
-					animationSteps : 100,
-					animationEasing : "easeOutBounce",
-					animateRotate : true,
-					animateScale : false,
-					responsive : true,
-					onAnimationProgress : function() {
-						console.log("onAnimationProgress");
-					},
-					onAnimationComplete : function() {
-						console.log("onAnimationComplete");
-					}
-				});
-		
-				legendHolder.innerHTML = chart.generateLegend();
-				helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
-						index) {
-					helpers.addEvent(legendNode, 'mouseover', function() {
-						var activeSegment = chart.segments[index];
-						activeSegment.save();
-						activeSegment.fillColor = activeSegment.highlightColor;
-						chart.showTooltip([ activeSegment ]);
-						activeSegment.restore();
-					});
-				});
-				helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
-					chart.draw();
-				});
-				//canvas.parentNode.appendChild(legendHolder.firstChild);
-			});
-			$(function() {
-				var ctx = document.getElementById("canvas3").getContext("2d");
-				var chart = new Chart(ctx).LineBar({
-					labels : [ "성능", "디자인", "가격", "관심도"],
-					datasets : [
-							{
-								fillColor : "rgba(149,225,240,0.5)",
-								strokeColor : "rgba(149,225,240,0.9)",
-								highlightFill : "rgba(149,225,240,0.75)",
-								highlightStroke : "rgba(149,225,240,1)",
-								data : [ randomScalingFactor(), randomScalingFactor(),
-										randomScalingFactor(), randomScalingFactor() ]
-							},
-							{
-								fillColor : "rgba(151,200,255,0.5)",
-								strokeColor : "rgba(151,200,255,0.9)",
-								highlightFill : "rgba(151,200,255,0.75)",
-								highlightStroke : "rgba(151,200,255,1)",
-								data : [ randomScalingFactor(), randomScalingFactor(),
-										randomScalingFactor(), randomScalingFactor() ]
-							} ]
-			
-				}, {
-					responsive : true
-				});
-			});
-			$(function() {
-				var ctx = document.getElementById("canvas").getContext("2d");
-				var radarChart = new Chart(ctx).Radar({
-					labels : [ "성능", "디자인", "가격", "관심도"],
-					datasets: [
-							{
-								label: "My Second dataset",
-								fillColor: "rgba(90,68,210,0.2)",
-								strokeColor: "rgba(90,68,210,1)",
-								pointColor: "rgba(90,68,210,1)",
-								pointStrokeColor: "#fff",
-								pointHighlightFill: "#fff",
-								pointHighlightStroke: "rgba(90,68,210,1)",
-								data: [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-							}
-						]
-					}, {
-					//Boolean - Whether to show lines for each scale point
-					scaleShowLine : true,
-					//Boolean - Whether we show the angle lines out of the radar
-					angleShowLineOut : true,
-					//Boolean - Whether to show labels on the scale
-					scaleShowLabels : false,
-					// Boolean - Whether the scale should begin at zero
-					scaleBeginAtZero : true,
-					//String - Colour of the angle line
-					angleLineColor : "rgba(0,0,0,0.1)",
-					//Number - Pixel width of the angle line
-					angleLineWidth : 1,
-					//String - Point label font declaration
-					pointLabelFontFamily : "'Arial'",
-					//String - Point label font weight
-					pointLabelFontStyle : "normal",
-					//Number - Point label font size in pixels
-					pointLabelFontSize : 10,
-					//String - Point label font colour
-					pointLabelFontColor : "#666",
-					//Boolean - Whether to show a dot for each point
-					pointDot : true,
-					//Number - Radius of each point dot in pixels
-					pointDotRadius : 3,
-					//Number - Pixel width of point dot stroke
-					pointDotStrokeWidth : 1,
-					//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-					pointHitDetectionRadius : 20,
-					//Boolean - Whether to show a stroke for datasets
-					datasetStroke : true,
-					//Number - Pixel width of dataset stroke
-					datasetStrokeWidth : 2,
-					//Boolean - Whether to fill the dataset with a colour
-					datasetFill : false,
-					onAnimationProgress: function() {
-						console.log("onAnimationProgress");
-					},
-					onAnimationComplete: function() {
-						console.log("onAnimationComplete");
-					}
-				});
-			});
-			$(function() {
-				var ctx = document.getElementById("canvas2").getContext("2d");
-				var radarChart = new Chart(ctx).Radar({
-					labels : [ "성능", "디자인", "건강", "관심도", "촣은평가" , "나쁜평가"],
-					datasets: [
-							{
-								label: "My First dataset",
-								fillColor: "rgba(50,110,120,0.2)",
-								strokeColor: "rgba(50,110,120,1)",
-								pointColor: "rgba(50,110,220,1)",
-								pointStrokeColor: "#fff",
-								pointHighlightFill: "#fff",
-								pointHighlightStroke: "rgba(50,110,220,1)",
-								data: [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
-							}
-						]
-					}, {
-					scaleShowLine : true,
-					angleShowLineOut : true,
-					scaleShowLabels : false,
-					scaleBeginAtZero : true,
-					angleLineColor : "rgba(0,0,0,0.1)",
-					angleLineWidth : 1,
-					pointLabelFontFamily : "'Arial'",
-					pointLabelFontStyle : "normal",
-					pointLabelFontSize : 10,
-					pointLabelFontColor : "#666",
-					pointDot : true,
-					pointDotRadius : 3,
-					pointDotStrokeWidth : 1,
-					pointHitDetectionRadius : 20,
-					datasetStroke : true,
-					datasetStrokeWidth : 2,
-					datasetFill : false,
-					onAnimationProgress: function() {
-						console.log("onAnimationProgress");
-					},
-					onAnimationComplete: function() {
-						console.log("onAnimationComplete");
-					}
-				});
-			});
+			console.log(data.type);
+			if(data.type == 1){
+				typeanswerlist(data.answerlist);
+				type1obj(data.obj);
+			}
+			else if(data.type == 2){
+				type2answerlist(data.answerlist);
+			}
+			else if(data.type == 3){
+				typeanswerlist(data.answerlist);
+				type3obj(data.obj);
+			}
+			else if(data.type == 4){
+				typeanswerlist(data.answerlist);
+				type4obj(data.obj);
+			}
+			else if(data.type == 5){
+				typeanswerlist(data.answerlist);
+				type5obj(data.obj);
+			}
+			else if(data.type == 6){
+				typeanswerlist(data.answerlist);
+				type6obj(data.obj);
+			}
+			else if(data.type == 7){
+				typeanswerlist(data.answerlist);
+				type7obj(data.obj);
+			}
+			else if(data.type == 8){
+				typeanswerlist(data.answerlist);
+				type8obj(data.obj);
+			}
+			else if(data.type == 9){
+				typeanswerlist(data.answerlist);
+				type9obj(data.obj);
+				}
+			else if(data.type == 10){
+				typeanswerlist(data.answerlist);
+				type10obj(data.obj);
+			}
+			else {console.log('서버오류');}
 	 	},
 	 	error: function(xhr) {
 	 	  console.log('실패 - ', xhr);
@@ -1135,14 +1032,21 @@ vertical-align: inherit;
 </div>
 
 <div id="particles">
-  <div id="intro" style="position: ixed;">
+  <div id="intro">
     <!-- Online Banner Area Start -->
-	<script>
-		var randomScalingFactor = function() {return Math.round(Math.random() * 200)};
-		
-	</script>
-
-	<div class="row" style="top: 270px;position: relative;">
+	<div id="answerlistend" class="row" style="top: 0px;position: relative;">
+		<div class="banner-list" style="padding:8%">
+			<div class="col-md-12">
+				<div class="single-banner" style="font-size: 30px; padding: 5%;background-color: white;">
+					<p id="answerlist" style="font-size: 30px;"></p>
+					<div  id="answerlistbottom" class="banner-bottom text-center">
+						<strong> 분석중 ... </strong>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="first" class="row" style="top: 270px;position: relative;">
 		<div class="banner-list" style="padding:8%">
 					<div class="col-md-12 col-sm-7">
 						<div class="single-banner">
@@ -1192,7 +1096,7 @@ vertical-align: inherit;
 					</div>
 				</div>
 			</div>
-	<div class="row" style="top: 230px;position:relative;">
+	<div id="first1" class="row" style="top: 230px;position:relative;">
 		<div class="banner-list" style="padding:3%">
 					<div class="col-md-3 col-sm-6">
 						<div class="single-banner" style="padding: 5%;background-color: white">
@@ -1249,7 +1153,7 @@ vertical-align: inherit;
 					</div>		
 				</div>
 			</div>
-<div class="row" style="top: 210px;position:relative;">
+<div id="list" class="row" style="top: 210px;position:relative;">
 		<div class="banner-list" style="padding:3%">
 		<h2>-추가 추천 상품리스트-</h2>
 			<div class="col-md-2 col-sm-6">

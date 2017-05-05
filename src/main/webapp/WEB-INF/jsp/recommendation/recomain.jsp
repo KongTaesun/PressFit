@@ -3,410 +3,372 @@
 <html>
 <head>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Home</title>
+<title>Recommendation</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
-.search-bar {
-  -moz-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  -o-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  -webkit-transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97);
-  -webkit-transition-delay: 0.25s;
-  transition: all 0.5s cubic-bezier(0.7, 0.03, 0.17, 0.97) 0.25s;
-  position: relative;
-  width: 300px; 
-  height: 50px;
-  margin: 0 auto;   
-} 
-.search-bar input { 
-  outline: none; 
-  box-shadow: none;
-  height: 50px; 
-  line-height: 50px; 
-  width: 100%;   
-  padding: 0 1em; 
-  box-sizing: border-box;  
-  background: transparent;    
-  color: white;
-  border: 4px solid white;   
-  border-radius: 50px;  
-}
-.search-bar .toggle {
-  -moz-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  -o-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  -webkit-transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99);
-  -webkit-transition-delay: 0.25s;
-  transition: all 0.5s cubic-bezier(0.98, 0.02, 0.46, 0.99) 0.25s;
-  position: absolute; 
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  right: 0; 
-  top: 0;
-  border-radius: 50px;
-}
-.search-bar .toggle .toggle:after, .search-bar .toggle .toggle:before {
-  border-color: #ee6da3;
-}
-.search-bar .toggle:after, .search-bar .toggle:before {
-  -moz-transition: all 1s;
-  -o-transition: all 1s;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  content: '';
-  display: block;
-  position: absolute;
-  right: 0;
-  width: 0;
-  height: 25px;
-  border-left: 4px solid white;
-  border-radius: 4px;
-  top: 0;
-}
-.search-bar .toggle:before {
-  -moz-animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-one-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-  -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-  -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-  transform: translate(-25px, 12.5px) rotate(45deg);
-}
-.search-bar .toggle:after {
-  -moz-animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-two-reverse 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-  -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-  -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-  transform: translate(-25px, 12.5px) rotate(-45deg);
-}
-.search-bar.closed {
-  width: 50px;
-}
-.search-bar.closed input {
-  color: #E62878;
-}
-.search-bar.closed .toggle:before {
-  -moz-animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-one 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  height: 0px;
-  -moz-transform: translate(-8px, 8px) rotate(45deg);
-  -ms-transform: translate(-8px, 8px) rotate(45deg);
-  -webkit-transform: translate(-8px, 8px) rotate(45deg);
-  transform: translate(-8px, 8px) rotate(45deg);
-}
-.search-bar.closed .toggle:after {
-  -moz-animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  -webkit-animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  animation: close-two 0.85s 1 normal cubic-bezier(1, 0.01, 0.46, 1.48);
-  height: 25px;
-  -moz-transform: translate(0, 37.5px) rotate(-45deg);
-  -ms-transform: translate(0, 37.5px) rotate(-45deg);
-  -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-  transform: translate(0, 37.5px) rotate(-45deg);
+.breadcrumbs-area {
+ background-image: url('${path}/resources/writer/img/bigpicture/recomain_img.jpg');
 }
 
-@-moz-keyframes close-one {
+ .textcontainer {
+  padding: 40px 0;
+  text-align: center;
+}
+ .particletext {
+  text-align: center;
+  font-size: 48px;
+  position: relative;
+}
+ .particletext.bubbles > .particle {
+  opacity: 0;
+  position: absolute;
+  background-color: rgba(33, 150, 243, 0.5);
+  -webkit-animation: bubbles 3s ease-in infinite;
+          animation: bubbles 3s ease-in infinite;
+  border-radius: 100%;
+}
+ .particletext.hearts > .particle {
+  opacity: 0;
+  position: absolute;
+  background-color: #cc2a5d;
+  -webkit-animation: hearts 3s ease-in infinite;
+          animation: hearts 3s ease-in infinite;
+}
+ .particletext.hearts > .particle:before,  .particletext.hearts > .particle:after {
+  position: absolute;
+  content: '';
+  border-radius: 100px;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #cc2a5d;
+}
+ .particletext.hearts > .particle:before {
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+ .particletext.hearts > .particle:after {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+ .particletext.lines > .particle {
+  position: absolute;
+  background-color: rgba(244, 67, 54, 0.5);
+  -webkit-animation: lines 3s linear infinite;
+          animation: lines 3s linear infinite;
+}
+ .particletext.confetti > .particle {
+  opacity: 0;
+  position: absolute;
+  -webkit-animation: confetti 3s ease-in infinite;
+          animation: confetti 3s ease-in infinite;
+}
+ .particletext.confetti > .particle.c1 {
+  background-color: rgba(76, 175, 80, 0.5);
+}
+ .particletext.confetti > .particle.c2 {
+  background-color: rgba(156, 39, 176, 0.5);
+}
+ .particletext.fire > .particle {
+  position: absolute;
+  background-color: rgba(255, 193, 7, 0.5);
+  border-radius: 40px;
+  border-top-right-radius: 0px;
+  -webkit-animation: fires 0.8s linear infinite;
+          animation: fires 0.8s linear infinite;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  opacity: 0;
+}
+ .particletext.fire > .particle:before {
+  position: absolute;
+  content: '';
+  top: 60%;
+  left: 40%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  border-radius: 40px;
+  border-top-right-radius: 0px;
+  background-color: rgba(251, 140, 0, 0.5);
+}
+ .particletext.sunbeams > .particle {
+  position: absolute;
+  background-color: rgba(253, 216, 53, 0.5);
+  -webkit-animation: sunbeams 3s linear infinite;
+          animation: sunbeams 3s linear infinite;
+}
+
+@-webkit-keyframes bubbles {
   0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translate(0, -20%);
+            transform: translate(0, -20%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -1000%);
+            transform: translate(0, -1000%);
+  }
+}
+
+@keyframes bubbles {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    -webkit-transform: translate(0, -20%);
+            transform: translate(0, -20%);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -1000%);
+            transform: translate(0, -1000%);
+  }
+}
+@-webkit-keyframes hearts {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 0%) rotate(45deg);
+            transform: translate(0, 0%) rotate(45deg);
+  }
+  20% {
+    opacity: 0.8;
+    -webkit-transform: translate(0, -20%) rotate(45deg);
+            transform: translate(0, -20%) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -1000%) rotate(45deg);
+            transform: translate(0, -1000%) rotate(45deg);
+  }
+}
+@keyframes hearts {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate(0, 0%) rotate(45deg);
+            transform: translate(0, 0%) rotate(45deg);
+  }
+  20% {
+    opacity: 0.8;
+    -webkit-transform: translate(0, -20%) rotate(45deg);
+            transform: translate(0, -20%) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate(0, -1000%) rotate(45deg);
+            transform: translate(0, -1000%) rotate(45deg);
+  }
+}
+@-webkit-keyframes lines {
+  0%, 50%, 100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  25% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  75% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+@keyframes lines {
+  0%, 50%, 100% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+  25% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+  }
+  75% {
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+}
+@-webkit-keyframes confetti {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(0%) rotate(0deg);
+            transform: translateY(0%) rotate(0deg);
   }
   10% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    opacity: 1;
   }
-  60% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg); 
+  35% {
+    -webkit-transform: translateY(-800%) rotate(270deg);
+            transform: translateY(-800%) rotate(270deg);
+  }
+  80% {
+    opacity: 1;
   }
   100% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
+    opacity: 0;
+    -webkit-transform: translateY(2000%) rotate(1440deg);
+            transform: translateY(2000%) rotate(1440deg);
   }
 }
-@-webkit-keyframes close-one {
+@keyframes confetti {
   0% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg); 
+    opacity: 0;
+    -webkit-transform: translateY(0%) rotate(0deg);
+            transform: translateY(0%) rotate(0deg);
   }
   10% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    opacity: 1;
   }
-  60% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  100% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-}
-@keyframes close-one {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  10% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  60% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  100% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-}
-@-moz-keyframes close-two {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@-webkit-keyframes close-two {
-  0% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@keyframes close-two {
-  0% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
-  }
-  60% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  70% {
-    height: 2px;
-    -moz-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 37.5px) rotate(-45deg);
-    transform: translate(-6px, 37.5px) rotate(-45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    -ms-transform: translate(0, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-}
-@-moz-keyframes close-one-reverse {
-  0% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  40% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
+  35% {
+    -webkit-transform: translateY(-800%) rotate(270deg);
+            transform: translateY(-800%) rotate(270deg);
   }
   80% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    opacity: 1;
   }
   100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
+    opacity: 0;
+    -webkit-transform: translateY(2000%) rotate(1440deg);
+            transform: translateY(2000%) rotate(1440deg);
   }
 }
-@-webkit-keyframes close-one-reverse {
+@-webkit-keyframes fires {
   0% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
+    -webkit-transform: rotate(-70deg) translateY(0%);
+            transform: rotate(-70deg) translateY(0%);
   }
-  40% {
-    height: 0px;
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  80% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  100% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-}
-@keyframes close-one-reverse {
-  0% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  40% {
-    height: 0px;
-    -moz-transform: translate(-8px, 8px) rotate(45deg);
-    -ms-transform: translate(-8px, 8px) rotate(45deg);
-    -webkit-transform: translate(-8px, 8px) rotate(45deg);
-    transform: translate(-8px, 8px) rotate(45deg);
-  }
-  80% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-  100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(45deg);
-    transform: translate(-25px, 12.5px) rotate(45deg);
-  }
-}
-@-moz-keyframes close-two-reverse {
-  0% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-  40% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+  25% {
+    -webkit-transform: rotate(-20deg) translateY(-5%);
+            transform: rotate(-20deg) translateY(-5%);
+    opacity: 1;
   }
   50% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+    -webkit-transform: rotate(-70deg) translateY(-10%);
+            transform: rotate(-70deg) translateY(-10%);
+  }
+  75% {
+    -webkit-transform: rotate(-20deg) translateY(-20%);
+            transform: rotate(-20deg) translateY(-20%);
   }
   100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
+    -webkit-transform: rotate(-70deg) translateY(-40%);
+            transform: rotate(-70deg) translateY(-40%);
+    opacity: 1;
   }
 }
-@-webkit-keyframes close-two-reverse {
+@keyframes fires {
   0% {
-    height: 25px;
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
+    -webkit-transform: rotate(-70deg) translateY(0%);
+            transform: rotate(-70deg) translateY(0%);
   }
-  40% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+  25% {
+    -webkit-transform: rotate(-20deg) translateY(-5%);
+            transform: rotate(-20deg) translateY(-5%);
+    opacity: 1;
   }
   50% {
-    height: 2px;
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+    -webkit-transform: rotate(-70deg) translateY(-10%);
+            transform: rotate(-70deg) translateY(-10%);
+  }
+  75% {
+    -webkit-transform: rotate(-20deg) translateY(-20%);
+            transform: rotate(-20deg) translateY(-20%);
   }
   100% {
-    height: 25px;
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
+    -webkit-transform: rotate(-70deg) translateY(-40%);
+            transform: rotate(-70deg) translateY(-40%);
+    opacity: 1;
   }
 }
-@keyframes close-two-reverse {
+@-webkit-keyframes sunbeams {
   0% {
-    height: 25px;
-    -moz-transform: translate(0, 37.5px) rotate(-45deg);
-    -ms-transform: translate(0, 37.5px) rotate(-45deg);
-    -webkit-transform: translate(0, 37.5px) rotate(-45deg);
-    transform: translate(0, 37.5px) rotate(-45deg);
-  }
-  40% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+    -webkit-transform: translateY(40%) rotate(0deg);
+            transform: translateY(40%) rotate(0deg);
   }
   50% {
-    height: 2px;
-    -moz-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -ms-transform: translate(-6px, 40.5px) rotate(-45deg);
-    -webkit-transform: translate(-6px, 40.5px) rotate(-45deg);
-    transform: translate(-6px, 40.5px) rotate(-45deg);
+    -webkit-transform: translateY(-40%) rotate(180deg);
+            transform: translateY(-40%) rotate(180deg);
   }
   100% {
-    height: 25px;
-    -moz-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -ms-transform: translate(-25px, 12.5px) rotate(-45deg);
-    -webkit-transform: translate(-25px, 12.5px) rotate(-45deg);
-    transform: translate(-25px, 12.5px) rotate(-45deg);
+    -webkit-transform: translateY(40%) rotate(360deg);
+            transform: translateY(40%) rotate(360deg);
+  }
+  0%,14%,17%,43%,53%,71%,80%,94%,100% {
+    opacity: 0;
+  }
+  6%,15%,24%,28%,48%,55%,78%,82%,99% {
+    opacity: 1;
   }
 }
-	
+@keyframes sunbeams {
+  0% {
+    -webkit-transform: translateY(40%) rotate(0deg);
+            transform: translateY(40%) rotate(0deg);
+  }
+  50% {
+    -webkit-transform: translateY(-40%) rotate(180deg);
+            transform: translateY(-40%) rotate(180deg);
+  }
+  100% {
+    -webkit-transform: translateY(40%) rotate(360deg);
+            transform: translateY(40%) rotate(360deg);
+  }
+  0%,14%,17%,43%,53%,71%,80%,94%,100% {
+    opacity: 0;
+  }
+  6%,15%,24%,28%,48%,55%,78%,82%,99% {
+    opacity: 1;
+  }
+}
 </style>
 <script>
+
+function initparticles() {
+   bubbles();
+   lines();
+   fire();
+}
+function bubbles() {
+   $.each($(".particletext.bubbles"), function(){
+      var bubblecount = ($(this).width()/50)*10;
+      for(var i = 0; i <= bubblecount; i++) {
+         var size = ($.rnd(40,80)/10);
+         $(this).append('<span class="particle" style="top:' + $.rnd(20,80) + '%; left:' + $.rnd(0,95) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(0,30)/10) + 's;"></span>');
+      }
+   });
+}
+
+function lines() {
+   $.each($(".particletext.lines"), function(){
+      var linecount = ($(this).width()/50)*10;
+      for(var i = 0; i <= linecount; i++) {
+         $(this).append('<span class="particle" style="top:' + $.rnd(-30,30) + '%; left:' + $.rnd(-10,110) + '%;width:' + $.rnd(1,3) + 'px; height:' + $.rnd(20,80) + '%;animation-delay: -' + ($.rnd(0,30)/10) + 's;"></span>');
+      }
+   });
+}
+
+function fire() {
+   $.each($(".particletext.fire"), function(){
+      var firecount = ($(this).width()/50)*20;
+      for(var i = 0; i <= firecount; i++) {
+         var size = $.rnd(8,12);
+         $(this).append('<span class="particle" style="top:' + $.rnd(40,70) + '%; left:' + $.rnd(-10,100) + '%;width:' + size + 'px; height:' + size + 'px;animation-delay: ' + ($.rnd(0,20)/10) + 's;"></span>');
+      }
+   });
+}
 $(document).ready(function() {
+	jQuery.rnd = function(m,n) {
+	      m = parseInt(m);
+	      n = parseInt(n);
+	      return Math.floor( Math.random() * (n - m + 1) ) + m;
+	}
+	initparticles();
 	$('#close').click(function(){
 		$(this).parent().toggleClass('closed');
 	    $(this).prev().focus();
@@ -429,95 +391,187 @@ $(document).ready(function() {
 	});
 </script>
 </head>
-<body>
-        <!-- slider Area Start -->     
-		<div class="slider-area"> 
-			<div class="bend niceties preview-1">  
-				<div id="ensign-nivoslider" class="slides">	   
-					<img src="${path}/resources/writer/img/bigpicture/main.jpg" alt=""	title="#slider-direction-1" />
-				</div> 
-				 
-				<!-- direction 1 -->   
-				<div id="slider-direction-1" class="text-center slider-direction">   
-					<!-- layer 1 -->    
-					<div class="layer-1">
-			            <h2 class="title-1" >Recommender system</h2> 
-		            </div>
- 					<!-- layer 2 -->      
-					<div class="layer-2">
-						<p class="title-2" style="font-size: 22px;">베이지안 뉴런 모듈을 통한 추천 시스템. <br/>아래 검색어를 입력해 보세요.</p>
+<body>	
+	
+	<!-- Breadcrumbs Area Start -->
+	<div class="breadcrumbs-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="breadcrumbs">
 					</div>
-					<div class="layer-1"> 
-                        <form id="searchgo" name="searchgo" action="${path}/search/answer.do">
-	                        <div id="search-bar" class="search-bar">
-							    <input id="q" name="q" type="text" />
-							    <div id="close" class="toggle"></div>
-							</div>
-						</form>
-					</div>
-					<!-- layer 2 -->      
-					<div class="layer-2">
-						<div class="col-md-1 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".9999s">
-								<div class="counter-info">
-															
-								</div>
-							</div>		                
-			            </div>    
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>누적검색횟수</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>이번달의 검색 수</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">286</span>
-									</span>
-									<h3>오늘의 검색 수</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">550</span>
-									</span>
-									<h3>총 제품 수</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">2485</span>
-									</span>
-									<h3>분석완료 리뷰</h3>								
-								</div>
-							</div>		                
-			            </div> 
-					</div>
-				</div>  
-			</div>  
+				</div>
+			</div>
 		</div>
+	</div>
+        <!-- About Us Area Start -->
+		<div class="about-us-area section-padding">
+		    <div class="container">
+		    <div class="row">
+            	<div class="col-md-2 col-sm-3 col-xs-6"></div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">3725</span>
+								</span>
+								<h3>검색 누적</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">950</span>
+								</span>
+								<h3>오늘의 검색</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">60</span>%
+								</span>
+								<h3>분석후 구매율</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">2978</span>
+								</span>
+								<h3>분석 리뷰</h3>								
+							</div>
+						</div>		                
+		            </div>
+		        </div>
+		    <div class="row">
+			    <div class="col-md-12" style="text-align: center;">
+				    <div class="textcontainer">
+				    <hr>
+					   <span class="particletext lines">RECOMMENDATION</span>
+			    	<hr>
+					</div>
+			    	<div class="col-md-3"></div>
+			    	<div id="wrap" class="col-md-6" style="padding: 25px">
+						<div class="d5">
+							<form class="d5s" method="get" action="${path}/search/answer.do" >
+							  <input type="text" id="q" name="q" placeholder="뭘 찾으세요?? 추천해드려요~!">
+							  <button type="submit"></button>
+							</form>	
+						</div>	
+					</div>
+			    </div>
+		    </div>
+                <div class="row">
+                    <div class="about-top-inner">
+                        <div class="col-md-6">
+                            <div class="about-inner">
+                                <div class="about-title">
+	                                <div class="textcontainer">
+									   <h2><span class="particletext fire">Done</span></h2>
+									</div>
+                                </div>
+                                <div class="about-content">
+                                    <p></p>
+                                    <p></p>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-image">
+                                <img src="${path}/resources/recommendation/recommendation.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-bottom-inner">
+                        <div class="col-md-6">
+                            <div class="about-image">
+                                <img src="${path}/resources/recommendation/reco1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="about-inner">
+                                <div class="about-title">
+                                    <div class="textcontainer">
+									   <h2><span class="particletext bubbles">Big</span></h2>
+									</div>
+                                </div>
+                                <div class="about-content">
+                                   	<p></p>
+                                    <p></p>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+		    </div>
+		</div>
+		<!-- About Us Area End -->
+		<!-- Our Team Area Start -->
+		<div class="our-team-area">
+		    <h2 class="section-title">대표 리뷰</h2>
+		    <div class="container">
+		        <div class="row">
+		        <div class="team-list indicator-style">
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=ph664lsm&logNo=220907983181&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=ph664lsm&logNo=220907983181&redirect=Dlog&widgetTypeCall=true">
+		                        	제닉스 STORMX TITAN MARK II 게이밍 마우스</a>
+		                        <p>[출처] 제닉스 STORMX TITAN MARK II 게이밍 마우스|작성자 Jbourne</p>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=xenicsholic&logNo=220876223569&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog1.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=xenicsholic&logNo=220876223569&redirect=Dlog&widgetTypeCall=true">
+		                        	[피스커뮤] 마우스로까지 나올 줄 몰랐지?! 타이탄 마크 마우스! - [제닉스 STORMX TITAN MARK IV]</a>
+		                        <p>[출처] [피스커뮤] 마우스로까지 나올 줄 몰랐지?! 타이탄 마크 마우스! - [제닉스 STORMX TITAN MARK IV]|작성자 제닉스홀릭</p>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=gukppa&logNo=220367499772&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog2.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=gukppa&logNo=220367499772&redirect=Dlog&widgetTypeCall=true">
+		                        	[게이밍기어 추천] 괴물사냥 준비는 다들 하셨습니까?! </a>
+		                        <p>[출처] [게이밍기어 추천] 괴물사냥 준비는 다들 하셨습니까?!|작성자 우주최강 (gukppa)</p>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=minz23&logNo=220377360428&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog3.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=minz23&logNo=220377360428&redirect=Dlog&widgetTypeCall=true">
+		                        	[LED/게이밍키보드] G키보드 LED2 (IGK2-LE) </a>
+		                        <p>[출처] [LED/게이밍키보드] G키보드 LED2 (IGK2-LE)|작성자 똥글땡이</p>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        </div>
+		    </div>
+		</div>
+		<!-- Our Team Area End -->
 <%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

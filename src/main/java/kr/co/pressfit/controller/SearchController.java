@@ -21,18 +21,6 @@ public class SearchController {
 		model.addAttribute("q",q);
 		return "recommendation/recoview";
 	}
-	/*@RequestMapping("/search/answer.do")
-	public String answer(Model model){
-		return "recommendation/recoview";
-	}*/
-	@RequestMapping("/search/chart.do")
-	public String chart(Model model){
-		return "recommendation/chart";
-	}
-	@RequestMapping("/search/page.do")
-	public String page(Model model){
-		return "recommendation/pagepasstest";
-	}
 }
 
  

@@ -178,6 +178,7 @@ height: 95px;
 <div class="header-area">
 	<div class="container" style="font-size: 17px;">
 		<div class="row">
+			<div class="col-md-1 col-sm-6 col-xs-6" style="padding-left:10%"></div>
 			<div class="col-md-2 col-sm-6 col-xs-6">
 				<div class="header-logo">
 					<a href="${path}/"> <img
@@ -185,18 +186,17 @@ height: 95px;
 					</a>
 				</div>
 			</div>
-			<div class="col-md-1 col-sm-6 col-xs-6"></div>
 			<div id="wrap" class="col-md-6 col-sm-12 hidden-xs" style="padding: 25px">
 				<div class="d5">
-				<form class="d5s">
-				  <input type="text" placeholder="뭘 찾으세요?? 추천해드려요~!">
+				<form class="d5s" method="get" action="${path}/search/answer.do" >
+				  <input type="text" id="q" name="q" placeholder="뭘 찾으세요?? 추천해드려요~!">
 				  <button type="submit"></button>
-				</form>
+				</form>	
 				</div>	
 			</div>
-			<div class="col-md-3 hidden-sm">
-				<div class="header-right">
-					<span class="login-light1">
+			<div class="col-md-2 hidden-sm">
+				<div class="header-left">
+					<span class="login-light1" style="text-align: left;">
 					<c:if test="${sessionScope.id != null}">
 								${sessionScope.id}
 							</c:if>
@@ -286,18 +286,17 @@ height: 95px;
 			<div class="col-md-11" style="padding:0">
 			<div class="mainmenu text-center">
 					<nav>
-						<ul id="nav">
+						<ul id="nav" style="margin-left: 5%; ">
 							<li><a href="#">CATEGORY</a>
 								<ul class="sub-menu">
 									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
 									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
 								</ul> <c:choose>
-									<c:when test="${empty sessionScope.id }">
+									<c:when test="${not empty sessionScope.id }">
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-												<li><a
-													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
+												<li><a href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
 												<li><a href="${path}/order/orderList.do">주문내역</a></li>
 												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
 												<li><a href="${path}/faq/list.do">1:1문의</a></li>
@@ -317,17 +316,12 @@ height: 95px;
 									<c:otherwise>
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
-												<li><a href="${path}/login/logout.do">로그아웃</a></li>
-												<li><a
-													href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
-												<li><a href="${path}/order/orderList.do">주문내역</a></li>
-												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
-												<li><a href="${path}/faq/list.do">1:1문의</a></li>
+												<li><a href="${path}/login/login.do">로그인</a></li>
 											</ul></li>
 									</c:otherwise>
 								</c:choose>
 							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
-							<li><a href="${path}/gallery/list.do">RECOMMEND</a></li>
+							<li><a href="${path}/search/quest.do">RECOMMEND</a></li>
 							<li><a href="#">SERVICE CENTER</a>
 								<ul class="sub-menu">
 

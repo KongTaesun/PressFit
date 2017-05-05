@@ -8,10 +8,89 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/style.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<style>
+#loading {
+ width: 100%;  
+ height: 100%;  
+ top: 0px;
+ left: 0px;
+ position: fixed;  
+ display: block; 
+ background-color: black;  
+ z-index: 99;  
+ text-align: center; 
+ } 
 
+#loading *,
+#loading *:before,
+#loading *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.boxLoading {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.boxLoading:before {
+  content: '';
+  width: 60px;
+  height: 6px;
+  background: #000;
+  opacity: 0.1;
+  position: absolute;
+  top: 59px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow .5s linear infinite;
+}
+.boxLoading:after {
+  content: '';
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  animation: animate .5s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+}
+@keyframes animate {
+  17% {
+    border-bottom-right-radius: 3px;
+  }
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
+  50% {
+    transform: translateY(18px) scale(1, 0.9) rotate(45deg);
+    border-bottom-right-radius: 40px;
+  }
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+@keyframes shadow {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1);
+  }
+}
+</style>
 <script>
 $(document).ready(function(){
-	
 	$('#ei-slider').eislideshow({
 		easing		: 'easeOutExpo',
 		titleeasing	: 'easeOutExpo',
@@ -22,18 +101,33 @@ $(document).ready(function(){
 		$(this).parent().toggleClass('closed');
 	    $(this).prev().focus();
 	});
-	
+	var i=1;
+	setInterval(function(){
+		$('#image'+i).trigger("click");
+		i++;
+		if(i>4){i=1;}
+	}, 1500);
 	setTimeout(function() {
-	    $('#close').click();
-	}, 100);
+		$('#loading').animate({
+	        "opacity": "0",
+	        "top": "10px"
+	    },2000, function () {
+	    	$('#loading').hide(); 
+	    });
+	}, 1000);
 	
 });
 </script>
 
 <body>
+<div id="loading">
+<div class="boxLoading" style="top:40%;left:47%">
+</div>
+</div>
+
 <!-- Shop Area Start -->
         <div class="shopping-area section-padding" style="padding: 0;">
-            <div class="container" style="padding: 0;margin-left: 12%;margin-right: 10%">
+            <div class="container" style="padding: 0;margin-left: 14%;margin-right: 10%">
                 <div class="row">
                     <div class="col-md-2 col-sm-3 col-xs-12" style="padding: 0;">
                         <div class="shop-widget">
@@ -117,10 +211,10 @@ $(document).ready(function(){
                     </ul><!-- ei-slider-large -->
                     <ul class="ei-slider-thumbs">
                         <li class="ei-slider-element">Current</li>
-                        <li><a href="#">Slide 1</a><img src="${path}/resources/index/170216-1.jpg" alt="thumb01" /></li>
-                        <li><a href="#">Slide 1</a><img src="${path}/resources/index/image (1).jpg" alt="thumb02" /></li>
-                        <li><a href="#">Slide 3</a><img src="${path}/resources/index/2629_HDR_1470936539328.jpg" alt="thumb03" /></li>
-                        <li><a href="#">Slide 4</a><img src="${path}/resources/index/76924f7230d.jpg" alt="thumb04" /></li>
+                        <li id="image1"><a href="#">Slide 1</a><img src="${path}/resources/index/170216-1.jpg" alt="thumb01" /></li>
+                        <li id="image2"><a href="#">Slide 1</a><img src="${path}/resources/index/image (1).jpg" alt="thumb02" /></li>
+                        <li id="image3"><a href="#">Slide 3</a><img src="${path}/resources/index/2629_HDR_1470936539328.jpg" alt="thumb03" /></li>
+                        <li id="image4"><a href="#">Slide 4</a><img src="${path}/resources/index/76924f7230d.jpg" alt="thumb04" /></li>
                     </ul><!-- ei-slider-thumbs -->
                 </div><!-- ei-slider -->
             </div><!-- wrapper -->
@@ -131,14 +225,59 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div><hr>
+            <div class="row">
+            <div class="col-md-2 col-sm-3 col-xs-6"></div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">3725</span>
+								</span>
+								<h3>방문 누적</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">950</span>
+								</span>
+								<h3>오늘의 방문</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">60</span>
+								</span>
+								<h3>오늘의 검색</h3>								
+							</div>
+						</div>		                
+		            </div>
+		            <div class="col-md-2 col-sm-3 col-xs-6">
+						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
+							<div class="counter-info" style="text-align: center;">
+								<span class="fcount">
+									<span class="counter">7</span>
+								</span>
+								<h3>오늘의 신상</h3>								
+							</div>
+						</div>		                
+		            </div>
+		        </div>
         </div>
         <!-- Shop Area End -->
+        		<!-- Counter Area Start -->
+		<!-- Counter Area End -->
 <!-- Online Banner Area Start -->    
 		<div class="online-banner-area">
 		        <div class="row">
 		            <div class="banner-list">
-		                <div class="col-md-2"  ></div>
-		                <div class="col-md-4" >
+		                <div class="col-md-2" style="padding:0" ></div>
+		                <div class="col-md-4" style="padding-left:0">
 		                    <div class="single-banner" >
 		                        <a href="${path}/tmouse/view.do?idx=10&curPage=1&searchOption=gamingmouse&keyword=">
 		                            <img src="${path}/resources/upload//2017/04/11/4436952_1.jpg" alt="">
@@ -243,8 +382,7 @@ $(document).ready(function(){
 	
 <!-- Blog Area Start -->
 		<div class="blog-area section-padding" style="padding: 0">
-            <h2 class="section-title">LATEST BLOG</h2>
-            <p>The Latest Blog post for the biggest Blog for the books Library.</p>
+            <h2 class="section-title">BLOG</h2>
 		    <div class="container">
 		        <div class="row">
 		            <div class="blog-list indicator-style">
