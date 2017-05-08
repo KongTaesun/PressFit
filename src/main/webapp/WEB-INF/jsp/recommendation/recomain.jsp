@@ -486,7 +486,7 @@ $(document).ready(function() {
 			    	<div id="wrap" class="col-md-6" style="padding: 25px">
 						<div class="d5">
 							<form class="d5s" method="get" action="${path}/search/answer.do" >
-							  <input type="text" id="q" name="q" placeholder="뭘 찾으세요?? 추천해드려요~!">
+							  <input type="text" id="q" name="q" placeholder="검색어를 입력하세요.">
 							  <button type="submit"></button>
 							</form>	
 						</div>	
@@ -503,8 +503,12 @@ $(document).ready(function() {
 									</div>
                                 </div>
                                 <div class="about-content">
-                                    <p></p>
-                                    <p></p>
+                                    <p style="font-size:25px">-PressFit은 크롤링을 통해 웹에서 상품에대한 많은 정보 및 리뷰를 모아옵니다.<br/><br/>
+                                    
+                                    -모아온 정보를 정제 하여 위의 검색 엔진을 통해 빠른 속도로 제공 해드립니다.<br/><br/>
+                                    
+                                    -단순이 모아 놓은 것이 아닌 자체적으로 분류 및 스코어 기능을 통해 데이터를 미리 생산해 놓은 후 
+                                    	최적의 형태로 사용자 분들께 제공합니다.</p>
                                </div>
                             </div>
                         </div>
@@ -528,8 +532,13 @@ $(document).ready(function() {
 									</div>
                                 </div>
                                 <div class="about-content">
-                                   	<p></p>
-                                    <p></p>
+                                   <p style="font-size:25px">
+                                   -PressFit에서 제공되는 빅데이터로 합리적인 소비를 하세요.<br/><br/>
+                                    
+                                    -시간 = 돈.<br/><br/>
+                                    
+                                    -상품들의 리뷰를 매번 찾아다닐 필요가 없습니다.<br/><br/>
+                                    -제공되는데이터는 모두 사용자분들과 똑같이 포털 및 외부 리뷰 커뮤니티를 수집해 만들어집니다.(출처제공)</p>
                                </div>
                             </div>
                         </div>
