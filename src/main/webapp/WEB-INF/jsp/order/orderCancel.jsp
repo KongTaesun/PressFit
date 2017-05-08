@@ -316,10 +316,10 @@ button.hover {
 																	${row.crea_id}
 																</span>
 															</li>
+															<li>
 														<em class="tit_append">주문상태 :</em>
 																<span class="order_state">
 																	
-														
 										<c:if test="${row.shippingStatus eq 0}">
                                          	배송전
                                          </c:if>
@@ -338,18 +338,17 @@ button.hover {
                                           <c:if test="${row.shippingStatus eq 5}">
                                          	교환신청
                                          </c:if> 
-															 
+														 
 												</span>
 											</li>
-										<em class="tit_append">주문상태 :</em>
+											<li>
+										<em class="tit_append">확인 :</em>
 											<span class="product_price">
-											<td class="order_check">
-                                         
-                   
-                                       <a class="commit" href="${path}/order/orderCancelaction.do?cart_id=${row.cart_id}">반품신청</a>
-      
-                                        </td>
-                                  </ul>
+									
+                                    	   <a class="commit" href="${path}/order/orderCancelaction.do?cart_id=${row.cart_id}">환불신청</a>
+      										</span>
+      										</li>
+      				              </ul> 
                            		</div>
                        	    	</li>	
                           		   </c:forEach>          

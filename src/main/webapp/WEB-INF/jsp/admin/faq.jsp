@@ -14,6 +14,14 @@
 <script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	$('#editorcommunity').show();
+	$('#communityBoardcreate').hide();
+	$('#editorfaq').show();
+	$('#faqBoardcreate').hide();
+	$('#changeeditorcommunity').hide();
+	$('#communityBoardupdate').hide();
+	$('#changeeditorfaq').hide();
+	$('#faqBoardupdate').hide();
 	$(".hover").mouseleave(function () {
 		$(this).removeClass("hover");
 	});

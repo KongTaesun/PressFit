@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/style.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+
 <style>
 #loading {
  width: 100%;  
@@ -91,6 +92,36 @@
 </style>
 <script>
 $(document).ready(function(){
+	$.ajax({
+		type : "post",
+		url: "${path}/logger/all.do",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data){
+			console.log(data);
+	var word = $.animateNumber.numberStepFactories.append('');
+	$('#allvisit').animateNumber({
+		number: data.allvisit,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#dayresponsecount').animateNumber({
+		number: data.dayresponsecount,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#dayvisit').animateNumber({
+		number: data.dayvisit,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#daysearch').animateNumber({
+		number: data.daysearch,color: 'black','font-size': '37px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	},
+	error: function(xhr) {
+		console.log('실패-',xhr);
+	}
+	});
+	
 	$('#ei-slider').eislideshow({
 		easing		: 'easeOutExpo',
 		titleeasing	: 'easeOutExpo',
@@ -119,10 +150,10 @@ $(document).ready(function(){
 });
 </script>
 
-<body>
+<body style="overflow-x: hidden;">
 <div id="loading">
-<div class="boxLoading" style="top:40%;left:47%">
-</div>
+	<div class="boxLoading" style="top:40%;left:47%">
+	</div>
 </div>
 
 <!-- Shop Area Start -->
@@ -230,8 +261,8 @@ $(document).ready(function(){
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">3725</span>
+								<span>
+									<span id="allvisit" style="font-size: 30px">0</span>
 								</span>
 								<h3>방문 누적</h3>								
 							</div>
@@ -240,8 +271,8 @@ $(document).ready(function(){
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">950</span>
+								<span>
+									<span id="dayvisit" style="font-size: 30px">0</span>
 								</span>
 								<h3>오늘의 방문</h3>								
 							</div>
@@ -250,8 +281,8 @@ $(document).ready(function(){
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">60</span>
+								<span>
+									<span id="daysearch" style="font-size: 30px">0</span>
 								</span>
 								<h3>오늘의 검색</h3>								
 							</div>
@@ -260,10 +291,10 @@ $(document).ready(function(){
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">7</span>
+								<span>
+									<span id="dayresponsecount" style="font-size: 30px">0</span>
 								</span>
-								<h3>오늘의 신상</h3>								
+								<h3>오늘 본 상품</h3>								
 							</div>
 						</div>		                
 		            </div>
@@ -379,102 +410,65 @@ $(document).ready(function(){
 		        </div>
 		    </div>
 		<!-- Online Banner Area End -->   
-	
-<!-- Blog Area Start -->
-		<div class="blog-area section-padding" style="padding: 0">
-            <h2 class="section-title">BLOG</h2>
+		<!-- Our Team Area Start -->
+		<div class="our-team-area">
+		    <h2 class="section-title">대표 리뷰</h2>
 		    <div class="container">
 		        <div class="row">
-		            <div class="blog-list indicator-style">
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/1.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">LATEST BLOG</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
+		        <div class="team-list indicator-style">
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=ph664lsm&logNo=220907983181&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=ph664lsm&logNo=220907983181&redirect=Dlog&widgetTypeCall=true">
+		                        	제닉스 STORMX TITAN MARK II 게이밍 마우스</a>
+		                        <p>[출처] 제닉스 STORMX TITAN MARK II 게이밍 마우스|작성자 Jbourne</p>
 		                    </div>
 		                </div>
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/2.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=xenicsholic&logNo=220876223569&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog1.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=xenicsholic&logNo=220876223569&redirect=Dlog&widgetTypeCall=true">
+		                        	[피스커뮤] 마우스로까지 나올 줄 몰랐지?! 타이탄 마크 마우스! - [제닉스 STORMX TITAN MARK IV]</a>
+		                        <p>[출처] [피스커뮤] 마우스로까지 나올 줄 몰랐지?! 타이탄 마크 마우스! - [제닉스 STORMX TITAN MARK IV]|작성자 제닉스홀릭</p>
 		                    </div>
 		                </div>
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/3.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=gukppa&logNo=220367499772&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog2.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=gukppa&logNo=220367499772&redirect=Dlog&widgetTypeCall=true">
+		                        	[게이밍기어 추천] 괴물사냥 준비는 다들 하셨습니까?! </a>
+		                        <p>[출처] [게이밍기어 추천] 괴물사냥 준비는 다들 하셨습니까?!|작성자 우주최강 (gukppa)</p>
 		                    </div>
 		                </div>
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/4.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/1.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		                <div class="col-md-3">
-		                    <div class="single-blog">
-		                        <a href="single-#">
-		                            <img src="img/blog/2.jpg" alt="">
-		                        </a>
-		                        <div class="blog-info text-center">
-		                            <a href="#"><h2>Modern Book Reviews</h2></a>
-		                            <div class="blog-info-bottom">
-		                                <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-		                                <span class="blog-date">19TH JAN 2016</span>
-		                            </div>
-		                        </div>
+		            </div>
+		            <div class="col-md-3">
+		                <div class="single-team-member">
+		                    <a href="http://blog.naver.com/PostView.nhn?blogId=minz23&logNo=220377360428&redirect=Dlog&widgetTypeCall=true">
+		                        <img src="${path}/resources/recommendation/blog3.jpg" alt="">
+		                    </a>
+		                    <div class="member-info">
+		                        <a href="http://blog.naver.com/PostView.nhn?blogId=minz23&logNo=220377360428&redirect=Dlog&widgetTypeCall=true">
+		                        	[LED/게이밍키보드] G키보드 LED2 (IGK2-LE) </a>
+		                        <p>[출처] [LED/게이밍키보드] G키보드 LED2 (IGK2-LE)|작성자 똥글땡이</p>
 		                    </div>
 		                </div>
 		            </div>
 		        </div>
+		        </div>
 		    </div>
 		</div>
-		<!-- Blog Area End -->
+		<!-- Our Team Area End -->
 		<div class="row">
 		<div class="col-md-2"></div>
 		<div class="col-md-8">
@@ -597,6 +591,8 @@ $(document).ready(function(){
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/resources/index/js/jquery.eislideshow.js"></script>
 <script type="text/javascript" src="${path}/resources/index/js/jquery.easing.1.3.js"></script>
+<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
 </body>
 </html>
 

@@ -6,20 +6,37 @@
 <script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#lines').animateNumber({ number: 165 });
-	$('#lines1').animateNumber({ number: 165 });
-	$('#lines2').animateNumber({
-		number: 64,color: 'green','font-size': '37px',
-		easing: 'easeInQuad',numberStep: percent_number_step
-		}, 2000);
-	var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
-	$('#world-population').animateNumber(
-	  {
-	    number: 2650,
-	    numberStep: comma_separator_number_step
-	  }
-	);
+	$.ajax({
+		type : "post",
+		url: "${path}/logger/all.do",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data){
+			console.log(data);
+	var word = $.animateNumber.numberStepFactories.append('');
+	$('#allsearch').animateNumber({
+		number: data.allsearch,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#daysearch').animateNumber({
+		number: data.daysearch,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#two').animateNumber({
+		number: 2978 ,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	},
+	error: function(xhr) {
+		console.log('실패-',xhr);
+	}
+	});
+
 	var percent_number_step = $.animateNumber.numberStepFactories.append(' %')
+	$('#one').animateNumber({
+		number: 100,color: 'green','font-size': '37px',
+		easing: 'easeInQuad',numberStep: percent_number_step
+	}, 2000);
 	$('#fun-level').animateNumber({
 		number: 100,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: percent_number_step
@@ -27,23 +44,23 @@ $(document).ready(function(){
 	
 	var word = $.animateNumber.numberStepFactories.append(' 개')
 	$('#wordall').animateNumber({
-		number: 100,color: 'green','font-size': '37px',
+		number: 74231,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#productword').animateNumber({
-		number: 100,color: 'green','font-size': '37px',
+		number: 67,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#emotionword').animateNumber({
-		number: 100,color: 'green','font-size': '37px',
+		number: 267,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#techword').animateNumber({
-		number: 100,color: 'green','font-size': '37px',
+		number: 7830,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#designword').animateNumber({
-		number: 100,color: 'green','font-size': '37px',
+		number: 9126,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	
@@ -66,7 +83,7 @@ $(document).ready(function(){
                             <div class="header" style="text-align: center">
                             	<h4 class="title" style="font-family: yanolja;font-size: 37px">
                             	<i class="pe-7s-study"></i>검색 누적</h4>
-                                <h4 class="title" id="lines" 
+                                <h4 class="title" id="allsearch" 
                                 style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
                             </div>
                         </div>
@@ -76,7 +93,7 @@ $(document).ready(function(){
                             <div class="header" style="text-align: center">
                             	<h4 class="title" style="font-family: yanolja;font-size: 37px">
                             	<i class="pe-7s-diamond"></i>금일 검색</h4>
-                                <h4 class="title" id="lines1" 
+                                <h4 class="title" id="daysearch" 
                                 style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
                             </div>
                         </div>
@@ -86,7 +103,7 @@ $(document).ready(function(){
                             <div class="header" style="text-align: center">
                             	<h4 class="title" style="font-family: yanolja;font-size: 37px">
                             	<i class="pe-7s-arc"></i>구매율</h4>
-                                <h4 class="title" id="lines2" 
+                                <h4 class="title" id="one" 
                                 style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
                             </div>
                         </div>
@@ -96,7 +113,7 @@ $(document).ready(function(){
                             <div class="header" style="text-align: center">
                             	<h4 class="title" style="font-family: yanolja;font-size: 37px">
                             	<i class="pe-7s-cloud-download"></i>크롤링</h4>
-                                <h4 class="title" id="world-population" 
+                                <h4 class="title" id="two" 
                                 style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
                             </div>
                         </div>
