@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public boolean passwordCheck(AdminVO vo) {
+	public AdminVO passwordCheck(AdminVO vo) {
 		// TODO Auto-generated method stub
 		return adminDao.passwordCheck(vo);
 	}

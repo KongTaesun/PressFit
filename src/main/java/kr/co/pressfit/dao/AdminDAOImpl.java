@@ -44,9 +44,8 @@ public class AdminDAOImpl implements AdminDAO {
 		sqlSession.delete("admin.delete");
 	}
 	@Override
-	public boolean passwordCheck(AdminVO vo) {
-		int check = sqlSession.selectOne("admin.passwordcheck");
-		return (check == 1) ? false : true;
+	public AdminVO passwordCheck(AdminVO vo) {
+		return sqlSession.selectOne("admin.read",vo);
 	}
 	@Override
 	public List<CommunityVO> communityList(PageVO vo) {
@@ -84,8 +83,13 @@ public class AdminDAOImpl implements AdminDAO {
 	public void update2(MemberVO vo) {
 		sqlSession.update("admin.update2",vo);
 	}
+	@Override
 	public void delete1(MemberVO vo) {
 		sqlSession.delete("admin.delete1",vo);
+	}
+	@Override
+	public String image(String kind,int idx) {
+		return sqlSession.selectOne("admin.image"+kind,idx);
 	}
 }
 

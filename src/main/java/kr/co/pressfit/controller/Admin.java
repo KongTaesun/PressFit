@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.pressfit.dao.AdminDAO;
 import kr.co.pressfit.service.AdminService;
 import kr.co.pressfit.service.BusinessService;
 import kr.co.pressfit.service.CartService;
@@ -60,6 +61,8 @@ public class Admin {
 	OrderService orderService;
 	@Inject
 	AdminService adminservice;
+	@Inject
+	AdminDAO admindao;
 	@Inject  
 	MemberService memberservice;
 	
@@ -98,25 +101,30 @@ public class Admin {
 	}
 	@RequestMapping("/inter/login.do")
 	public String login(Model model, HttpSession session){
+    	session.invalidate();
 		return "admin/login";
 	} 
 	@RequestMapping("/inter/passwordcheck.do")
 	public ModelAndView passwordcheck(@ModelAttribute AdminVO vo,Model model, HttpSession session){
         ModelAndView mav = new ModelAndView();
-		boolean result=adminservice.passwordCheck(vo);
-        if (result == true) { 
+        AdminVO result=adminservice.passwordCheck(vo);
+        if (result != null) {
             mav.setViewName("admin/main");
-            session.setAttribute("admin", vo.getId());
+            session.setAttribute("admin", result.getId());
             session.setAttribute("kind", "admin");
-            session.setAttribute("adminlevel", vo.getLevel());
-            session.setMaxInactiveInterval(60*40);
-            mav.addObject("msg", "success");
+            session.setAttribute("adminlevel", result.getLevel());
         } else {
-            mav.setViewName("admin/login");
-            mav.addObject("msg", "failure");
+            mav.setViewName("/");
         } 
         return mav;
 	}
+    @RequestMapping("logout.do")
+    public ModelAndView logout(HttpSession session){
+    	session.invalidate();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/");
+        return mav;
+    }
 	@RequestMapping("create.do")
 	public void create(@ModelAttribute AdminVO vo,Model model, HttpSession session){
 		adminservice.create(vo);
@@ -457,7 +465,13 @@ public class Admin {
 	public void memberdelete(@RequestParam(name="memberidx") int idx)throws Exception{
 		adminservice.delete1("Cmember", idx);
     }
-	
+	@RequestMapping(value="/image/image.do")
+	public ModelAndView image(@RequestParam(name="kind") String kind,@RequestParam(name="idx") int idx)throws Exception{
+		System.out.println(kind+idx);
+		ModelAndView mv = new ModelAndView("jsonView");
+    	mv.addObject("filename", admindao.image(kind, idx));   	
+    	return mv;
+    }
 }
 
  

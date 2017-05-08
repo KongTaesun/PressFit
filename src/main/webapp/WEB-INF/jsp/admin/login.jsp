@@ -7,7 +7,19 @@
 <%@ include file="adminheader.jsp"%>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		$('#loginsubmit').click(function(){
+           	var form = $('<form></form>');
+		    form.attr('action', "${path}/admin/inter/passwordcheck.do");
+		    form.attr('method', 'post');
+		    form.appendTo('body');
+		    var id = $("<input type='hidden' value="+$("#id").val()+" name='id'>");
+		    var pw = $("<input type='hidden' value="+$("#pw").val()+" name='pw'>");
+		    var pw2 = $("<input type='hidden' value="+$("#pw2").val()+" name='pw2'>");
+		    form.append(id);
+		    form.append(pw);
+		    form.append(pw2);
+		    form.submit();
+		});
 	});
 </script>
 <body style="background-image: url('${path}/resources/admin/img/login.jpg');">
@@ -22,7 +34,6 @@
 							text-transform: none;font-size: 60px">PressFit</h4>
 						</div>
 						<div class="content" style="text-transform: none;font-size: 15px">
-							<form method="post" action="${path}/admin/inter/passwordcheck.do">
 								<div class="row">
 								<div class="col-md-2"> </div>
 									<div class="col-md-8">
@@ -55,10 +66,9 @@
 								</div>
 								<div class="col-md-5"> </div>
 								<div class="col-md-2">
-								<button type="submit" class="btn btn-info btn-fill" style="padding: 10px 12px">Login</button>
+								<button id="loginsubmit" class="btn btn-info btn-fill" style="padding: 10px 12px">Login</button>
 								</div>
 								<div class="clearfix"></div>
-							</form>
 						</div>
 					</div>
 				</div>

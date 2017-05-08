@@ -2,7 +2,7 @@
 <div class="sidebar">
     <div class="sidebar-wrapper" style="background-image: url('${path}/resources/admin/img/2.jpg')">
             <div class="logo">
-                <a href="${path}/admin/inter/login.do" class="simple-text" style="font-family: Connoisseurs;text-transform: none;font-size: 50px">
+                <a href="${path}/admin/main.do" class="simple-text" style="font-family: Connoisseurs;text-transform: none;font-size: 50px">
                     Press Fit
                 </a>
             </div>
