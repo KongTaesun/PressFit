@@ -96,97 +96,6 @@ function bargraph(name,a,b,c,d){
 		}
 	});
 }
-function PolarArea(name,a,b,c,d,e){
-	var chartData = [
-			{
-				value: a,
-				color:"#F7464A",
-				highlight: "#FF5A5E",
-				label: "Red"
-			},
-			{
-				value: b,
-				color: "#46BFBD",
-				highlight: "#5AD3D1",
-				label: "Green"
-			},
-			{
-				value: c,
-				color: "#FDB45C",
-				highlight: "#FFC870",
-				label: "Yellow"
-			},
-			{
-				value: d,
-				color: "#949FB1",
-				highlight: "#A8B3C5",
-				label: "Grey"
-			},
-			{
-				value: e,
-				color: "#4D5360",
-				highlight: "#616774",
-				label: "Dark Grey"
-			}
-
-		];
-
-	var chart = null;
-	var canvas = null;
-	var ctx = null;
-	var legendHolder = null;
-	var helpers = Chart.helpers;
-	$(function() {
-		canvas = document.getElementById(name);
-		legendHolder = document.createElement('div');
-		ctx = canvas.getContext("2d");
-		chart = new Chart(ctx).PolarArea(chartData, {
-			scaleShowLabelBackdrop : true,
-			scaleBackdropColor : "rgba(255,255,255,0.75)",
-			scaleBeginAtZero : true,
-			scaleBackdropPaddingY : 2,
-			scaleBackdropPaddingX : 2,
-			scaleShowLine : true,
-			segmentShowStroke : true,
-			segmentStrokeColor : "#fff",
-			segmentStrokeWidth : 2,
-			animationSteps : 100,
-			animationEasing : "easeOutBounce",
-			animateRotate : true,
-			animateScale : false,
-			responsive: true,
-			onAnimationProgress: function() {
-				console.log("onAnimationProgress");
-			},
-			onAnimationComplete: function() {
-				console.log("onAnimationComplete");
-			}
-		});
-
-		legendHolder.innerHTML = chart.generateLegend();
-		helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-			helpers.addEvent(legendNode, 'mouseover', function(){
-				var activeSegment = chart.segments[index];
-				activeSegment.save();
-				activeSegment.fillColor = activeSegment.highlightColor;
-				chart.showTooltip([activeSegment]);
-				activeSegment.restore();
-			});
-		});
-		helpers.addEvent(legendHolder.firstChild, 'mouseout', function(){
-			chart.draw();
-		});
-		canvas.parentNode.appendChild(legendHolder.firstChild);
-	});
-	$("canvas").on("click", function(e) {
-		var activePoints = chart.getSegmentsAtEvent(e);
-		console.log(activePoints);
-		for(var i in activePoints) {
-			console.log(activePoints[i].value);
-		}
-	});
-
-}
 function Doughnut(name,a,b,c,d,e){
 	var chartData = [
 			{
@@ -385,16 +294,21 @@ function type1obj(obj){
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
 		} 
-	},200);
+	},500);
 	
 	$('#first').show();
 	var j='first';
+	var kind = null;
+	if(obj.first._index=="mouse"){kind="tmouse"}
+	else if(obj.first._index=="keyboard"){kind="keyboard"}
+	
+	filename(kind,obj.first._source.idx,function(img){
 	var str = '';
 	str += "<div class='col-md-12 col-sm-7'>"+
 			"<div class='single-banner'>"+
 				"<div class='banner-bottom text-center'>"+
 				"<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-					"<div class='zt-skill-bar'><div data-width='"+obj.first.content_cnt+"'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
+					"<div class='zt-skill-bar'><div data-width='"+obj.first._source.content_cnt+"'> 관련 리뷰 <span>"+obj.first._source.content_cnt+"개</span></div></div>"+
 					"<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
 				"</div></div></div></div>"+
 			      "<div class='col-md-1'></div>"+
@@ -409,15 +323,14 @@ function type1obj(obj){
 					"</div>"+
 					"<div class='col-md-4 col-sm-8'>"+
 						"<div class='single-banner'>"+
-							"<a href='${path}/tmouse/view.do?idx="+obj.first.idx+
+							"<a href='${path}/"+kind+"/view.do?idx="+obj.first._source.idx+
 							"&curPage=1&searchOption=title&keyword='>"+
-							"<img src='<c:url value='/resources/writer/img/banner/3.jpg' />'alt=''>"+
+							"<img src='${path}/resources/upload"+img+"' />"+
 							"</a>"+
-							"<div class='price'>판매순위 30위</div>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='${path}/tmouse/view.do?idx="+obj.first.idx+
+								"<a href='${path}/"+kind+"/view.do?idx="+obj.first._source.idx+
 								"&curPage=1&searchOption=title&keyword='>"+
-								obj.first.modelnameDB+"<br/>"+obj.first.price+"</a>"+
+								obj.first._source.modelnameDB+"<br/>"+obj.first._source.price+"</a>"+
 							"</div>"+
 						"</div>"+
 					"</div>"+
@@ -430,11 +343,12 @@ function type1obj(obj){
 							"</div>"+
 						"</div>"+
 					"</div>";
+	$('#first .banner-list').empty();
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,60,60,60,60,30);
 	Doughnut('canvas2'+j,10,10,10,10,10);
 	ztskillbar();
-	
+	});
 	$('#firstlist').show();
 	if(obj.firstreview!=null){
 		var k='firstlist';
@@ -484,50 +398,55 @@ function type3obj(obj){
 	$('#first').show();
 	var j='first';
 	var str = '';
+	var kind = null;
+	if(obj.first._index=="mouse"){kind="tmouse"}
+	else if(obj.first._index=="keyboard"){kind="keyboard"}
+
+	filename(kind,obj.first._source.idx,function(img){
 	str += "<div class='col-md-12 col-sm-7'>"+
-			"<div class='single-banner'>"+
-				"<div class='banner-bottom text-center'>"+
-				"<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-					"<div class='zt-skill-bar'><div data-width='"+obj.first.content_cnt+"'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
-					"<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
-				"</div></div></div></div>"+
-			      "<div class='col-md-1'></div>"+
-					"<div class='col-md-3 col-sm-6'>"+
-						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div class='price'>추가사항 <br/>65%</div>"+
-							"<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
-							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
-							"</div>"+
-						"</div>"+
-					"</div>"+
-					"<div class='col-md-4 col-sm-8'>"+
-						"<div class='single-banner'>"+
-							"<a href='${path}/tmouse/view.do?idx="+obj.first.idx+
-							"&curPage=1&searchOption=title&keyword='>"+
-							"<img src='<c:url value='/resources/writer/img/banner/3.jpg' />'alt=''>"+
-							"</a>"+
-							"<div class='price'>판매순위 30위</div>"+
-							"<div class='banner-bottom text-center'>"+
-								"<a href='${path}/tmouse/view.do?idx="+obj.first.idx+
-								"&curPage=1&searchOption=title&keyword='>"+
-								obj.first.modelnameDB+"<br/>"+obj.first.price+"</a>"+
-							"</div>"+
-						"</div>"+
-					"</div>"+
-					"<div class='col-md-3 col-sm-6'>"+
-						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div style='width:260px;height:260px'>"+
-							"<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
-							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
-							"</div>"+
-						"</div>"+
-					"</div>";
+	    "<div class='single-banner'>"+
+	      "<div class='banner-bottom text-center'>"+
+	      "<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
+	        "<div class='zt-skill-bar'><div data-width='"+obj.first._source.content_cnt+"'> 관련 리뷰 <span>"+obj.first._source.content_cnt+"개</span></div></div>"+
+	        "<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
+	      "</div></div></div></div>"+
+	          "<div class='col-md-1'></div>"+
+	        "<div class='col-md-3 col-sm-6'>"+
+	          "<div class='single-banner' style='padding: 5%;background-color: white;'>"+
+	            "<div class='price'>추가사항 <br/>65%</div>"+
+	            "<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
+	            "<div class='banner-bottom text-center'>"+
+	              "<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
+	            "</div>"+
+	          "</div>"+
+	        "</div>"+
+	        "<div class='col-md-4 col-sm-8'>"+
+	          "<div class='single-banner'>"+
+	            "<a href='${path}/"+kind+"/view.do?idx="+obj.first._source.idx+
+	            "&curPage=1&searchOption=title&keyword='>"+
+	            "<img src='${path}/resources/upload/"+img+"' />"+
+	            "</a>"+
+	            "<div class='banner-bottom text-center'>"+
+	              "<a href='${path}/"+kind+"/view.do?idx="+obj.first._source.idx+
+	              "&curPage=1&searchOption=title&keyword='>"+
+	              obj.first._source.modelnameDB+"<br/>"+obj.first._source.price+"</a>"+
+	            "</div>"+
+	          "</div>"+
+	        "</div>"+
+	        "<div class='col-md-3 col-sm-6'>"+
+	          "<div class='single-banner' style='padding: 5%;background-color: white;'>"+
+	            "<div style='width:260px;height:260px'>"+
+	            "<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
+	            "<div class='banner-bottom text-center'>"+
+	              "<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
+	            "</div>"+
+	          "</div>"+
+	        "</div>";
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,60,60,60,60,30);
 	Doughnut('canvas2'+j,10,10,10,10,10);
 	ztskillbar();
+	});
 	
 	$('#list1').show();
 	var i=0;
@@ -547,7 +466,7 @@ function type3obj(obj){
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
 		} 
-	},200);
+	},500);
 	$('html body').css('height', '110%');
 };
 function type4obj(obj){
@@ -555,6 +474,7 @@ function type4obj(obj){
 	$('#list3').show();
 	var i=0;
 	var inter = setInterval(function(){
+	filename('tmouse',obj.reviewlist.hitslist[i]._source.idx,function(img){
 		var str = '';
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
@@ -567,7 +487,6 @@ function type4obj(obj){
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
 		
-		filename('tmouse',obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
 			str2+="<div class='col-md-2' style='background-color: white;''>"+
 				"<div class='single-banner'>"+
@@ -586,54 +505,16 @@ function type4obj(obj){
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
 		} 
-	},200);
+	},500);
 	
 };
 function type5obj(obj){
 	$('#list2').show();
 	$('#list3').show();
-	var i=0;
-	var inter = setInterval(function(){
-		var str = '';
-		str+="<div class='col-md-2' style='background-color: white;''>"+
-			"<div class='single-banner'>"+
-			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
-			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
-		$('#list2 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
-		
-		filename('keyboard',obj.reviewlist.hitslist[i]._source.idx,function(img){
-			var str2 = '';
-			str2+="<div class='col-md-2' style='background-color: white;''>"+
-				"<div class='single-banner'>"+
-				"<a href='${path}/keyboard/view.do?idx="+obj.reviewlist.hitslist[i]._source.idx+
-				"&curPage=1&searchOption=title&keyword='>"+
-				"<img src='${path}/resources/upload/"+img+"'/>"+
-				"</a>"+
-				"<div class='banner-bottom text-center'>"+
-					"<a href='${path}/keyboard/view.do?idx="+obj.reviewlist.hitslist[i]._source.idx+
-					"&curPage=1&searchOption=title&keyword='>"+
-					obj.reviewlist.hitslist[i]._source.modelname+"<br/></a>"+
-				"</div></div></div>";
-			$('#list3 .banner-list').append(str2).addClass('animate');
-		});	
-			i++;
-		if(i>=6||i>=obj.reviewlist.hitslist.length){
-			clearInterval(inter);
-		} 
-	},200);
-	
-};
-function type6obj(obj){
-	$('#list2').show();
-	$('#list3').show();
 
 	var i=0;
 	var inter = setInterval(function(){
+		(function(i){
 		var kind = null;
 		if(obj.reviewlist.hitslist[i]._index=="anlayze"){kind="tmouse"}
 		else if(obj.reviewlist.hitslist[i]._index=="anlayze2"){kind="keyboard"}
@@ -663,12 +544,60 @@ function type6obj(obj){
 					obj.reviewlist.hitslist[i]._source.modelname+"<br/></a>"+
 				"</div></div></div>";
 			$('#list3 .banner-list').append(str2).addClass('animate');
-		});			
-						i++;
-		if(i>=6||i>=obj.reviewlist.hitslist.length){
+		});	
+		
+		})(i);
+			i++;
+		if(i>=6){
 			clearInterval(inter);
 		} 
-	},200);
+	},500);
+};
+function type6obj(obj){
+	$('#list2').show();
+	$('#list3').show();
+
+	var i=0;
+	var inter = setInterval(function(){
+		(function(i){
+			
+		var kind = null;
+		if(obj.reviewlist.hitslist[i]._index=="anlayze"){kind="tmouse"}
+		else if(obj.reviewlist.hitslist[i]._index=="anlayze2"){kind="keyboard"}
+		var str = '';
+		str+="<div class='col-md-2' style='background-color: white;''>"+
+			"<div class='single-banner'>"+
+			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
+			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
+			"<div class='banner-bottom text-center'>"+
+			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
+		$('#list2 .banner-list').append(str).addClass('animate');
+		radargraph('canvas'+i,10,10,10,10,10);
+		
+		filename(kind,obj.reviewlist.hitslist[i]._source.idx,i,function(img,a){
+			var str2 = '';
+			str2+="<div class='col-md-2' style='background-color: white;''>"+
+				"<div class='single-banner'>"+
+				"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[a]._source.idx+
+				"&curPage=1&searchOption=title&keyword='>"+
+				"<img id='image"+a+"' src='${path}/resources/upload/"+img+"' />"+
+				"</a>"+
+				"<div class='banner-bottom text-center'>"+
+					"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[a]._source.idx+
+					"&curPage=1&searchOption=title&keyword='>"+
+					obj.reviewlist.hitslist[a]._source.modelname+"<br/></a>"+
+				"</div></div></div>";
+			$('#list3 .banner-list').append(str2).addClass('animate');
+		});		
+		
+		})(i);
+		i++;
+		if(i>=6){
+			clearInterval(inter);
+		} 
+	},500);
 };
 function type7obj(obj){
 	$('#first').show();
@@ -744,7 +673,7 @@ function type7obj(obj){
 			clearInterval(inter);
 		} 
 		});	
-	},200);
+	},500);
 };
 function type8obj(obj){
 	var i=0;
@@ -773,7 +702,7 @@ function type8obj(obj){
 				clearInterval(inter);
 			} 
 		}
-	},200);
+	},500);
 	
 	var j=0;
 	var kind = null;
@@ -801,7 +730,7 @@ function type8obj(obj){
 				clearInterval(inter2);
 			} 
 		}
-	},200);
+	},500);
 };
 function type9obj(obj){
 	$('#first').show();
@@ -872,7 +801,7 @@ function type9obj(obj){
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
 		} 
-	},200);
+	},500);
 	var i=0;
 	
 	$('#list1').show();
@@ -895,9 +824,7 @@ function type9obj(obj){
 			clearInterval(inter);
 		} 
 		});	
-	},200);
-
-	$('html body').css('height', '130%');
+	},500);
 	
 };
 function type10obj(obj){
@@ -969,7 +896,7 @@ function type10obj(obj){
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
 		} 
-	},200);
+	},500);
 	var i=0;
 	
 	$('#list1').show();
@@ -992,9 +919,7 @@ function type10obj(obj){
 			clearInterval(inter);
 		} 
 		});	
-	},200);
-
-	$('html body').css('height', '130%');
+	},500);
 };
 function filename(kind,idx,callback){
 	$.ajax({
@@ -1032,7 +957,7 @@ $(document).ready(function() {
 	var data = null;
 	$.ajax({
 		type : "POST",
-		url: "http://192.168.0.25:8900/?q=${q}",
+		url: "http://192.168.1.61:8900/?q=${q}",
 	 	contentType: "text/plain; charset=utf-8",
 	 	jsonp : "callback",
 	 	dataType : "jsonp",
@@ -1847,41 +1772,6 @@ document.addEventListener('DOMContentLoaded', function () {
 	width: 20px;
 	border-radius: 5px;
 }
-
-.polararea-legend {
-	list-style: none;
-	right: 300px;
-	top: 300px;
-	visibility: hidden;
-}
-
-.polararea-legend li {
-	display: block;
-	padding-left: 30px;
-	position: relative;
-	margin-bottom: 4px;
-	border-radius: 5px;
-	padding: 2px 8px 2px 28px;
-	font-size: 14px;
-	cursor: default;
-	-webkit-transition: background-color 200ms ease-in-out;
-	-moz-transition: background-color 200ms ease-in-out;
-	-o-transition: background-color 200ms ease-in-out;
-	transition: background-color 200ms ease-in-out;
-}
-
-.polararea-legend li:hover {
-	background-color: #fafafa;
-}
-
-.polararea-legend li span {
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 20px;
-	border-radius: 5px;
-}
 </style>
 <style>
   .zt-skill-bar {
@@ -2030,6 +1920,7 @@ vertical-align: inherit;
 		<div class="banner-list" style="padding:3%">
 		<h2>-추천 제품 관련 리뷰-</h2>
 		<div class="col-md-2"></div>
+		
 		</div>
 	</div>
 	<div id="list1" class="row" style="position:relative;">

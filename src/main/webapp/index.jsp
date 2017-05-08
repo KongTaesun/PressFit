@@ -150,10 +150,10 @@ $(document).ready(function(){
 });
 </script>
 
-<body>
+<body style="overflow-x: hidden;">
 <div id="loading">
-<div class="boxLoading" style="top:40%;left:47%">
-</div>
+	<div class="boxLoading" style="top:40%;left:47%">
+	</div>
 </div>
 
 <!-- Shop Area Start -->

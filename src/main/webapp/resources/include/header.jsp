@@ -293,7 +293,7 @@ height: 95px;
 									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
 									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
 								</ul> <c:choose>
-									<c:when test="${sessionScope.kind eq 'member'}">
+									<c:when test="${sessionScope.kind=='member'}">
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
@@ -303,7 +303,7 @@ height: 95px;
 												<li><a href="${path}/faq/list.do">1:1문의</a></li>
 											</ul></li>
 									</c:when>
-									<c:when test="${sessionScope.kind eq 'business'}">
+									<c:when test="${sessionScope.kind=='business'}">
 										<li><a href="#">BUSINESS</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>

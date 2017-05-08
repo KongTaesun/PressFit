@@ -392,19 +392,19 @@ $(document).ready(function() {
 			console.log(data);
 	var word = $.animateNumber.numberStepFactories.append('');
 	$('#allsearch').animateNumber({
-		number: data.allsearch,color: 'black','font-size': '37px',
+		number: data.allsearch,color: 'black','font-size': '50px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#daysearch').animateNumber({
-		number: data.daysearch,color: 'black','font-size': '37px',
+		number: data.daysearch,color: 'black','font-size': '50px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
-	$('#dayvisit').animateNumber({
-		number: data.dayvisit,color: 'black','font-size': '37px',
+	$('#one').animateNumber({
+		number: 60 ,color: 'black','font-size': '50px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
-	$('#daysearch').animateNumber({
-		number: data.daysearch,color: 'black','font-size': '37px',
+	$('#two').animateNumber({
+		number: 2978 ,color: 'black','font-size': '50px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	},
@@ -457,18 +457,18 @@ $(document).ready(function() {
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">60</span>%
+								<span>
+									<span id="one">0</span>
 								</span>
-								<h3>추천검색 후 구매율</h3>								
+								<h3>만족도</h3>								
 							</div>
 						</div>		                
 		            </div>
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">2978</span>
+								<span>
+									<span id="two">0</span>
 								</span>
 								<h3>분석 리뷰</h3>								
 							</div>
