@@ -113,6 +113,23 @@ button.hover {
     border: 1px solid #879fff;
 }
 
+button.btnbuy {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #879fff;
+	box-shadow:
+	0px 1px 3px rgba(000,000,000,0.3),
+	inset 0px 0px 2px rgba(255,255,255,0);
+}
 
 </style>
 

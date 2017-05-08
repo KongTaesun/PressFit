@@ -17,5 +17,5 @@ public interface JoinService {
 
 	public boolean checkPw(String id, String pw);
 	
-	public void addAttach(String fullName);
+	public void addAttach(MemberVO vo);
 }

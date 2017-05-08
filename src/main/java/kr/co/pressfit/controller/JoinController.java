@@ -11,6 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.plexus.util.IOUtil;
 import org.slf4j.Logger;
@@ -32,6 +33,7 @@ import kr.co.pressfit.utill.UploadFileUtils;
 
 import kr.co.pressfit.service.JoinService;
 import kr.co.pressfit.utill.MediaUtils;
+import kr.co.pressfit.vo.CartVO;
 import kr.co.pressfit.vo.MemberVO;
 
  
@@ -97,16 +99,22 @@ public class JoinController {
 	}
 	
 	
-	 @RequestMapping("imageUpload.do")
-	    public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
+	 @RequestMapping("member/imageUpload.do")
+	    public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload, HttpSession session) throws Exception {
 	    	response.setCharacterEncoding("utf-8");
 	    	response.setContentType("text/html");
+	    	String id = (String) session.getAttribute("id");
+	    	MemberVO vo = new MemberVO();
 	    	OutputStream out = null;
 	    	PrintWriter printwriter = null;
 	    	String fileName = upload.getOriginalFilename();
-	    	joinService.addAttach(fileName);
+	    	vo.setId(id);
+	    	vo.setCpicture(fileName);
+	    	
+	    	joinService.addAttach(vo);
+	    
 	    	byte[] bytes = upload.getBytes();
-	    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+	    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload/"+fileName;
 	    	out = new FileOutputStream(new File(uploadPath));
 	    	out.write(bytes);
 	    	String callback = request.getParameter("CKEditorFuncNum");

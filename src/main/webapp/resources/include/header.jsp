@@ -68,9 +68,7 @@ sans-serif;
 <script>
     $(document).ready(function(){
         console.log(document.form1);
-        $("#btnLogin").click(function(){
-           alert("asdasd");
-           
+        $("#btnLogin").click(function(){ 
             var id = $("#id").val();
             var pw = $("#pw").val();
             document.form1.action="loginCheck.do" 
@@ -315,13 +313,14 @@ sans-serif;
 												<li><a
 													href="${path}/business/keyboardList.do?searchOption=id">키보드</a></li>
 												<li><a href="${path}/business/orderList.do">주문상품</a></li>
-												<li><a href="${path}/login/logout.do">로그아웃</a></li>
+										
 											</ul></li>
 									</c:when>
 									<c:otherwise> 
 										<li><a href="#">마이페이지</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
+														<li><a href="${path}/login/logout.do">로그아웃</a></li>
 											</ul></li>
 									</c:otherwise> 
 								</c:choose>

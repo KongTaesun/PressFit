@@ -33,9 +33,9 @@
             var formData = new FormData(); // 폼데이터 객체
             formData.append("file", file); // 첨부파일 추가
             $.ajax({
-                url: "${path}/gallery/upload/uploadAjax.do",
+                url: "${path}/faq/upload/uploadAjax.do",
                 type: "post",
-                data: formData, 
+                data: formData,
                 dataType: "text",
                 processData: false, // processType: false - header가 아닌 body로 전달
                 contentType: false,
@@ -75,81 +75,185 @@
 });
 </script>
 <style>
-/* 첨부파일을 드래그할 영역의 스타일 */
-.fileDrop {
-    width: 600px;
-    height: 70px;
-    border: 2px dotted gray;
-    background-color: gray;
-}
+.breadcrumbs-area {
+	background-image:
+		url('${path}/resources/writer/img/bigpicture/gallery_img.png');
+}  
 .icon1
   {
    width: 30px;
     height: 30px;
   }
-.border1  {
-	border: 5px solid red;
+.fileDrop {
+    width: 600px;
+    height: 70px;
+    border: 2px dotted gray;
+    background-color: gray; 
 }
-.border2
-{
-	 border-style: solid;
-    border-top: thick double #ff0000;
- }
-.padding1
-{
-    padding: 50px 30px 50px 80px;
+.join_row{
+        overflow: hidden;
 }
-    
+.list_delivery {
 
+    overflow: hidden;
+    padding-top: 31px;
+}
+.list_delivery dt {
+    margin-bottom: 19px;
+    font-size: 16px;
+    line-height: 17px;
+    color: #666;
+}
+.list_delivery dd {
+    overflow: hidden;
+    min-height: 50px;
+    margin-bottom: 19px;
+}
+.list_delivery .box_input {
+    height: 48px;
+    padding: 0 19px;
+    border: 1px solid #d2d2d2;
+    background-color: #f9f9f9;
+}
+.list_delivery .box_input .tf_g {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #535353;
+    background-color: transparent;
+}
+.list_delivery .box_postal {
+    float: left;
+    width: 70%;
+}
+.list_delivery .box_input .tf_g:disabled {
+    opacity: 1;
+}
+.list_delivery .btn_postal {
+    float: left;
+    width: 25%; 
+    height: 50px;
+    margin-left: 22px;
+    /* border: 1px solid #d2d2d2;
+    font-size: 16px;
+    color: #1e1e1e;
+    line-height: 49px;
+    background-color: #fff;
+    text-align: center;  */
+}
+.box_input {
+input[type=text]:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+	} 
+} 
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover {
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
 
 </style>
 </head>
-<body> 
-<!-- Breadcrumbs Area Start --> 
-		<div class="shopping-cart-area section-padding"> 
-		    <div class="container">
-		        <div class="row">
-		            <div class="col-md-12">  
-		            
-<h2><img src="${path}/resources/writer/icon/writer.png" class="icon1">글쓰기</h2>
+<body>
+  
+        <!-- Breadcrumbs Area Start -->
+        <div class="breadcrumbs-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+					    <div class="breadcrumbs">
+					       <h2>후기게시판</h2>  
+					       <!-- <ul class="breadcrumbs-list">
+						        <li>
+						            <a title="Return to Home" href="index.html">Home</a>
+						        </li>
+						        <li>Shopping Cart</li>
+						    </ul> -->
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div> 
+		<!-- Breadcrumbs Area Start --> 
 
-<form id="form1" name="form1" method="post" action="${path}/gallery/insert.do">
-
-  <div class="container">
- 		제목
-        <input name="title" id="title" size="150" placeholder="제목을 입력해주세요">
-    </div>
- 
-    <div class = "border2">
-		말머리
-        <input name="title" id="title" size="150" placeholder="제목을 입력해주세요">
-    </div>
-margin: 25px 0;
-    <div>
-        내용
-        <textarea name="content" id="content" rows="4" cols="80" placeholder="내용을 입력해주세요"></textarea>
-<script>
+<!-- My Account Area Start --> 
+			<div class="login-account section-padding">
+		<div class="container" style="display:table; width: 700px;/* text-align: center */">
+				 
+	
+			<div class="p-details-tab" style="margin-top: 30px;">
+            	<ul class="p-details-nav-tab">
+					<img src="${path}/resources/writer/icon/writer.png" class="icon1" />
+                	<li role="presentation" class="active"><a href="#" id="btnone">글쓰기</a></li>
+                </ul>
+      		</div>
+			
+<form action="${path}/community/insert.do" id="form1" name="form1" 
+class="create-account-form" method="post">
+      <dl class="list_delivery">
+      <dt> 
+		<label for="oaName">제목</label>
+	</dt>
+	<dd> 
+	<div class="box_input"><input class="tf_g" id="title" name="title" /></div>
+	</dd>
+	 <dt>
+		<label for="oaName">부제목</label>
+	</dt>
+	<dd> 
+	<div class="box_input"><input class="tf_g" id="subtitle" name="subtitle" ></div>
+	</dd>
+      </dl>
+       
+        <textarea name="content" id="content" rows="5" cols="80" 
+        placeholder="내용을 입력해주세요"></textarea>
+<script> 
 CKEDITOR.replace("content",{
-	filebrowserUploadUrl : "${path}/gallery/imageUpload.do"
+	filebrowserUploadUrl : "${path}/community/imageUpload.do"
 });
 </script>
+   <br>
+    <div style="width:650px; text-align: center;">
+        <button type="button" id="btn">확인</button>
+        <button type="reset">취소</button>
     </div> 
+</form>
+</div>
+</div>
+
+    
    <!--  <div>
 	    첨부파일 등록
 	    첨부파일 등록영역
 	    <div class="fileDrop"></div>
 	    첨부파일의 목록 출력영역
 	    <div id="uploadedList"></div>
-	</div> -->
-    <div style="width:650px; text-align: center;">
-        <button type="button" id="btnSave">확인</button>
-        <button type="reset">취소</button>
-    </div>
+	</div>
+    
+    
 </form>
 </div>
-</div>
-</div>
-</div>
-
+    </div> -->
+  
+	<!-- Footer Start -->
+	<%@ include file="/resources/include/footer.jsp"%>
+	<!-- Footer End -->
 </body>
 </html>

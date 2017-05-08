@@ -6,31 +6,20 @@ import java.util.Date;
 public class GalleryVO {
 	private int idx;
 	private String title;
+	private String subtitle;
+	
 	private String content;
 	private String writer;
-	private String regdate;
+	private Date regdate;
 	private int viewcnt;
 	private String[] filelist;
 	private String showdel;
 	private int ref;
 	private int turn;
 	private int level;
-	private int recnt;
-	private String fullname;
+	private int recnt; 
+	private String fullName;
 	private int TOTAL;
-	
-	public int getTOTAL() {
-		return TOTAL;
-	}
-	public void setTOTAL(int tOTAL) {
-		TOTAL = tOTAL;
-	}
-	public int getRecnt() {
-		return recnt;
-	}
-	public void setRecnt(int recnt) {
-		this.recnt = recnt;
-	}
 	public int getIdx() {
 		return idx;
 	}
@@ -42,6 +31,12 @@ public class GalleryVO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
 	}
 	public String getContent() {
 		return content;
@@ -55,10 +50,10 @@ public class GalleryVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	public int getViewcnt() {
@@ -97,18 +92,31 @@ public class GalleryVO {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public String getfullName() {
-		return fullname;
+	public int getRecnt() {
+		return recnt;
 	}
-	public void setfullName(int level) {
-		this.fullname = fullname;
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
 	}
 	@Override
 	public String toString() {
-		return "GalleryVO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist=" + Arrays.toString(filelist)
-				+ ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level=" + level + ", recnt=" + recnt
-				+ ", fullname=" + fullname + ", TOTAL=" + TOTAL + "]";
-	}
-	
+		return "GalleryVO [idx=" + idx + ", title=" + title + ", subtitle=" + subtitle + ", content=" + content
+				+ ", writer=" + writer + ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist="
+				+ Arrays.toString(filelist) + ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level="
+				+ level + ", recnt=" + recnt + ", fullName=" + fullName + ", TOTAL=" + TOTAL + "]";
+	} 
+
+
 }

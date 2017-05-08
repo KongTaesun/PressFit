@@ -56,9 +56,9 @@
 	    <selectKey resultType="int" keyProperty="idx" order="BEFORE">
 	        SELECT MAX(idx)+1 FROM FaqBoard        
 	    </selectKey>
-	    INSERT INTO FaqBoard (idx,title,content,writer,regdate,showdel,ref,turn,level) 
-		VALUES (#{idx},#{title},#{content},#{writer},NOW(),'y',#{idx},0,0);
-	 </insert>
+	    INSERT INTO FaqBoard (idx,title,subtitle,content,writer,regdate,showdel,ref,turn,level) 
+		VALUES (#{idx},#{title},#{subtitle},#{content},#{writer},NOW(),'y',#{idx},0,0);
+	 </insert> 
 	 
 	 <insert id="insertcmt">
 	    <selectKey resultType="int" keyProperty="idx" order="BEFORE">

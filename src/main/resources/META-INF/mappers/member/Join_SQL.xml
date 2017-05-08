@@ -37,7 +37,7 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	<delete id="deleteMember">
 		delete from Cmember
 		where id=#{id} 
-	</delete>
+	</delete> 
 	
 	<!-- 비밀번호 체크 -->	
 	<select id="checkPw" resultType="int">
@@ -57,7 +57,7 @@ resultType="kr.co.pressfit.vo.MemberVO">
 	where id=#{id}
 		
 			</update>
-	
+	 
 </mapper>
 
  

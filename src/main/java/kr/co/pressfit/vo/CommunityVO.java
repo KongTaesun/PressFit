@@ -6,6 +6,14 @@ import java.util.Date;
 public class CommunityVO {
 	private int idx;
 	private String title;
+	private String subtitle;
+	
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
+	}
 	private String content;
 	private String writer;
 	private Date regdate;
@@ -98,10 +106,12 @@ public class CommunityVO {
 	}
 	@Override
 	public String toString() {
-		return "CommunityVO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer
-				+ ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist=" + Arrays.toString(filelist)
-				+ ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level=" + level + ", recnt=" + recnt
-				+ ", TOTAL=" + TOTAL + "]";
+		return "CommunityVO [idx=" + idx + ", title=" + title + ", subtitle=" + subtitle + ", content=" + content
+				+ ", writer=" + writer + ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist="
+				+ Arrays.toString(filelist) + ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level="
+				+ level + ", recnt=" + recnt + ", TOTAL=" + TOTAL + "]";
 	}
+	
+	
 	
 }

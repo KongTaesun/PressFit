@@ -27,9 +27,9 @@
 #loading *:after {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 0; 
 }
-.boxLoading {
+.boxLoading { 
   width: 60px;
   height: 60px;
   margin: auto;

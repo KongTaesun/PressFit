@@ -14,13 +14,10 @@
 	background-image:
 		url('${path}/resources/writer/img/bigpicture/mypage_img.png');
 }
-</style>
-<style>
-
 .joinbutton{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	color: #616161;
+	color: #616161; 
 	padding: 9px 20px;
 	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
 	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
@@ -33,7 +30,6 @@
 	0px 1px 3px rgba(000,000,000,0.3),
 	inset 0px 0px 2px rgba(255,255,255,0);
 }
-
 
 button {
 	font-family: Arial, Helvetica, sans-serif;
@@ -74,8 +70,6 @@ button.btnbuy:hover {
 	background: #32b5f3 none repeat scroll 0 0;
 	color: #ffffff;
 }
-</style>
-<style>
 .join_row{
         overflow: hidden;
 }
@@ -155,7 +149,7 @@ input[type=text]:focus {
 		    <div class="container">
                 <div class="row">
 
-<div class="p-details-tab" style="margin-top: 30px;">
+		<div class="p-details-tab" style="margin-top: 30px;">
                                 <ul class="p-details-nav-tab">
                                     <li role="presentation" class="active"><a href="#" id="btnone">마이페이지</a></li>
                                     <li role="presentation"><a href="${path}/member/updatepage.do?id=${vo.id}" id="btntwo">내정보관리</a></li>
@@ -163,7 +157,7 @@ input[type=text]:focus {
                                     <li role="presentation"><a href="${path}/order/orderCancel.do" id="btnthree">취소및교환</a></li>
                                   <!--   <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
                                                           
-                                </ul> 
+                                </ul>  
                             </div>
 
  
@@ -259,7 +253,7 @@ input[type=text]:focus {
                                 
                                 
  <center>                               
-        <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar"></center>
+        <img class="center animated rollIn" src="${path}/resources/upload/${vo.cpicture}" alt="avatar"></center>
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
@@ -302,6 +296,9 @@ input[type=text]:focus {
          </center>
          	</div>
 </div>
+</div>
+</div>
+
                             </div>
                         </div>
                     </div>

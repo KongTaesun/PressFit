@@ -127,6 +127,7 @@ button.hover {
 </style>
  
 <script>
+
    $(document).ready(
          function() {
             $("#btnWrite").click(function() {
@@ -148,7 +149,22 @@ button.hover {
             + "&searchOption=${map.searchOption}"
             + "&keyword=${map.keyword}";
    }
-
+	$("#btnDelete").click(function(){
+	    // 댓글이 존재하는 게시물의 삭제처리 방지
+	    var count = "${count}";
+	    // 댓글의 수가 0보다 크면 팝업, 함수 종료
+	    if(count > 0) {
+	    	if(confirm("댓글이 많이 있습니다. 삭제하시겠습니까?")){
+	    		document.form1.action = "${path}/faq/delete.do?idx=${dto.idx}";
+		        document.form1.submit();
+	    	}else{return;}
+	    }
+	    // 댓글의 수가 0이면 삭제처리
+	    if(confirm("삭제하시겠습니까?")){
+	    	location.href = "${path}/gallery/delete.do?idx=${dto.idx}";
+	    }else{
+	    }
+	});
 </script>
 </head>
 <body>
@@ -197,16 +213,21 @@ button.hover {
                                              href="#collapse${status.index}" aria-expanded="true"
                                              aria-controls="collapseOne">
                                              	<span class="txt_info">
+                                            
                                              	<span class="txt_cate">
-                                             	 번호 ${row.idx}
+                                             	  ${row.idx}
                                              	 </span> 
+                                             	 <span class="txt_sub">
+                                             	 ${row.subtitle}
+                                             	 </span>
+                                             	  
                                              	 <span class="txt_date">
-                                             	 등록일
-                                             ${row.regdate}
+                                             	 <fmt:formatDate pattern="yyyy.mm.dd" value="${row.regdate}"/>
+                                             	    
                                              	 </span>
                                              </span>
                                              <strong class="tit_board">
-                                             	제목 ${row.title}
+                                             	 ${row.title}
                                              </strong>
                                              <span class="ico_friends ico_arr">
                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -220,7 +241,7 @@ button.hover {
                                        role="tabpanel" aria-labelledby="headingOne"> --%>
                                    <div id="collapse${status.index}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                        <div class="subject_board" style="display: block;">
-                                          	내용 "${row.content}"
+                                          	<%-- 내용 "${row.content}" --%>
                                           <c:out escapeXml="false" value="${fn:replace(row.content,ENTER,'<br>')}" />
                                        </div>
                                     </div>
@@ -295,10 +316,7 @@ button.hover {
 
             </div>   
             </div>
-             
-         
-        <!--  ================================================================================================================= -->
-         
+               
 
          
 </body>

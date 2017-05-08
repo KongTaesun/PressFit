@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 
 <%@ include file="/resources/include/header.jsp"%>
 <script type="text/javascript" src="${path}/include/js/common.js"></script>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>
 
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 // 다음 주소 API
 function DaumPostcode() {
@@ -209,6 +211,9 @@ input[type=text]:focus {
 	                       
                                 </ul>
                             </div>
+</div>
+</div>
+
 
 
  
@@ -224,7 +229,9 @@ input[type=text]:focus {
                                 <div class="about-content">
 
        <!-- <h2 class="heading-title">개인정보</h2> -->
+       	<form action="${path}/member/updatepage.do" name="form1" class="create-account-form" method="post">
 						<dl class="list_delivery">
+						
 							<dt>
 								<label for="oaName">회원아이디</label>
 							</dt>
@@ -284,9 +291,10 @@ input[type=text]:focus {
 							<dd>
 								<div class="box_input box_postal">
 								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호" value="${vo.post}"></div>
+							
 								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
 							</dd>
-							<dd>
+							<dd> 
 								<div class="box_input">
 								
 								<input class="tf_g" id="basic_addr" name="basic_addr" type="text" readonly=readonly value="${vo.basic_addr}" ></div>
@@ -304,8 +312,7 @@ input[type=text]:focus {
 								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text" readonly="readonly"></div>
 							</dd>
 						</dl>
-							<button type="submit" name="order">수정하기</button>
-							<button type="reset" name="reset">취소하기</button>
+							
 					
                                 </div>
                             </div>
@@ -340,23 +347,29 @@ input[type=text]:focus {
 													<textarea name="content" id="content" rows="4" cols="80" placeholder="이미지를 클릭해주세요"></textarea>
 													<script>
 													CKEDITOR.replace("content",{
-														filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
+														filebrowserUploadUrl : "${path}/member/imageUpload.do"
 													});
 													</script>
 											</div>
 										</div>
 									</div>
    								   </div>  
-         
+          
          						</div>
 								</div>
                             </div>
+                            
                         </div>
+                       
+						<input type="submit" value="수정하기" />
+							<button type="reset" name="reset">취소하기</button>
+                    </form>
                     </div>
+                  </div>
+                  </div>
+                  </div>
                   
-                </div>
-		    </div>
-		</div>
+              
 
 	<%@ include file="/resources/include/footer.jsp"%>
 	

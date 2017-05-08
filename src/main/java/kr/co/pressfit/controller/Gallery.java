@@ -191,9 +191,9 @@ public class Gallery {
     	String fileName = upload.getOriginalFilename();
     	galleryservice.addAttach(fileName);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/OSD/PressFit/eclipse-work/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	String uploadPath = "C:/Users/bit/PressFit/eclipse-work/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
-    	out.write(bytes);
+    	out.write(bytes); 
     	String callback = request.getParameter("CKEditorFuncNum");
     	printwriter = response.getWriter();
     	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;

@@ -62,12 +62,12 @@ public class JoinDAOImpl implements JoinDAO {
 		if(count==1) result=true;
 		return result;
 	}
-	 @Override
-	    public void addAttach(String fullName) {
-	    	FileVO file = new FileVO();
-	    	file.setFullname(fullName);
-	    	/*SqlSession.insert(name+".addAttach", file);
-	   */ }
+	 @Override 
+	    public void addAttach(MemberVO vo) {
+	    	sqlSession.update("join.addAttach", vo);
+	    }
+	 
+	
 } 
 
 

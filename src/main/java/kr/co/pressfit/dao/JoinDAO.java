@@ -13,9 +13,9 @@ public interface JoinDAO {
 	
 	public void deleteMember(String id);
 	public void updateMember(MemberVO vo);
-	//비밀번호 체크
+	//鍮꾨�踰덊샇 泥댄겕
 	public boolean checkPw(String id, String pw);
-	public void addAttach(String fullName);
+	public void addAttach(MemberVO vo); 
 }
 
   

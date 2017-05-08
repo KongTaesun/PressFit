@@ -142,8 +142,10 @@ button.hover {
                                           				<img alt="" src="${path}/resources/upload/${row.fullName}" style="width:270 ;height:280" onerror="imgError(this);">
                                           			</a>
                                     			</div>
-                                    			<div class="banner-bottom text-center">
+                                    			<div class="banner-bottom text-center"> 
                                     				<div class="banner-bottom-title">
+                                    				<div>${row.subtitle}</div>
+                                    			
                                     					<a href="${path}/gallery/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
                                     						${row.title}
                                     						<c:if test="${row.recnt >= 0}">
@@ -151,6 +153,7 @@ button.hover {
 															</c:if>
 														</a>
                                     				</div>
+                                    				
                                     				<div>${row.writer}</div>
                                        				<div>${row.regdate}</div>
                                     			</div>
