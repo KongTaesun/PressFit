@@ -56,7 +56,10 @@ height: 95px;
 	font-family: 'Connoisseurs';
 	src: url('${path}/resources/font/Connoisseurs.ttf')
 }
-@font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}
+@font-face{
+sans-serif;
+}
+/*  @font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}  */
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script
@@ -149,7 +152,7 @@ height: 95px;
 .d5 input {
   width: 100%;
   height: 50px;
-  font-size: 25px;
+  font-size: 18px;
   padding-left: 15px;
   border: 4px solid #30b4f2;
 }
@@ -189,12 +192,12 @@ height: 95px;
 			<div id="wrap" class="col-md-6 col-sm-12 hidden-xs" style="padding: 25px">
 				<div class="d5">
 				<form class="d5s" method="get" action="${path}/search/answer.do" >
-				  <input type="text" id="q" name="q" placeholder="뭘 찾으세요?? 추천해드려요~!">
+				  <input type="text" id="q" name="q" placeholder="Search for the pressfit!">
 				  <button type="submit" style="padding:0;box-shadow: none;right: 5px;top: 4px;"></button>
 				</form>	
 				</div>	
 			</div>
-			<div class="col-md-2 hidden-sm">
+			<div class="col-md-2 hidden-sm"> 
 				<div class="header-left">
 					<span class="login-light1" style="text-align: left;">
 					<c:if test="${sessionScope.kind eq 'member'}">
@@ -284,27 +287,27 @@ height: 95px;
 
 		</div>
 		<div class="row">
-			<div class="col-md-11" style="padding:0">
+			<div class="col-md-15" style="padding:0">
 			<div class="mainmenu text-center">
 					<nav>
 						<ul id="nav" style="margin-left: 5%; ">
-							<li><a href="#">CATEGORY</a>
+							<li><a href="#">카테고리</a>
 								<ul class="sub-menu">
-									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
-									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
-								</ul> <c:choose>
-									<c:when test="${sessionScope.kind=='member'}">
-										<li><a href="#">MYPAGE</a>
+									<li><a href="${path}/tmouse/list.do">마우스</a></li>
+									<li><a href="${path}/keyboard/list.do">키보드</a></li>
+								</ul> <c:choose> 
+									<c:when test="${sessionScope.kind eq 'member'}">
+										<li><a href="#">마이페이지</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
 												<li><a href="${path}/member/mypage.do?id=${sessionScope.id}">마이페이지</a></li>
 												<li><a href="${path}/order/orderList.do">주문내역</a></li>
 												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
-												<li><a href="${path}/faq/list.do">1:1문의</a></li>
+										<%-- 		<li><a href="${path}/faq/list.do">1:1문의</a></li> --%>
 											</ul></li>
 									</c:when>
-									<c:when test="${sessionScope.kind=='business'}">
-										<li><a href="#">BUSINESS</a>
+									<c:when test="${sessionScope.kind eq 'business'}">
+										<li><a href="#">사업자페이지</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
 												<li><a
@@ -316,16 +319,16 @@ height: 95px;
 											</ul></li>
 									</c:when>
 									<c:otherwise> 
-										<li><a href="#">MYPAGE</a>
+										<li><a href="#">마이페이지</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
 											</ul></li>
 									</c:otherwise> 
 								</c:choose>
 								
-							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
-							<li><a href="${path}/search/quest.do">RECOMMEND</a></li>
-							<li><a href="#">SERVICE CENTER</a>
+							<li><a href="${path}/gallery/list.do">후기게시판</a></li>
+							<li><a href="${path}/search/quest.do">추천페이지</a></li>
+							<li><a href="#">공지사항</a>
 								<ul class="sub-menu">
 
 									<li><a href="${path}/community/list.do">공지사항</a></li>

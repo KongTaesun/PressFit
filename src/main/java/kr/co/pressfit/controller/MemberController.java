@@ -24,7 +24,7 @@ public class MemberController {
     
     @Inject
     MemberService memberService;
-    String folder = "login";
+    String folder = "login"; 
    
     @RequestMapping("login.do")
     public String login(){ 

@@ -104,7 +104,7 @@ wishlist-table-area1 {
     line-height: 30px;
     color: #666;
     text-align: center;
-}
+    }
 button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -118,16 +118,14 @@ button {
     border: 1px solid #dbe2ff;
     box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
 }
-button.hover {
+button.hover { 
     font-weight: bold;
     color: #000000;
     border: 1px solid #879fff;
 }
+
 </style>
-<script>
-
-</script>
-
+ 
 <script>
    $(document).ready(
          function() {
@@ -161,10 +159,10 @@ button.hover {
             <div class="col-md-12">
                <div class="breadcrumbs">
                   <h2>FAQ</h2>
-                  <ul class="breadcrumbs-list">
+                 <!--  <ul class="breadcrumbs-list">
                      <li><a title="Return to Home" href="index.html">Home</a></li>
                      <li>FAQ</li>
-                  </ul>
+                  </ul> -->
                </div>
             </div>
          </div>
@@ -248,17 +246,19 @@ button.hover {
                                     <c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
                                  <option value="title"
                                     <c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
-                              </select> <input name="keyword" value="${map.keyword}"> <input
-                                 type="submit" class="btn-default" value="조회">
+                              </select> 
+                              
+                              <input name="keyword" value="${map.keyword}">  
+                              <button type="submit" class="btn1">조회</button>
                               <!-- 로그인한 사용자만 글쓰기 버튼을 활성화 -->
                               <c:if test="${sessionScope.id != null}">
-                                 <button type="button" id="btnWrite">글쓰기</button>
+                                 <button type="button" id="btnWrite" class="btn1">글쓰기</button>
                               </c:if>
-                           </form>
+                           </form> 
                         </div>
 
                      </div>
-                  </div>
+                  </div> 
                </div>
             </div>
          </div>
@@ -295,12 +295,11 @@ button.hover {
 
             </div>   
             </div>
-            
+             
          
         <!--  ================================================================================================================= -->
          
-         한줄문의하기
-         
+
          
 </body>
 <%@ include file="/resources/include/footer.jsp"%>

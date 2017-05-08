@@ -245,12 +245,15 @@ button.hover {
                                     <c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
                                  <option value="title"
                                     <c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
-                              </select> <input name="keyword" value="${map.keyword}"> <input
-                                 type="submit" class="btn-default" value="조회">
+                              </select> 
+                              
+                              
+                              <input name="keyword" value="${map.keyword}"> 
+                              
+                                <button type="submit" class="btn1">조회</button>
                               <!-- 로그인한 사용자만 글쓰기 버튼을 활성화 -->
                               <c:if test="${sessionScope.id != null}">
-                                 <button type="button" id="btnWrite">글쓰기</button>
-                              </c:if>
+                                 <button type="button" id="btnWrite" class="btn1">글쓰기</button></c:if>
                            </form>
                         </div>
 

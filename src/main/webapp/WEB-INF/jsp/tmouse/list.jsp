@@ -7,6 +7,7 @@
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
+
 .left-item1 img {
 	width: 200px;
 	height: 200px;
@@ -37,7 +38,7 @@
 	width: 50%;
 	color: #FFFFFF;
 }
-
+ 
 .single-banner:hover .product-description1 {
 	opacity: 1;
 }
@@ -57,7 +58,113 @@
     width: 10%;
     float: left;
 }
-
+.list_board {
+    border-bottom: 1px solid #222;
+}
+.list_board li:first-child {
+    border-top: 0 none;
+}
+.list_board li {
+    border-top: 1px solid #c7c7c7;
+}
+.list_board .link_board {
+    display: block;
+    position: relative;
+    padding: 31px 123px 57px 11px;
+    cursor: pointer;
+}
+.list_board .txt_info {
+    display: block;
+    font-size: 0;
+}
+.list_board .txt_info .txt_cate {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1e1e1e;
+}
+.list_board .txt_info .txt_date {
+    padding-left: 8px;
+    font-size: 16px;
+    color: #999;
+}
+.list_board .tit_board {
+    display: block;
+    padding-top: 48px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #1e1e1e;
+}
+.list_board .subject_board {
+    display: none;
+    padding: 26px 30px 41px;
+    font-size: 16px;
+    color: #1e1e1e;
+    background-color: #f9f9f9;
+}
+.ico_friends {
+    
+    background: url('${path}/resources/writer/icon/icon_down.png');
+    vertical-align: top;
+}
+.list_board .ico_arr {
+    position: absolute;
+    right: 12px;
+}
+wishlist-table-area1 {
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: 'Apple SD Gothic Neo',AppleSDGothicNeo,'Malgun Gothic','맑은 고딕',sans-serif;
+    color: #333;
+}
+.paging_friends {
+    width: 100%;
+    padding-top: 30px;
+    text-align: center;
+}
+.paging_friends .inner_paging {
+    display: inline-block;
+    margin-left: -5px;
+    vertical-align: top;
+}
+.screen_out {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+.paging_friends em.link_page {
+    border-color: #d2d2d2;
+    font-weight: 700;
+    color: #1e1e1e;
+}
+.paging_friends .link_page {
+    display: inline;
+    float: left;
+    min-width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    border: 1px solid #efefef;
+    line-height: 30px;
+    color: #666;
+    text-align: center;
+    }
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover { 
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
 </style>
 <script>
 	$(document).ready(
@@ -128,11 +235,11 @@
 				<div class="col-md-12">
 					<div class="breadcrumbs">
 
-						<h2>NOTICE</h2>
-						<ul class="breadcrumbs-list">
+				<!-- 		<h2>마우스</h2> -->
+						<!-- <ul class="breadcrumbs-list">
 							<li><a title="Return to Home" href="index.html">Home</a></li>
 							<li>NOTICE</li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
@@ -281,40 +388,41 @@
 										</div>
 									</li> -->
 									<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력-->
-									<c:if test="${map.boardPager.curBlock > 1}">
-										<a href="javascript:list('1')">[처음]</a>
-									</c:if>
-									<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 -->
-									<c:if test="${map.boardPager.curBlock > 1}">
-										<a href="javascript:list('${map.boardPager.prevPage}')">[이전]</a>
-									</c:if>
-									<!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 -->
-									<c:forEach var="num" begin="${map.boardPager.blockBegin}"
-										end="${map.boardPager.blockEnd}">
-										<!-- 현재페이지이면 하이퍼링크 제거 -->
-										<c:choose>
-											<c:when test="${num == map.boardPager.curPage}">
-												<span style="color: red">${num}</span>&nbsp;
-						                </c:when>
-											<c:otherwise>
-												<a href="javascript:list('${num}')">${num}</a>&nbsp;
-						                </c:otherwise>
-										</c:choose>
-									</c:forEach>
-									<!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
-									<c:if
-										test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
-										<a href="javascript:list('${map.boardPager.nextPage}')">[다음]</a>
-									</c:if>
-									<!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 -->
-									<c:if
-										test="${map.boardPager.curPage <= map.boardPager.totPage}">
-										<a href="javascript:list('${map.boardPager.totPage}')">[끝]</a>
-									</c:if>
+					<span class="paging_friends">
+						<span class="inner_paging">
+						<!-- 처음페이지로 이동 : 현재 페이지가 1보다 크면  [처음]하이퍼링크를 화면에 출력--> 
+							<c:if test="${map.boardPager.curBlock > 1}">
+							<a href="javascript:list('1')" class="link_page">[처음]</a>
+						</c:if> 
+						<!-- 이전페이지 블록으로 이동 : 현재 페이지 블럭이 1보다 크면 [이전]하이퍼링크를 화면에 출력 --> 
+						<c:if test="${map.boardPager.curBlock > 1}">
+							<a href="javascript:list('${map.boardPager.prevPage}')" class="link_page">[이전]</a>
+						</c:if> <!-- **하나의 블럭 시작페이지부터 끝페이지까지 반복문 실행 --> 
+						<c:forEach var="num" begin="${map.boardPager.blockBegin}" end="${map.boardPager.blockEnd}">
+							<!-- 현재페이지이면 하이퍼링크 제거 -->
+							<c:choose>
+								<c:when test="${num == map.boardPager.curPage}">
+									<span class="screen_out"></span><em class="link_page">${num}</em>
+							    </c:when>
+								<c:otherwise>
+									<a href="javascript:list('${num}')" class="link_page">${num}</a>
+							    </c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<!-- 다음페이지 블록으로 이동 : 현재 페이지 블럭이 전체 페이지 블럭보다 작거나 같으면 [다음]하이퍼링크를 화면에 출력 -->
+						<c:if test="${map.boardPager.curBlock <= map.boardPager.totBlock}">
+							<a href="javascript:list('${map.boardPager.nextPage}')" class="link_page">[다음]</a>
+						</c:if> <!-- 끝페이지로 이동 : 현재 페이지가 전체 페이지보다 작거나 같으면 [끝]하이퍼링크를 화면에 출력 --> 
+						<c:if test="${map.boardPager.curPage <= map.boardPager.totPage}">
+							<a href="javascript:list('${map.boardPager.totPage}')" class="link_page">[끝]</a>
+						</c:if>
+					</span>
+					</span> 
+					
 									<c:if test="${sessionScope.id != null}">
-										<button type="button" id="btnWrite">글쓰기</button>
+										<button type="button" id="btnWrite" class="btn">글쓰기</button>
 									</c:if>
-								</ul>
+								</ul> 
 							</div>
 							</div>
 						</div>

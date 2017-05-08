@@ -42,7 +42,7 @@ public class JoinController {
 	@Inject  
 	JoinService joinService;
 	
-	@RequestMapping("member/list.do")
+	@RequestMapping("member/list.do") 
 	public String memberList(Model model){
 
 		List<MemberVO> list=joinService.memberList();
@@ -51,7 +51,7 @@ public class JoinController {
 	}
 	@RequestMapping("member/write.do")
 	public String write(){
-		return "member/write";
+		return "member/write"; 
 	}
 	@RequestMapping("member/insert.do")
 	public String insert(@ModelAttribute MemberVO vo){
