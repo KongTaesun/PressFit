@@ -206,13 +206,12 @@ input[type=text]:focus {
                                     <li role="presentation"><a href="${path}/order/orderList.do" id="btnthree">내주문관리</a></li>
                                     <li role="presentation"><a href="${path}/order/orderCancel.do" id="btnthree">취소및교환</a></li>
                                     <!-- <li role="presentation"><a href="#" id="btnthree">1대1문의</a></li> -->
-                                
-                                
+	                       
                                 </ul>
                             </div>
 
 
-
+ 
 	<!-- About Us Area Start -->
 		<div class="about-us-area section-padding">
 		    <div class="container">
@@ -305,8 +304,9 @@ input[type=text]:focus {
 								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text" readonly="readonly"></div>
 							</dd>
 						</dl>
-						
-      
+							<button type="submit" name="order">수정하기</button>
+							<button type="reset" name="reset">취소하기</button>
+					
                                 </div>
                             </div>
                         </div>

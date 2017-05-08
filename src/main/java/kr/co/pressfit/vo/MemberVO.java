@@ -20,8 +20,14 @@ public class MemberVO {
 	private String cpicture;
 	private int TOTAL;
 	private int warn; 
-	
+	private String type;
 	 
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -118,14 +124,14 @@ public class MemberVO {
 	public void setWarn(int warn) {
 		this.warn = warn;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", gender=" + gender
 				+ ", birth=" + birth + ", post=" + post + ", basic_addr=" + basic_addr + ", detail_addr=" + detail_addr
 				+ ", hp=" + hp + ", email=" + email + ", regdate=" + regdate + ", updatedate=" + updatedate
-				+ ", cpicture=" + cpicture + ", TOTAL=" + TOTAL + ", warn=" + warn + "]";
+				+ ", cpicture=" + cpicture + ", TOTAL=" + TOTAL + ", warn=" + warn + ", type=" + type + "]";
 	}
 	
+	
+
 }

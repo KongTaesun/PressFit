@@ -18,7 +18,7 @@ public interface AdminService {
 	public List<AdminVO> adminList();
 	public void update(AdminVO vo);
 	public void delete(AdminVO vo);
-    public boolean passwordCheck(AdminVO vo);
+    public AdminVO passwordCheck(AdminVO vo);
     public boolean loginCheck(HttpSession session);	
     public List<CommunityVO> communityList(PageVO vo);
 	public List<FaqVO> faqList(PageVO vo);

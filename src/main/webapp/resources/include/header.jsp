@@ -190,29 +190,30 @@ height: 95px;
 				<div class="d5">
 				<form class="d5s" method="get" action="${path}/search/answer.do" >
 				  <input type="text" id="q" name="q" placeholder="뭘 찾으세요?? 추천해드려요~!">
-				  <button type="submit"></button>
+				  <button type="submit" style="padding:0;box-shadow: none;right: 5px;top: 4px;"></button>
 				</form>	
 				</div>	
 			</div>
 			<div class="col-md-2 hidden-sm">
 				<div class="header-left">
 					<span class="login-light1" style="text-align: left;">
-					<c:if test="${sessionScope.id != null}">
-								${sessionScope.id}
-							</c:if>
+					<c:if test="${sessionScope.kind eq 'member'}">
+					<a href="${path}/shop/cart/cartList.do">${sessionScope.id}
+					<i class="flaticon-shop"></i></a>
+					<a href="${path}/login/logout.do">
+					<i class="flaticon-delete"></i></a>
+					</c:if>
+					<c:if test="${sessionScope.kind eq 'business'}">
+					<a href="${path}/business/orderList.do">
+					${sessionScope.id}</a>
+					<a href="${path}/login/logout.do">
+					<i class="flaticon-delete"></i></a>
+					</c:if>
 					<c:if test="${sessionScope.id == null}">
-								<a href="${path}/login/login.do"><i
-								class="flaticon-people"></i></a>
-							</c:if>
+						<a href="${path}/login/login.do">
+						<i class="flaticon-people"></i></a>
+					</c:if>
 					</span>
-				<c:if test="${sessionScope.id != null}">
-				<ul>
-						<li class="shoping-cart"><a
-							href="${path}/shop/cart/cartList.do"> <i
-								class="flaticon-shop"></i>
-						</a>
-							</li></ul>
-							</c:if>
 				</div>
 			</div>
 			<%-- 			<div class="col-md-3 hidden-sm">
@@ -292,7 +293,7 @@ height: 95px;
 									<li><a href="${path}/tmouse/list.do">MOUSE</a></li>
 									<li><a href="${path}/keyboard/list.do">KEYBOARD</a></li>
 								</ul> <c:choose>
-									<c:when test="${not empty sessionScope.id }">
+									<c:when test="${sessionScope.kind eq 'member'}">
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
@@ -302,9 +303,10 @@ height: 95px;
 												<li><a href="${path}/faq/list.do">1:1문의</a></li>
 											</ul></li>
 									</c:when>
-									<c:when test="${ kind  eq 'business'}">
+									<c:when test="${sessionScope.kind eq 'business'}">
 										<li><a href="#">BUSINESS</a>
 											<ul class="sub-menu">
+												<li><a href="${path}/login/logout.do">로그아웃</a></li>
 												<li><a
 													href="${path}/business/mouseList.do?searchOption=id">마우스</a></li>
 												<li><a
@@ -313,13 +315,14 @@ height: 95px;
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
 											</ul></li>
 									</c:when>
-									<c:otherwise>
+									<c:otherwise> 
 										<li><a href="#">MYPAGE</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/login.do">로그인</a></li>
 											</ul></li>
-									</c:otherwise>
+									</c:otherwise> 
 								</c:choose>
+								
 							<li><a href="${path}/gallery/list.do">GALLERY</a></li>
 							<li><a href="${path}/search/quest.do">RECOMMEND</a></li>
 							<li><a href="#">SERVICE CENTER</a>

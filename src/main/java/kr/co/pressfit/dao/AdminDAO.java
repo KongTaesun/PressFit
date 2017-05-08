@@ -18,7 +18,7 @@ public interface AdminDAO {
 	public List<AdminVO> adminList();
 	public void update(AdminVO vo);
 	public void delete(AdminVO vo);
-    public boolean passwordCheck(AdminVO vo);
+    public AdminVO passwordCheck(AdminVO vo);
     public List<CommunityVO> communityList(PageVO vo);
 	public List<FaqVO> faqList(PageVO vo);
 	public List<GalleryVO> galleryList(PageVO vo);
@@ -29,6 +29,7 @@ public interface AdminDAO {
 	public void update1(MemberVO vo);
 	public void update2(MemberVO vo);
 	public void delete1(MemberVO vo);
+	public String image(String kind,int idx);
 }
 
  
