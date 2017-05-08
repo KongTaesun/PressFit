@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into Aadmin (id,pw,pw2) values (#{id},#{pw},#{pw2})	
 	</insert>
 	<select id="read" resultType="kr.co.pressfit.vo.AdminVO">
-		select * from Aadmin where pw=#{pw}
+		select * from Aadmin where pw=#{pw} and pw2=#{pw2}
 	</select>
 	
 	<select id="readlist" resultType="kr.co.pressfit.vo.AdminVO">
@@ -143,7 +143,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY rownum
 		<include refid="pagingPost"/>
 	</select>
-	 
+	<select id="imagekeyboard" resultType="String">
+	    <![CDATA[
+		SELECT fullName AS filename
+		FROM KeyboardFile 
+		WHERE idx=#{idx} 
+		ORDER BY KeyboardFile.regdate limit 1 
+	    ]]>
+	</select>
+	<select id="imagetmouse" resultType="String">
+	    <![CDATA[
+		SELECT fullName AS filename
+		FROM TMouseFile 
+		WHERE idx=#{idx} 
+		ORDER BY TMouseFile.regdate limit 1 
+	    ]]>
+	</select>
 </mapper>
 
  

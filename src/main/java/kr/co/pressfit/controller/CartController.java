@@ -154,7 +154,6 @@ public class CartController {
     	String userId = (String) session.getAttribute("id");
     	
     	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
-    	
         for(int i=0; i<idx.length; i++){
             CartVO vo = new CartVO();
             vo.setAmount(amountList[i]);
@@ -184,11 +183,7 @@ public class CartController {
         int checksumMoney = cartService.checksumMoney(chkArr);
         List<CartVO> memberInfo = cartService.memberInfo(id);
         int sumMoney = cartService.sumMoney(id);
-        
-        System.out.println("이거봐"+list);
-        
-        
-        
+
         int fee = checksumMoney >= 100000 ? 0 : 2500;
         map.put("list", list);
         map.put("memberInfo", memberInfo);

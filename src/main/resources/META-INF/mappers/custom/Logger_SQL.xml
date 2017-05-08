@@ -7,7 +7,41 @@
    		value(#{ip},#{start},#{login},#{id},#{kind},#{uri})
     </insert>
     <update id="responsetime" parameterType="kr.co.pressfit.vo.LoggerVO">
-    	update visitant set processtime=#{processtime}, end=#{end}
+    	<selectKey resultType="int" keyProperty="idx" order="BEFORE">
+	        SELECT MAX(idx) FROM visitant        
+	    </selectKey>
+    	update visitant set processtime=#{processtime}, end=#{end} where idx=#{idx}
     </update>
-    
+    <select id="allvisit" resultType="int">
+    	<![CDATA[select count(@ROWNUM:=@ROWNUM+1) AS cnt 
+		from (select * from visitant group by ip) a,(SELECT @ROWNUM := 0) r]]>
+    </select>
+    <select id="dayvisit" resultType="int">
+	    <![CDATA[select count(@ROWNUM:=@ROWNUM+1) AS cnt 
+		from (select * from visitant where start like DATE_FORMAT(Now(), '%Y-%m-%d%') group by ip) a,(SELECT @ROWNUM := 0) r]]>
+    </select>
+    <select id="allsearch" resultType="int">
+    	<![CDATA[select count(*) from visitant
+		where uri='/pressfit/search/answer.do']]>
+    </select>
+    <select id="daysearch" resultType="int">
+    	<![CDATA[select count(*) from visitant
+		where uri='/pressfit/search/answer.do' and start like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
+    </select>
+    <select id="processtime" resultType="float">
+    	<![CDATA[select avg(processtime) from visitant]]>
+    </select>
+    <select id="allresponsecount" resultType="int">
+    	<![CDATA[select max(idx) from visitant]]>
+    </select>
+    <select id="dayresponsecount" resultType="int">
+    	<![CDATA[select count(*) from visitant 
+		where start like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
+    </select>
+    <select id="alloreder" resultType="int">
+    	<![CDATA[select count(*) from cart_board where shippingStatus=4]]>
+    </select>
+    <select id="dayoreder" resultType="int">
+    	<![CDATA[select count(*) from cart_board where shippingStatus=4 and orderdate like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
+    </select>
 </mapper>
