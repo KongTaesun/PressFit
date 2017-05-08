@@ -283,10 +283,10 @@ function type1obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list0 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
@@ -356,10 +356,10 @@ function type1obj(obj){
 		str+="<div class='col-md-3' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.firstreview._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.firstreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.firstreview._source.link+"'>"+
 			"<canvas id='canvas"+k+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.firstreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.firstreview._source.link+"'>"+
 			obj.firstreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,10,10,10,10,10);		
@@ -370,10 +370,10 @@ function type1obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.secondreview._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.secondreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.secondreview._source.link+"'>"+
 			"<canvas id='canvas"+k+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.secondreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.secondreview._source.link+"'>"+
 			obj.secondreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,10,10,10,10,10);		
@@ -384,10 +384,10 @@ function type1obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.thirdreview._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.thirdreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.thirdreview._source.link+"'>"+
 			"<canvas id='canvas"+k+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.thirdreview._source.link+"'>"+
+			"<a target='_blank' href='"+obj.thirdreview._source.link+"'>"+
 			obj.thirdreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,10,10,10,10,10);		
@@ -455,10 +455,10 @@ function type3obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list1 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
@@ -479,10 +479,10 @@ function type4obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
@@ -522,10 +522,10 @@ function type5obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
@@ -568,26 +568,26 @@ function type6obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,10,10,10,10,10);
 		
-		filename(kind,obj.reviewlist.hitslist[i]._source.idx,i,function(img,a){
+		filename(kind,obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
 			str2+="<div class='col-md-2' style='background-color: white;''>"+
 				"<div class='single-banner'>"+
-				"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[a]._source.idx+
+				"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[i]._source.idx+
 				"&curPage=1&searchOption=title&keyword='>"+
-				"<img id='image"+a+"' src='${path}/resources/upload/"+img+"' />"+
+				"<img id='image"+i+"' src='${path}/resources/upload/"+img+"' />"+
 				"</a>"+
 				"<div class='banner-bottom text-center'>"+
-					"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[a]._source.idx+
+					"<a href='${path}/"+kind+"/view.do?idx="+obj.reviewlist.hitslist[i]._source.idx+
 					"&curPage=1&searchOption=title&keyword='>"+
-					obj.reviewlist.hitslist[a]._source.modelname+"<br/></a>"+
+					obj.reviewlist.hitslist[i]._source.modelname+"<br/></a>"+
 				"</div></div></div>";
 			$('#list3 .banner-list').append(str2).addClass('animate');
 		});		
@@ -693,7 +693,7 @@ function type8obj(obj){
 				"<img src='${path}/resources/upload/"+img+"' />"+
 				"</a>"+
 				"<div class='banner-bottom text-center'>"+
-				"<a href='"+obj.firstreview.hitslist[i]._source.link+"'>"+
+				"<a target='_blank' href='"+obj.firstreview.hitslist[i]._source.link+"'>"+
 				obj.firstreview.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 			$('#list4 .banner-list').append(str).addClass('animate');
 			i++;
@@ -721,7 +721,7 @@ function type8obj(obj){
 			"<img src='${path}/resources/upload/"+img+"' />"+
 			"</a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.secondreview.hitslist[j]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.secondreview.hitslist[j]._source.link+"'>"+
 			obj.secondreview.hitslist[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list5 .banner-list').append(str).addClass('animate');
 			j++;
@@ -793,7 +793,7 @@ function type9obj(obj){
 			"<a href='"+obj.firstreview[j]._source.link+"'>"+
 			"<canvas id='firstcanvas"+j+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.firstreview[j]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.firstreview[j]._source.link+"'>"+
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('firstcanvas'+j,10,10,10,10,10);
@@ -816,7 +816,7 @@ function type9obj(obj){
 			"<img id='image"+i+"' src='${path}/resources/upload/"+img+"' />"+
 			"</a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list1 .banner-list').append(str).addClass('animate');
 		i++;
@@ -885,10 +885,10 @@ function type10obj(obj){
 		str+="<div class='col-md-2' style='background-color: white;''>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.firstreview[j]._score*10).toFixed(2)+"/100</div>"+
-			"<a href='"+obj.firstreview[j]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.firstreview[j]._source.link+"'>"+
 			"<canvas id='firstcanvas"+j+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.firstreview[j]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.firstreview[j]._source.link+"'>"+
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('firstcanvas'+j,10,10,10,10,10);
@@ -911,7 +911,7 @@ function type10obj(obj){
 			"<img id='image"+i+"' src='${path}/resources/upload/"+img+"' />"+
 			"</a>"+
 			"<div class='banner-bottom text-center'>"+
-			"<a href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
+			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list1 .banner-list').append(str).addClass('animate');
 		i++;
