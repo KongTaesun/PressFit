@@ -302,13 +302,8 @@ height: 95px;
 												<li><a href="${path}/order/orderCancel.do">취소및교환</a></li>
 												<li><a href="${path}/faq/list.do">1:1문의</a></li>
 											</ul></li>
-<<<<<<< HEAD
 									</c:when>
 									<c:when test="${sessionScope.kind eq 'business'}">
-=======
-									</c:when>  
-									<c:when test="${ type  eq 'U'}">
->>>>>>> origin/TS
 										<li><a href="#">BUSINESS</a>
 											<ul class="sub-menu">
 												<li><a href="${path}/login/logout.do">로그아웃</a></li>
