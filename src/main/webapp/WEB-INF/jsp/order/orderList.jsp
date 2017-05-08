@@ -347,16 +347,15 @@ button.hover {
                                          
 																</span>
 															</li>
-															
-															<em class="tit_append">주문상태 :</em>
-														<span class="product_price">
-														 <td class="order_check">
-                                                          
+															<li>
+															<em class="tit_append">확인 :</em>
+													
+                                     <span class="product_price">                     
        								 <a class="commit" href="${path}/order/orderConfirm.do?cart_id=${row.cart_id}">상품확인</a>
        								
-       								 <a class="cancle" href="${path}/order/orderCancel.do">반품신청</a>
-       								 
-\       								 </td>
+       								 <a class="cancle" href="${path}/order/orderCancel.do">환불신청</a>
+       								  </span>
+      								 </li>
 														</ul>
 													</div>
 												</li>

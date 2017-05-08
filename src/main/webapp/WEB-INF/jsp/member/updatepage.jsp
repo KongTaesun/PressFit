@@ -319,7 +319,7 @@ input[type=text]:focus {
         <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar"></center>
          <script>
 			CKEDITOR.replace("content",{
-				filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
+				filebrowserUploadUrl : "${path}/member/updatepage/imageUpload.do"
 			});
 		</script>
 </center>                                

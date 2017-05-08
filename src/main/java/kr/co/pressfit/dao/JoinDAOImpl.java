@@ -13,14 +13,14 @@ import kr.co.pressfit.vo.FileVO;
 import kr.co.pressfit.vo.MemberVO;
 
 
-//현재 클래스를 dao bean으로 등록시킴
+//�쁽�옱 �겢�옒�뒪瑜� dao bean�쑝濡� �벑濡앹떆�궡
 @Repository  
 public class JoinDAOImpl implements JoinDAO {
 
-	// SqlSession 객체를 스프링에서 생성하여 주입시켜 줌
-	// 의존관계 주입(Dependency Injection, DI)
-	// 느슨한 결합
-	// IoC(Inversion of Control, 제어의 역전)
+	// SqlSession 媛앹껜瑜� �뒪�봽留곸뿉�꽌 �깮�꽦�븯�뿬 二쇱엯�떆耳� 以�
+	// �쓽議닿�怨� 二쇱엯(Dependency Injection, DI)
+	// �뒓�뒯�븳 寃고빀
+	// IoC(Inversion of Control, �젣�뼱�쓽 �뿭�쟾)
 	@Inject
 	SqlSession sqlSession;
 	
@@ -28,7 +28,7 @@ public class JoinDAOImpl implements JoinDAO {
 	public List<MemberVO> memberList() {
 	  return sqlSession.selectList("join.memberList");
 	}
-// commit(), close() 할 필요가 없음
+// commit(), close() �븷 �븘�슂媛� �뾾�쓬
 	@Override
 	public void insertMember(MemberVO vo) {
 		sqlSession.insert("join.insertMember", vo);
@@ -54,7 +54,7 @@ public class JoinDAOImpl implements JoinDAO {
 	public boolean checkPw(String id, String pw){
 		boolean result=false;
 		Map<String,String> map=
-				new HashMap<String,String>();
+				new HashMap<String,String>(); 
 		map.put("id", id);
 		map.put("pw", pw);
 		int count= 
