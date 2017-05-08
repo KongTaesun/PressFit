@@ -8,8 +8,27 @@
 </head>
 <body>
 <%@ include file="/resources/include/header.jsp" %>
-결제 완료!!
+
+	<div id="kakaoContent" class="cont_order" role="main">
+	<div class="">
+	결제가 완료되었습니다.
+	
+	</div>
+	
+
+
+
+
+
+
+
 
 <a href="${path}/tmouse/list.do">마우스 게시판으로..</a>
+
+
+
+
+</div>
+	<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

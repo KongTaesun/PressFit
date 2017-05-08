@@ -201,6 +201,10 @@ button.hover {
     color: #000000;
     border: 1px solid #879fff;
 }
+.btnorder {
+float:right;
+margin-right:5px;
+}
 </style>
 <script>
 	$(document).ready(function() {
@@ -393,7 +397,7 @@ button.hover {
 					<div class="buy_btn">
 						<c:if test="${map.count ne 0}">
 							<a id="clear" style="float:right;margin-right:5px" class="cart_atag">장바구니 비우기</a>				
-							<button style="float:right;margin-right:5px" type="submit" name="order">주문하기</button>		
+							<button class="btnorder" type="submit" name="order">주문하기</button>		
 						</c:if>
 						<a href="${path}/tmouse/list.do" style="float:left;" class="cart_atag">쇼핑계속하기</a>				
 					</div>
