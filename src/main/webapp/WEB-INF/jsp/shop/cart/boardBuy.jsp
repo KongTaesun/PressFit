@@ -38,21 +38,11 @@ color:#980000;
 }
 
 </style>
-
 </head>
-<script>
-function go_main(){
-	href="${path}/index.jsp";
-}
 
-function go_buylog(){
-	href="${path}/member/mypage.do?id="+${user_id};
-}
-
-</script>
 <body>
 	<%@ include file="/resources/include/header.jsp"%>
-	<div class="div_body">
+	<div class="div_body"> 
 		<div id="kakaoContent" class="cont_order">
 			<div class="row">
 				<div class="buy_Title">
@@ -64,11 +54,20 @@ function go_buylog(){
 			</div>
 
 			<div class="go_main">
-				<input type="button" class="btn_main" onclick="go_main()" value="메인으로">
-				<input type="button" class="btn_main" onclick="go_buylog()" value="구매내역 보러가기">
+				<input type="button" class="btn_main" onclick="go_main()" value="메인으로" />
+				<input type="button" class="btn_main" onclick="go_mypage()" value="구매내역 보러가기" />
 			</div>
 		</div>
 	</div>
 	<%@ include file="/resources/include/footer.jsp"%>
 </body>
+<script>
+function go_main(){
+	location.href="${path}/index.jsp";
+}
+function go_mypage(){
+	location.href="${path}/order/orderList.do"
+}
+
+</script>
 </html>
