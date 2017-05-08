@@ -209,8 +209,7 @@ public class BusinessController {
         String searchOption3 = "exchange";
         List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id); // ��ٱ��� ���� 
 
-        // ��ٱ��� ��ü ��׿� ���� ��ۺ� ����
-        // ��۷�(10�����̻� => ����, �̸� => 2500��)
+        
         
         
         map.put("list1", list1);                // ��ٱ��� ������ map�� ����

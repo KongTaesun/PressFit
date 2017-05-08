@@ -229,7 +229,7 @@ float: right !important;
 }
 .desc_nodata {
     padding: 151px 0 138px;
-    border-bottom: 1px solid #222;
+    /* border-bottom: 1px solid #222; */
     font-size: 18px;
     color: #666;
     text-align: center;
@@ -450,7 +450,7 @@ button.hover {
 		//canvas.parentNode.appendChild(legendHolder.firstChild);
 	});
 	
-	// 그래프 3
+/* 	// 그래프 3
 	var radarChartData = {
 		label: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 		datasets : [
@@ -488,7 +488,93 @@ button.hover {
 		chart = new Chart(ctx).radar(radarChartData, {
 			responsive : true
 		});
-	});
+	}); */
+	
+	
+		var radarChart = null;
+		var radarChartData = {
+			labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			datasets: [
+				
+					{
+						fillColor : "rgba(220,220,220,0.5)",
+						strokeColor : "rgba(220,220,220,0.8)",
+						pointColor : "rgba(220,220,220,0.75)",
+						pointStrokeColor : "rgba(220,220,220,1)",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(220,220,220,0.8)",
+						data : [ randomScalingFactor(), randomScalingFactor(),
+								randomScalingFactor(), randomScalingFactor(),
+								randomScalingFactor(), randomScalingFactor(),
+								randomScalingFactor(), randomScalingFactor(),
+								randomScalingFactor(), randomScalingFactor(),
+								randomScalingFactor(), randomScalingFactor() ]
+					},
+					{
+						fillColor : "rgba(151,187,205,0.5)",
+						strokeColor : "rgba(151,187,205,0.8)",
+						pointColor : "rgba(151,187,205,0.75)",
+						pointStrokeColor : "rgba(151,187,205,1)",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(151,187,205,0.8)",
+						data : [ randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor(),
+							randomScalingFactor(), randomScalingFactor() ]
+					}
+				
+					/* label: "My Second dataset",
+					fillColor: "rgba(151,187,205,0.2)",
+					strokeColor: "rgba(151,187,205,1)",
+					pointColor: "rgba(151,187,205,1)",
+					pointStrokeColor: "#fff",
+					pointHighlightFill: "#fff",
+					pointHighlightStroke: "rgba(151,187,205,1)",
+					data: [a,b,c,d,e] */
+				
+			]
+		};
+
+		$(function() {
+			var ctx = document.getElementById("canvas4").getContext("2d");
+			radarChart = new Chart(ctx).Radar(radarChartData, {
+				scaleShowLine : true,
+				angleShowLineOut : true,
+				scaleShowLabels : false,
+				scaleBeginAtZero : true,
+				angleLineColor : "rgba(0,0,0,0.1)",
+				angleLineWidth : 1,
+				pointLabelFontFamily : "'Arial'",
+				pointLabelFontStyle : "normal",
+				pointLabelFontSize : 10,
+				pointLabelFontColor : "#00000",
+				pointDot : true,
+				pointDotRadius : 3,
+				pointDotStrokeWidth : 1,
+				pointHitDetectionRadius : 20,
+				datasetStroke : true,
+				datasetStrokeWidth : 2,
+				datasetFill : false,
+				onAnimationProgress: function() {
+					console.log("onAnimationProgress");
+				},
+				onAnimationComplete: function() {
+					console.log("onAnimationComplete");
+				}
+			});
+		});
+		$("canvas4").on("click", function(e) {
+			var activePoints = radarChart.getPointsAtEvent(e);
+			console.log(activePoints);
+
+			for(var i in activePoints) {
+				console.log(activePoints[i].value);
+			}
+		});
+
+	
 </script>
 </head>
 <body>
@@ -998,8 +1084,8 @@ button.hover {
 							<div style="width:70%;">
 								<canvas id="canvas4" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
 								<ul class="polararea-legend">
-									<li><span style="background-color:#F7464A"></span>마우스</li>
-									<li><span style="background-color:#46BFBD"></span>키보드</li>
+									<li><span style="background-color:rgba(220,220,220,0.5)"></span>마우스</li>
+									<li><span style="background-color:rgba(151,187,205,0.8)"></span>키보드</li>
 								</ul>
 							</div>
 						</div>
@@ -1015,8 +1101,8 @@ button.hover {
 							<div style="width:80%;">
 								<canvas id="canvas5" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
 								<ul class="polararea-legend">
-									<li><span style="background-color:rgba(220,220,220,0.75)"></span>마우스</li>
-									<li><span style="background-color:rgba(151,187,205,0.75)"></span>키보드</li>
+									<li><span style="background-color:rgba(220,220,220,0.8)"></span>마우스</li>
+									<li><span style="background-color:rgba(151,187,205,0.8)"></span>키보드</li>
 								</ul>
 							</div>
 						</div>
