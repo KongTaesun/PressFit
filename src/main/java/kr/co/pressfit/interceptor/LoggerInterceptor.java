@@ -53,7 +53,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter {
 	        System.out.println("\t\t\t Request 로그인여부	\t: " + login);
 	        if(login==true){
 		        System.out.println("\t\t\t Request 로그인id	\t: " + id);
-		        System.out.println("\t\t\t Request 로그인등급	\t: " + kind);
+		        System.out.println("\t\t\t Request 로그인등급	\t: " + kind); 
 	        }
 	        
 	        db.requesttime(ip,Time,login,id,kind,uri);
