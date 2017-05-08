@@ -186,14 +186,10 @@ img {
 
 </style>
 <script type="text/javascript">
-
- 
  function gopayment(){
 	 document.ini.submit();
  }
- 
- 
- </script>
+</script>
 
 <body>
 	<!-- Breadcrumbs Area Start -->
