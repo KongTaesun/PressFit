@@ -28,6 +28,15 @@ public class BusinessVO {
 	private	String companyaddress;
 	private	int warn;
 	private int TOTAL;
+	private String type;
+	
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public int getIdx() {
 		return idx;
 	}
@@ -168,7 +177,8 @@ public class BusinessVO {
 				+ ", companyname=" + companyname + ", companytp=" + companytp + ", representative=" + representative
 				+ ", corporateregistrationnumber=" + corporateregistrationnumber + ", typeofbusiness=" + typeofbusiness
 				+ ", itemsofbusiness=" + itemsofbusiness + ", companyaddress=" + companyaddress + ", warn=" + warn
-				+ ", TOTAL=" + TOTAL + "]";
+				+ ", TOTAL=" + TOTAL + ", type=" + type + "]";
 	}
+	
 	
 }

@@ -42,13 +42,13 @@ public class MemberController {
 
             mav.setViewName("../../index");  
             session.setAttribute("id", vo.getId());
-            session.setAttribute("kind", "member");
-
-            
+            session.setAttribute("kind", "business");
+ 
+             
         } else {    
         	
             mav.setViewName(folder+"/login");
-            mav.addObject("msg", "failure");
+            mav.addObject("msg", "failure"); 
         }
         return mav;
     }

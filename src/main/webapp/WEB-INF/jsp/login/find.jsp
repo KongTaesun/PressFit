@@ -6,6 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <%@ include file="/resources/include/header.jsp"%>
+<style>
+ .breadcrumbs-area{
+ background-image:url('${path}/resources/writer/img/bigpicture/main.png');
+</style>
+
+
 </head>
 <body>
 
