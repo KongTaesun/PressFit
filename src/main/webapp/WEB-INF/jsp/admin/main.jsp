@@ -214,11 +214,11 @@ $(document).ready(function(){
 
 	var word = $.animateNumber.numberStepFactories.append(' 개')
 	$('#alloreder').animateNumber({
-		number: alloreder,color: 'green','font-size': '37px',
+		number:  data.alloreder,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#dayoreder').animateNumber({
-		number: dayoreder,color: 'green','font-size': '37px',
+		number:  data.dayoreder,color: 'green','font-size': '37px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	 		

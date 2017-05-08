@@ -363,6 +363,7 @@ function fire() {
    });
 }
 $(document).ready(function() {
+	
 	jQuery.rnd = function(m,n) {
 	      m = parseInt(m);
 	      n = parseInt(n);
@@ -382,12 +383,36 @@ $(document).ready(function() {
 	    	}
 	    }
 	});
-	setTimeout(function() {
-	    $('#close').click();
-	}, 100);
-	setTimeout(function() {
-	    $('#close').click();
-	}, 1000);
+	$.ajax({
+		type : "post",
+		url: "${path}/logger/all.do",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data){
+			console.log(data);
+	var word = $.animateNumber.numberStepFactories.append('');
+	$('#allsearch').animateNumber({
+		number: data.allsearch,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#daysearch').animateNumber({
+		number: data.daysearch,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#one').animateNumber({
+		number: 60 ,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	$('#two').animateNumber({
+		number: 2978 ,color: 'black','font-size': '50px',
+		easing: 'easeInQuad',numberStep: word
+	}, 2000);
+	},
+	error: function(xhr) {
+		console.log('실패-',xhr);
+	}
+	});
+	
 	});
 </script>
 </head>
@@ -412,8 +437,8 @@ $(document).ready(function() {
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">3725</span>
+								<span>
+									<span id="allsearch">0</span>
 								</span>
 								<h3>검색 누적</h3>								
 							</div>
@@ -422,8 +447,8 @@ $(document).ready(function() {
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">950</span>
+								<span>
+									<span id="daysearch">0</span>
 								</span>
 								<h3>오늘의 검색</h3>								
 							</div>
@@ -432,18 +457,18 @@ $(document).ready(function() {
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">60</span>%
+								<span>
+									<span id="one">0</span>
 								</span>
-								<h3>분석후 구매율</h3>								
+								<h3>만족도</h3>								
 							</div>
 						</div>		                
 		            </div>
 		            <div class="col-md-2 col-sm-3 col-xs-6">
 						<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".4s">
 							<div class="counter-info" style="text-align: center;">
-								<span class="fcount">
-									<span class="counter">2978</span>
+								<span>
+									<span id="two">0</span>
 								</span>
 								<h3>분석 리뷰</h3>								
 							</div>
@@ -573,6 +598,8 @@ $(document).ready(function() {
 		</div>
 		<!-- Our Team Area End -->
 <%@ include file="/resources/include/footer.jsp"%>
+<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
+<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
 </body>
 </html>
 

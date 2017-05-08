@@ -15,8 +15,8 @@ public class AdminInterceptor
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
-		if(request.getAttribute("kind")=="admin"){
+		HttpSession session=request.getSession();
+		if(session.getAttribute("kind")!="admin"){
 			response.sendRedirect(request.getContextPath()+"/");
 			return false; 
 		}else{
