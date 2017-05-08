@@ -173,7 +173,7 @@ button.btnplus {
 	width: 650px;
 	text-align: center;
 	margin-bottom: 50px;
-	background: lavenderblush;
+	background: #f9f9f9;
 	height: 195px;
 }
 </style>
@@ -298,7 +298,7 @@ button.btnplus {
 		$
 				.ajax({
 					type : "post",
-					url : "${path}/keyboard/getAttach/${dto.idx}",
+					url : "${path}/tmouse/getAttach/${dto.idx}",
 					success : function(list) {
 						$(list)
 								.each(
@@ -336,7 +336,7 @@ button.btnplus {
 		}
 		$.ajax({
 			type : "post",
-			url : "${path}/keyboard/reply/insertRest.do",
+			url : "${path}/tmouse/reply/insertRest.do",
 			headers : {
 				"Content-Type" : "application/json"
 			},
@@ -374,7 +374,7 @@ button.btnplus {
 	function listReply(num) {
 		$.ajax({
 			type : "get",
-			url : "${path}/keyboard/reply/list/${dto.idx}/" + num,
+			url : "${path}/tmouse/reply/list/${dto.idx}/" + num,
 			success : function(result) {
 				console.log(result);
 				// responseText가 result에 저장됨.
@@ -387,7 +387,7 @@ button.btnplus {
 	function showReplyModify(num) {
 		$.ajax({
 			type : "get",
-			url : "${path}/keyboard/reply/detail/" + num,
+			url : "${path}/tmouse/reply/detail/" + num,
 			success : function(result) {
 				$("#modifyReply").html(result);
 				// 태그.css("속성", "값")
@@ -399,7 +399,7 @@ button.btnplus {
 	function showReplyCmtModify(num) {
 		$.ajax({
 			type : "get",
-			url : "${path}/keyboard/reply/Cmtdetail/" + num,
+			url : "${path}/tmouse/reply/Cmtdetail/" + num,
 			success : function(result) {
 				$("#modifyReply").html(result);
 				$("#modifyReply").css("visibility", "visible");
@@ -677,6 +677,12 @@ button.btnplus {
 								</tbody>
 							</table>
 						</div>
+						
+						
+						
+						
+						
+						
 						<div role="tabpanel" class="tab-pane" id="reviews">
 							<div id="product-comments-block-tab">
 								<div style="width: 650px; text-align: center;"

@@ -151,7 +151,7 @@ public class CartController {
 			@RequestParam(value="amount") int[] amountList, HttpSession session, @RequestParam(value="methodpayment") String methodpayment, 
 			@RequestParam(value="idx") int[] idx, @RequestParam(value="kind") String[] kind) throws Exception{
     	
-    	String userId = (String) session.getAttribute("id");
+    	String id = (String) session.getAttribute("id");
     	
     	ModelAndView mv = new ModelAndView("/shop/cart/boardBuy");
         for(int i=0; i<idx.length; i++){
@@ -165,9 +165,6 @@ public class CartController {
             cartService.chkArr(vo);
         	cartService.amounttest(vo);
         }
-    	
-    	
-    	
     	 
 		return mv; 
 	}

@@ -313,35 +313,21 @@ button.hover {
 							<aside class="widget widget-seller">
 								<h2 class="sidebar-title">TOP SELLERS</h2>
 								<div class="single-seller">
-									<div class="seller-img">
-										<img src="img/shop/1.jpg" alt="" />
+									<div class="seller-img" style="border:1px solid #BDBDBD;">
+										<img src="${path}/resources/upload/2017/04/11/1006740_1.jpg" alt="인기품목" style="width:100px; height:100px;"/> 
 									</div>
-									<div class="seller-details">
-										<a href="shop.html"><h5>Cold mountain</h5></a>
-										<h5>$ 50.00</h5>
-										<ul>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-										</ul>
+									<div class="seller-details"     style="padding: 20px 20px 20px;">
+										<a href="shop.html"><h5>제스코 무소음 마우스 JNL-101K</h5></a>
+										<h5>13,450원</h5>
 									</div>
 								</div>
 								<div class="single-seller">
-									<div class="seller-img">
-										<img src="img/shop/2.jpg" alt="" />
+									<div class="seller-img" style="border:1px solid #BDBDBD;">
+										<img src="${path}/resources/upload/2017/04/11/1015324_1.jpg" alt="인기품목" style="width:100px; height:100px;"/>
 									</div>
-									<div class="seller-details">
-										<a href=""><h5>The historian</h5></a>
-										<h5>$ 50.00</h5>
-										<ul>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-										</ul>
+									<div class="seller-details" style="padding: 20px 20px 20px;">
+										<a href=""><h5>제스코 무소음 마우스 JNL-006K</h5></a>
+										<h5>7,020원</h5>
 									</div>
 								</div>
 							</aside>

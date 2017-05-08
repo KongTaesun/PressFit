@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +22,87 @@ button {
 	border: 1px solid #dbe2ff;
 	box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), inset 0px 0px 2px
 		rgba(255, 255, 255, 0);
-} 
+}
+.row_box{
+padding-bottom: 20px;
+margin-bottom: 20px;
+border-bottom: 1px solid #BDBDBD;
+width:58%;
+
+}
 </style>
 </head>
 <body>
-    <table style="width:700px">
+
+
+
+	<%-- <div class="row">
+	<!-- 프로필사진 -->
+	<div class="col-sm-1">
+		<div class="thumbnail">
+			<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+		</div>
+	</div>
+	<div class="col-sm-5">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>${row.replayer}</strong> <span class="text-muted">(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)</span>
+			</div>
+			<div class="panel-body">${row.replytext}</div>
+		</div>
+	</div>
+</div> --%>
+
+
+
+
+	<!-- 댓글 목록 -->
+	<div class="row">
+		<c:forEach var="row" items="${list}">
+		<div class="row_box">
+			<!-- 프로필사진 -->
+			<div class="col-sm-2" style="float:none">
+				<div class="thumbnail">
+					<img class="img-responsive user-photo"
+						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+				</div>
+			</div>
+			<div class="col-sm-5" style="float:none; width:100%;">
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>${row.replayer}</strong> <span class="text-muted">(<fmt:formatDate
+								value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />)
+						</span>
+					</div>
+					<div class="panel-body">${row.replytext}</div>
+				</div>
+			</div>
+			<div style="padding: 0 16px;">
+				<!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
+				<input type="button" id="btnModify" value="댓글보기"
+					onclick="showReplyModify('${boardno}/${row.idx}')">
+				<c:if test="${sessionScope.id == row.replayer}">
+					<input type="button" id="btnModify" value="수정"
+						onclick="showReplyModify('${boardno}/${row.idx}')">
+					<input type="button" id="btnModify" value="답글달기"
+						onclick="showReplyCmtModify('${boardno}/${row.idx}')">
+				</c:if>
+			</div>
+			</div>
+		</c:forEach>
+	</div>
+
+
+
+
+
+	<%--     <table style="width:700px">
         <!-- 댓글 목록 -->
         <c:forEach var="row" items="${list}">
         <tr>    
             <td>
-                ${row.replayer}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)
+                ${row.replayer}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)123123123123123123123123123123123123123
                 <br>
                 ${row.idx}
                 <br>
@@ -45,10 +117,39 @@ button {
                 <hr>
             </td>
         </tr>
-        </c:forEach>
-        
-        <!-- 페이징 -->
-        <tr style="text-align: center;">
+        </c:forEach> --%>
+	<%-- <table style="width:700px">
+        <!-- 댓글 목록 -->
+        <c:forEach var="row" items="${list}">
+        <tr>   
+        	<td style="width:70px">
+				<div class="thumbnail">
+					<img class="img-responsive user-photo"
+						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+				</div>
+        	</td> 
+            <td>
+                ${row.replayer}(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)123123123123123123123123123123123123123
+                <br>
+                ${row.idx}
+                <br>
+                ${row.replytext}
+                <br>
+                <!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
+                <input type="button" id="btnModify" value="댓글보기" onclick="showReplyModify('${boardno}/${row.idx}')">
+                <c:if test="${sessionScope.id == row.replayer}">
+                    <input type="button" id="btnModify" value="수정" onclick="showReplyModify('${boardno}/${row.idx}')">
+                    <input type="button" id="btnModify" value="답글달기" onclick="showReplyCmtModify('${boardno}/${row.idx}')">
+                </c:if>
+                <hr>
+            </td>
+        </tr>
+        </c:forEach> --%>
+
+
+
+	<!-- 페이징 -->
+	<%--         <tr style="text-align: center;">
             <td>
                 <!-- 현재 페이지 블럭이 1보다 크면 처음페이지로 이동 -->
                 <c:if test="${replyPager.curBlock > 1}">
@@ -79,9 +180,9 @@ button {
                 </c:if>
             </td>
         </tr>
-    </table>
-    
-    <!-- 댓글 수정 영역-->
-    <div id="modifyReply"></div>
+    </table> --%>
+
+	<!-- 댓글 수정 영역-->
+	<div id="modifyReply"></div>
 </body>
 </html>
