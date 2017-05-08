@@ -20,7 +20,7 @@
  z-index: 99;  
  text-align: center; 
  } 
-
+ 
 #loading *,
 #loading *:before,
 #loading *:after {

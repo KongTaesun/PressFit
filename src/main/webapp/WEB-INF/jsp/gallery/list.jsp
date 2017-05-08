@@ -119,7 +119,7 @@ button.hover {
 		<div class="container">
 			<div class="p-details-tab" style="margin-top: 30px;">
             	<ul class="p-details-nav-tab">
-                	<li role="presentation" class="active"><a href="#" id="btnone">갤러리</a></li>
+                	<li role="presentation" class="active"><a href="#" id="btnone">후기게시판</a></li>
                 </ul>
       		</div>
       		<div class="info_basket">

@@ -24,7 +24,7 @@ public class MemberController {
     
     @Inject
     MemberService memberService;
-    String folder = "login";
+    String folder = "login"; 
    
     @RequestMapping("login.do")
     public String login(){ 
@@ -42,7 +42,7 @@ public class MemberController {
 
             mav.setViewName("../../index");  
             session.setAttribute("id", vo.getId());
-            session.setAttribute("kind", "business");
+            session.setAttribute("kind", "member");
  
              
         } else {    

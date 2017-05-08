@@ -13,7 +13,7 @@
  background-image:url('${path}/resources/writer/img/bigpicture/main.png');
 /*  width: 800px;
  height: 200px;
- margin: 0 auto; */
+ margin: 0 auto; */ 
  }
  .section-padding{
  padding: 70px 0 0 0;
@@ -22,7 +22,7 @@
   margin: 0 auto;
 }
  .create-account-form1 {
-  background-color: #FFF2E6;
+  background-color: #f9f9f9;
   /* border: 1px solid #cfcfcf; */
   min-height: 380px;
   padding: 36px 17px;
@@ -48,15 +48,15 @@
 .create-account-form .form-row > input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: 1px solid #bbbbbb;
-}
+} 
 .create-account-form .btn-default {
-  font-weight: 400;
+  font-weight: 700;
 }
 .lost-password.form-group > a {
   text-decoration: underline;
 }
 .tabWrap {
-	width: 450px;
+	width: 700px;
 	height: 430px;
 }
 
@@ -77,25 +77,43 @@
 }
 
 .tabMenu a {
-	list-style: none;
-	color: #000000;
-	font-weight: bold;
-	text-decoration: none;
-	font-family: 'Poppins', sans-serif;
+  color: #444444;
+    display: block;
+    position: relative;
 }
 
 .current {
-	background-color: #FFF2E6; 
+	background-color: #f9f9f9; 
 /* 	border: 1px solid gray; */
 	border-bottom: hidden;
 }
 
 .tabPage {
- 	width: 450px;
+ 	width: 700px;
 	height: 382px; 
-	float: left;
+	float: left; 
 /* 	border: 1px solid gray; */
 }
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover {
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
+
+
 </style>
 
 
@@ -158,13 +176,13 @@
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>LOGIN/REGISTER</h2> 
-					       <ul class="breadcrumbs-list">
-						        <!-- <li>
+					       <h2>로그인</h2> 
+					       <!--<ul class="breadcrumbs-list">
+						         <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li> -->
-						        <li>Login</li>
-						    </ul>
+						        </li> 
+						        <li>Login</li> 
+						    </ul> -->
 					    </div>
 					</div>
 				</div> 
@@ -172,13 +190,15 @@
 		</div>
 		<!-- Breadcrumbs Area Start --> 
 		 
+		 
+		 
         <!-- Loging Area Start --> 
         <div class="login-account section-padding">
-           <div class="container" style="width:450px; height:450px;"> 
-                <div class="row" style="width:450px; height:450px;"> 
+        	<div class="container" style="display:table ;width: 700px;text-align: center">
+          <div class ="create-account-form">
+                <div class="row">
                     
-                    
-                    
+            
                     <div class="tabWrap">
                     	<ul class="tab_Menu">
                     		<li class="tabMenu current">
@@ -207,8 +227,8 @@
 									</p>
 									<div class="submit">
 										<button name="submitcreate" id="btnLogin" type="submit"
-											class="btn-default">
-
+											class="btn1">
+ 
 											<span> <i class="fa fa-user left"></i> 로그인
 											</span>
 										</button>
@@ -241,12 +261,12 @@
 									</p>
 									<div class="submit">
 										<button name="submitcreate" id="btnLogin" type="submit"
-											class="btn-default">
+											class="btn1">
 
-											<span> <i class="fa fa-user left" ></i> 로그인
+											<span> <i class="fa fa-user left1" ></i> 로그인
 											</span>
 										</button>
-									</div>
+									</div> 
 									<br/>
 									<p class="lost-password form-group">
 										<a href="${path}/login/find.do" rel="nofollow">아이디/비밀번호 찾기 ></a>
@@ -256,7 +276,7 @@
 						</div>
 					</div>
 
-
+</div>
 					
 <!-- ======================================================================================================== -->
 <!-- ======================================================================================================== -->
@@ -351,10 +371,10 @@
       
          <form action="/auth/kakao" name="kakao">
          <input type="hidden" name="scope"value=email,user_friends"/></form>-->
-         
+         <br>
  <div class="submit" style="text-align: center" >					
                            
-                                <button name="submitcreate" id="submitcreate" type="submit" class="btn-default">
+                                <button name="submitcreate" id="submitcreate" type="submit" class="btn1">
                                     <span>
                                     <a href="${path}/member/write.do">
                                         <i class="fa fa-user left"></i>
@@ -362,7 +382,7 @@
                                     </a></span>
                                 </button> 
                                  
-                                    <button name="submitcreate" id="submitcreate" type="submit" class="btn-default">
+                                    <button name="submitcreate" id="submitcreate" type="submit" class="btn1">
                                     <span>
                                     <a href="${path}/business/write.do">
                                         <i class="fa fa-user left"></i>
