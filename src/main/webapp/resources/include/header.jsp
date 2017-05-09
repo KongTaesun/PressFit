@@ -32,12 +32,12 @@ height: 95px;
 .login-light1{
     display: block;
     float: left;
-    width: 130px;
-    height: 95px;
+    width: 250px;
+    height: 95px; 
     /* border: 1px solid; */
     padding: 25px 26px 7px 0;
     text-align: right;
-    font-size: 30px;
+    font-size: 26px;
 }
 .cart-left1{
     display: block;
@@ -49,9 +49,6 @@ height: 95px;
     text-align: right;
     font-size: 30px;
 }
-
-</style>
-<style>
 @font-face {
 	font-family: 'Connoisseurs';
 	src: url('${path}/resources/font/Connoisseurs.ttf')
@@ -60,7 +57,62 @@ height: 95px;
 sans-serif;
 }
 /*  @font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}  */
+.login-form {
+	padding: 15px 15px 0 15px;
+}
+
+.string {
+	color: #333;
+}
+ 
+.d5s {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.d5 input, .d5 button {
+  outline: none;
+  background: transparent;
+}
+.d5 input {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  padding-left: 15px;
+  border: 4px solid #30b4f2;
+}
+.d5 button {
+  border: none;
+  height: 42px;
+  width: 42px;
+  font-size: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.d5 button:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-size: 25px;
+  color: #30b4f2;
+}
+.d5 input:focus {
+  border-color: #30b4f2
+}
+.icon1
+  {
+   width: 26px;
+    height: 26px;
+  }
+.headerlogo
+{
+   width: 190px;
+    height: 40px;
+}  
 </style>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -125,91 +177,44 @@ sans-serif;
 <!-- modernizr css -->
 <script src="${path}/resources/writer/js/vendor/modernizr-2.8.3.min.js"></script>
 
-<style>
-.login-form {
-	padding: 15px 15px 0 15px;
-}
-
-.string {
-	color: #333;
-}
-</style>
-
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<style>
-
-.d5s {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-}
-.d5 input, .d5 button {
-  outline: none;
-  background: transparent;
-}
-.d5 input {
-  width: 100%;
-  height: 50px;
-  font-size: 18px;
-  padding-left: 15px;
-  border: 4px solid #30b4f2;
-}
-.d5 button {
-  border: none;
-  height: 42px;
-  width: 42px;
-  font-size: 25px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}
-.d5 button:before {
-  content: "\f002";
-  font-family: FontAwesome;
-  font-size: 25px;
-  color: #30b4f2;
-}
-.d5 input:focus {
-  border-color: #30b4f2
-}
-</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <!--Header Area Start-->
 <div class="header-area">
 	<div class="container" style="font-size: 17px;">
 		<div class="row">
-			<div class="col-md-1 col-sm-6 col-xs-6" style="padding-left:10%"></div>
-			<div class="col-md-2 col-sm-6 col-xs-6">
+			<!-- <div class="col-md-1 col-sm-6 col-xs-6" style="padding-left:10%"></div> -->
+			<div class="col-md-3 col-sm-6 col-xs-6">
 				<div class="header-logo">
-					<a href="${path}/"> <img
-						src="${path}/resources/writer/img/logo/logo.png" alt="">
+					<a href="${path}/">  
+					<img src="${path}/resources/writer/img/logo/logo.png" alt="" class="headerlogo">
 					</a>
 				</div>
 			</div>
-			<div id="wrap" class="col-md-6 col-sm-12 hidden-xs" style="padding: 25px">
+			<div id="wrap" class="col-md-6 col-sm-12 hidden-xs" style="padding: 25px" >
 				<div class="d5">
 				<form class="d5s" method="get" action="${path}/search/answer.do" >
 				  <input type="text" id="q" name="q" placeholder="Search for the pressfit!">
 				  <button type="submit" style="padding:0;box-shadow: none;right: 5px;top: 4px;"></button>
 				</form>	
 				</div>	
-			</div>
-			<div class="col-md-2 hidden-sm"> 
+			</div> 
+			<div class="col-md-2 hidden-sm">  
 				<div class="header-left">
-					<span class="login-light1" style="text-align: left;">
-					<c:if test="${sessionScope.kind eq 'member'}">
-					<a href="${path}/shop/cart/cartList.do">${sessionScope.id}
-					<i class="flaticon-shop"></i></a>
-					<a href="${path}/login/logout.do">
-					<i class="flaticon-delete"></i></a>
-					</c:if>
+					<span class="login-light1" style="text-align: left; ">
+					<c:if test="${sessionScope.kind eq 'member'}"> 
+					<a href="${path}/shop/cart/cartList.do"> ${sessionScope.id}	<i class="flaticon-shop"></i></a>
+					<a href="${path}/login/logout.do"> <img src="${path}/resources/writer/icon/logout.png" class="icon1" /></a> 
+					</c:if> 
+					 
 					<c:if test="${sessionScope.kind eq 'business'}">
-					<a href="${path}/business/orderList.do">
+					<a href="${path}/business/orderList.do"> 
 					${sessionScope.id}</a>
+					
 					<a href="${path}/login/logout.do">
-					<i class="flaticon-delete"></i></a>
+					<i class="logout"></i></a> 
 					</c:if>
+					
 					<c:if test="${sessionScope.id == null}">
 						<a href="${path}/login/login.do">
 						<i class="flaticon-people"></i></a>

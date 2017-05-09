@@ -205,7 +205,7 @@ button.hover {
 <form action="${path}/community/insert.do" id="form1" name="form1" 
 class="create-account-form" method="post">
       <dl class="list_delivery">
-      <dt> 
+      <dt>  
 		<label for="oaName">제목</label>
 	</dt>
 	<dd> 

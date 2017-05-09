@@ -59,7 +59,7 @@ public class JoinController {
 	public String insert(@ModelAttribute MemberVO vo){
 	
 		joinService.insertMember(vo);
-		return "redirect:/member/mypage.do"; 
+		return "redirect:/index.jsp"; 
 	}	
 
 	@RequestMapping("member/mypage.do")
@@ -87,7 +87,6 @@ public class JoinController {
 			return "redirect:/member/mypage.do";  
 		}
 	 
-	
 	@RequestMapping("member/delete.do")
 	public String delete(@RequestParam String id, @RequestParam String pw, Model model){ 
 
@@ -95,7 +94,6 @@ public class JoinController {
 			joinService.deleteMember(id);
 			return "redirect:/index"; 
 				
-		
 	}
 	
 	
@@ -121,7 +119,7 @@ public class JoinController {
 	    	printwriter = response.getWriter();
 	    	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
 	    	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
-	    			+callback+",'"+fileUrl+"','dwqwsqqq')"
+	    			+callback+",'"+fileUrl+"','Success')"
 	    					+ "</script>");
 	    	printwriter.flush();
 	    	out.close();

@@ -388,7 +388,7 @@ input[type=text]:focus {
 						</div>
 						
 						<div class="form-help">
-				,
+				
 							<p>
 								문제가 있거나 궁금한 점이 있으시면<br>아래 주소로 문의하시기 바랍니다.
 							</p>
@@ -456,11 +456,12 @@ input[type=text]:focus {
 						</dl>
 						
 						 
-						<input type="submit" value="회원가입" />
-				<input type="reset" value="취소" />
+						<button class="button form-button" type="submit">회원가입</button>
+					<button class="button form-button" type="reset">취소</button>
+				 
 					</form>
-
-			</div>
+ 
+			</div>   
 
 
 		</div>

@@ -361,11 +361,11 @@ input[type=text]:focus {
                             
                         </div>
                        
-						<input type="submit" value="수정하기" />
-							<button type="reset" name="reset">취소하기</button>
+						<input class="button" type="submit" data-action="submit" value="수정하기" />
+						<input class="button" type="reset" name="reset" value="취소하기">
                     </form>
                     </div>
-                  </div>
+                  </div> 
                   </div>
                   </div>
                   

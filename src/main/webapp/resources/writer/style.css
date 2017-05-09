@@ -108,6 +108,9 @@ body {
 .header-logo > a {
   display: block;
   padding: 25px 0;
+  padding-left: 23px;
+  padding-right: 0px;
+  
 }
 .mainmenu nav ul#nav li {
   display: inline-block;
@@ -1774,8 +1777,8 @@ ul.product-tabs {
 #quantity-wanted-p input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none !important;
-  height: 46px;
-  line-height: 42px;
+  height: 42px;
+  line-height: 40px;
   text-align: center;
   width: 45px;
 }
