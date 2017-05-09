@@ -328,7 +328,7 @@ input[type=text]:focus {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>My Account</h2>
+						<h2>회원가입</h2>
 						
 					</div>
 				</div>
@@ -336,8 +336,6 @@ input[type=text]:focus {
 		</div>
 	</div>
 
-
-	<!-- Loging Area Start -->
 	<div class="login-account section-padding">
 		<div class="container" style="display:table ;width: 700px;text-align: center">
 		<div id="infoAgree">

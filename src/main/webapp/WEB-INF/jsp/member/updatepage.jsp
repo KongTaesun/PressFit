@@ -191,7 +191,7 @@ input[type=text]:focus {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>MY PAGE</h2>
+						<h2>내정보관리</h2>
 					</div>
 				</div>
 			</div>
@@ -211,16 +211,8 @@ input[type=text]:focus {
 	                       
                                 </ul>
                             </div>
-</div>
-</div>
 
-
-
- 
 	<!-- About Us Area Start -->
-		<div class="about-us-area section-padding">
-		    <div class="container">
-                <div class="row">
 
                     <div class="about-top-inner">
                         <div class="col-md-6">
@@ -322,15 +314,14 @@ input[type=text]:focus {
                                 <div class="card animated fadeIn">
                                 
                                 
-<center>                                
-        <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar"></center>
+ <div class="create-account-form" align = "center">                                 
+        <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar">
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/member/updatepage/imageUpload.do"
 			});
 		</script>
-</center>                                
-
+                            
              	<div class="panel panel-default">
 									<div class="panel-heading" role="tab" id="headingFour">
 										<h4 class="panel-title">
@@ -354,22 +345,18 @@ input[type=text]:focus {
 										</div>
 									</div>
    								   </div>  
-          
-         						</div>
-								</div>
-                            </div>
-                            
-                        </div>
-                       
-						<input class="button" type="submit" data-action="submit" value="수정하기" />
-						<input class="button" type="reset" name="reset" value="취소하기">
+
+						<button class="button form-button" type="submit">수정하기</button>
+						<button class="button form-button" type="reset">취소</button>
                     </form>
                     </div>
                   </div> 
                   </div>
                   </div>
-                  
-              
+                  </div></div>
+              </div>
+              </div>
+               
 
 	<%@ include file="/resources/include/footer.jsp"%>
 	
@@ -379,7 +366,7 @@ input[type=text]:focus {
          
             
          
-        
+         
             
       
        

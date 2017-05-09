@@ -1,5 +1,7 @@
 package kr.co.pressfit.vo;
 
+import java.util.Date;
+
 public class CartVO {
 
 	private int idx;
@@ -17,35 +19,9 @@ public class CartVO {
 	private String kind;
 	private String crea_id;
 	private int shippingStatus;
-	private String orderdate;
+	private Date orderdate;
 	private String methodpayment;
 	private String searchOption;
-	
-	
-	public String getMethodpayment() { 
-		return methodpayment;
-	}
-	public void setMethodpayment(String methodpayment) {
-		this.methodpayment = methodpayment;
-	}
-	public String getCrea_id() {
-		return crea_id;
-	}
-	public void setCrea_id(String crea_id) {
-		this.crea_id = crea_id;
-	}
-	public String getKind() {
-		return kind;
-	} 
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
-	public String getFullName() {
-		return fullName;
-	}
-	public void setFullName(String fullName) { 
-		this.fullName = fullName;
-	}
 	public int getIdx() {
 		return idx;
 	}
@@ -70,11 +46,11 @@ public class CartVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getD_price() {
+	public String getDprice() {
 		return dprice;
 	}
-	public void setD_price(String d_price) {
-		this.dprice = d_price;
+	public void setDprice(String dprice) {
+		this.dprice = dprice;
 	}
 	public String getItems_select() {
 		return items_select;
@@ -106,17 +82,29 @@ public class CartVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	public String getDprice() {
-		return dprice;
-	}
-	public void setDprice(String dprice) {
-		this.dprice = dprice;
-	}
 	public String getMoney() {
 		return money;
 	}
 	public void setMoney(String money) {
 		this.money = money;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getCrea_id() {
+		return crea_id;
+	}
+	public void setCrea_id(String crea_id) {
+		this.crea_id = crea_id;
 	}
 	public int getShippingStatus() {
 		return shippingStatus;
@@ -124,13 +112,18 @@ public class CartVO {
 	public void setShippingStatus(int shippingStatus) {
 		this.shippingStatus = shippingStatus;
 	}
-	public String getOrderdate() {
+	public Date getOrderdate() {
 		return orderdate;
 	}
-	public void setOrderdate(String orderdate) {
+	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
-	
+	public String getMethodpayment() {
+		return methodpayment;
+	}
+	public void setMethodpayment(String methodpayment) {
+		this.methodpayment = methodpayment;
+	}
 	public String getSearchOption() {
 		return searchOption;
 	}
@@ -143,11 +136,8 @@ public class CartVO {
 				+ dprice + ", items_select=" + items_select + ", manufacturecompany=" + manufacturecompany
 				+ ", modelname=" + modelname + ", payment=" + payment + ", user_id=" + user_id + ", money=" + money
 				+ ", fullName=" + fullName + ", kind=" + kind + ", crea_id=" + crea_id + ", shippingStatus="
-				+ shippingStatus + ", orderdate=" + orderdate + ", methodpayment=" + methodpayment + ", searchOption="
-				+ searchOption + "]";
+				+ shippingStatus + ", methodpayment=" + methodpayment + ", searchOption=" + searchOption + "]";
 	}
-	
-	
 	
 	
 	

@@ -20,7 +20,7 @@
  background-color: black;  
  z-index: 99;  
  text-align: center; 
- } 
+ }  
  
 #loading *,
 #loading *:before,

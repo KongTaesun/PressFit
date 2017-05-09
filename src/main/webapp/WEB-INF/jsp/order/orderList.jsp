@@ -232,13 +232,13 @@ button.hover {
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>내주문 관리</h2> 
-					       <ul class="breadcrumbs-list">
-						        <!-- <li>
+					       <h2>주문내역</h2> 
+					       <!--<ul class="breadcrumbs-list">
+						         <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li> -->
+						        </li> 
 						        <li>Shopping Cart</li>
-						    </ul>
+						    </ul>-->
 					    </div>
 					</div>
 				</div>
@@ -290,17 +290,17 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				${row.orderdate}
+																 <fmt:formatDate pattern="yyyy.mm.dd" value="${row.orderdate}"/>
+                                             	
 																</span>
-															</li>
-															<li>
+															</li> 
+														<%-- 	<li>
 																<em class="tit_append">주분상품정보 :</em>
 																<span class="product_price">
-																	<input type="text" style="width: 10px; border: none;" name="amount" value="${row.modelname}" readonly="readonly">
-																</span>개
-															<%-- 	 <input type="hidden"  name="amount" value="${row2.amount}"/> --%>
-															</li>
-															<li>
+																	<input type="text" value="${row.modelname}" readonly="readonly">
+																</span>
+															</li> --%>
+															<li> 
 																<em class="tit_append">상품수량 :</em>
 																<span class="product_price">
 																	<input type="text" style="width: 10px; border: none;" name="amount" value="${row.amount}" readonly="readonly">

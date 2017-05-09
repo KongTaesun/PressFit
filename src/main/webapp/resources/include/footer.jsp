@@ -95,32 +95,33 @@ a {
 <footer>
 <div id="kakaopay_layer" style="display: none"></div>
 
-<div id="cEtc">
+<!-- <div id="cEtc">
 
 </div>
-
+ -->
 	<hr class="hide">
 	<div id="kakaoFoot" role="contentinfo">
 		<div class="inner_footer">
 			<h2 class="screen_out">서비스 이용정보</h2>
 			<div class="service_info">
-				<a href="/kr/policy/privacy" class="link_service">회사소개</a> <span
-					class="txt_bar">|</span><a href="${path}/resources/agreement/.jsp"
-					class="link_service">이용약관</a> <span class="txt_bar">|</span>
-					<a href="${path}/resources/agreement/.jsp"
-					class="link_service">오시는길</a> <span class="txt_bar">|</span> <a
-					href="http://with.kakao.com/marketing/index" target="_blank"
-					class="link_service">개인정보 처리방침</a> <span class="rw_show txt_bar">|</span><a href="/kr/promotions/promotion/50"
-					class="link_service">PressFit 소셜 친구들</a> 
+				<a href="" class="link_service">회사소개</a> <span class="txt_bar">|</span>
+				<a href="${path}/resources/agreement/provision.jsp" class="link_service">이용약관</a> 
+					<span class="txt_bar">|</span> 
+				<a href="${path}/resources/agreement/Directions.jsp" class="link_service">오시는길</a>  
+					<span class="txt_bar">|</span> 
+				<a href="${path}/resources/agreement/helprule_private.jsp"  class="link_service">개인정보 처리방침</a> 
+					<span class="rw_show txt_bar">|</span>
+				<a href="" class="link_service">PressFit 소셜 친구들</a> 
 			</div>
+			
 			<strong class="tit_copy">PressFit</strong> <small
 				class="copy_info"> <span class="txt_copy txt_corp">Copyright
 					© <a href="#none" class="link_copy">PressFit Corp.</a>
-			</span> <span class="txt_copy"> <span class="txt_info">프레스핏
+			</span> <span class="txt_copy"> <span class="txt_info">프레스핏 컴퍼니
 						사업자등록번호 : 211-87-00620</span> <span class="txt_info">통신판매업 신고번호 :
 						 01-1968</span>
 			</span> <span class="txt_copy"> <span class="txt_info">대표이사 :
-						공태선</span> <span class="txt_info">주소 : 서울시 종로구 대학로 12길 31 자유빌딩 5층(03086) <span class="txt_cont"><a
+						갓세덕</span> <span class="txt_info">주소 : 서울시 종로구 대학로 12길 31 자유빌딩 5층(03086) <span class="txt_cont"><a
 							href="mailto:store@kakaofriends.com" class="link_mail">osd0126@pressfit.com</a></span>
 				</span> <span class="txt_info">고객센터 : 010 6238 5615 <span
 						class="txt_cont">평일 10시 ~ 18시</span></span>
