@@ -357,7 +357,84 @@ button.hover {
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 100)
 	};
-
+	
+	$.ajax({
+		type : "POST",
+		url: " ",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data) {
+	 		var str=null;
+	 		str+=
+	 		$('cavaus2').html(str);
+	 	},
+	 	error: function(xhr) {
+	 	  console.log('실패 - ', xhr);
+	 	}
+	});
+	
+	$.ajax({
+		type : "POST",
+		url: " ",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data) {
+	 		var str=null;
+	 		str+=
+	 		$('cavaus2').html(str);
+	 	},
+	 	error: function(xhr) {
+	 	  console.log('실패 - ', xhr);
+	 	}
+	});
+	
+	$.ajax({
+		type : "POST",
+		url: " ",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data) {
+	 		var str=null;
+	 		str+=
+	 		$('cavaus2').html(str);
+	 		$('cavaus2').html(str);
+	 		$('cavaus2').html(str);
+	 		$('cavaus2').html(str);
+	 		$('cavaus2').html(str);
+	 		$('cavaus2').html(str);
+	 	},
+	 	error: function(xhr) {
+	 	  console.log('실패 - ', xhr);
+	 	}
+	});
+	$.ajax({
+		type : "POST",
+		url: " ",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data) {
+	 		var str=null;
+	 		str+=
+	 		$('cavaus2').html(str);
+	 	},
+	 	error: function(xhr) {
+	 	  console.log('실패 - ', xhr);
+	 	}
+	});
+	$.ajax({
+		type : "POST",
+		url: " ",
+	 	contentType: "text/plain; charset=utf-8",
+	 	dataType : "json",
+	 	success: function(data) {
+	 		var str=null;
+	 		str+=
+	 		$('cavaus2').html(str);
+	 	},
+	 	error: function(xhr) {
+	 	  console.log('실패 - ', xhr);
+	 	}
+	});
 	var lineBarChartData = {
 		labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 		datasets : [
@@ -594,6 +671,26 @@ button.hover {
 								</div>
 							</div>		                
 			            </div> -->    
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>마우스 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+								<div class="counter-info">
+									<span class="fcount">
+										<span class="counter">3725</span>
+									</span>
+									<h3>마우스 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
 						<div class="col-md-2 col-sm-2 col-xs-6">
 							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
 								<div class="counter-info">
