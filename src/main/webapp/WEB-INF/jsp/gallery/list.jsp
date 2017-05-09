@@ -23,7 +23,7 @@
 }
 .desc_total .emph_total {
     font-weight: 700;
-    color: #222;
+    color: #222; 
     font-style: normal;
 }
 .paging_friends {
@@ -92,7 +92,7 @@ button.hover {
 	}
 	function imgError(image) {
 	    image.onerror = "";
-	    image.src = "${path}/resources/writer/img/single-product/bg-3.jpg";
+	    image.src = "${path}/resources/writer/icon/keyboard.png";
 	    return true;
 	}
 </script>
@@ -155,7 +155,8 @@ button.hover {
                                     				</div>
                                     				
                                     				<div>${row.writer}</div>
-                                       				<div>${row.regdate}</div>
+                                    				<div><fmt:formatDate pattern="yyyy.mm.dd" value="${row.regdate}"/>
+                                       				</div>
                                     			</div>
                                     		</div>
 										</div>

@@ -874,15 +874,14 @@
 
 	background:
 
-		url(https://t1.daumcdn.net/friends/www/resources/images/pc/ico_friends_170215.png)
-
+	url(https://t1.daumcdn.net/friends/www/resources/images/pc/ico_friends_170215.png)
 		no-repeat;
-
-	vertical-align: top
+ 
+	vertical-align: top 
 
 }
 
-.link_language .ico_friends {
+.link_language .ico_friends { 
 
 	display: block;
 
@@ -990,7 +989,7 @@
 
 	color: #fff;
 
-	background-color: #f4c900
+	background-color: #32B5F3
 
 }
 
@@ -1048,7 +1047,7 @@
 
  
 
-.order_btn .btn_order {
+ .order_btn .btn_order {
 
 	height: 60px;
 
@@ -1059,10 +1058,9 @@
 	font-weight: 700;
 
 	text-align: center
-
 }
 
- 
+  
 
 .order_btn .link_order {
 
@@ -1088,8 +1086,8 @@
 
 	color: #fff;
 
-	background-color: #f4c900
-
+	background-color: #32B5F3 
+ 
 }
 
 address, caption, cite, code, dfn, em, var {
