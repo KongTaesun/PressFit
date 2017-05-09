@@ -357,7 +357,6 @@ public class Keyboard {
         // �쁽�옱 �럹�씠吏��쓽 �럹�씠吏�  �걹 踰덊샇
         int end = replyPager.getPageEnd();
         List<ReplyVO> list = keyboardservice.replylist(idx, start, end, session);
-        System.out.println(list);
         // 酉곗씠由� 吏��젙
         mav.setViewName(folder+"/replyList");
         // 酉곗뿉 �쟾�떖�븷 �뜲�씠�꽣 吏��젙

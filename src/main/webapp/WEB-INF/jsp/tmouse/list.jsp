@@ -317,7 +317,7 @@ button.hover {
 										<img src="${path}/resources/upload/2017/04/11/1006740_1.jpg" alt="인기품목" style="width:100px; height:100px;"/> 
 									</div>
 									<div class="seller-details"     style="padding: 20px 20px 20px;">
-										<a href="shop.html"><h5>제스코 무소음 마우스 JNL-101K</h5></a>
+										<a href="${path}/tmouse/view.do?idx=99&curPage=10&searchOption=title&keyword="><h5>제스코 무소음 마우스 JNL-101K</h5></a>
 										<h5>13,450원</h5>
 									</div>
 								</div>
@@ -326,7 +326,7 @@ button.hover {
 										<img src="${path}/resources/upload/2017/04/11/1015324_1.jpg" alt="인기품목" style="width:100px; height:100px;"/>
 									</div>
 									<div class="seller-details" style="padding: 20px 20px 20px;">
-										<a href=""><h5>제스코 무소음 마우스 JNL-006K</h5></a>
+										<a href="${path}//tmouse/view.do?idx=104&curPage=10&searchOption=title&keyword="><h5>제스코 무소음 마우스 JNL-006K</h5></a>
 										<h5>7,020원</h5>
 									</div>
 								</div>
