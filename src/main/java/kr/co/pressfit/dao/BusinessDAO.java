@@ -6,6 +6,8 @@ import java.util.Map;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
 import kr.co.pressfit.vo.GraphVO;
+import kr.co.pressfit.vo.KeyboardVO;
+import kr.co.pressfit.vo.TMouseVO;
 
  
 
@@ -27,6 +29,8 @@ public interface BusinessDAO {
 	public void payment(List<String> List, String searchOption) throws Exception;
 	
 	public GraphVO mainGraphData(String id) throws Exception;
+	public TMouseVO mouseRank(String id) throws Exception;
+	public KeyboardVO keyboardRank(String id) throws Exception;
 }
 
  

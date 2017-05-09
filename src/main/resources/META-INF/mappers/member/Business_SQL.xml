@@ -137,6 +137,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from TMouseBoard m, KeyboardBoard k
 		group by mAmount; 
     </select>
+    
+    <select id="mouseRank" resultType="kr.co.pressfit.vo.TMouseVO">
+        select *
+        from TMouseBoard m, TMouseFile f
+		where m.crea_id = #{id}
+			  and m.idx=f.idx
+		order by m.salesTotal desc, m.idx limit 1
+    </select>
+    
+    <select id="keyboardRank" resultType="kr.co.pressfit.vo.KeyboardVO">
+        select *
+        from KeyboardBoard k, KeyboardFile f
+		where k.crea_id = #{id}
+			  and k.idx=f.idx
+		order by k.salesTotal desc, k.idx limit 1
+    </select>
 	
 </mapper>
 

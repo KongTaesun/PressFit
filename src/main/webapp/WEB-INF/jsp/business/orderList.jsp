@@ -347,11 +347,10 @@ button.hover {
 		 	contentType: "text/plain; charset=utf-8",
 		 	dataType : "json",
 		 	success: function(data) {
-		 		console.log(data.list1.mAmount);
-		 		console.log(data.list1.kSalesAmount);
-		 		console.log(data.list1.mSalesAmount);
+		 		console.log(data);
 		 		
 		 		var word = $.animateNumber.numberStepFactories.append('');
+		 		
 		 		$('#counter1').animateNumber({
 		 			number: data.list1.mAmount,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
@@ -384,6 +383,29 @@ button.hover {
 		 			number: data.list1.mSalesTotal+data.list1.kSalesTotal,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
 		 		}, 2000);
+		 		var str = "";
+		 		str+= ' <div> ';
+				str+= ' <div class="product-wrapper" style="width: 100%;  height: 210px; text-align: center;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list2.idx+'&curPage=1&searchOption=&keyword=" > ';
+				str+= ' <img src="${path}/resources/upload/'+data.list2.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
+				str+= ' <div class="banner-bottom1 text-center"> ';
+				str+= ' <div class="banner-bottom-title" style="width: 100%; overflow: hidden; top: 50%;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list2.idx+'&curPage=1&searchOption=&keyword=&crea_id='+data.list2.crea_id+'"> ';
+				str+=  data.list2.modelname+'</a></div></div></div> ';
+		 		$('#mouseRank').html(str);
+		 		
+		 		var str = "";
+		 		str+= ' <div> ';
+				str+= ' <div class="product-wrapper" style="width: 100%; height: 210px; text-align: center;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list3.idx+'&curPage=1&searchOption=&keyword=" > ';
+				str+= ' <img src="${path}/resources/upload/'+data.list3.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
+				str+= ' <div class="banner-bottom1 text-center"> ';
+				str+= ' <div class="banner-bottom-title" style="width: 100%; overflow: hidden; top: 50%;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list3.idx+'&curPage=1&searchOption=&keyword=&crea_id='+data.list3.crea_id+'"> ';
+				str+=  data.list3.modelname+'</a></div></div></div> ';
+		 		$('#keyboardRank').html(str);
+		 		
+		 		circleGraph(data.list1.mSalesAmount, data.list1.kSalesAmount);
 		 	},
 		 	error: function(xhr) {
 		 	  console.log('실패 - ', xhr);
@@ -519,49 +541,52 @@ button.hover {
 	});
 	
 	// 그래프 2
-	var chartData = [
-		{
-			value : 2,
-			color : "#F7464A",
-			highlight : "#FF5A5E",
-			label : "마우스"
-		}, {
-			value : 3,
-			color : "#46BFBD",
-			highlight : "#5AD3D1",
-			label : "키보드"
-		}
-	];
-	var chart = null;
-	var canvas = null;
-	var ctx = null;
-	var legendHolder = null;
-	var helpers = Chart.helpers;
-	$(function() {
-		canvas = document.getElementById("canvas1");
-		legendHolder = document.createElement('div');
-		ctx = canvas.getContext("2d");
-		chart = new Chart(ctx).Pie(chartData, {
-			animateScale : true,
-			animation : true,
-			responsive : true,
-		});
-		legendHolder.innerHTML = chart.generateLegend();
-		helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
-				index) {
-			helpers.addEvent(legendNode, 'mouseover', function() {
-				var activeSegment = chart.segments[index];
-				activeSegment.save();
-				activeSegment.fillColor = activeSegment.highlightColor;
-				chart.showTooltip([ activeSegment ]);
-				activeSegment.restore();
+	function circleGraph(a,b){
+		var chartData = [
+			{
+				value : a,
+				color : "#F7464A",
+				highlight : "#FF5A5E",
+				label : "마우스"
+			}, {
+				value : b,
+				color : "#46BFBD",
+				highlight : "#5AD3D1",
+				label : "키보드"
+			}
+		];
+		var chart = null;
+		var canvas = null;
+		var ctx = null;
+		var legendHolder = null;
+		var helpers = Chart.helpers;
+		$(function() {
+			canvas = document.getElementById("canvas1");
+			legendHolder = document.createElement('div');
+			ctx = canvas.getContext("2d");
+			chart = new Chart(ctx).Pie(chartData, {
+				animateScale : true,
+				animation : true,
+				responsive : true,
 			});
+			legendHolder.innerHTML = chart.generateLegend();
+			helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
+					index) {
+				helpers.addEvent(legendNode, 'mouseover', function() {
+					var activeSegment = chart.segments[index];
+					activeSegment.save();
+					activeSegment.fillColor = activeSegment.highlightColor;
+					chart.showTooltip([ activeSegment ]);
+					activeSegment.restore();
+				});
+			});
+			helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
+				chart.draw();
+			});
+			//canvas.parentNode.appendChild(legendHolder.firstChild);
 		});
-		helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
-			chart.draw();
-		});
-		//canvas.parentNode.appendChild(legendHolder.firstChild);
-	});
+	}
+	
 	
 /* 	// 그래프 3
 	var radarChartData = {
@@ -692,7 +717,7 @@ button.hover {
 </head>
 <body>
 	<!-- Breadcrumbs Area Start -->
-	<div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');">
+	<div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/biz.png');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
@@ -1177,33 +1202,21 @@ button.hover {
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<div class="single-banner" style="padding:5%">
-						<div style="height=350;width=350">
-							<div style="width:70%;">
-							<canvas id="canvas2" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
-							<ul class="polararea-legend">
-								<li><span style="background-color:#F7464A"></span>마우스</li>
-								<li><span style="background-color:#46BFBD"></span>키보드</li>
-							</ul>
-							</div>
+						<div id="mouseRank" style="height=350;width=350">
+							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">마우스 판매 1위</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<div class="single-banner" style="padding:5%">
-						<div style="height=350;width=350">
-							<div style="width:70%;">
-							<canvas id="canvas3" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
-							<ul class="polararea-legend">
-								<li><span style="background-color:#F7464A"></span>마우스</li>
-								<li><span style="background-color:#46BFBD"></span>키보드</li>
-							</ul>
-							</div>
+						<div id="keyboardRank" style="height=350;width=350">
+							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">키보드 판매 1위</a>
 						</div>
 					</div>
 				</div>

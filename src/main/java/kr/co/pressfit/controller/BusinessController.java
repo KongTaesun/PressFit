@@ -245,12 +245,14 @@ public class BusinessController {
 	@RequestMapping("graphData.do")
     public ModelAndView graphData(@RequestParam(defaultValue = "1990-01-01") String startDate,
             @RequestParam(defaultValue = "2020-12-31") String endDate, HttpSession session, ModelAndView mav) throws Exception{
-        String id = (String) session.getAttribute("id"); // session�� ����� userId
+        String id = (String) session.getAttribute("id"); 
         
         endDate += " 23:59:59";
         
-        mav.setViewName("jsonView");    // view(jsp)�� �̸� ����
-        mav.addObject("list1", businessService.mainGraphData(id));            // map ���� ����
+        mav.setViewName("jsonView");
+        mav.addObject("list1", businessService.mainGraphData(id));
+        mav.addObject("list2", businessService.mouseRank(id));
+        mav.addObject("list3", businessService.keyboardRank(id));
         return mav;
     }
 }
