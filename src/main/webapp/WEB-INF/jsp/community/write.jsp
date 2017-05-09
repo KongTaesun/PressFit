@@ -232,27 +232,13 @@ CKEDITOR.replace("content",{
 </script>
    <br>
     <div style="width:650px; text-align: center;">
-        <button type="button" id="btn">확인</button>
+          <button type="submit" id="btnSave">확인</button>
         <button type="reset">취소</button>
     </div> 
 </form>
 </div>
 </div>
- 
-    
-   <!--  <div>
-	    첨부파일 등록
-	    첨부파일 등록영역
-	    <div class="fileDrop"></div>
-	    첨부파일의 목록 출력영역
-	    <div id="uploadedList"></div>
-	</div>
-    
-    
-</form>
-</div>
-    </div> -->
-  
 
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>
