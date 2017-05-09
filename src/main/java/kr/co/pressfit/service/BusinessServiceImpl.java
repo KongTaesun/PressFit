@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.pressfit.dao.BusinessDAOImpl;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
 
  
 
@@ -87,6 +88,11 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int countArticle(String searchOption, String keyword, String id) throws Exception {
 		return BusinessDao.countArticle(searchOption, keyword, id);
+	}
+
+	@Override
+	public GraphVO mainGraphData(String id) throws Exception {
+		return BusinessDao.mainGraphData(id);
 	}
     
     

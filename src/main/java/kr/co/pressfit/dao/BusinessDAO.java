@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
 
  
 
@@ -24,6 +25,8 @@ public interface BusinessDAO {
 	public int countArticle(String searchOption, String keyword, String id) throws Exception;
 	// 결제
 	public void payment(List<String> List, String searchOption) throws Exception;
+	
+	public GraphVO mainGraphData(String id) throws Exception;
 }
 
  

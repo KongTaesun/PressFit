@@ -23,6 +23,7 @@ import kr.co.pressfit.service.KeyboardService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
 import kr.co.pressfit.vo.KeyboardVO;
 import kr.co.pressfit.vo.TMouseVO;
 
@@ -239,6 +240,18 @@ public class BusinessController {
         return "redirect:orderList.do";
     	
 		
+    }
+	
+	@RequestMapping("graphData.do")
+    public ModelAndView graphData(@RequestParam(defaultValue = "1990-01-01") String startDate,
+            @RequestParam(defaultValue = "2020-12-31") String endDate, HttpSession session, ModelAndView mav) throws Exception{
+        String id = (String) session.getAttribute("id"); // session�� ����� userId
+        
+        endDate += " 23:59:59";
+        
+        mav.setViewName("jsonView");    // view(jsp)�� �̸� ����
+        mav.addObject("list1", businessService.mainGraphData(id));            // map ���� ����
+        return mav;
     }
 }
 

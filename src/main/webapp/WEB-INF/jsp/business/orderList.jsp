@@ -340,6 +340,55 @@ button.hover {
 				$(".check_id3").prop("checked", false);
 			}
 		});
+		
+		$.ajax({
+			type : "POST",
+			url: "${path}/business/graphData.do",
+		 	contentType: "text/plain; charset=utf-8",
+		 	dataType : "json",
+		 	success: function(data) {
+		 		console.log(data.list1.mAmount);
+		 		console.log(data.list1.kSalesAmount);
+		 		console.log(data.list1.mSalesAmount);
+		 		
+		 		var word = $.animateNumber.numberStepFactories.append('');
+		 		$('#counter1').animateNumber({
+		 			number: data.list1.mAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter2').animateNumber({
+		 			number: data.list1.mSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter3').animateNumber({
+		 			number: data.list1.mSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter4').animateNumber({
+		 			number: data.list1.mSalesAmount+data.list1.kSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter5').animateNumber({
+		 			number: data.list1.kAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter6').animateNumber({
+		 			number: data.list1.kSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter7').animateNumber({
+		 			number: data.list1.kSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter8').animateNumber({
+		 			number: data.list1.mSalesTotal+data.list1.kSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 	},
+		 	error: function(xhr) {
+		 	  console.log('실패 - ', xhr);
+		 	}
+		});
 	});
 	// 체크된 항목(cart_id) 배열생성
 	function order() {
@@ -358,22 +407,9 @@ button.hover {
 		return Math.round(Math.random() * 100)
 	};
 	
-	$.ajax({
-		type : "POST",
-		url: " ",
-	 	contentType: "text/plain; charset=utf-8",
-	 	dataType : "json",
-	 	success: function(data) {
-	 		var str=null;
-	 		str+=
-	 		$('cavaus2').html(str);
-	 	},
-	 	error: function(xhr) {
-	 	  console.log('실패 - ', xhr);
-	 	}
-	});
 	
-	$.ajax({
+	
+	/* $.ajax({
 		type : "POST",
 		url: " ",
 	 	contentType: "text/plain; charset=utf-8",
@@ -434,7 +470,7 @@ button.hover {
 	 	error: function(xhr) {
 	 	  console.log('실패 - ', xhr);
 	 	}
-	});
+	}); */
 	var lineBarChartData = {
 		labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
 		datasets : [
@@ -660,98 +696,98 @@ button.hover {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div style="padding: 100px 0;text-align:center;">
+					<div style="padding: 80px 0;height: 0px;text-align:center;">
 						<h2>사업자 페이지</h2> 
 					</div>
-					<!-- layer 2 -->      
-					<div>
-						<!-- <div class="col-md-1 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".9999s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.9999s;">
+					<!-- layer 1 -->      
+					<div class="col-md-12" style="text-align:center;">  
+						<div class="col-md-2 col-sm-2 col-xs-6"></div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
+									<span>
+										<span id="counter1" style="font-size: 30px">0</span>
+									</span>
+									<h3>마우스 재고량</h3>								
 								</div>
 							</div>		                
-			            </div> -->    
+			            </div>
 						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter2">0</span>
 									</span>
 									<h3>마우스 판매량</h3>								
 								</div>
 							</div>		                
 			            </div>
 						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>마우스 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>마우스 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>키보드 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>총 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">286</span>
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter3">0</span>
 									</span>
 									<h3>마우스 매출액</h3>								
 								</div>
 							</div>		                
 			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter4">0</span>
+									</span>
+									<h3>총 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+					</div>
+					<!-- layer 2 --> 
+					<div class="col-md-12" style="text-align:center;">
+						<div class="col-md-2 col-sm-2 col-xs-6"></div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s"> 
 								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">550</span>
+									<span>
+										<span id="counter5" style="font-size: 30px">0</span>
+									</span>
+									<h3>키보드 재고량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info">
+									<span>
+										<span id="counter6" style="font-size: 30px">0</span>
+									</span>
+									<h3>키보드 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info">
+									<span>
+										<span id="counter7" style="font-size: 30px">0</span>
 									</span>
 									<h3>키보드 매출액</h3>								
 								</div>
 							</div>		                
 			            </div>
 			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">2485</span>
+									<span>
+										<span id="counter8" style="font-size: 30px">0</span>
 									</span>
 									<h3>총 매출액</h3>								
 								</div>
 							</div>		                
 			            </div> 
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -1224,6 +1260,8 @@ button.hover {
         <!-- Discount Area End -->
         
 		<%@ include file="/resources/include/footer.jsp" %>
-		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
+		<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
     </body>
 </html>

@@ -124,6 +124,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
 		where idx = #{idx}
 	</update>
+	
+	
+	<select id="mainGraphData" resultType="kr.co.pressfit.vo.GraphVO">
+        select
+		(select sum(m.amount) from TMouseBoard m where m.crea_id = #{id}) as mAmount,
+		(select sum(m.salesTotal) from TMouseBoard m where m.crea_id = #{id}) as mSalesAmount,
+		(select sum(m.salesTotal*m.price) from TMouseBoard m where m.crea_id = #{id}) as mSalesTotal,
+		(select sum(k.amount) from KeyboardBoard k where k.crea_id = #{id}) as kAmount,
+		(select sum(k.salesTotal) from KeyboardBoard k where k.crea_id = #{id}) as kSalesAmount,
+		(select sum(k.salesTotal*k.price) from KeyboardBoard k where k.crea_id = #{id}) as kSalesTotal
+		from TMouseBoard m, KeyboardBoard k
+		group by mAmount; 
+    </select>
+	
 </mapper>
 
  
