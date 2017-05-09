@@ -204,8 +204,8 @@ button.hover {
                 	<li role="presentation" class="active"><a href="#" id="btnone">글쓰기</a></li>
                 </ul>
       		</div>
-			
-<form action="${path}/community/insert.do" id="form1" name="form1" 
+			  
+<form action="${path}/gallery/insert.do" id="form1" name="form1" 
 class="create-account-form" method="post">
       <dl class="list_delivery">
       <dt> 
@@ -226,22 +226,22 @@ class="create-account-form" method="post">
         placeholder="내용을 입력해주세요"></textarea>
 <script> 
 CKEDITOR.replace("content",{
-	filebrowserUploadUrl : "${path}/community/imageUpload.do"
+	filebrowserUploadUrl : "${path}/gallery/imageUpload.do"
 });
 </script>
    <br>
     <div style="width:650px; text-align: center;">
-        <button type="button" id="btn">확인</button>
+        <button type="submit" id="btnSave">확인</button>
         <button type="reset">취소</button>
     </div> 
 </form>
 </div>
-</div>
+</div> 
 
     
    <!--  <div>
 	    첨부파일 등록
-	    첨부파일 등록영역
+	    첨부파일 등록영역 
 	    <div class="fileDrop"></div>
 	    첨부파일의 목록 출력영역
 	    <div id="uploadedList"></div>

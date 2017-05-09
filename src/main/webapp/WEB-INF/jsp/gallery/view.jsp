@@ -1,33 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시글 작성</title>
-<%@ include file="/resources/include/header.jsp" %>
+<%@ include file="/resources/include/header.jsp"%>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <style>
 .breadcrumbs-area {
- background-image: url('${path}/resources/writer/img/bigpicture/gallery_img.png');
+	background-image:
+		url('${path}/resources/writer/img/bigpicture/gallery_img.png');
 }
+
 button {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    color: #616161;
-    padding: 9px 20px;
-    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
-    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    border-radius: 0px;
-    border: 1px solid #dbe2ff;
-    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #616161;
+	padding: 9px 20px;
+	background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff),
+		to(#ffffff));
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	border: 1px solid #dbe2ff;
+	box-shadow: 0px 1px 3px rgba(000, 000, 000, 0.3), inset 0px 0px 2px
+		rgba(255, 255, 255, 0);
 }
+
 button.hover {
-    font-weight: bold;
-    color: #000000;
-    border: 1px solid #879fff;
+	font-weight: bold;
+	color: #000000;
+	border: 1px solid #879fff;
 }
+
 .replytextstyle {
 	border: 1px solid #858585;
 	border-left: 1px solid #858585;
@@ -42,6 +49,70 @@ button.hover {
 	margin-bottom: 50px;
 	background: #f9f9f9;
 	height: 195px;
+}
+
+.title {
+	width: 100%;
+	font-weight: bold;
+	border-bottom: 1px solid #e8e8e8;
+	padding: 5px 0 5px 15px;
+}
+
+.single-product-details1 .info1 {
+	width: 100%;
+	border-bottom: 1px solid #e8e8e8;
+	overflow: hidden;
+}
+
+.single-product-details1 .info1 .writer {
+	float: left;
+	padding: 11px 0 5px 15px;
+	font-weight: bold;
+	color: #255361;
+}
+
+.single-product-details1 .info1 .info2 {
+	float: right;
+	color: #888;
+}
+
+.single-product-details1 .info1 .info2 .date {
+	display: block;
+	float: left;
+	width: 200px;
+	padding: 9px 12px 7px 0;
+	text-align: right;
+}
+
+.single-product-details1 .info1 .info2 .hit {
+	display: block;
+	float: left;
+	padding: 9px 0 7px 10px;
+}
+
+.single-product-details1 .content1 {
+	color: #000000;
+	font-size: 14px;
+	font-weight: 400;
+	padding: 9px 0 7px 10px;
+	border-bottom: 2px solid #444444;
+}
+
+.lineheight {
+	border: solid 3px;
+	margin-bottom: 5px;
+}
+
+.single-product-details1 .social-share .social-share-left {
+	padding: 9px 0 7px 10px;
+	float: left;
+	color: #888;
+}
+
+.single-product-details1 .social-share .social-share-right {
+	display: block;
+	float: right;
+	padding: 9px 0 7px 10px;
 }
 </style>
 <script>
@@ -208,52 +279,71 @@ button.hover {
 </script>
 </head>
 <body>
- 	<!-- Breadcrumbs Area Start -->
+
+	<%@ include file="/resources/include/mobile.jsp"%>
+	<!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-				    <div class="breadcrumbs">
-				       <h2>GALLERY</h2> 
-				    </div>
-				</div>
-			</div>
-		</div>
-	</div> 
-	<!-- Breadcrumbs Area Start --> 
-    <!-- Single Product Area Start -->
-    <div class="single-product-area section-padding"> 
-	    <div class="container">
-			<div class="row">
- 				<div class="single-product-details">
-					<h2>${dto.title}</h2>
-                    ${dto.writer} / ${dto.regdate} / 조회수 : ${dto.viewcnt} <br/><br/>
-                    <p>${dto.content}</p>
-		         	<!-- 게시물번호를 hidden으로 처리 -->
-		            <input type="hidden" name="boardno" value="${dto.idx}">
-                    <div>
-						<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
-				        <c:if test="${sessionScope.id == dto.writer}">
-				            <button type="button" id="btnDelete" style="float:right; margin-right:5px">삭제</button>
-				            <button type="button" id="btnUpdete" style="float:right; margin-right:5px">수정</button>
-				        </c:if>
-			            <!-- 상세보기 화면에서 게시글 목록화면으로 이동 -->
-			            <button type="button" id="btnList" style="float:right; margin-right:5px">목록</button>
+					<div class="breadcrumbs">
+						<h2>GALLERY</h2>
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<!-- Breadcrumbs Area Start -->
+	<!-- Single Product Area Start -->
+	<div class="single-product-area section-padding" style="padding: 0px; padding-top: 80px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12"></div>
+				<div class="">
+					<div class="single-product-details1 col-md-10">
+						<h2>후기 게시판</h2>
+						<hr class="lineheight" />
+						<div class="title">${dto.title}</div>
+						<div class="info1">
+
+							<div class="writer">${dto.writer}</div>
+
+							<div class="info2">
+								<span class="date"><fmt:formatDate value="${dto.regdate}"
+										pattern="yyyy-MM-dd" /></span> <span class="hit">|&nbsp;
+									&nbsp; 조회수 : ${dto.viewcnt}</span>
+							</div>
+						</div>
+						<br />
+						<div class="content1">${dto.content}</div>
+						<!-- 게시물번호를 hidden으로 처리 -->
+						<input type="hidden" name="boardno" value="${dto.idx}">
+						<div class="social-share">
+							<span class="social-share-right"><button type="button"
+									id="btnList">목록</button></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Breadcrumbs Area Start -->
+	<!-- Single Product Area Start -->
+	<div class="single-product-area">
+		<div class="container">
 			<div class="row">
 				<div class="p-details-tab-content">
 					<div class="p-details-tab">
 						<ul class="p-details-nav-tab" role="tablist">
- 							<li role="presentation" class="active"><a href="#reviews" aria-controls="reviews" role="tab" data-toggle="tab">Reply</a></li>
+							<li role="presentation" class="active"><a href="#reviews"
+								aria-controls="reviews" role="tab" data-toggle="tab">Reply</a></li>
 						</ul>
 					</div>
-                    <div class="clearfix"></div>
+					<div class="clearfix"></div>
 					<div class="tab-content review">
-                       	<div role="tabpanel" class="tab-pane active" id="reviews">
-                           	<div id="product-comments-block-tab">
-                               <div style="width: 650px; text-align: center;"
+						<div role="tabpanel" class="tab-pane active" id="reviews">
+							<div id="product-comments-block-tab">
+								<div style="width: 650px; text-align: center;"
 									class="replytextdiv">
 									<br>
 									<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
@@ -275,8 +365,8 @@ button.hover {
 										</div>
 									</c:if>
 								</div>
-                                <!-- 댓글 목록 출력할 위치 -->
-   								<div id="listReply" ></div>
+								<!-- 댓글 목록 출력할 위치 -->
+								<div id="listReply"></div>
 							</div>
 						</div>
 					</div>
@@ -284,10 +374,10 @@ button.hover {
 			</div>
 		</div>
 	</div>
-    <!-- Single Product Area End -->
-     
-    <!-- Footer Start -->    
-	<%@ include file="/resources/include/footer.jsp" %>
-    <!-- Footer End -->    
-    </body>
+	<!-- Single Product Area End -->
+
+	<!-- Footer Start -->
+	<%@ include file="/resources/include/footer.jsp"%>
+	<!-- Footer End -->
+</body>
 </html>

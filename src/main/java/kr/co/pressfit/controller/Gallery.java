@@ -191,14 +191,14 @@ public class Gallery {
     	String fileName = upload.getOriginalFilename();
     	galleryservice.addAttach(fileName);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/eclipse-work/wtpwebapps/PressFit/resources/upload/"+fileName;
-    	out = new FileOutputStream(new File(uploadPath));
+     	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+ 	   out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes); 
     	String callback = request.getParameter("CKEditorFuncNum");
     	printwriter = response.getWriter();
     	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
     	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
-    			+callback+",'"+fileUrl+"','�씠誘몄�媛� �뾽濡쒕뱶 �릺�뿀�뒿�땲�떎.')"
+    			+callback+",'"+fileUrl+"','sucess')"
     					+ "</script>");
     	printwriter.flush();
     	out.close();
@@ -229,29 +229,17 @@ public class Gallery {
         InputStream in = null; //java.io
         ResponseEntity<byte[]> entity = null;
         try {
-            // �솗�옣�옄瑜� 異붿텧�븯�뿬 formatName�뿉 ���옣
             String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-            // 異붿텧�븳 �솗�옣�옄瑜� MediaUtils�겢�옒�뒪�뿉�꽌  �씠誘몄��뙆�씪�뿬遺�瑜� 寃��궗�븯怨� 由ы꽩諛쏆븘 mType�뿉 ���옣
             MediaType mType = MediaUtils.getMediaType(formatName);
-            // �뿤�뜑 援ъ꽦 媛앹껜(�쇅遺��뿉�꽌 �뜲�씠�꽣瑜� 二쇨퀬諛쏆쓣 �븣�뿉�뒗 header�� body瑜� 援ъ꽦�빐�빞�븯湲� �븣臾몄뿉)
             HttpHeaders headers = new HttpHeaders();
-            // InputStream �깮�꽦
             in = new FileInputStream(uploadPath + fileName);
-            // �씠誘몄� �뙆�씪�씠硫�
             if (mType != null) { 
                 headers.setContentType(mType);
-            // �씠誘몄�媛� �븘�땲硫�
             } else { 
                 fileName = fileName.substring(fileName.indexOf("_") + 1);
-                // �떎�슫濡쒕뱶�슜 而⑦뀗�듃 ���엯
                 headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-                // 
-                // 諛붿씠�듃諛곗뿴�쓣 �뒪�듃留곸쑝濡� : new String(fileName.getBytes("utf-8"),"iso-8859-1") * iso-8859-1 �꽌�쑀�읇�뼵�뼱, �겙 �뵲�샂�몴 �궡遺��뿉  " \" �궡�슜 \" "
-                // �뙆�씪�쓽 �븳湲� 源⑥쭚 諛⑹�
                 headers.add("Content-Disposition", "attachment; filename=\""+new String(fileName.getBytes("utf-8"), "iso-8859-1")+"\"");
-                //headers.add("Content-Disposition", "attachment; filename='"+fileName+"'");
             }
-            // 諛붿씠�듃諛곗뿴, �뿤�뜑, HTTP�긽�깭肄붾뱶
             entity = new ResponseEntity<byte[]>(IOUtil.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -421,11 +409,11 @@ public class Gallery {
             galleryservice.replydelete(idx);
             // �뙎湲� �궘�젣媛� �꽦怨듯븯硫� �꽦怨� �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (Exception e) { 
             e.printStackTrace();
             // �뙎湲� �궘�젣媛� �떎�뙣�븯硫� �떎�뙣 �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        } 
         // �궘�젣 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
         return entity;
     }

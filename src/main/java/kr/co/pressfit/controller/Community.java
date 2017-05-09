@@ -89,7 +89,11 @@ public class Community {
 
 
     
+<<<<<<< HEAD
     // 02_01. 寃뚯떆湲� �옉�꽦�솕硫�  
+=======
+    // 02_01. 寃뚯떆湲� �옉�꽦�솕硫�
+>>>>>>> origin/Gan-G
     // @RequestMapping("board/write.do")
     // value="", method="�쟾�넚諛⑹떇"
     @RequestMapping(value="write.do", method=RequestMethod.GET)
@@ -101,7 +105,11 @@ public class Community {
     public String insert(@ModelAttribute CommunityVO vo, HttpSession session) throws Exception{
         // session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
         String writer = (String) session.getAttribute("id");
+<<<<<<< HEAD
 
+=======
+        // vo�뿉 writer瑜� �꽭�똿
+>>>>>>> origin/Gan-G
         vo.setWriter(writer);
         communityservice.create(vo);
         return "redirect:list.do";
@@ -188,7 +196,7 @@ public class Community {
     	PrintWriter printwriter = null;
     	String fileName = upload.getOriginalFilename();
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload"+fileName;
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");
