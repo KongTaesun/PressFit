@@ -362,8 +362,10 @@ public class TMouse {
         int start = replyPager.getPageBegin();
         // 占쎌겱占쎌삺 占쎈읂占쎌뵠筌욑옙占쎌벥 占쎈읂占쎌뵠筌욑옙  占쎄국 甕곕뜇�깈
         int end = replyPager.getPageEnd();
+        
+        
         List<ReplyVO> list = tmouseservice.replylist(idx, start, end, session);
-        System.out.println(list);
+        System.out.println("리플라이리스트"+list);
         // �뀎怨쀬뵠�뵳占� 筌욑옙占쎌젟
         mav.setViewName(folder+"/replyList");
         // �뀎怨쀫퓠 占쎌읈占쎈뼎占쎈막 占쎈쑓占쎌뵠占쎄숲 筌욑옙占쎌젟

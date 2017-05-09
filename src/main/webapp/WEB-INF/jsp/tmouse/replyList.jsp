@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
 button {
 	font-family: Arial, Helvetica, sans-serif;
@@ -26,62 +27,48 @@ button {
 .row_box{
 padding-bottom: 20px;
 margin-bottom: 20px;
-border-bottom: 1px solid #BDBDBD;
+border-bottom: 1px dotted #BDBDBD;
 width:58%;
-
 }
+
+.panel-default1 >.panel-heading {
+    margin-left: 140px;
+    padding: 0px;
+}
+
+.panel1 {
+padding-bottom:20px;
+}
+
+
 </style>
 </head>
 <body>
-
-
-
-	<%-- <div class="row">
-	<!-- 프로필사진 -->
-	<div class="col-sm-1">
-		<div class="thumbnail">
-			<img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-		</div>
-	</div>
-	<div class="col-sm-5">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<strong>${row.replayer}</strong> <span class="text-muted">(<fmt:formatDate value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss"/>)</span>
-			</div>
-			<div class="panel-body">${row.replytext}</div>
-		</div>
-	</div>
-</div> --%>
-
-
-
-
 	<!-- 댓글 목록 -->
 	<div class="row">
 		<c:forEach var="row" items="${list}">
 		<div class="row_box">
 			<!-- 프로필사진 -->
-			<div class="col-sm-2" style="float:none">
-				<div class="thumbnail">
-					<img class="img-responsive user-photo"
-						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+			
+			<div class="col-sm-5" style="float:none; width:100%;">
+			<div class="col-sm-2" style="float:left; padding:0px;">
+				<div class="thumbnail" style="margin-bottom:0px; border:0px;">
+					<img class="img-responsive user-photo" src="${path}/resources/upload/${row.cpicture}"
+					style="height: 90px; width: 90px; border-radius: 100px;"> 
 				</div>
 			</div>
-			<div class="col-sm-5" style="float:none; width:100%;">
-
-				<div class="panel panel-default">
+				<div class="panel1 panel-default1">
 					<div class="panel-heading">
 						<strong>${row.replayer}</strong> <span class="text-muted">(<fmt:formatDate
 								value="${row.regdate}" pattern="yyyy-MM-dd HH:mm:ss" />)
 						</span>
 					</div>
-					<div class="panel-body">${row.replytext}</div>
+					<div class="panel-body" style="margin-left: 140px; margin-top: 15px; padding:0px;">${row.replytext}</div>
+					
 				</div>
 			</div>
-			<div style="padding: 0 16px;">
+			<div style="margin-left: 550px;"> 
 				<!-- 본인 댓글만 수정버튼 생성되도록 처리 -->
-				<input type="button" id="btnModify" value="댓글보기"
-					onclick="showReplyModify('${boardno}/${row.idx}')">
 				<c:if test="${sessionScope.id == row.replayer}">
 					<input type="button" id="btnModify" value="수정"
 						onclick="showReplyModify('${boardno}/${row.idx}')">

@@ -13,6 +13,9 @@ public class ReplyVO {
 	private int ref;
 	private int turn;
 	private int level;
+	private String cpicture;
+	
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -73,11 +76,19 @@ public class ReplyVO {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	public String getCpicture() {
+		return cpicture;
+	}
+	public void setCpicture(String cpicture) {
+		this.cpicture = cpicture;
+	}
 	@Override
 	public String toString() {
-		return "CommunityReplyVO [idx=" + idx + ", boardno=" + boardno + ", replytext=" + replytext + ", replayer="
-				+ replayer + ", regdate=" + regdate + ", secret_reply=" + secret_reply + ", showdel=" + showdel
-				+ ", ref=" + ref + ", turn=" + turn + ", level=" + level + "]";
+		return "ReplyVO [idx=" + idx + ", boardno=" + boardno + ", replytext=" + replytext + ", replayer=" + replayer
+				+ ", regdate=" + regdate + ", secret_reply=" + secret_reply + ", showdel=" + showdel + ", ref=" + ref
+				+ ", turn=" + turn + ", level=" + level + ", cpicture=" + cpicture + "]";
 	}
+	
+	
 	
  }
