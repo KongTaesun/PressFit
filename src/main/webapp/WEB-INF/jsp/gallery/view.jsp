@@ -28,12 +28,20 @@ button.hover {
     color: #000000;
     border: 1px solid #879fff;
 }
+.replytextstyle {
+	border: 1px solid #858585;
+	border-left: 1px solid #858585;
+	margin-top: 10px;
+	margin-bottom: 17px;
+	height: 75px;
+}
+
 .replytextdiv {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 50px;
-    background: lavenderblush;
-    height: 195px;
+	width: 650px;
+	text-align: center;
+	margin-bottom: 50px;
+	background: #f9f9f9;
+	height: 195px;
 }
 </style>
 <script>
@@ -245,16 +253,27 @@ button.hover {
 					<div class="tab-content review">
                        	<div role="tabpanel" class="tab-pane active" id="reviews">
                            	<div id="product-comments-block-tab">
-                               	<div class="replytextdiv" style=" text-align: center;">
-                               		<br/>
+                               <div style="width: 650px; text-align: center;"
+									class="replytextdiv">
+									<br>
 									<!-- 로그인 한 회원에게만 댓글 작성폼이 보이게 처리 -->
-								    <c:if test="${sessionScope.id != null}">    
-								    	<textarea rows="5" cols="160" id="replytext" placeholder="댓글을 작성해주세요"></textarea>
-								    	<br/>
-								        <!-- 비밀댓글 체크박스 -->
-								        <input type="checkbox" id="secretReply">비밀 댓글
-								        <button type="button" id="btnReply">댓글 작성</button>
-								    </c:if>
+									<c:if test="${sessionScope.id != null}">
+										<textarea rows="5" cols="80" id="replytext"
+											class="replytextstyle" placeholder="댓글을 작성해주세요"></textarea>
+										<br>
+										<!-- 비밀댓글 체크박스 -->
+										<button type="button" id="btnReply"
+											style="margin-left: 60px; color: black;">댓글 작성</button> &nbsp;
+									            <input type="checkbox" id="secretReply"> 비밀 댓글 
+									</c:if>
+									<!-- 로그인하지 않았을 경우 -->
+									<c:if test="${sessionScope.id == null}">
+										<div style="margin-top: 65px;">
+											<a href="${path}/login/login.do"
+												style="background: lavenderblush; border: aliceblue; font-weight: bold; color: black;">로그인</a>
+											후 댓글 작성 가능합니다!
+										</div>
+									</c:if>
 								</div>
                                 <!-- 댓글 목록 출력할 위치 -->
    								<div id="listReply" ></div>

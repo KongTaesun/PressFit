@@ -145,7 +145,7 @@
     <select id="listReply" resultType="kr.co.pressfit.vo.ReplyVO">
         <include refid="pagingHeader"/>
             SELECT @ROWNUM:=@ROWNUM+1 AS ROWNUM,
-              r.idx, r.boardno, r.replytext, r.replayer, r.secret_reply, r.showdel, r.regdate,r.ref,r.turn,r.level
+              r.idx, r.boardno, r.replytext, r.replayer, r.secret_reply, r.showdel, r.regdate,r.ref,r.turn,r.level, m.cpicture
             FROM GalleryReply r, Cmember m,(SELECT @ROWNUM := 0) R
             WHERE r.replayer = m.id
               AND boardno = #{boardno}
