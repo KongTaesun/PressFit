@@ -5,7 +5,7 @@
 	<select id="listAll" resultType="kr.co.pressfit.vo.CommunityVO">
 	    <!-- 목록 조회 및 페이징 전체 쿼리 -->
 	    <include refid="pagingHeader"></include>
-		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.subtitle, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
       	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
       	WHERE b.writer = m.id AND showdel = 'y'

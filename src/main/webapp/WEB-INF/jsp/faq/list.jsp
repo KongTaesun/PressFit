@@ -218,8 +218,8 @@ button.hover {
                                              	  ${row.idx}
                                              	 </span> 
                                              	 <span class="txt_sub">
-                                             	 ${row.subtitle}
-                                             	 </span>
+                                             	 ${row.subtitle}  
+                                             	 </span> 
                                              	  
                                              	 <span class="txt_date">
                                              	 <fmt:formatDate pattern="yyyy.mm.dd" value="${row.regdate}"/>
@@ -319,6 +319,6 @@ button.hover {
                
 
          
-</body>
 <%@ include file="/resources/include/footer.jsp"%>
+</body>
 </html>

@@ -31,7 +31,7 @@
  }
 </script>
 
-<body>
+<body> 
 
 	<div id="kakaoContent" class="cont_order" role="main">
 		<div id="cMain">
@@ -65,7 +65,7 @@
 					<dd>
 						<div class="box_input"><input class="tf_g" id="oaPhone" name="oaPhone" type="text" max="12" value="${row.hp}" readonly="readonly"></div>
 					</dd>
-					<dt><label for="orderPostal">우편번호</label><span class="ico_friends ico_star">필수입력</span></dt>
+					<dt><label for="orderPostal">우편번호</label><span class="ico_friends ico_star">필수입력</span></dt> 
 					<dd>
 						<div class="box_input box_postal"><input class="tf_g" id="orderPostal" name="oaZoneCode_txt" type="text" maxlength="5" value="${row.post }" readonly="readonly"></div>
 					</dd>
