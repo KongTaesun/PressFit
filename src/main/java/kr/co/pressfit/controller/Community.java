@@ -42,12 +42,12 @@ import kr.co.pressfit.utill.UploadFileUtils;
 import kr.co.pressfit.vo.ReplyVO;
 import kr.co.pressfit.vo.CommunityVO;
 
-@Controller    // 현재 클래스를 컨트롤러 빈(bean)으로 등록
+@Controller    // �쁽�옱 �겢�옒�뒪瑜� 而⑦듃濡ㅻ윭 鍮�(bean)�쑝濡� �벑濡�
 @RequestMapping("/community/*")
 public class Community {
 	private static final Logger logger = LoggerFactory.getLogger(Community.class);
-    // 의존관계 주입 => BoardServiceImpl 생성
-    // IoC 의존관계 역전
+    // �쓽議닿�怨� 二쇱엯 => BoardServiceImpl �깮�꽦
+    // IoC �쓽議닿�怨� �뿭�쟾
     @Inject
     CommunityService communityservice;
     String folder = "community";
@@ -55,69 +55,69 @@ public class Community {
     @Resource(name="uploadPath")
     String uploadPath;
     
-    // 01. 게시글 목록
+    // 01. 寃뚯떆湲� 紐⑸줉
     @RequestMapping("list.do")
-    // @RequestParam(defaultValue="") ==> 기본값 할당 : 현재페이지를 1로 초기화
+    // @RequestParam(defaultValue="") ==> 湲곕낯媛� �븷�떦 : �쁽�옱�럹�씠吏�瑜� 1濡� 珥덇린�솕
     public ModelAndView list(@RequestParam(defaultValue="title") String searchOption,
                             @RequestParam(defaultValue="") String keyword,
                             @RequestParam(defaultValue="1") int curPage) throws Exception{
         
-        // 레코드의 갯수 계산
+        // �젅肄붾뱶�쓽 媛��닔 怨꾩궛
         int count = communityservice.countArticle(searchOption, keyword);
         
-        // 페이지 나누기 관련 처리
+        // �럹�씠吏� �굹�늻湲� 愿��젴 泥섎━
         BoardPager boardPager = new BoardPager(count, curPage);
         int start = boardPager.getPageBegin();
         int end = boardPager.getPageEnd();
         
         List<CommunityVO> list = communityservice.listAll(start, end, searchOption, keyword);
         
-        // 데이터를 맵에 저장
+        // �뜲�씠�꽣瑜� 留듭뿉 ���옣
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("list", list); // list
-        map.put("count", count); // 레코드의 갯수
-        map.put("searchOption", searchOption); // 검색옵션
-        map.put("keyword", keyword); // 검색키워드
+        map.put("count", count); // �젅肄붾뱶�쓽 媛��닔
+        map.put("searchOption", searchOption); // 寃��깋�샃�뀡
+        map.put("keyword", keyword); // 寃��깋�궎�썙�뱶
         map.put("boardPager", boardPager);
         
         ModelAndView mav = new ModelAndView();
-        mav.addObject("map", map); // 맵에 저장된 데이터를 mav에 저장
-        mav.setViewName(folder+"/list"); // 뷰를 list.jsp로 설정
+        mav.addObject("map", map); // 留듭뿉 ���옣�맂 �뜲�씠�꽣瑜� mav�뿉 ���옣
+        mav.setViewName(folder+"/list"); // 酉곕�� list.jsp濡� �꽕�젙
         
-        return mav; // list.jsp로 List가 전달된다.
+        return mav; // list.jsp濡� List媛� �쟾�떖�맂�떎.
     }
 
 
     
-    // 02_01. 게시글 작성화면
+    // 02_01. 寃뚯떆湲� �옉�꽦�솕硫�
     // @RequestMapping("board/write.do")
-    // value="", method="전송방식"
+    // value="", method="�쟾�넚諛⑹떇"
     @RequestMapping(value="write.do", method=RequestMethod.GET)
     public String write(){
-        return folder+"/write"; // write.jsp로 이동
+        return folder+"/write"; // write.jsp濡� �씠�룞
     }
     
     @RequestMapping(value="insert.do", method=RequestMethod.POST)
     public String insert(@ModelAttribute CommunityVO vo, HttpSession session) throws Exception{
-        // session에 저장된 userId를 writer에 저장
+        // session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
         String writer = (String) session.getAttribute("id");
-        // vo에 writer를 세팅
+        // vo�뿉 writer瑜� �꽭�똿
         vo.setWriter(writer);
         communityservice.create(vo);
         return "redirect:list.do";
     }
     
-    // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
-    // @RequestParam : get/post방식으로 전달된 변수 1개
-    // HttpSession 세션객체
- // 03. 게시글 상세내용 조회, 게시글 조회수 증가 처리
+    // 03. 寃뚯떆湲� �긽�꽭�궡�슜 議고쉶, 寃뚯떆湲� 議고쉶�닔 利앷� 泥섎━
+    // @RequestParam : get/post諛⑹떇�쑝濡� �쟾�떖�맂 蹂��닔 1媛�
+    // HttpSession �꽭�뀡媛앹껜
+ // 03. 寃뚯떆湲� �긽�꽭�궡�슜 議고쉶, 寃뚯떆湲� 議고쉶�닔 利앷� 泥섎━
     @RequestMapping(value="view.do", method=RequestMethod.GET)
     public ModelAndView view(@RequestParam int idx, @RequestParam int curPage, @RequestParam String searchOption,
                             @RequestParam String keyword, HttpSession session) throws Exception{
     	communityservice.increaseViewcnt(idx, session);
         ModelAndView mav = new ModelAndView();
         mav.setViewName(folder+"/view");
-        // 댓글의 수를 맵에 저장 : 댓글이 존재하는 게시물의 삭제처리 방지하기 위해 
+        // �뙎湲��쓽 �닔瑜� 留듭뿉 ���옣 : �뙎湲��씠 議댁옱�븯�뒗 寃뚯떆臾쇱쓽 �궘�젣泥섎━ 諛⑹��븯湲� �쐞�빐 
         mav.addObject("count", communityservice.replycount(idx)); 
         mav.addObject("dto", communityservice.read(idx));
         mav.addObject("curPage", curPage);
@@ -127,8 +127,8 @@ public class Community {
         return mav;
     }
     
-    // 04. 게시글 수정
-    // 폼에서 입력한 내용들은 @ModelAttribute BoardVO vo로 전달됨
+    // 04. 寃뚯떆湲� �닔�젙
+    // �뤌�뿉�꽌 �엯�젰�븳 �궡�슜�뱾�� @ModelAttribute BoardVO vo濡� �쟾�떖�맖
     @RequestMapping(value="update.do", method=RequestMethod.GET)
     public ModelAndView update(@ModelAttribute CommunityVO vo) throws Exception{
     	ModelAndView mav = new ModelAndView();
@@ -137,8 +137,8 @@ public class Community {
     	logger.info("mav:", mav);
         return mav;
     }
- // 04. 게시글 수정
-    // 폼에서 입력한 내용들은 @ModelAttribute BoardVO vo로 전달됨
+ // 04. 寃뚯떆湲� �닔�젙
+    // �뤌�뿉�꽌 �엯�젰�븳 �궡�슜�뱾�� @ModelAttribute BoardVO vo濡� �쟾�떖�맖
     @RequestMapping(value="cmt.do", method=RequestMethod.GET)
     public ModelAndView cmt(@ModelAttribute CommunityVO vo) throws Exception{
     	ModelAndView mav = new ModelAndView();
@@ -158,24 +158,24 @@ public class Community {
     }
     @RequestMapping(value="cmtinsert.do", method=RequestMethod.POST)
     public String cmtinsert(@ModelAttribute CommunityVO vo, HttpSession session) throws Exception{
-        // session에 저장된 userId를 writer에 저장
+        // session�뿉 ���옣�맂 userId瑜� writer�뿉 ���옣
         String writer = (String) session.getAttribute("id");
-        // vo에 writer를 세팅
+        // vo�뿉 writer瑜� �꽭�똿
         vo.setWriter(writer);
         communityservice.createcmt(vo);
         
         return "redirect:list.do";
     }
     
-    // 05. 게시글 삭제
+    // 05. 寃뚯떆湲� �궘�젣
     @RequestMapping("delete.do")
     public String delete(@RequestParam int idx) throws Exception{
         communityservice.delete(idx);
         return "redirect:list.do";
     }
-    // 게시글 첨부파일 목록 매핑
+    // 寃뚯떆湲� 泥⑤��뙆�씪 紐⑸줉 留ㅽ븨
     @RequestMapping("/getAttach/{idx}")
-    @ResponseBody // view가 아닌 data를 리턴
+    @ResponseBody // view媛� �븘�땶 data瑜� 由ы꽩
     public List<String> getAttach(@PathVariable("idx") int idx){
         return communityservice.getAttach(idx);
     }
@@ -188,28 +188,28 @@ public class Community {
     	PrintWriter printwriter = null;
     	String fileName = upload.getOriginalFilename();
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload"+fileName;
+    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");
     	printwriter = response.getWriter();
     	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
     	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
-    			+callback+",'"+fileUrl+"','이미지가 업로드 되었습니다.')"
+    			+callback+",'"+fileUrl+"','�씠誘몄�媛� �뾽濡쒕뱶 �릺�뿀�뒿�땲�떎.')"
     					+ "</script>");
     	printwriter.flush();
     	out.close();
     } 
 
-    // 4. Ajax업로드 페이지 매핑
+    // 4. Ajax�뾽濡쒕뱶 �럹�씠吏� 留ㅽ븨
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.GET)
     public void uploadAjax(){
-        // uploadAjax.jsp로 포워딩
+        // uploadAjax.jsp濡� �룷�썙�뵫
     }
 
-    // 5. Ajax업로드 처리 매핑
-    // 파일의 한글처리 : produces="text/plain;charset=utf-8"
-    @ResponseBody // view가 아닌 data리턴
+    // 5. Ajax�뾽濡쒕뱶 泥섎━ 留ㅽ븨
+    // �뙆�씪�쓽 �븳湲�泥섎━ : produces="text/plain;charset=utf-8"
+    @ResponseBody // view媛� �븘�땶 data由ы꽩
     @RequestMapping(value="/upload/uploadAjax.do", method=RequestMethod.POST, produces="text/plain;charset=utf-8")
     public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
         logger.info("originalName : "+file.getOriginalFilename());
@@ -218,105 +218,105 @@ public class Community {
         return new ResponseEntity<String>(UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
     }
     
-    // 6. 이미지 표시 매핑
-    @ResponseBody // view가 아닌 data리턴
+    // 6. �씠誘몄� �몴�떆 留ㅽ븨
+    @ResponseBody // view媛� �븘�땶 data由ы꽩
     @RequestMapping("/upload/displayFile")
     public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
-        // 서버의 파일을 다운로드하기 위한 스트림
+        // �꽌踰꾩쓽 �뙆�씪�쓣 �떎�슫濡쒕뱶�븯湲� �쐞�븳 �뒪�듃由�
         InputStream in = null; //java.io
         ResponseEntity<byte[]> entity = null;
         try {
-            // 확장자를 추출하여 formatName에 저장
+            // �솗�옣�옄瑜� 異붿텧�븯�뿬 formatName�뿉 ���옣
             String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-            // 추출한 확장자를 MediaUtils클래스에서  이미지파일여부를 검사하고 리턴받아 mType에 저장
+            // 異붿텧�븳 �솗�옣�옄瑜� MediaUtils�겢�옒�뒪�뿉�꽌  �씠誘몄��뙆�씪�뿬遺�瑜� 寃��궗�븯怨� 由ы꽩諛쏆븘 mType�뿉 ���옣
             MediaType mType = MediaUtils.getMediaType(formatName);
-            // 헤더 구성 객체(외부에서 데이터를 주고받을 때에는 header와 body를 구성해야하기 때문에)
+            // �뿤�뜑 援ъ꽦 媛앹껜(�쇅遺��뿉�꽌 �뜲�씠�꽣瑜� 二쇨퀬諛쏆쓣 �븣�뿉�뒗 header�� body瑜� 援ъ꽦�빐�빞�븯湲� �븣臾몄뿉)
             HttpHeaders headers = new HttpHeaders();
-            // InputStream 생성
+            // InputStream �깮�꽦
             in = new FileInputStream(uploadPath + fileName);
-            // 이미지 파일이면
+            // �씠誘몄� �뙆�씪�씠硫�
             if (mType != null) { 
                 headers.setContentType(mType);
-            // 이미지가 아니면
+            // �씠誘몄�媛� �븘�땲硫�
             } else { 
                 fileName = fileName.substring(fileName.indexOf("_") + 1);
-                // 다운로드용 컨텐트 타입
+                // �떎�슫濡쒕뱶�슜 而⑦뀗�듃 ���엯
                 headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
                 // 
-                // 바이트배열을 스트링으로 : new String(fileName.getBytes("utf-8"),"iso-8859-1") * iso-8859-1 서유럽언어, 큰 따옴표 내부에  " \" 내용 \" "
-                // 파일의 한글 깨짐 방지
+                // 諛붿씠�듃諛곗뿴�쓣 �뒪�듃留곸쑝濡� : new String(fileName.getBytes("utf-8"),"iso-8859-1") * iso-8859-1 �꽌�쑀�읇�뼵�뼱, �겙 �뵲�샂�몴 �궡遺��뿉  " \" �궡�슜 \" "
+                // �뙆�씪�쓽 �븳湲� 源⑥쭚 諛⑹�
                 headers.add("Content-Disposition", "attachment; filename=\""+new String(fileName.getBytes("utf-8"), "iso-8859-1")+"\"");
                 //headers.add("Content-Disposition", "attachment; filename='"+fileName+"'");
             }
-            // 바이트배열, 헤더, HTTP상태코드
+            // 諛붿씠�듃諛곗뿴, �뿤�뜑, HTTP�긽�깭肄붾뱶
             entity = new ResponseEntity<byte[]>(IOUtil.toByteArray(in), headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // HTTP상태 코드()
+            // HTTP�긽�깭 肄붾뱶()
             entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
         } finally {
-            in.close(); //스트림 닫기
+            in.close(); //�뒪�듃由� �떕湲�
         }
         return entity;
     }
 
-    // 7. 파일 삭제 매핑
-    @ResponseBody // view가 아닌 데이터 리턴
+    // 7. �뙆�씪 �궘�젣 留ㅽ븨
+    @ResponseBody // view媛� �븘�땶 �뜲�씠�꽣 由ы꽩
     @RequestMapping(value = "/upload/deleteFile.do", method = RequestMethod.POST)
     public ResponseEntity<String> deleteFile(String fileName) {
-        // 파일의 확장자 추출
+        // �뙆�씪�쓽 �솗�옣�옄 異붿텧
         String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
-        // 이미지 파일 여부 검사
+        // �씠誘몄� �뙆�씪 �뿬遺� 寃��궗
         MediaType mType = MediaUtils.getMediaType(formatName);
-        // 이미지의 경우(썸네일 + 원본파일 삭제), 이미지가 아니면 원본파일만 삭제
-        // 이미지 파일이면
+        // �씠誘몄��쓽 寃쎌슦(�뜽�꽕�씪 + �썝蹂명뙆�씪 �궘�젣), �씠誘몄�媛� �븘�땲硫� �썝蹂명뙆�씪留� �궘�젣
+        // �씠誘몄� �뙆�씪�씠硫�
         if (mType != null) {
-            // 썸네일 이미지 파일 추출
+            // �뜽�꽕�씪 �씠誘몄� �뙆�씪 異붿텧
             String front = fileName.substring(0, 12);
             String end = fileName.substring(14);
-            // 썸네일 이미지 삭제
+            // �뜽�꽕�씪 �씠誘몄� �궘�젣
             new File(uploadPath + (front + end).replace('/', File.separatorChar)).delete();
         }
-        // 원본 파일 삭제
+        // �썝蹂� �뙆�씪 �궘�젣
         new File(uploadPath + fileName.replace('/', File.separatorChar)).delete();
 
-        // 레코드 삭제
+        // �젅肄붾뱶 �궘�젣
         communityservice.deleteFile(fileName);
 
-        // 데이터와 http 상태 코드 전송
+        // �뜲�씠�꽣�� http �긽�깭 肄붾뱶 �쟾�넚
         return new ResponseEntity<String>("deleted", HttpStatus.OK);
     }
-    // 1_2. 댓글입력 (@RestController방식으로 json전달하여 댓글입력)
-    // @ResponseEntity : 데이터 + http status code
-    // @ResponseBody : 객체를 json으로 (json - String)
-    // @RequestBody : json을 객체로
+    // 1_2. �뙎湲��엯�젰 (@RestController諛⑹떇�쑝濡� json�쟾�떖�븯�뿬 �뙎湲��엯�젰)
+    // @ResponseEntity : �뜲�씠�꽣 + http status code
+    // @ResponseBody : 媛앹껜瑜� json�쑝濡� (json - String)
+    // @RequestBody : json�쓣 媛앹껜濡�
     @RequestMapping(value="/reply/insertRest.do", method=RequestMethod.POST)
     public ResponseEntity<String> insertRest(@RequestBody ReplyVO vo, HttpSession session){
         ResponseEntity<String> entity = null;
         try {
-            // 세션에 저장된 회원아이디를 댓글작성자에 세팅
+            // �꽭�뀡�뿉 ���옣�맂 �쉶�썝�븘�씠�뵒瑜� �뙎湲��옉�꽦�옄�뿉 �꽭�똿
             String id = (String) session.getAttribute("id");
             vo.setReplayer(id);
-            // 댓글입력 메서드 호출
+            // �뙎湲��엯�젰 硫붿꽌�뱶 �샇異�
             communityservice.replycreate(vo);
-            // 댓글입력이 성공하면 성공메시지 저장
+            // �뙎湲��엯�젰�씠 �꽦怨듯븯硫� �꽦怨듬찓�떆吏� ���옣
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // 댓글입력이 실패하면 실패메시지 저장
+            // �뙎湲��엯�젰�씠 �떎�뙣�븯硫� �떎�뙣硫붿떆吏� ���옣
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // 입력 처리 HTTP 상태 메시지 리턴
+        // �엯�젰 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
         return entity;
     }
     @RequestMapping(value="/reply/insertRestcmt.do", method=RequestMethod.POST)
     public ResponseEntity<String> insertRestcmt(@RequestBody ReplyVO vo, HttpSession session){
         ResponseEntity<String> entity = null;
         try {
-            // 세션에 저장된 회원아이디를 댓글작성자에 세팅
+            // �꽭�뀡�뿉 ���옣�맂 �쉶�썝�븘�씠�뵒瑜� �뙎湲��옉�꽦�옄�뿉 �꽭�똿
             String id = (String) session.getAttribute("id");
             vo.setReplayer(id);
-            // 댓글입력 메서드 호출
+            // �뙎湲��엯�젰 硫붿꽌�뱶 �샇異�
             System.out.println(vo);
             ReplyVO pa = communityservice.replydetail(vo.getIdx());
             vo.setRef(pa.getRef());
@@ -324,67 +324,67 @@ public class Community {
             vo.setLevel(pa.getLevel());
             System.out.println(vo);
             communityservice.replycreatecmt(vo);
-            // 댓글입력이 성공하면 성공메시지 저장
+            // �뙎湲��엯�젰�씠 �꽦怨듯븯硫� �꽦怨듬찓�떆吏� ���옣
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // 댓글입력이 실패하면 실패메시지 저장
+            // �뙎湲��엯�젰�씠 �떎�뙣�븯硫� �떎�뙣硫붿떆吏� ���옣
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // 입력 처리 HTTP 상태 메시지 리턴
+        // �엯�젰 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
         return entity;
     }
-    // ** Controller 추가 사항 - Rest방식으로 댓글 목록, 수정, 삭제 처리
+    // ** Controller 異붽� �궗�빆 - Rest諛⑹떇�쑝濡� �뙎湲� 紐⑸줉, �닔�젙, �궘�젣 泥섎━
     
-    // 2_3. 댓글 목록(@RestController방식 :  json으로 전달하여 목록생성)
-    // /reply/list/1 => 1번 게시물의 댓글 목록 리턴
-    // /reply/list/2 => 2번 게시물의 댓글 목록 리턴
-    // @PathVariable : url에 입력될 변수값 지정
+    // 2_3. �뙎湲� 紐⑸줉(@RestController諛⑹떇 :  json�쑝濡� �쟾�떖�븯�뿬 紐⑸줉�깮�꽦)
+    // /reply/list/1 => 1踰� 寃뚯떆臾쇱쓽 �뙎湲� 紐⑸줉 由ы꽩
+    // /reply/list/2 => 2踰� 寃뚯떆臾쇱쓽 �뙎湲� 紐⑸줉 由ы꽩
+    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
     
     @RequestMapping(value="/reply/list/{idx}/{curPage}", method=RequestMethod.GET)
     public ModelAndView replyList(@PathVariable("idx") int idx, @PathVariable int curPage, ModelAndView mav, HttpSession session){
-        // 페이징 처리
-        int count = communityservice.replycount(idx); // 댓글 갯수
+        // �럹�씠吏� 泥섎━
+        int count = communityservice.replycount(idx); // �뙎湲� 媛��닔
         ReplyPager replyPager = new ReplyPager(count, curPage);
-        // 현재 페이지의 페이징 시작 번호
+        // �쁽�옱 �럹�씠吏��쓽 �럹�씠吏� �떆�옉 踰덊샇
         int start = replyPager.getPageBegin();
-        // 현재 페이지의 페이징  끝 번호
+        // �쁽�옱 �럹�씠吏��쓽 �럹�씠吏�  �걹 踰덊샇
         int end = replyPager.getPageEnd();
         List<ReplyVO> list = communityservice.replylist(idx, start, end, session);
         System.out.println(list);
-        // 뷰이름 지정
+        // 酉곗씠由� 吏��젙
         mav.setViewName(folder+"/replyList");
-        // 뷰에 전달할 데이터 지정
+        // 酉곗뿉 �쟾�떖�븷 �뜲�씠�꽣 吏��젙
         mav.addObject("boardno", idx);
         mav.addObject("list", list);
         mav.addObject("replyPager", replyPager);
-        // replyList.jsp로 포워딩
+        // replyList.jsp濡� �룷�썙�뵫
         return mav;
     }
     
-    // 3. 댓글 상세 보기
-    // /reply/detail/1 => 1번 댓글의 상세화면 리턴
-    // /reply/detail/2 => 2번 댓글의 상세화면 리턴
-    // @PathVariable : url에 입력될 변수값 지정
+    // 3. �뙎湲� �긽�꽭 蹂닿린
+    // /reply/detail/1 => 1踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
+    // /reply/detail/2 => 2踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
+    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
     @RequestMapping(value="/reply/detail/{boardno}/{idx}", method=RequestMethod.GET)
     public ModelAndView replyDetail(@PathVariable("idx") Integer idx,
     		@PathVariable("boardno") Integer boardno,ModelAndView mav){
         ReplyVO vo = communityservice.replydetail(idx);
-        // 뷰이름 지정
+        // 酉곗씠由� 吏��젙
         mav.setViewName(folder+"/replyDetail");
-        // 뷰에 전달할 데이터 지정
+        // 酉곗뿉 �쟾�떖�븷 �뜲�씠�꽣 吏��젙
         mav.addObject("vo", vo);
-        // replyDetail.jsp로 포워딩
+        // replyDetail.jsp濡� �룷�썙�뵫
         return mav;
     }
-    // 3. 댓글 상세 보기
-    // /reply/detail/1 => 1번 댓글의 상세화면 리턴
-    // /reply/detail/2 => 2번 댓글의 상세화면 리턴
-    // @PathVariable : url에 입력될 변수값 지정
+    // 3. �뙎湲� �긽�꽭 蹂닿린
+    // /reply/detail/1 => 1踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
+    // /reply/detail/2 => 2踰� �뙎湲��쓽 �긽�꽭�솕硫� 由ы꽩
+    // @PathVariable : url�뿉 �엯�젰�맆 蹂��닔媛� 吏��젙
     @RequestMapping(value="/reply/Cmtdetail/{boardno}/{idx}", method=RequestMethod.GET)
     public ModelAndView replyCmtDetail(@PathVariable("idx") Integer idx,
     		@PathVariable("boardno") Integer boardno,ModelAndView mav){
-        // 뷰이름 지정
+        // 酉곗씠由� 吏��젙
     	mav.addObject("idx",idx);
     	mav.addObject("cmt","cmt");
     	mav.addObject("boardno",boardno);
@@ -392,39 +392,39 @@ public class Community {
         return mav;
     }
     
-    // 4. 댓글 수정 처리 - PUT:전체 수정, PATCH:일부수정
-    // RequestMethod를 여러 방식으로 설정할 경우 {}안에 작성
+    // 4. �뙎湲� �닔�젙 泥섎━ - PUT:�쟾泥� �닔�젙, PATCH:�씪遺��닔�젙
+    // RequestMethod瑜� �뿬�윭 諛⑹떇�쑝濡� �꽕�젙�븷 寃쎌슦 {}�븞�뿉 �옉�꽦
     @RequestMapping(value="/reply/update/{idx}", method={RequestMethod.PUT, RequestMethod.PATCH})
     public ResponseEntity<String> replyUpdate(@PathVariable("idx") Integer idx, @RequestBody ReplyVO vo){
         ResponseEntity<String> entity = null;
         try {
             vo.setIdx(idx);
             communityservice.replyupdate(vo);
-            // 댓글 수정이 성공하면 성공 상태메시지 저장
+            // �뙎湲� �닔�젙�씠 �꽦怨듯븯硫� �꽦怨� �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // 댓글 수정이 실패하면 실패 상태메시지 저장
+            // �뙎湲� �닔�젙�씠 �떎�뙣�븯硫� �떎�뙣 �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // 수정 처리 HTTP 상태 메시지 리턴
+        // �닔�젙 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
         return entity;
     }
     
-    // 5. 댓글 삭제처리
+    // 5. �뙎湲� �궘�젣泥섎━
     @RequestMapping(value="/reply/delete/{idx}")
     public ResponseEntity<String> replyDelete(@PathVariable("idx") Integer idx){
         ResponseEntity<String> entity = null;
         try {
             communityservice.replydelete(idx);
-            // 댓글 삭제가 성공하면 성공 상태메시지 저장
+            // �뙎湲� �궘�젣媛� �꽦怨듯븯硫� �꽦怨� �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>("success", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            // 댓글 삭제가 실패하면 실패 상태메시지 저장
+            // �뙎湲� �궘�젣媛� �떎�뙣�븯硫� �떎�뙣 �긽�깭硫붿떆吏� ���옣
             entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
-        // 삭제 처리 HTTP 상태 메시지 리턴
+        // �궘�젣 泥섎━ HTTP �긽�깭 硫붿떆吏� 由ы꽩
         return entity;
     }
 }
