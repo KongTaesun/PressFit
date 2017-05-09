@@ -253,12 +253,13 @@ input[type=text]:focus {
                                 
                                 
  <center>                               
-        <img class="center animated rollIn" src="${path}/resources/upload/${vo.cpicture}" alt="avatar"></center>
+        <img class="center animated rollIn" src="${path}/resources/upload/${vo.cpicture}" alt="${vo.name}"></center>
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
 			});
 		</script>
+		<br>
 		</center>
 <center>
          <p class="icons animated pulse"> 
