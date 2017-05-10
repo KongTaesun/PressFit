@@ -273,7 +273,7 @@ button.hover {
 														<img src="${path}/resources/upload${row.fullName}" class="thumb_g" alt="">
 													</a>
 													<div class="desc_basket">
-														주분번호 ${row.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row.cart_id}"/>
+														주문번호 ${row.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row.cart_id}"/>
 														<strong class="tit_product">
 															<a href="${path}/${row2.kind}/view.do?idx=${row2.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}" class="link_product">
 																${row.modelname}

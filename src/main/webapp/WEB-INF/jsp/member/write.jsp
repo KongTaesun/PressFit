@@ -298,12 +298,6 @@ button.btnbuy:hover {
     width: 25%; 
     height: 50px;
     margin-left: 22px;
-    /* border: 1px solid #d2d2d2;
-    font-size: 16px;
-    color: #1e1e1e;
-    line-height: 49px;
-    background-color: #fff;
-    text-align: center;  */
 }
 .box_input {
 input[type=text]:focus {
@@ -346,7 +340,7 @@ input[type=text]:focus {
 							<input type="hidden" name="marketing_email" value="false">
 						
 						
-						<div id="signup-agree" class="create-account-form" style="">
+						<div id="signup-agree" class="create-account-form" style="border:0px;">
 						
 						
 							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> 
@@ -439,7 +433,7 @@ input[type=text]:focus {
 							<dd>
 								<div class="box_input box_postal">
 								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호"></div>
-								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
+								<button type="button" class="btn_postal" onclick="DaumPostcode()" style="line-height: 0px;">주소검색</button>
 							</dd>
 							<dd>
 								<div class="box_input">

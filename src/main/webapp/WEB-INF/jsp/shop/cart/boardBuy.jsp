@@ -28,7 +28,7 @@ color:#980000;
     width: 200px;
     height: 50px;
     color: #fff; 
-    background-color: #f4c900;
+    background-color: #32B5F3;
     font-size: 20px;
     line-height: 21px;
     font-weight: 700;
@@ -42,8 +42,8 @@ color:#980000;
 
 <body>
 	<%@ include file="/resources/include/header.jsp"%>
-	<div class="div_body"> 
-		<div id="kakaoContent" class="cont_order">
+	<div class="shopping-area section-padding"> 
+		<div id="kakaoContent" class="cont_order" style="height:500px;">
 			<div class="row">
 				<div class="buy_Title">
 					<H2>결제가 완료되었습니다.</H2>

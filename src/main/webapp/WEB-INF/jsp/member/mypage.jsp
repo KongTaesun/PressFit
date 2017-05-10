@@ -131,7 +131,13 @@ input[type=text]:focus {
 	}
 }
 </style>
-
+<script type="text/javascript">
+function imgError(image) {
+    image.onerror = "";
+    image.src = "${path}/resources/writer/icon/130917_224626.png";
+    return true;
+}
+</script>
 <body>
 <!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
@@ -285,14 +291,14 @@ input[type=text]:focus {
 
 								<div class="create-account-form" align="center">
 									<img class="center animated rollIn"
-										src="${path}/resources/upload/${vo.cpicture}" alt="${vo.name}" />
+										src="${path}/resources/upload/${vo.cpicture}" alt="${vo.name}"  onerror="imgError(this);"/>
 									<script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
 			});
 		</script>
 
-									<div style="padding: 20px;">
+									<div style="padding: 30px;">
 										<h2>PressFit 소셜 친구들</h2>
 										<p class="icons animated pulse">
 											<a href="https://twitter.com/" target="_blank"> <span
