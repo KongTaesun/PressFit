@@ -206,7 +206,6 @@ button.hover {
                               <c:forEach var="row" items="${map.list}" varStatus="status">
                               <li>
                                  <div class="panel">
-                                 
                                     <div class="panel-heading" role="tab" id="headingOne">
                                        <h4 class="panel-title">
                                           <a class="link_board" data-toggle="collapse" data-parent="#accordion"
@@ -215,14 +214,15 @@ button.hover {
                                              	<span class="txt_info">
                                             
                                              	<span class="txt_cate">
-                                             	  ${row.idx}
-                                             	 </span> 
-                                             	 <span class="txt_sub">
-                                             	 ${row.subtitle}  
-                                             	 </span> 
+                                             	  [${row.subtitle}]
+                                             	 </span>  
+                                             	  
+                                             	
+                                             	 
                                              	  
                                              	 <span class="txt_date">
-                                             	 <fmt:formatDate pattern="yyyy.mm.dd" value="${row.regdate}"/>
+                                             	 <fmt:formatDate pattern="yyyy.MM.dd" value="${row.regdate}"/>
+                                             	 
                                              	    
                                              	 </span>
                                              </span>

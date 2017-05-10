@@ -120,7 +120,7 @@ $(document).ready(function(){
 	error: function(xhr) {
 		console.log('실패-',xhr);
 	}
-	});
+	});  
 	
 	$('#ei-slider').eislideshow({
 		easing		: 'easeOutExpo',
@@ -186,7 +186,7 @@ $(document).ready(function(){
                                         </li>
                                         <li>
                                             <a href="${path}/login/login.do">
-                                               <i class="fa fa-angle-double-right"></i>
+                                                <i class="fa fa-angle-double-right"></i>
                                               	  	로그인
                                             </a>
                                         </li>
