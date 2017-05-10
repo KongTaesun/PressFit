@@ -284,7 +284,7 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				 <fmt:formatDate pattern="yyyy.mm.dd" value="${row.orderdate}"/>
+							                        				 <fmt:formatDate pattern="yyyy.MM.dd" value="${row.orderdate}"/>
 																</span>
 															</li>
 															<%-- <li>
