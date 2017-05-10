@@ -281,12 +281,16 @@ button.hover {
     color: #666;
     text-align: center;
 }
+.banner-bottom > a {
+    color: #000;
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+}
 </style>
 <%@ include file="/resources/include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
-<script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
 <script>
 	$(document).ready(function() {
 		$('#one').show();
@@ -385,7 +389,7 @@ button.hover {
 		 		}, 2000);
 		 		var str = "";
 		 		str+= ' <div> ';
-				str+= ' <div class="product-wrapper" style="width: 100%;  height: 210px; text-align: center;"> ';
+				str+= ' <div class="product-wrapper" style="width: 100%;  height: 232px; text-align: center;"> ';
 				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list2.idx+'&curPage=1&searchOption=&keyword=" > ';
 				str+= ' <img src="${path}/resources/upload/'+data.list2.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
 				str+= ' <div class="banner-bottom1 text-center"> ';
@@ -396,7 +400,7 @@ button.hover {
 		 		
 		 		var str = "";
 		 		str+= ' <div> ';
-				str+= ' <div class="product-wrapper" style="width: 100%; height: 210px; text-align: center;"> ';
+				str+= ' <div class="product-wrapper" style="width: 100%; height: 232px; text-align: center;"> ';
 				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list3.idx+'&curPage=1&searchOption=&keyword=" > ';
 				str+= ' <img src="${path}/resources/upload/'+data.list3.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
 				str+= ' <div class="banner-bottom1 text-center"> ';
@@ -406,8 +410,24 @@ button.hover {
 		 		$('#keyboardRank').html(str);
 		 		
 		 		circleGraph(data.list1.mSalesAmount, data.list1.kSalesAmount);
-		 		lineBarGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
-		 		lineGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
+		 		console.log(data.list4);
+		 		console.log(data.list5);
+		 		
+		 		console.log(data.list5[0]);
+		 		console.log(data.list5[1]);
+		 		console.log(data.list5[2]);
+		 		console.log(data.list5[3]);
+		 		console.log(data.list5[4]);
+		 		barGraph(data.list4[0].mon,data.list4[1].mon,data.list4[2].mon,data.list4[3].mon,data.list4[4].mon,data.list4[5].mon,
+		 				data.list4[0].monthAmount,data.list4[1].monthAmount,data.list4[2].monthAmount,data.list4[3].monthAmount,data.list4[4].monthAmount,data.list4[5].monthAmount,
+		 				data.list5[0].monthAmount,data.list5[1].monthAmount,data.list5[2].monthAmount,data.list5[3].monthAmount,data.list5[4].monthAmount,data.list5[5].monthAmount);
+		 		lineGraph(data.list4[0].mon,data.list4[1].mon,data.list4[2].mon,data.list4[3].mon,data.list4[4].mon,data.list4[5].mon,
+		 				data.list4[0].monthSales/(data.list4[0].monthSales+data.list5[0].monthSales)*100,data.list4[1].monthSales/(data.list4[1].monthSales+data.list5[1].monthSales)*100,
+		 				data.list4[2].monthSales/(data.list4[2].monthSales+data.list5[2].monthSales)*100,data.list4[3].monthSales/(data.list4[3].monthSales+data.list5[3].monthSales)*100,
+		 				data.list4[4].monthSales/(data.list4[4].monthSales+data.list5[4].monthSales)*100,data.list4[5].monthSales/(data.list4[5].monthSales+data.list5[5].monthSales)*100,
+		 				data.list5[0].monthSales/(data.list4[0].monthSales+data.list5[0].monthSales)*100,data.list5[1].monthSales/(data.list4[1].monthSales+data.list5[1].monthSales)*100,
+		 				data.list5[2].monthSales/(data.list4[2].monthSales+data.list5[2].monthSales)*100,data.list5[3].monthSales/(data.list4[3].monthSales+data.list5[3].monthSales)*100,
+		 				data.list5[4].monthSales/(data.list4[4].monthSales+data.list5[4].monthSales)*100,data.list5[5].monthSales/(data.list4[5].monthSales+data.list5[5].monthSales)*100);
 		 	},
 		 	error: function(xhr) {
 		 	  console.log('실패 - ', xhr);
@@ -430,39 +450,59 @@ button.hover {
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 100)
 	};
-	function lineBarGraph(a,b,c,d,e,f){
-		var lineBarChartData = {
-				labels : [ a, b, c, d, e, f],
-				datasets : [
-						
-						{
-							fillColor : "rgba(220,220,220,0.5)",
-							strokeColor : "rgba(220,220,220,0.8)",
-							highlightFill : "rgba(220,220,220,0.75)",
-							highlightStroke : "rgba(220,220,220,1)",
-							data : [ randomScalingFactor(), randomScalingFactor(),
-									randomScalingFactor(), randomScalingFactor(),
-									randomScalingFactor(), randomScalingFactor() ]
-						},
-						{
-							fillColor : "rgba(151,187,205,0.5)",
-							strokeColor : "rgba(151,187,205,0.8)",
-							highlightFill : "rgba(151,187,205,0.75)",
-							highlightStroke : "rgba(151,187,205,1)",
-							data : [ randomScalingFactor(), randomScalingFactor(),
-									randomScalingFactor(), randomScalingFactor(),
-									randomScalingFactor(), randomScalingFactor() ]
-						} ]
-			}
-			var chart = null;
-			$(function() {
-				var ctx = document.getElementById("canvas5").getContext("2d");
-				chart = new Chart(ctx).LineBar(lineBarChartData, {
-					responsive : true
-				});
-			});
-	}
 	
+	function barGraph(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r){
+		var barChart = null;
+		var barChartData = {
+			labels : [a, b, c, d, e, f],
+			datasets : [
+				{
+					fillColor : "rgba(220,220,220,0.5)",
+					strokeColor : "rgba(220,220,220,0.8)",
+					highlightFill: "rgba(220,220,220,0.75)",
+					highlightStroke: "rgba(220,220,220,1)",
+					data : [ g, h, i, j, k, l ]
+				},
+				{
+					fillColor : "rgba(151,187,205,0.5)",
+					strokeColor : "rgba(151,187,205,0.8)",
+					highlightFill : "rgba(151,187,205,0.75)",
+					highlightStroke : "rgba(151,187,205,1)",
+					data : [ m,n,o,p,q,r ]
+				}
+			]
+
+		};
+
+		$(function() {
+			var ctx = document.getElementById("canvas5").getContext("2d");
+			barChart = new Chart(ctx).Bar(barChartData, {
+				scaleBeginAtZero : false,
+				scaleShowGridLines : true,
+				scaleGridLineColor : "rgba(0,0,0,0.05)",
+				scaleGridLineWidth : 1,
+				barShowStroke : false,
+				barStrokeWidth : 2,
+				barValueSpacing : 5,
+				barDatasetSpacing : 1,
+				onAnimationProgress: function() {
+					console.log("onAnimationProgress");
+				},
+				onAnimationComplete: function() {
+					console.log("onAnimationComplete");
+				}
+			});
+		});
+
+		$("canvas5").on("click", function(e) {
+			var activeBars = barChart.getBarsAtEvent(e);
+			console.log(activeBars);
+
+			for(var i in activeBars) {
+				console.log(activeBars[i].value);
+			}
+		});
+	}
 	
 	// 원그래프 
 	function circleGraph(a,b){
@@ -512,7 +552,7 @@ button.hover {
 	}
 	
 	//선그래프
-	function lineGraph(a,b,c,d,e,f){
+	function lineGraph(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r){
 		var months = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
 		var lineChart = null;
 		var lineChartData = {
@@ -526,7 +566,7 @@ button.hover {
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [1,2,3,4,5,6]
+					data : [Math.round(g*10)/10, Math.round(h*10)/10, Math.round(i*10)/10, Math.round(j*10)/10, Math.round(k*10)/10, Math.round(l*10)/10]
 				},
 				{
 					label: "My Second dataset",
@@ -536,7 +576,7 @@ button.hover {
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [10,50,60,30,20,100]
+					data : [Math.round(m*10)/10, Math.round(n*10)/10, Math.round(o*10)/10, Math.round(p*10)/10, Math.round(q*10)/10, Math.round(r*10)/10]
 				}
 			]
 
@@ -793,7 +833,7 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				${row1.orderdate}
+							                        				<fmt:formatDate pattern="yyyy.MM.dd" value="${row1.orderdate}"/>
 																</span>
 															</li>
 														</ul>
@@ -903,7 +943,7 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				${row2.orderdate}
+							                        				<fmt:formatDate pattern="yyyy.MM.dd" value="${row2.orderdate}"/>
 																</span>
 															</li>
 														</ul>
@@ -1013,7 +1053,7 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				${row3.orderdate}
+							                        				<fmt:formatDate pattern="yyyy.MM.dd" value="${row3.orderdate}"/>
 																</span>
 															</li>
 														</ul>
@@ -1048,7 +1088,7 @@ button.hover {
 		<div class="row">
 			<div class="banner-list" style="align:center">
 				<div class="col-md-4 col-sm-4">
-					<div class="single-banner" style="padding:5%">
+					<div class="single-banner" style="padding:1%">
 						<div style="height=350;width=350">
 							<div style="width:70%;">
 							<canvas id="canvas1" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
@@ -1059,27 +1099,27 @@ button.hover {
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a>제품 판매량</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
-					<div class="single-banner" style="padding:5%">
+					<div class="single-banner" style="padding:1%">
 						<div id="mouseRank" style="height=350;width=350">
 							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">마우스 판매 1위</a>
+							<a>마우스 판매 1위</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
-					<div class="single-banner" style="padding:5%">
+					<div class="single-banner" style="padding:1%">
 						<div id="keyboardRank" style="height=350;width=350">
 							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">키보드 판매 1위</a>
+							<a >키보드 판매 1위</a>
 						</div>
 					</div>
 				</div>
@@ -1088,7 +1128,7 @@ button.hover {
 		<div class="row">
 			<div class="banner-list" style="align:center">
 				<div class="col-md-6 col-sm-6">
-					<div class="single-banner" style="padding:5%">
+					<div class="single-banner" style="padding:1%">
 						<div style="height=350;width=350">
 							<div style="width:70%;">
 								<canvas id="canvas4" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
@@ -1099,13 +1139,13 @@ button.hover {
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">6개월 제품 수익률</a>
+							<a>월별 제품 수익률(%)</a>
 						</div>
 					</div>
 				</div>
 				
 				<div class="col-md-6 hidden-sm">
-					<div class="single-banner" style="padding:5%">
+					<div class="single-banner" style="padding:1%">
 						<div style="height=350;width=350">
 							<div style="width:80%;">
 								<canvas id="canvas5" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
@@ -1115,8 +1155,8 @@ button.hover {
 								</ul>
 							</div>
 						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">6개월 제품 판매량</a>
+						<div class="banner-bottom text-center" style="padding-top:10px;">
+							<a>월별 제품 판매량(개)</a>
 						</div>
 					</div>
 				</div>
@@ -1139,5 +1179,8 @@ button.hover {
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 		<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
 		<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
+		<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.min.js' />"></script>
+		<script type="text/javascript" src="<c:url value='/resources/recommendation/Chart.LlineBar.js' />"></script>
+		<script src="<c:url value='/resources/recommendation/Chart.StackedBar.js' />"></script>
     </body>
 </html>
