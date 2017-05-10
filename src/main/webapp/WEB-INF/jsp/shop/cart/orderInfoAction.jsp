@@ -170,7 +170,10 @@
  <div id="cEtc"></div>
 
 </div></div>
+
+
 	<%@ include file="/resources/include/footer.jsp"%>
+</body>
 	<script>
  
 $(function() {
@@ -185,5 +188,4 @@ $(function() {
  
 
 </script>  
-</body>
 </html>

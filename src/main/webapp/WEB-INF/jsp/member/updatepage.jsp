@@ -169,13 +169,7 @@ button.btnbuy:hover {
     float: left;
     width: 25%; 
     height: 50px;
-    margin-left: 22px;
-    /* border: 1px solid #d2d2d2;
-    font-size: 16px;
-    color: #1e1e1e;
-    line-height: 49px;
-    background-color: #fff;
-    text-align: center;  */
+    margin-left: 22px; 
 }
 .box_input {
 input[type=text]:focus {
@@ -183,6 +177,13 @@ input[type=text]:focus {
 	}
 }
 </style>
+<script type="text/javascript">
+function imgError(image) {
+    image.onerror = "";
+    image.src = "${path}/resources/writer/icon/130917_224626.png";
+    return true;
+}
+</script>
 </head>
 <body>
 <!-- Breadcrumbs Area Start -->
@@ -284,7 +285,7 @@ input[type=text]:focus {
 								<div class="box_input box_postal">
 								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호" value="${vo.post}"></div>
 							
-								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
+								<button type="button" class="btn_postal" onclick="DaumPostcode()" style="line-height: 0px;">주소검색</button>
 							</dd>
 							<dd> 
 								<div class="box_input">
@@ -315,15 +316,15 @@ input[type=text]:focus {
                                 
                                 
  <div class="create-account-form" align = "center">                                 
-        <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar">
+        <img class="center animated rollIn" src="${path}/resources/upload/${vo.cpicture}" alt="avatar"  onerror="imgError(this);">
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/member/updatepage/imageUpload.do"
 			});
 		</script>
                             
-             	<div class="panel panel-default">
-									<div class="panel-heading" role="tab" id="headingFour">
+             	<div class="panel panel-default" style="margin-top:15px; width:100%">
+									<div class="panel-heading" role="tab" id="headingFour" style="width:100%;">
 										<h4 class="panel-title">
 											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 												<i class="fa fa-building"></i>
