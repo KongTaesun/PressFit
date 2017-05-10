@@ -405,9 +405,9 @@ button.hover {
 					</span>
 					</span> 
 					
-									<c:if test="${sessionScope.id != null}">
+									<%-- <c:if test="${sessionScope.id != null}">
 										<button type="button" id="btnWrite" class="btn">글쓰기</button>
-									</c:if>
+									</c:if> --%>
 								</ul> 
 							</div>
 							</div>

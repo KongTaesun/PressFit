@@ -495,7 +495,7 @@ button.btnplus {
 						</c:if>
 					</div>
 					<p style="font-weight: normal;">제조사 : ${dto.manufacturecompany}</p>
-					<p style="font-weight: normal;">등록년월 : ${dto.registrationyear}</p>
+					<p style="font-weight: normal;">제조년월 : ${dto.registrationyear}</p>
 					<p style="font-weight: normal;">배송비 : 10만원 이상 배송비 무료</p>
 					<p style="font-weight: normal;">평균배송일 : 1.9일</p>
 

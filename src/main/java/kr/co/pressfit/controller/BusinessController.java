@@ -253,6 +253,10 @@ public class BusinessController {
         mav.addObject("list1", businessService.mainGraphData(id));
         mav.addObject("list2", businessService.mouseRank(id));
         mav.addObject("list3", businessService.keyboardRank(id));
+        String kind = "tmouse";
+        mav.addObject("list4", businessService.monthData(id, kind));
+        kind = "keyboard";
+        mav.addObject("list5", businessService.monthData(id, kind));
         return mav;
     }
 }

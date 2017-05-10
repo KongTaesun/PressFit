@@ -106,6 +106,11 @@ public class BusinessServiceImpl implements BusinessService {
 	public KeyboardVO keyboardRank(String id) throws Exception {
 		return BusinessDao.keyboardRank(id);
 	}
+
+	@Override
+	public List<GraphVO> monthData(String id, String kind) throws Exception {
+		return BusinessDao.monthData(id, kind);
+	}
     
     
 }

@@ -406,6 +406,8 @@ button.hover {
 		 		$('#keyboardRank').html(str);
 		 		
 		 		circleGraph(data.list1.mSalesAmount, data.list1.kSalesAmount);
+		 		lineBarGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
+		 		lineGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
 		 	},
 		 	error: function(xhr) {
 		 	  console.log('실패 - ', xhr);
@@ -424,123 +426,45 @@ button.hover {
 </script>
 
 <script> //그래프 스크립트
-	// 그래프 1
+	// 막대그래프
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 100)
 	};
-	
-	
-	
-	/* $.ajax({
-		type : "POST",
-		url: " ",
-	 	contentType: "text/plain; charset=utf-8",
-	 	dataType : "json",
-	 	success: function(data) {
-	 		var str=null;
-	 		str+=
-	 		$('cavaus2').html(str);
-	 	},
-	 	error: function(xhr) {
-	 	  console.log('실패 - ', xhr);
-	 	}
-	});
-	
-	$.ajax({
-		type : "POST",
-		url: " ",
-	 	contentType: "text/plain; charset=utf-8",
-	 	dataType : "json",
-	 	success: function(data) {
-	 		var str=null;
-	 		str+=
-	 		$('cavaus2').html(str);
-	 		$('cavaus2').html(str);
-	 		$('cavaus2').html(str);
-	 		$('cavaus2').html(str);
-	 		$('cavaus2').html(str);
-	 		$('cavaus2').html(str);
-	 	},
-	 	error: function(xhr) {
-	 	  console.log('실패 - ', xhr);
-	 	}
-	});
-	$.ajax({
-		type : "POST",
-		url: " ",
-	 	contentType: "text/plain; charset=utf-8",
-	 	dataType : "json",
-	 	success: function(data) {
-	 		var str=null;
-	 		str+=
-	 		$('cavaus2').html(str);
-	 	},
-	 	error: function(xhr) {
-	 	  console.log('실패 - ', xhr);
-	 	}
-	});
-	$.ajax({
-		type : "POST",
-		url: " ",
-	 	contentType: "text/plain; charset=utf-8",
-	 	dataType : "json",
-	 	success: function(data) {
-	 		var str=null;
-	 		str+=
-	 		$('cavaus2').html(str);
-	 	},
-	 	error: function(xhr) {
-	 	  console.log('실패 - ', xhr);
-	 	}
-	}); */
-	var lineBarChartData = {
-		labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		datasets : [
-				/* {
-					type : "line",
-					fillColor : "rgba(151,187,205,0)",
-					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
-				}, */
-				{
-					fillColor : "rgba(220,220,220,0.5)",
-					strokeColor : "rgba(220,220,220,0.8)",
-					highlightFill : "rgba(220,220,220,0.75)",
-					highlightStroke : "rgba(220,220,220,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor() ]
-				},
-				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,0.8)",
-					highlightFill : "rgba(151,187,205,0.75)",
-					highlightStroke : "rgba(151,187,205,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
-				} ]
+	function lineBarGraph(a,b,c,d,e,f){
+		var lineBarChartData = {
+				labels : [ a, b, c, d, e, f],
+				datasets : [
+						
+						{
+							fillColor : "rgba(220,220,220,0.5)",
+							strokeColor : "rgba(220,220,220,0.8)",
+							highlightFill : "rgba(220,220,220,0.75)",
+							highlightStroke : "rgba(220,220,220,1)",
+							data : [ randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor() ]
+						},
+						{
+							fillColor : "rgba(151,187,205,0.5)",
+							strokeColor : "rgba(151,187,205,0.8)",
+							highlightFill : "rgba(151,187,205,0.75)",
+							highlightStroke : "rgba(151,187,205,1)",
+							data : [ randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor() ]
+						} ]
+			}
+			var chart = null;
+			$(function() {
+				var ctx = document.getElementById("canvas5").getContext("2d");
+				chart = new Chart(ctx).LineBar(lineBarChartData, {
+					responsive : true
+				});
+			});
 	}
-	var chart = null;
-	$(function() {
-		var ctx = document.getElementById("canvas5").getContext("2d");
-		chart = new Chart(ctx).LineBar(lineBarChartData, {
-			responsive : true
-		});
-	});
 	
-	// 그래프 2
+	
+	// 원그래프 
 	function circleGraph(a,b){
 		var chartData = [
 			{
@@ -587,114 +511,51 @@ button.hover {
 		});
 	}
 	
-	
-/* 	// 그래프 3
-	var radarChartData = {
-		label: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		datasets : [
+	//선그래프
+	function lineGraph(a,b,c,d,e,f){
+		var months = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
+		var lineChart = null;
+		var lineChartData = {
+			labels : [a,b,c,d,e,f],
+			datasets : [
 				{
-					fillColor : "rgba(220,220,220,0.5)",
-					strokeColor : "rgba(220,220,220,0.8)",
-					pointColor : "rgba(220,220,220,0.75)",
-					pointStrokeColor : "rgba(220,220,220,1)",
-					points : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor() ]
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [1,2,3,4,5,6]
 				},
 				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,0.8)",
-					pointColor : "rgba(151,187,205,0.75)",
-					pointStrokeColor : "rgba(151,187,205,1)",
-					points : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
+					strokeColor : "rgba(151,187,205,1)",
+					pointColor : "rgba(151,187,205,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(151,187,205,1)",
+					data : [10,50,60,30,20,100]
 				}
-		]
-	};
-	var chart = null;
-	var canvas = null;
-	var ctx = null;
-	var legendHolder = null;
-	var helpers = Chart.helpers;
-	$(function() {
-		var ctx = document.getElementById("canvas4").getContext("2d");
-		chart = new Chart(ctx).radar(radarChartData, {
-			responsive : true
-		});
-	}); */
-	
-	
-		var radarChart = null;
-		var radarChartData = {
-			labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-			datasets: [
-				
-					{
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,0.8)",
-						pointColor : "rgba(220,220,220,0.75)",
-						pointStrokeColor : "rgba(220,220,220,1)",
-						pointHighlightFill: "#fff",
-						pointHighlightStroke: "rgba(220,220,220,0.8)",
-						data : [ randomScalingFactor(), randomScalingFactor(),
-								randomScalingFactor(), randomScalingFactor(),
-								randomScalingFactor(), randomScalingFactor(),
-								randomScalingFactor(), randomScalingFactor(),
-								randomScalingFactor(), randomScalingFactor(),
-								randomScalingFactor(), randomScalingFactor() ]
-					},
-					{
-						fillColor : "rgba(151,187,205,0.5)",
-						strokeColor : "rgba(151,187,205,0.8)",
-						pointColor : "rgba(151,187,205,0.75)",
-						pointStrokeColor : "rgba(151,187,205,1)",
-						pointHighlightFill: "#fff",
-						pointHighlightStroke: "rgba(151,187,205,0.8)",
-						data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor() ]
-					}
-				
-					/* label: "My Second dataset",
-					fillColor: "rgba(151,187,205,0.2)",
-					strokeColor: "rgba(151,187,205,1)",
-					pointColor: "rgba(151,187,205,1)",
-					pointStrokeColor: "#fff",
-					pointHighlightFill: "#fff",
-					pointHighlightStroke: "rgba(151,187,205,1)",
-					data: [a,b,c,d,e] */
-				
 			]
-		};
 
+		};
 		$(function() {
 			var ctx = document.getElementById("canvas4").getContext("2d");
-			radarChart = new Chart(ctx).Radar(radarChartData, {
-				scaleShowLine : true,
-				angleShowLineOut : true,
-				scaleShowLabels : false,
-				scaleBeginAtZero : true,
-				angleLineColor : "rgba(0,0,0,0.1)",
-				angleLineWidth : 1,
-				pointLabelFontFamily : "'Arial'",
-				pointLabelFontStyle : "normal",
-				pointLabelFontSize : 10,
-				pointLabelFontColor : "#00000",
+			lineChart = new Chart(ctx).Line(lineChartData, {
+				scaleShowGridLines : true,
+				scaleGridLineColor : "rgba(0,0,0,0.05)",
+				scaleGridLineWidth : 1,
+				bezierCurve : true,
+				bezierCurveTension : 0.4,
 				pointDot : true,
-				pointDotRadius : 3,
+				pointDotRadius : 4,
 				pointDotStrokeWidth : 1,
 				pointHitDetectionRadius : 20,
 				datasetStroke : true,
 				datasetStrokeWidth : 2,
-				datasetFill : false,
+				datasetFill : true,
 				onAnimationProgress: function() {
 					console.log("onAnimationProgress");
 				},
@@ -704,13 +565,15 @@ button.hover {
 			});
 		});
 		$("canvas4").on("click", function(e) {
-			var activePoints = radarChart.getPointsAtEvent(e);
+			var activePoints = lineChart.getPointsAtEvent(e);
 			console.log(activePoints);
 
 			for(var i in activePoints) {
 				console.log(activePoints[i].value);
 			}
 		});
+	}
+	
 
 	
 </script>
@@ -1230,13 +1093,13 @@ button.hover {
 							<div style="width:70%;">
 								<canvas id="canvas4" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
 								<ul class="polararea-legend">
-									<li><span style="background-color:rgba(220,220,220,0.5)"></span>마우스</li>
-									<li><span style="background-color:rgba(151,187,205,0.8)"></span>키보드</li>
+									<li><span style="background-color:rgba(220,220,220,1)"></span>마우스</li>
+									<li><span style="background-color:rgba(151,187,205,1)"></span>키보드</li>
 								</ul>
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">6개월 제품 수익률</a>
 						</div>
 					</div>
 				</div>
@@ -1253,7 +1116,7 @@ button.hover {
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">2017 제품 판매량</a>
+							<a href="#">6개월 제품 판매량</a>
 						</div>
 					</div>
 				</div>

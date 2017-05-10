@@ -8,6 +8,9 @@ public class GraphVO {
 	private	int kAmount; 		// 키보드 재고량
 	private	int kSalesAmount;	// 키보드 판매량
 	private	int kSalesTotal;	// 키보드 매출액
+	private String mon;			// 월별조회용 월
+	private int monthAmount;	// 월별판매량
+	private int monthSales;		// 월수익
 	
 	public int getmAmount() {
 		return mAmount;
@@ -45,12 +48,32 @@ public class GraphVO {
 	public void setkSalesTotal(int kSalesTotal) {
 		this.kSalesTotal = kSalesTotal;
 	}
-	
+	public String getMon() {
+		return mon;
+	}
+	public void setMon(String mon) {
+		this.mon = mon;
+	}
+	public int getMonthAmount() {
+		return monthAmount;
+	}
+	public void setMonthAmount(int monthAmount) {
+		this.monthAmount = monthAmount;
+	}
+	public int getMonthSales() {
+		return monthSales;
+	}
+	public void setMonthSales(int monthSales) {
+		this.monthSales = monthSales;
+	}
 	@Override
 	public String toString() {
 		return "GraphVO [mAmount=" + mAmount + ", mSalesAmount=" + mSalesAmount + ", mSalesTotal=" + mSalesTotal
-				+ ", kAmount=" + kAmount + ", kSalesAmount=" + kSalesAmount + ", kSalesTotal=" + kSalesTotal + "]";
+				+ ", kAmount=" + kAmount + ", kSalesAmount=" + kSalesAmount + ", kSalesTotal=" + kSalesTotal + ", mon="
+				+ mon + ", monthAmount=" + monthAmount + ", monthSales=" + monthSales + "]";
 	}
+	
+	
 }
 	
 	

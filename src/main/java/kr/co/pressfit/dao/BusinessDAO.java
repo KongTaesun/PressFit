@@ -31,6 +31,7 @@ public interface BusinessDAO {
 	public GraphVO mainGraphData(String id) throws Exception;
 	public TMouseVO mouseRank(String id) throws Exception;
 	public KeyboardVO keyboardRank(String id) throws Exception;
+	public List<GraphVO> monthData(String id, String kind) throws Exception;
 }
 
  

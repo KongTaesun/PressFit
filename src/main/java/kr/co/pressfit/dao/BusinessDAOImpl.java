@@ -130,6 +130,13 @@ public class BusinessDAOImpl implements BusinessDAO {
 	public KeyboardVO keyboardRank(String id) throws Exception {
 		return sqlSession.selectOne("business.keyboardRank", id);
 	}
+	@Override
+	public List<GraphVO> monthData(String id, String kind) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+    	map.put("id", id);
+    	map.put("kind", kind);
+		return sqlSession.selectList("business.monthData", map);
+	}
 	
 	
 }

@@ -153,6 +153,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  and k.idx=f.idx
 		order by k.salesTotal desc, k.idx limit 1
     </select>
+    
+    <select id="monthData" resultType="kr.co.pressfit.vo.GraphVO">
+        select  DATE_FORMAT(orderdate,'%Y-%m') mon, sum(amount) monthAmount, sum(amount*price) monthSales from cart_board
+		where crea_id=#{id}
+		and kind=#{kind}
+		and orderdate >= DATE_ADD(NOW(), INTERVAL -6 MONTH)
+		group by mon;
+    </select>
 	
 </mapper>
 
