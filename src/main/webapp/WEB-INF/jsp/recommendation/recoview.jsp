@@ -44,24 +44,24 @@ function ztskillbar(){
 	    });
 	}(jQuery));
 }
-function bargraph(name,a,b,c,d){
+function bargraph(name,a,b,c,d,e,f){
 	var barChart = null;
 	var barChartData = {
-		labels : ["성능","디자인","관심도","가격"],
+		labels : ["성능","디자인","관심도","좋은평가","나쁜평가","의료"],
 		datasets : [
 			{
 				fillColor : "rgba(220,220,220,0.5)",
 				strokeColor : "rgba(220,220,220,0.8)",
 				highlightFill: "rgba(220,220,220,0.75)",
 				highlightStroke: "rgba(220,220,220,1)",
-				data : [30,26,84,95]
+				data : [30,26,84,95,77,58]
 			},
 			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
 				highlightStroke : "rgba(151,187,205,1)",
-				data : [a,b,c,d]
+				data : [a,b,c,d,e,f]
 			}
 		]
 
@@ -96,7 +96,7 @@ function bargraph(name,a,b,c,d){
 		}
 	});
 }
-function Doughnut(name,a,b,c,d,e){
+function Doughnut(name,a,b,c,d,e,f){
 	var chartData = [
 			{
 				value: a,
@@ -127,6 +127,13 @@ function Doughnut(name,a,b,c,d,e){
 				color: "#4D5360",
 				highlight: "#616774",
 				label: "Dark Grey"
+			}
+			,
+			{
+				value: f,
+				color: "#2155c6",
+				highlight: "#4868af",
+				label: "blue"
 			}
 
 		];
@@ -187,10 +194,10 @@ function Doughnut(name,a,b,c,d,e){
 	});
 
 }
-function radargraph(name,a,b,c,d,e){
+function radargraph(name,a,b,c,d,e,f){
 	var radarChart = null;
 	var radarChartData = {
-		labels : ["성능","디자인","관심도","좋은평가","나쁜평가"],
+		labels : ["성능","디자인","관심도","좋은평가","나쁜평가","건강"],
 		datasets: [
 			{
 				label: "My Second dataset",
@@ -200,7 +207,7 @@ function radargraph(name,a,b,c,d,e){
 				pointStrokeColor: "#fff",
 				pointHighlightFill: "#fff",
 				pointHighlightStroke: "rgba(151,187,205,1)",
-				data: [a,b,c,d,e]
+				data: [a,b,c,d,e,f]
 			}
 		]
 	};
@@ -289,7 +296,14 @@ function type1obj(obj){
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list0 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
+		radargraph('canvas'+i,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health
+				);
 		i++;
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
@@ -345,8 +359,20 @@ function type1obj(obj){
 					"</div>";
 	$('#first .banner-list').empty();
 	$('#first .banner-list').append(str).addClass('animate');
-	bargraph('canvas'+j,60,60,60,60,30);
-	Doughnut('canvas2'+j,10,10,10,10,10);
+	bargraph('canvas'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
+	Doughnut('canvas2'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
 	ztskillbar();
 	});
 	$('#firstlist').show();
@@ -362,7 +388,13 @@ function type1obj(obj){
 			"<a target='_blank' href='"+obj.firstreview._source.link+"'>"+
 			obj.firstreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+k,10,10,10,10,10);		
+		radargraph('canvas'+k,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);		
 	}
 	if(obj.secondreview!=null){
 		var k='secondlist';
@@ -376,7 +408,13 @@ function type1obj(obj){
 			"<a target='_blank' href='"+obj.secondreview._source.link+"'>"+
 			obj.secondreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+k,10,10,10,10,10);		
+		radargraph('canvas'+k,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);		
 	}
 	if(obj.thirdreview!=null){
 		var k='thirdlist';
@@ -390,7 +428,13 @@ function type1obj(obj){
 			"<a target='_blank' href='"+obj.thirdreview._source.link+"'>"+
 			obj.thirdreview._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+k,10,10,10,10,10);		
+		radargraph('canvas'+k,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);		
 	}
 	
 };
@@ -443,8 +487,20 @@ function type3obj(obj){
 	          "</div>"+
 	        "</div>";
 	$('#first .banner-list').append(str).addClass('animate');
-	bargraph('canvas'+j,60,60,60,60,30);
-	Doughnut('canvas2'+j,10,10,10,10,10);
+	bargraph('canvas'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
+	Doughnut('canvas2'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
 	ztskillbar();
 	});
 	
@@ -461,7 +517,13 @@ function type3obj(obj){
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list1 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
+		radargraph('canvas'+i,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		i++;
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
@@ -485,7 +547,13 @@ function type4obj(obj){
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
+		radargraph('canvas'+i,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		
 			var str2 = '';
 			str2+="<div class='col-md-2' style='background-color: white;''>"+
@@ -528,7 +596,13 @@ function type5obj(obj){
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
+		radargraph('canvas'+i,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		
 		filename(kind,obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
@@ -574,7 +648,13 @@ function type6obj(obj){
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
-		radargraph('canvas'+i,10,10,10,10,10);
+		radargraph('canvas'+i,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		
 		filename(kind,obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
@@ -645,8 +725,20 @@ function type7obj(obj){
 						"</div>"+
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
-	bargraph('canvas'+j,60,60,60,60,30);
-	Doughnut('canvas2'+j,10,10,10,10,10);
+	bargraph('canvas'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
+	Doughnut('canvas2'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
 	ztskillbar();
 	});
 	var i=0;
@@ -778,8 +870,20 @@ function type9obj(obj){
 						"</div>"+
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
-	bargraph('canvas'+j,60,60,60,60,30);
-	Doughnut('canvas2'+j,10,10,10,10,10);
+	bargraph('canvas'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
+	Doughnut('canvas2'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
 	ztskillbar();
 	});
 	$('#firstlist').show();
@@ -796,7 +900,13 @@ function type9obj(obj){
 			"<a target='_blank' href='"+obj.firstreview[j]._source.link+"'>"+
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
-		radargraph('firstcanvas'+j,10,10,10,10,10);
+		radargraph('firstcanvas'+j,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		j++;
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
@@ -873,8 +983,20 @@ function type10obj(obj){
 						"</div>"+
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
-	bargraph('canvas'+j,60,60,60,60,30);
-	Doughnut('canvas2'+j,10,10,10,10,10);
+	bargraph('canvas'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
+	Doughnut('canvas2'+j,
+			obj.reviewlist.hitslist[i]._source.tech,
+			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.attention,
+			obj.reviewlist.hitslist[i]._source.good,
+			obj.reviewlist.hitslist[i]._source.bad,
+			obj.reviewlist.hitslist[i]._source.health);
 	ztskillbar();
 	});
 	$('#firstlist').show();
@@ -891,7 +1013,13 @@ function type10obj(obj){
 			"<a target='_blank' href='"+obj.firstreview[j]._source.link+"'>"+
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
-		radargraph('firstcanvas'+j,10,10,10,10,10);
+		radargraph('firstcanvas'+j,
+				obj.reviewlist.hitslist[i]._source.tech,
+				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.attention,
+				obj.reviewlist.hitslist[i]._source.good,
+				obj.reviewlist.hitslist[i]._source.bad,
+				obj.reviewlist.hitslist[i]._source.health);
 		j++;
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
@@ -957,7 +1085,7 @@ $(document).ready(function() {
 	var data = null;
 	$.ajax({
 		type : "POST",
-		url: "http://192.168.1.61:8900/?q=${q}",
+		url: "http://192.168.1.47:8900/?q=${q}",
 	 	contentType: "text/plain; charset=utf-8",
 	 	jsonp : "callback",
 	 	dataType : "jsonp",
