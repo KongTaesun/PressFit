@@ -209,10 +209,9 @@ sans-serif;
 					 
 					<c:if test="${sessionScope.kind eq 'business'}">
 					<a href="${path}/business/orderList.do"> 
-					${sessionScope.id}</a>
 					
-					<a href="${path}/login/logout.do">
-					<i class="logout"></i></a> 
+					${sessionScope.id}</a>
+					<a href="${path}/login/logout.do"> <img src="${path}/resources/writer/icon/logout.png" class="icon1" /></a> 
 					</c:if>
 					
 					<c:if test="${sessionScope.id == null}">

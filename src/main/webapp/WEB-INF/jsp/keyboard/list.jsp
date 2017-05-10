@@ -130,11 +130,11 @@ button.hover {
 	                  max: 200000,
 	                  values: [0, 200000],
 	                  slide: function( event, ui ) {
-	                  $( "#rangeamount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	                  $( "#rangeamount" ).val( "￦" + ui.values[ 0 ] + " - ￦" + ui.values[ 1 ] );
 	                  }
 	                 });
-	                 $( "#rangeamount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	                  " - $" + $( "#slider-range" ).slider( "values", 1 ) );  
+	                 $( "#rangeamount" ).val( "￦" + $( "#slider-range" ).slider( "values", 0 ) +
+	                  " - ￦" + $( "#slider-range" ).slider( "values", 1 ) );  
 	            $("#btnPrice").click(
 	                  function(){
 	                     var min = $( "#slider-range" ).slider( "values", 0 );

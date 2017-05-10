@@ -151,7 +151,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #616161;
-    padding: 9px 20px;
+    padding: 2px 17px;
     background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
     -moz-border-radius: 0px;
@@ -164,6 +164,19 @@ button.hover {
     font-weight: bold;
     color: #000000;
     border: 1px solid #879fff;
+}
+
+.search-right {
+	float: right;
+    margin-right: 380px;
+    margin-top: 39px;
+}
+
+.search-left {
+	float: left;
+    margin-top: 43px;
+    margin-left: 382px;
+	
 }
 </style>
 <script>
@@ -188,11 +201,11 @@ button.hover {
 	                  max: 200000,
 	                  values: [0, 200000],
 	                  slide: function( event, ui ) {
-	                  $( "#rangeamount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	                  $( "#rangeamount" ).val( "￦" + ui.values[ 0 ] + " - ￦" + ui.values[ 1 ] );
 	                  }
 	                 });
-	                 $( "#rangeamount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-	                  " - $" + $( "#slider-range" ).slider( "values", 1 ) );  
+	                 $( "#rangeamount" ).val( "￦" + $( "#slider-range" ).slider( "values", 0 ) +
+	                  " - ￦" + $( "#slider-range" ).slider( "values", 1 ) );  
 	                 
 	            $("#btnPrice").click(
 	                  function(){
@@ -245,12 +258,36 @@ button.hover {
 			</div>
 		</div>
 	</div>
-	<!-- Breadcrumbs Area Start -->
-
+			<!-- search -->
+			<div class="searchbar1">
+				<span class="search-left">
+				<!-- 레코드의 갯수를 출력 -->
+				${map.count}개의 제품이 있습니다.
+				</span>
+				<span class="search-right">
+				<form name="form1" method="post" action="${path}/tmouse/list.do">
+				게시판 내 검색 : 
+					<select name="searchOption">
+						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
+						<option value="all"
+							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
+						<option value="name"
+							<c:out value="${map.searchOption == 'crea_id'?'selected':''}"/>>이름</option>
+						<option value="content"
+							<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
+						<option value="modelname"
+							<c:out value="${map.searchOption == 'modelname'?'selected':''}"/>>제목</option>
+					</select>  
+                    <input name="keyword" value="${map.keyword}"> 
+                     <button type="submit" class="btn1">조회</button>
+                     
+                 </form>
+                 </span>
+             </div>
+    <!-- Breadcrumbs Area Start -->
 	<div class="shopping-area section-padding">
 		<div class="container">
-			<!-- 레코드의 갯수를 출력 -->
-			${map.count}개의 제품이 있습니다.
+
 			<!-- Shop Area Start -->
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-12">
@@ -284,7 +321,6 @@ button.hover {
 										<div class="price-slider-amount">
 											<input type="text" id="rangeamount" name="price"
 												placeholder="Add Your Price" />
-
 											<div class="widget-buttom">
 												<div class="filterbtn">
 													<span class="btn-left"><input type="button"

@@ -142,21 +142,21 @@ button.hover {
                                           				<img alt="" src="${path}/resources/upload/${row.fullName}" style="width: 100%; height: 260px;" onerror="imgError(this);">
                                           			</a>
                                     			</div>
-                                    			<div class="banner-bottom text-center" style="width:100%;height:100px;"> 
-                                    				<div class="banner-bottom-title">
-                                    				<div>${row.subtitle}</div>
+                                    			<div class="banner-bottom1 text-center">
+													<div class="banner-bottom-title" style="width: 80%; height: 40px; overflow: hidden; top: 50%; margin-top: 15px; margin-bottom: 0px; margin-left: 35px; margin-right: 10px;">
+														<div> ${row.subtitle}</div>
                                     			 
-                                    					<a href="${path}/gallery/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
+                                    					<a href="${path}/gallery/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}" style="font-weight:700;">
                                     						${row.title}
                                     						<c:if test="${row.recnt >= 0}">
 																<span style="color: red;">(${row.recnt})</span>
 															</c:if>
 														</a>
-                                    				</div>
-                                    				
-                                    				<div style="margin-top:5px;">${row.writer}</div>
-                                    				<div><fmt:formatDate pattern="yyyy.MM.dd" value="${row.regdate}"/>
-                                       				</div>
+													</div>
+													<div class="price1" style="padding: 10px 10px 10px 10px;">
+														<div>${row.writer} (<fmt:formatDate pattern="yyyy.MM.dd" value="${row.regdate}"/>)</div>
+												</div>
+                                    			
                                     			</div>
                                     		</div>
 										</div>
@@ -202,6 +202,27 @@ button.hover {
 			</div>
       		<!-- 페이징 끝  --> 
       		
+      		
+      		<div class="searchbar1">
+				<form name="form1" method="post" action="${path}/gallery/list.do">
+					<select name="searchOption">
+						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
+						<option value="all"
+							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
+						<option value="name"
+							<c:out value="${map.searchOption == 'writer'?'selected':''}"/>>이름</option>
+						<option value="content"
+							<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
+						<option value="title"
+							<c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
+					</select> 
+                    <input name="keyword" value="${map.keyword}"> 
+                     <button type="submit" class="btn1">조회</button>
+                     
+                 </form>
+             </div>
+                        
+                        
       		<!-- 글작성 버튼 시작-->
       		<div class="paging_friends">
       			<button id="btnWrite" style="float:right;">글작성</button>

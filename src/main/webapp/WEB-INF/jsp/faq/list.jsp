@@ -109,7 +109,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #616161;
-    padding: 9px 20px;
+    padding: 2px 17px 2px; 
     background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
     -moz-border-radius: 0px;

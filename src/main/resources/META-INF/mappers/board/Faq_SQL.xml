@@ -7,8 +7,8 @@
 	    <include refid="pagingHeader"></include>
 		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.subtitle, b.content, b.writer, b.regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM FaqReply WHERE boardno=b.idx) AS recnt
-      	FROM FaqBoard b, Cmember m,(SELECT @ROWNUM := 0) R
-      	WHERE b.writer = m.id AND showdel = 'y'
+      	FROM FaqBoard b, Aadmin a,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = a.id AND showdel = 'y'
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
 		<include refid="pagingFooter"></include> 

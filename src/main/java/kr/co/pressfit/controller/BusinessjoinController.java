@@ -36,7 +36,7 @@ public class BusinessjoinController {
         ModelAndView mav = new ModelAndView();
       
         if (result == true) { 
-            mav.setViewName("login/login");
+            mav.setViewName("redirect:/business/orderList.do");
             session.setAttribute("id", vo.getId());
             session.setAttribute("kind", "business");
             session.setMaxInactiveInterval(20*60);
