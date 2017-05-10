@@ -61,17 +61,13 @@ public class Gallery {
     public ModelAndView list(@RequestParam(defaultValue="title") String searchOption,
                             @RequestParam(defaultValue="") String keyword,
                             @RequestParam(defaultValue="1") int curPage) throws Exception{
-        
         // �젅肄붾뱶�쓽 媛��닔 怨꾩궛
         int count = galleryservice.countArticle(searchOption, keyword);
-        
         // �럹�씠吏� �굹�늻湲� 愿��젴 泥섎━
         BoardPager boardPager = new BoardPager(count, curPage);
         int start = boardPager.getPageBegin();
         int end = boardPager.getPageEnd();
-        
         List<GalleryVO> list = galleryservice.listAll(start, end, searchOption, keyword);
-        
         // �뜲�씠�꽣瑜� 留듭뿉 ���옣
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("list", list); // list

@@ -17,18 +17,18 @@
 	 
 	<!-- 검색 조건 sql -->
 	<sql id="search">
-	    <!-- <choose>
-	        검색옵션이 전체 검색일 경우
+	    <choose>
+		<!-- 검색옵션이 전체 검색일 경우 -->
 	        <when test="searchOption == 'all'">
-	            AND (name like '%'||#{keyword}||'%' 
-	            OR content like '%'||#{keyword}||'%' 
-	            OR title like '%'||#{keyword}||'%')
+	            AND (writer like '%${keyword}%' 
+	            OR content like '%${keyword}%' 
+	            OR title like '%${keyword}%')
 	        </when>
-	        전체 검색이 아닐 경우
+	        <!-- 전체 검색이 아닐 경우 -->
 	        <otherwise>
-	            AND ${searchOption} like '%'||#{keyword}||'%'
+	            AND ${searchOption} like '%${keyword}%'
 	        </otherwise>
-	    </choose> -->
+	    </choose>
 	</sql>
 	 
 	<!-- 페이징 sql -->
