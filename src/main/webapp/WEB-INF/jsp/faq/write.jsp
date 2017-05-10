@@ -49,7 +49,7 @@
                     html += "<a href='#' class='fileDel' data-src='"+this+"'>[삭제]</a></div>"
                     var str = "<input type='hidden' name = 'filelist' class='filelist' value='"+fileInfo.fullName+"'>";
                     // div에 추가
-                    $("#uploadedList").append(html);
+                    $("#uploadedList").append(html); 
                     $("#form1").append(str);
             }
         });
@@ -75,52 +75,117 @@
 });
 </script>
 <style>
-/* 첨부파일을 드래그할 영역의 스타일 */
+.breadcrumbs-area {
+	background-image:
+		url('${path}/resources/writer/img/bigpicture/q&a_img.png');
+}  
+.icon1
+  {
+   width: 30px;
+    height: 30px;
+  }
 .fileDrop {
     width: 600px;
     height: 70px;
     border: 2px dotted gray;
     background-color: gray;
 }
+.join_row{
+        overflow: hidden;
+}
+.list_delivery {
+
+    overflow: hidden;
+    padding-top: 31px;
+}
+.list_delivery dt {
+    margin-bottom: 19px;
+    font-size: 16px;
+    line-height: 17px;
+    color: #666;
+}
+.list_delivery dd {
+    overflow: hidden;
+    min-height: 50px;
+    margin-bottom: 19px;
+}
+.list_delivery .box_input {
+    height: 48px;
+    padding: 0 19px;
+    border: 1px solid #d2d2d2;
+    background-color: #f9f9f9;
+}
+.list_delivery .box_input .tf_g {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    border: 0;
+    outline: 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #535353;
+    background-color: transparent;
+}
+.list_delivery .box_postal {
+    float: left;
+    width: 70%;
+}
+.list_delivery .box_input .tf_g:disabled {
+    opacity: 1;
+}
+.list_delivery .btn_postal {
+    float: left;
+    width: 25%; 
+    height: 50px;
+    margin-left: 22px;
+    /* border: 1px solid #d2d2d2;
+    font-size: 16px;
+    color: #1e1e1e;
+    line-height: 49px;
+    background-color: #fff;
+    text-align: center;  */
+}
+.box_input {
+input[type=text]:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+	} 
+} 
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 9px 20px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+button.hover {
+    font-weight: bold;
+    color: #000000;
+    border: 1px solid #879fff;
+}
+
 </style>
-
-<script>
-$("#undercover").on(
-		"change", function() {
-			//체크박스가 선택된(checked) 상태인지 확인하는 방법
-			if ($(this).is(":checked")) {
-				//show() 메소드 특정 영역이 화면에 나타나도록 설정
-				$("#myQABoardInsertForm").find("#pwForm").show();
-				//removeAttr() 메소드 기존 속성 제거
-				$("#myQABoardInsertForm").find("#pwForm").find("#pw").removeAttr("disabled");
-			} else {
-				//hide() 메소드 특정 영역이 화면에 보이지 않도록 설정
-				$("#myQABoardInsertForm").find("#pwForm").hide();
-				$("#myQABoardInsertForm").find("#pwForm").find("#pw").attr("disabled", "disabled");
-			}
-		});
-</script>
-
-
-
 </head>
 <body>
-
-<%@ include file="/resources/include/mobile.jsp" %>
-
-  <!-- Breadcrumbs Area Start -->
+  
+        <!-- Breadcrumbs Area Start -->
         <div class="breadcrumbs-area">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>SHOPPING CART</h2> 
-					       <ul class="breadcrumbs-list">
+					       <h2>FAQ</h2> 
+					       <!-- <ul class="breadcrumbs-list">
 						        <li>
 						            <a title="Return to Home" href="index.html">Home</a>
 						        </li>
 						        <li>Shopping Cart</li>
-						    </ul>
+						    </ul> -->
 					    </div>
 					</div>
 				</div>
@@ -128,22 +193,31 @@ $("#undercover").on(
 		</div> 
 		<!-- Breadcrumbs Area Start --> 
 
-<!-- My Account Area Start -->
-		<div class="my-account-area section-padding">
-			<div class="container">
-				<div class="section-title2">
-					<h2>게시물 작성</h2> 
-					<p>Welcome to my homepage.</p>
-				</div>
-				
-				
-<form id="form1" name="form1" method="post" action="${path}/faq/insert.do">
-    <div>
-      
-        <input name="title" id="title" size="80" placeholder="제목을 입력해주세요">
-    </div>
-    <div>
-
+<!-- My Account Area Start --> 
+			<div class="login-account section-padding">
+		<div class="container" style="display:table; width: 700px;/* text-align: center */">
+			<div class="p-details-tab" style="margin-top: 30px;">
+            	<ul class="p-details-nav-tab">
+					<img src="${path}/resources/writer/icon/writer.png" class="icon1" />
+                	<li role="presentation" class="active"><a href="#" id="btnone">글쓰기</a></li>
+                </ul>
+      		</div>
+<form action="${path}/faq/insert.do" id="form1" name="form1" class="create-account-form" method="post">
+      <dl class="list_delivery">
+      <dt>  
+		<label for="oaName">제목</label> 
+	</dt>
+	<dd> 
+	<div class="box_input"><input class="tf_g" id="title" name="title" /></div>
+	</dd>
+	 <dt>
+		<label for="oaName">부제목</label>
+	</dt>
+	<dd> 
+	<div class="box_input"><input class="tf_g" id="subtitle" name="subtitle" ></div>
+	</dd>
+      </dl>
+       
         <textarea name="content" id="content" rows="5" cols="80" 
         placeholder="내용을 입력해주세요"></textarea>
 <script> 
@@ -151,40 +225,15 @@ CKEDITOR.replace("content",{
 	filebrowserUploadUrl : "${path}/faq/imageUpload.do"
 });
 </script>
-    </div>
-    <div>
-	    첨부파일 등록
-	    <!-- 첨부파일 등록영역 -->
-	    <div class="fileDrop"></div>
-	    <!-- 첨부파일의 목록 출력영역 -->
-	    <div id="uploadedList"></div>
-	</div>
-	
-	 <div class="checkbox">
-		<label><input type="checkbox" value="" id="undercover">비밀글
-			<span class="small">(비밀글을 체크하면 글내용 보기를 할 때 패스워드를 확인하는
-				게시물이 됩니다.)</span></label> <label class="text-danger small">* <!-- 수강 신청 확인
-			등 신원 확인이 필요한 문의는 이름, 전화번호, 이메일을 적어주시고, 비밀글 체크를 해주시기 바랍니다. --></label>
-	</div>
-    <div class="form-group" id="pwForm" style="display: none;">
-		<input type="password" class="form-control " id="pw" name="pw"
-			placeholder="패스워드 (4자리)" maxlength="4" required="required"
-			disabled="disabled">
-	</div>
-
-    
-    
-    <div style="width:1000px; text-align: center;">
-        <button type="button" id="btnSave">확인</button>
+   <br>
+    <div style="width:650px; text-align: center;">
+        <button type="submit" id="btnSave">확인</button>
         <button type="reset">취소</button>
-    </div>
-    
-   
-    
+    </div>  
 </form>
 </div>
-    </div>
-    
+</div>
 
+<%@ include file="/resources/include/footer.jsp"%>
 </body>
 </html>

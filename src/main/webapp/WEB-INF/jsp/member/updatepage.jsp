@@ -4,12 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>Insert title here</title>
 
 <%@ include file="/resources/include/header.jsp"%>
 <script type="text/javascript" src="${path}/include/js/common.js"></script>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>
 
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 // 다음 주소 API
 function DaumPostcode() {
@@ -167,13 +169,7 @@ button.btnbuy:hover {
     float: left;
     width: 25%; 
     height: 50px;
-    margin-left: 22px;
-    /* border: 1px solid #d2d2d2;
-    font-size: 16px;
-    color: #1e1e1e;
-    line-height: 49px;
-    background-color: #fff;
-    text-align: center;  */
+    margin-left: 22px; 
 }
 .box_input {
 input[type=text]:focus {
@@ -181,6 +177,13 @@ input[type=text]:focus {
 	}
 }
 </style>
+<script type="text/javascript">
+function imgError(image) {
+    image.onerror = "";
+    image.src = "${path}/resources/writer/icon/130917_224626.png";
+    return true;
+}
+</script>
 </head>
 <body>
 <!-- Breadcrumbs Area Start -->
@@ -189,7 +192,7 @@ input[type=text]:focus {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>MY PAGE</h2>
+						<h2>내정보관리</h2>
 					</div>
 				</div>
 			</div>
@@ -210,12 +213,7 @@ input[type=text]:focus {
                                 </ul>
                             </div>
 
-
- 
 	<!-- About Us Area Start -->
-		<div class="about-us-area section-padding">
-		    <div class="container">
-                <div class="row">
 
                     <div class="about-top-inner">
                         <div class="col-md-6">
@@ -224,7 +222,9 @@ input[type=text]:focus {
                                 <div class="about-content">
 
        <!-- <h2 class="heading-title">개인정보</h2> -->
+       	<form action="${path}/member/updatepage.do" name="form1" class="create-account-form" method="post">
 						<dl class="list_delivery">
+						
 							<dt>
 								<label for="oaName">회원아이디</label>
 							</dt>
@@ -284,9 +284,10 @@ input[type=text]:focus {
 							<dd>
 								<div class="box_input box_postal">
 								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호" value="${vo.post}"></div>
-								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
+							
+								<button type="button" class="btn_postal" onclick="DaumPostcode()" style="line-height: 0px;">주소검색</button>
 							</dd>
-							<dd>
+							<dd> 
 								<div class="box_input">
 								
 								<input class="tf_g" id="basic_addr" name="basic_addr" type="text" readonly=readonly value="${vo.basic_addr}" ></div>
@@ -304,8 +305,7 @@ input[type=text]:focus {
 								<div class="box_input"><input class="tf_g" id="oaPhone" name="date" value="${vo.regdate}" type="text" readonly="readonly"></div>
 							</dd>
 						</dl>
-							<button type="submit" name="order">수정하기</button>
-							<button type="reset" name="reset">취소하기</button>
+							
 					
                                 </div>
                             </div>
@@ -315,17 +315,16 @@ input[type=text]:focus {
                                 <div class="card animated fadeIn">
                                 
                                 
-<center>                                
-        <img class="center animated rollIn" src="${path}/resources/writer/img/ava.png" alt="avatar"></center>
+ <div class="create-account-form" align = "center">                                 
+        <img class="center animated rollIn" src="${path}/resources/upload/${vo.cpicture}" alt="avatar"  onerror="imgError(this);">
          <script>
 			CKEDITOR.replace("content",{
 				filebrowserUploadUrl : "${path}/member/updatepage/imageUpload.do"
 			});
 		</script>
-</center>                                
-
-             	<div class="panel panel-default">
-									<div class="panel-heading" role="tab" id="headingFour">
+                            
+             	<div class="panel panel-default" style="margin-top:15px; width:100%">
+									<div class="panel-heading" role="tab" id="headingFour" style="width:100%;">
 										<h4 class="panel-title">
 											<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 												<i class="fa fa-building"></i>
@@ -340,23 +339,25 @@ input[type=text]:focus {
 													<textarea name="content" id="content" rows="4" cols="80" placeholder="이미지를 클릭해주세요"></textarea>
 													<script>
 													CKEDITOR.replace("content",{
-														filebrowserUploadUrl : "${path}/keyboard/imageUpload.do"
+														filebrowserUploadUrl : "${path}/member/imageUpload.do"
 													});
 													</script>
 											</div>
 										</div>
 									</div>
    								   </div>  
-         
-         						</div>
-								</div>
-                            </div>
-                        </div>
+
+						<button class="button form-button" type="submit">수정하기</button>
+						<button class="button form-button" type="reset">취소</button>
+                    </form>
                     </div>
-                  
-                </div>
-		    </div>
-		</div>
+                  </div> 
+                  </div>
+                  </div>
+                  </div></div>
+              </div>
+              </div>
+               
 
 	<%@ include file="/resources/include/footer.jsp"%>
 	
@@ -366,7 +367,7 @@ input[type=text]:focus {
          
             
          
-        
+         
             
       
        

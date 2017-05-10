@@ -172,6 +172,22 @@ button.btnbuy:hover {
 	background-image:
 		url('${path}/resources/writer/img/bigpicture/keyboard_img3.png');
 }
+
+.replytextstyle {
+	border: 1px solid #858585;
+	border-left: 1px solid #858585;
+	margin-top: 10px;
+	margin-bottom: 17px;
+	height: 75px;
+}
+
+.replytextdiv {
+	width: 650px;
+	text-align: center;
+	margin-bottom: 50px;
+	background: #f9f9f9;
+	height: 195px;
+}
 </style>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>
@@ -388,7 +404,7 @@ button.btnbuy:hover {
 				$("#modifyReply").css("visibility", "visible");
 			}
 		})
-	}
+	} 
 	// **댓글 답글화면 생성 함수
 	function showReplyCmtModify(num) {
 		$.ajax({
@@ -475,7 +491,7 @@ button.btnbuy:hover {
 						</c:if>
 					</div>
 					<p style="font-weight:normal;">제조사 : ${dto.manufacturecompany}</p>
-					<p style="font-weight:normal;">등록년월 : ${dto.registrationyear}</p>
+					<p style="font-weight:normal;">제조년월 : ${dto.registrationyear}</p>
 					<p style="font-weight:normal;">배송비 : 10만원 이상 배송비 무료</p>
 					<p style="font-weight:normal;">평균배송일 : 1.9일</p>
 					<div class="single-product-price">
@@ -709,7 +725,7 @@ button.btnbuy:hover {
 										<!-- 비밀댓글 체크박스 -->
 										<button type="button" id="btnReply"
 											style="margin-left: 60px; color: black;">댓글 작성</button> &nbsp;
-												<input type="checkbox" id="secretReply"> 비밀 댓글
+									            <input type="checkbox" id="secretReply"> 비밀 댓글 
 									</c:if>
 									<!-- 로그인하지 않았을 경우 -->
 									<c:if test="${sessionScope.id == null}">
@@ -721,7 +737,7 @@ button.btnbuy:hover {
 									</c:if>
 								</div>
 								<!-- 댓글 목록 출력할 위치 -->
-								<div id="listReply"><</div>
+								<div id="listReply"></div>
 							</div>
 						</div>
 					</div>
@@ -730,202 +746,6 @@ button.btnbuy:hover {
 		</div>
 	</div>
 </div>
-<!-- Single Product Area End -->
-<!-- Related Product Area Start -->
-<!-- <div class="related-product-area">
-	<h2 class="section-title">RELATED PRODUCTS</h2>
-	<div class="container">
-		<div class="row">
-			<div class="related-product indicator-style">
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/1.jpg">
-								<div class="price">
-									<span>￦</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick View"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">People of the book</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/2.jpg">
-								<div class="price">
-									<span>$</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick view" data-toggle="modal"
-										data-target="#productModal"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">East of eden</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/3.jpg">
-								<div class="price">
-									<span>$</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick view" data-toggle="modal"
-										data-target="#productModal"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">Lone some dove</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/4.jpg">
-								<div class="price">
-									<span>$</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick view" data-toggle="modal"
-										data-target="#productModal"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">The secret garden</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/5.jpg">
-								<div class="price">
-									<span>$</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick view" data-toggle="modal"
-										data-target="#productModal"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">Twilight</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="single-banner">
-						<div class="product-wrapper">
-							<a href="#" class="single-banner-image-wrapper"> <img alt=""
-								src="img/featured/6.jpg">
-								<div class="price">
-									<span>$</span>160
-								</div>
-								<div class="rating-icon">
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star icolor"></i>
-									<i class="fa fa-star icolor"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i>
-								</div>
-							</a>
-							<div class="product-description">
-								<div class="functional-buttons">
-									<a href="#" title="Add to Cart"> <i
-										class="fa fa-shopping-cart"></i>
-									</a> <a href="#" title="Add to Wishlist"> <i
-										class="fa fa-heart-o"></i>
-									</a> <a href="#" title="Quick view" data-toggle="modal"
-										data-target="#productModal"> <i class="fa fa-compress"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="banner-bottom text-center">
-							<a href="#">Cold mountain</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>-->
 <!-- Related Product Area End -->
 <!-- Footer Area Start -->
 <%@ include file="/resources/include/footer.jsp"%>

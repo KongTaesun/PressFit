@@ -14,10 +14,7 @@
 <title>게시글 목록</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
-.breadcrumbs-area {
-	background-image:
-		url('${path}/resources/writer/img/bigpicture/office_img.png');
-}
+
 .breadcrumbs-area {
    background-image:
       url('${path}/resources/writer/img/bigpicture/q&a_img.png');
@@ -150,18 +147,17 @@ button.hover {
 </script>
 </head>
 <body>
-	<%@ include file="/resources/include/mobile.jsp"%>
 	<!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>NOTICE</h2> 
-						<ul class="breadcrumbs-list">
+						<h2>공지사항</h2> 
+						<!-- <ul class="breadcrumbs-list">
 							<li><a title="Return to Home" href="index.html">Home</a></li>
 							<li>NOTICE</li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
@@ -191,21 +187,24 @@ button.hover {
                                  <div class="panel">
                                  
                                     <div class="panel-heading" role="tab" id="headingOne">
-                                       <h4 class="panel-title">
+                                       <h4 class="panel-title"> 
                                           <a class="link_board" data-toggle="collapse" data-parent="#accordion"
                                              href="#collapse${status.index}" aria-expanded="true"
                                              aria-controls="collapseOne">
                                              	<span class="txt_info">
+                                           
                                              	<span class="txt_cate">
-                                             	 번호 ${row.idx}
+                                             	 [${row.subtitle}]
                                              	 </span> 
+                                             
+                                             	  
                                              	 <span class="txt_date">
-                                             	 등록일
-                                             	${row.regdate}
+                                             	 <fmt:formatDate pattern="yyyy.MM.dd" value="${row.regdate}"/>
+                                             	    
                                              	 </span>
                                              </span>
                                              <strong class="tit_board">
-                                             	제목 ${row.title}
+                                             	 ${row.title}
                                              </strong>
                                              <span class="ico_friends ico_arr">
                                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -219,8 +218,8 @@ button.hover {
                                        role="tabpanel" aria-labelledby="headingOne"> --%>
                                    <div id="collapse${status.index}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                        <div class="subject_board" style="display: block;">
-                                          	내용 "${row.content}"
-                                          <c:out escapeXml="false" value="${fn:replace(row.content,ENTER,'<br>')}" />
+                                          	<%-- 내용 "${row.content}"
+                                          --%> <c:out escapeXml="false" value="${fn:replace(row.content,ENTER,'<br>')}" />
                                        </div>
                                     </div>
                                     
@@ -231,7 +230,6 @@ button.hover {
                            </div>
                         </c:when>
                         </c:choose>
-                     
 
                         <div class="searchbar1">
                            <form name="form1" method="post" action="${path}/faq/list.do">

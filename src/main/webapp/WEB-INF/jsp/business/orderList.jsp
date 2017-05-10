@@ -229,7 +229,7 @@ float: right !important;
 }
 .desc_nodata {
     padding: 151px 0 138px;
-    border-bottom: 1px solid #222;
+    /* border-bottom: 1px solid #222; */
     font-size: 18px;
     color: #666;
     text-align: center;
@@ -340,6 +340,79 @@ button.hover {
 				$(".check_id3").prop("checked", false);
 			}
 		});
+		
+		$.ajax({
+			type : "POST",
+			url: "${path}/business/graphData.do",
+		 	contentType: "text/plain; charset=utf-8",
+		 	dataType : "json",
+		 	success: function(data) {
+		 		console.log(data);
+		 		
+		 		var word = $.animateNumber.numberStepFactories.append('');
+		 		
+		 		$('#counter1').animateNumber({
+		 			number: data.list1.mAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter2').animateNumber({
+		 			number: data.list1.mSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter3').animateNumber({
+		 			number: data.list1.mSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter4').animateNumber({
+		 			number: data.list1.mSalesAmount+data.list1.kSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter5').animateNumber({
+		 			number: data.list1.kAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter6').animateNumber({
+		 			number: data.list1.kSalesAmount,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter7').animateNumber({
+		 			number: data.list1.kSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		$('#counter8').animateNumber({
+		 			number: data.list1.mSalesTotal+data.list1.kSalesTotal,color: 'white','font-size': '37px',
+		 			easing: 'easeInQuad',numberStep: word
+		 		}, 2000);
+		 		var str = "";
+		 		str+= ' <div> ';
+				str+= ' <div class="product-wrapper" style="width: 100%;  height: 210px; text-align: center;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list2.idx+'&curPage=1&searchOption=&keyword=" > ';
+				str+= ' <img src="${path}/resources/upload/'+data.list2.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
+				str+= ' <div class="banner-bottom1 text-center"> ';
+				str+= ' <div class="banner-bottom-title" style="width: 100%; overflow: hidden; top: 50%;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list2.idx+'&curPage=1&searchOption=&keyword=&crea_id='+data.list2.crea_id+'"> ';
+				str+=  data.list2.modelname+'</a></div></div></div> ';
+		 		$('#mouseRank').html(str);
+		 		
+		 		var str = "";
+		 		str+= ' <div> ';
+				str+= ' <div class="product-wrapper" style="width: 100%; height: 210px; text-align: center;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list3.idx+'&curPage=1&searchOption=&keyword=" > ';
+				str+= ' <img src="${path}/resources/upload/'+data.list3.fullName+'" style="width: 210px; height: 210px;"> </a> </div>';
+				str+= ' <div class="banner-bottom1 text-center"> ';
+				str+= ' <div class="banner-bottom-title" style="width: 100%; overflow: hidden; top: 50%;"> ';
+				str+= ' <a href="${path}/tmouse/view.do?idx='+data.list3.idx+'&curPage=1&searchOption=&keyword=&crea_id='+data.list3.crea_id+'"> ';
+				str+=  data.list3.modelname+'</a></div></div></div> ';
+		 		$('#keyboardRank').html(str);
+		 		
+		 		circleGraph(data.list1.mSalesAmount, data.list1.kSalesAmount);
+		 		lineBarGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
+		 		lineGraph("2016-12","2017-01","2017-02","2017-03","2017-04","2017-05");
+		 	},
+		 	error: function(xhr) {
+		 	  console.log('실패 - ', xhr);
+		 	}
+		});
 	});
 	// 체크된 항목(cart_id) 배열생성
 	function order() {
@@ -353,222 +426,256 @@ button.hover {
 </script>
 
 <script> //그래프 스크립트
-	// 그래프 1
+	// 막대그래프
 	var randomScalingFactor = function() {
 		return Math.round(Math.random() * 100)
 	};
-
-	var lineBarChartData = {
-		labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		datasets : [
-				/* {
-					type : "line",
-					fillColor : "rgba(151,187,205,0)",
+	function lineBarGraph(a,b,c,d,e,f){
+		var lineBarChartData = {
+				labels : [ a, b, c, d, e, f],
+				datasets : [
+						
+						{
+							fillColor : "rgba(220,220,220,0.5)",
+							strokeColor : "rgba(220,220,220,0.8)",
+							highlightFill : "rgba(220,220,220,0.75)",
+							highlightStroke : "rgba(220,220,220,1)",
+							data : [ randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor() ]
+						},
+						{
+							fillColor : "rgba(151,187,205,0.5)",
+							strokeColor : "rgba(151,187,205,0.8)",
+							highlightFill : "rgba(151,187,205,0.75)",
+							highlightStroke : "rgba(151,187,205,1)",
+							data : [ randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor(),
+									randomScalingFactor(), randomScalingFactor() ]
+						} ]
+			}
+			var chart = null;
+			$(function() {
+				var ctx = document.getElementById("canvas5").getContext("2d");
+				chart = new Chart(ctx).LineBar(lineBarChartData, {
+					responsive : true
+				});
+			});
+	}
+	
+	
+	// 원그래프 
+	function circleGraph(a,b){
+		var chartData = [
+			{
+				value : a,
+				color : "#F7464A",
+				highlight : "#FF5A5E",
+				label : "마우스"
+			}, {
+				value : b,
+				color : "#46BFBD",
+				highlight : "#5AD3D1",
+				label : "키보드"
+			}
+		];
+		var chart = null;
+		var canvas = null;
+		var ctx = null;
+		var legendHolder = null;
+		var helpers = Chart.helpers;
+		$(function() {
+			canvas = document.getElementById("canvas1");
+			legendHolder = document.createElement('div');
+			ctx = canvas.getContext("2d");
+			chart = new Chart(ctx).Pie(chartData, {
+				animateScale : true,
+				animation : true,
+				responsive : true,
+			});
+			legendHolder.innerHTML = chart.generateLegend();
+			helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
+					index) {
+				helpers.addEvent(legendNode, 'mouseover', function() {
+					var activeSegment = chart.segments[index];
+					activeSegment.save();
+					activeSegment.fillColor = activeSegment.highlightColor;
+					chart.showTooltip([ activeSegment ]);
+					activeSegment.restore();
+				});
+			});
+			helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
+				chart.draw();
+			});
+			//canvas.parentNode.appendChild(legendHolder.firstChild);
+		});
+	}
+	
+	//선그래프
+	function lineGraph(a,b,c,d,e,f){
+		var months = ["January","February","March","April","May","June","July", "August", "September", "October", "November", "December"];
+		var lineChart = null;
+		var lineChartData = {
+			labels : [a,b,c,d,e,f],
+			datasets : [
+				{
+					label: "My First dataset",
+					fillColor : "rgba(220,220,220,0.2)",
+					strokeColor : "rgba(220,220,220,1)",
+					pointColor : "rgba(220,220,220,1)",
+					pointStrokeColor : "#fff",
+					pointHighlightFill : "#fff",
+					pointHighlightStroke : "rgba(220,220,220,1)",
+					data : [1,2,3,4,5,6]
+				},
+				{
+					label: "My Second dataset",
+					fillColor : "rgba(151,187,205,0.2)",
 					strokeColor : "rgba(151,187,205,1)",
 					pointColor : "rgba(151,187,205,1)",
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
-				}, */
-				{
-					fillColor : "rgba(220,220,220,0.5)",
-					strokeColor : "rgba(220,220,220,0.8)",
-					highlightFill : "rgba(220,220,220,0.75)",
-					highlightStroke : "rgba(220,220,220,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor() ]
+					data : [10,50,60,30,20,100]
+				}
+			]
+
+		};
+		$(function() {
+			var ctx = document.getElementById("canvas4").getContext("2d");
+			lineChart = new Chart(ctx).Line(lineChartData, {
+				scaleShowGridLines : true,
+				scaleGridLineColor : "rgba(0,0,0,0.05)",
+				scaleGridLineWidth : 1,
+				bezierCurve : true,
+				bezierCurveTension : 0.4,
+				pointDot : true,
+				pointDotRadius : 4,
+				pointDotStrokeWidth : 1,
+				pointHitDetectionRadius : 20,
+				datasetStroke : true,
+				datasetStrokeWidth : 2,
+				datasetFill : true,
+				onAnimationProgress: function() {
+					console.log("onAnimationProgress");
 				},
-				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,0.8)",
-					highlightFill : "rgba(151,187,205,0.75)",
-					highlightStroke : "rgba(151,187,205,1)",
-					data : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
-				} ]
-	}
-	var chart = null;
-	$(function() {
-		var ctx = document.getElementById("canvas5").getContext("2d");
-		chart = new Chart(ctx).LineBar(lineBarChartData, {
-			responsive : true
-		});
-	});
-	
-	// 그래프 2
-	var chartData = [
-		{
-			value : 2,
-			color : "#F7464A",
-			highlight : "#FF5A5E",
-			label : "마우스"
-		}, {
-			value : 3,
-			color : "#46BFBD",
-			highlight : "#5AD3D1",
-			label : "키보드"
-		}
-	];
-	var chart = null;
-	var canvas = null;
-	var ctx = null;
-	var legendHolder = null;
-	var helpers = Chart.helpers;
-	$(function() {
-		canvas = document.getElementById("canvas1");
-		legendHolder = document.createElement('div');
-		ctx = canvas.getContext("2d");
-		chart = new Chart(ctx).Pie(chartData, {
-			animateScale : true,
-			animation : true,
-			responsive : true,
-		});
-		legendHolder.innerHTML = chart.generateLegend();
-		helpers.each(legendHolder.firstChild.childNodes, function(legendNode,
-				index) {
-			helpers.addEvent(legendNode, 'mouseover', function() {
-				var activeSegment = chart.segments[index];
-				activeSegment.save();
-				activeSegment.fillColor = activeSegment.highlightColor;
-				chart.showTooltip([ activeSegment ]);
-				activeSegment.restore();
+				onAnimationComplete: function() {
+					console.log("onAnimationComplete");
+				}
 			});
 		});
-		helpers.addEvent(legendHolder.firstChild, 'mouseout', function() {
-			chart.draw();
+		$("canvas4").on("click", function(e) {
+			var activePoints = lineChart.getPointsAtEvent(e);
+			console.log(activePoints);
+
+			for(var i in activePoints) {
+				console.log(activePoints[i].value);
+			}
 		});
-		//canvas.parentNode.appendChild(legendHolder.firstChild);
-	});
+	}
 	
-	// 그래프 3
-	var radarChartData = {
-		label: [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-		datasets : [
-				{
-					fillColor : "rgba(220,220,220,0.5)",
-					strokeColor : "rgba(220,220,220,0.8)",
-					pointColor : "rgba(220,220,220,0.75)",
-					pointStrokeColor : "rgba(220,220,220,1)",
-					points : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor() ]
-				},
-				{
-					fillColor : "rgba(151,187,205,0.5)",
-					strokeColor : "rgba(151,187,205,0.8)",
-					pointColor : "rgba(151,187,205,0.75)",
-					pointStrokeColor : "rgba(151,187,205,1)",
-					points : [ randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor(), randomScalingFactor(),
-							randomScalingFactor() ]
-				}
-		]
-	};
-	var chart = null;
-	var canvas = null;
-	var ctx = null;
-	var legendHolder = null;
-	var helpers = Chart.helpers;
-	$(function() {
-		var ctx = document.getElementById("canvas4").getContext("2d");
-		chart = new Chart(ctx).radar(radarChartData, {
-			responsive : true
-		});
-	});
+
+	
 </script>
 </head>
 <body>
 	<!-- Breadcrumbs Area Start -->
-	<div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/bucket.png');">
+	<div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/biz.png');">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div style="padding: 100px 0;text-align:center;">
+					<div style="padding: 80px 0;height: 0px;text-align:center;">
 						<h2>사업자 페이지</h2> 
 					</div>
-					<!-- layer 2 -->      
-					<div>
-						<!-- <div class="col-md-1 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".9999s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.9999s;">
+					<!-- layer 1 -->      
+					<div class="col-md-12" style="text-align:center;">  
+						<div class="col-md-2 col-sm-2 col-xs-6"></div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
+									<span>
+										<span id="counter1" style="font-size: 30px">0</span>
+									</span>
+									<h3>마우스 재고량</h3>								
 								</div>
 							</div>		                
-			            </div> -->    
+			            </div>
 						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter2">0</span>
 									</span>
 									<h3>마우스 판매량</h3>								
 								</div>
 							</div>		                
 			            </div>
 						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>키보드 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">3725</span>
-									</span>
-									<h3>총 판매량</h3>								
-								</div>
-							</div>		                
-			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
-								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">286</span>
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter3">0</span>
 									</span>
 									<h3>마우스 매출액</h3>								
 								</div>
 							</div>		                
 			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info" style="font-size: 30px">
+									<span>
+										<span id="counter4">0</span>
+									</span>
+									<h3>총 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+					</div>
+					<!-- layer 2 --> 
+					<div class="col-md-12" style="text-align:center;">
+						<div class="col-md-2 col-sm-2 col-xs-6"></div>
+						<div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s"> 
 								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">550</span>
+									<span>
+										<span id="counter5" style="font-size: 30px">0</span>
+									</span>
+									<h3>키보드 재고량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info">
+									<span>
+										<span id="counter6" style="font-size: 30px">0</span>
+									</span>
+									<h3>키보드 판매량</h3>								
+								</div>
+							</div>		                
+			            </div>
+			            <div class="col-md-2 col-sm-2 col-xs-6">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
+								<div class="counter-info">
+									<span>
+										<span id="counter7" style="font-size: 30px">0</span>
 									</span>
 									<h3>키보드 매출액</h3>								
 								</div>
 							</div>		                
 			            </div>
 			            <div class="col-md-2 col-sm-2 col-xs-6">
-							<div class="single-counter wow animated animated" data-wow-duration="1.5s" data-wow-delay=".3s" style="visibility: visible; animation-duration: 1.5s; animation-delay: 0.3s;">
+							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
-									<span class="fcount">
-										<span class="counter">2485</span>
+									<span>
+										<span id="counter8" style="font-size: 30px">0</span>
 									</span>
 									<h3>총 매출액</h3>								
 								</div>
 							</div>		                
 			            </div> 
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -958,33 +1065,21 @@ button.hover {
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<div class="single-banner" style="padding:5%">
-						<div style="height=350;width=350">
-							<div style="width:70%;">
-							<canvas id="canvas2" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
-							<ul class="polararea-legend">
-								<li><span style="background-color:#F7464A"></span>마우스</li>
-								<li><span style="background-color:#46BFBD"></span>키보드</li>
-							</ul>
-							</div>
+						<div id="mouseRank" style="height=350;width=350">
+							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">마우스 판매 1위</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-4">
 					<div class="single-banner" style="padding:5%">
-						<div style="height=350;width=350">
-							<div style="width:70%;">
-							<canvas id="canvas3" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
-							<ul class="polararea-legend">
-								<li><span style="background-color:#F7464A"></span>마우스</li>
-								<li><span style="background-color:#46BFBD"></span>키보드</li>
-							</ul>
-							</div>
+						<div id="keyboardRank" style="height=350;width=350">
+							
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">키보드 판매 1위</a>
 						</div>
 					</div>
 				</div>
@@ -998,13 +1093,13 @@ button.hover {
 							<div style="width:70%;">
 								<canvas id="canvas4" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
 								<ul class="polararea-legend">
-									<li><span style="background-color:#F7464A"></span>마우스</li>
-									<li><span style="background-color:#46BFBD"></span>키보드</li>
+									<li><span style="background-color:rgba(220,220,220,1)"></span>마우스</li>
+									<li><span style="background-color:rgba(151,187,205,1)"></span>키보드</li>
 								</ul>
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">제품 판매량</a>
+							<a href="#">6개월 제품 수익률</a>
 						</div>
 					</div>
 				</div>
@@ -1015,13 +1110,13 @@ button.hover {
 							<div style="width:80%;">
 								<canvas id="canvas5" style="width: 100%; height: 100%;" height="402" width="402"></canvas>
 								<ul class="polararea-legend">
-									<li><span style="background-color:rgba(220,220,220,0.75)"></span>마우스</li>
-									<li><span style="background-color:rgba(151,187,205,0.75)"></span>키보드</li>
+									<li><span style="background-color:rgba(220,220,220,0.8)"></span>마우스</li>
+									<li><span style="background-color:rgba(151,187,205,0.8)"></span>키보드</li>
 								</ul>
 							</div>
 						</div>
 						<div class="banner-bottom text-center">
-							<a href="#">2017 제품 판매량</a>
+							<a href="#">6개월 제품 판매량</a>
 						</div>
 					</div>
 				</div>
@@ -1041,6 +1136,8 @@ button.hover {
         <!-- Discount Area End -->
         
 		<%@ include file="/resources/include/footer.jsp" %>
-		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script src="${path}/resources/admin/num/jquery.animateNumber.min.js"></script>
+		<script src="${path}/resources/admin/num/jquery.color.min.js"></script>
     </body>
 </html>

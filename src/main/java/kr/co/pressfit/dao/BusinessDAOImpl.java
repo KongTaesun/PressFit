@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
+import kr.co.pressfit.vo.KeyboardVO;
+import kr.co.pressfit.vo.TMouseVO;
 
 
  
@@ -115,7 +118,27 @@ public class BusinessDAOImpl implements BusinessDAO {
     	map.put("id", id);
     	return sqlSession.selectOne("business.countArticle", map);
 	}
-    
+	@Override
+	public GraphVO mainGraphData(String id) throws Exception {
+		return sqlSession.selectOne("business.mainGraphData", id);
+	}
+	@Override
+	public TMouseVO mouseRank(String id) throws Exception {
+		return sqlSession.selectOne("business.mouseRank", id);
+	}
+	@Override
+	public KeyboardVO keyboardRank(String id) throws Exception {
+		return sqlSession.selectOne("business.keyboardRank", id);
+	}
+	@Override
+	public List<GraphVO> monthData(String id, String kind) throws Exception {
+		Map<String, String> map = new HashMap<String, String>();
+    	map.put("id", id);
+    	map.put("kind", kind);
+		return sqlSession.selectList("business.monthData", map);
+	}
+	
+	
 }
 
 

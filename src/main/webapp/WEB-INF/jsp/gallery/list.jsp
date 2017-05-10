@@ -23,7 +23,7 @@
 }
 .desc_total .emph_total {
     font-weight: 700;
-    color: #222;
+    color: #222; 
     font-style: normal;
 }
 .paging_friends {
@@ -92,7 +92,7 @@ button.hover {
 	}
 	function imgError(image) {
 	    image.onerror = "";
-	    image.src = "${path}/resources/writer/img/single-product/bg-3.jpg";
+	    image.src = "${path}/resources/writer/icon/keyboard.png";
 	    return true;
 	}
 </script>
@@ -135,15 +135,17 @@ button.hover {
 								<div class="shop-single-product-area">
 									<c:forEach var="row" items="${map.list}">
 										<div class="col-md-4 col-sm-6">
-											<div class="single-banner" style="max-width:450px">
-                                    			<div class="product-wrapper">
+											<div class="single-banner" style="width:100%;">
+                                    			<div class="product-wrapper"  style="width: 100%; height: 260px;">
                                     				<a href="${path}/gallery/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.gallery}"
                                           				class="single-banner-image-wrapper">
-                                          				<img alt="" src="${path}/resources/upload/${row.fullName}" style="width:270 ;height:280" onerror="imgError(this);">
+                                          				<img alt="" src="${path}/resources/upload/${row.fullName}" style="width: 100%; height: 260px;" onerror="imgError(this);">
                                           			</a>
                                     			</div>
-                                    			<div class="banner-bottom text-center">
+                                    			<div class="banner-bottom text-center" style="width:100%;height:100px;"> 
                                     				<div class="banner-bottom-title">
+                                    				<div>${row.subtitle}</div>
+                                    			 
                                     					<a href="${path}/gallery/view.do?idx=${row.idx}&curPage=${map.boardPager.curPage}&searchOption=${map.searchOption}&keyword=${map.keyword}">
                                     						${row.title}
                                     						<c:if test="${row.recnt >= 0}">
@@ -151,8 +153,10 @@ button.hover {
 															</c:if>
 														</a>
                                     				</div>
-                                    				<div>${row.writer}</div>
-                                       				<div>${row.regdate}</div>
+                                    				
+                                    				<div style="margin-top:5px;">${row.writer}</div>
+                                    				<div><fmt:formatDate pattern="yyyy.MM.dd" value="${row.regdate}"/>
+                                       				</div>
                                     			</div>
                                     		</div>
 										</div>

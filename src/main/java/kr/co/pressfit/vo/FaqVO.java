@@ -6,9 +6,11 @@ import java.util.Date;
 public class FaqVO {
 	private int idx;
 	private String title;
+	private String subtitle;
+	
 	private String content;
 	private String writer;
-	private String regdate;
+	private Date regdate;
 	private int viewcnt;
 	private String[] filelist;
 	private String showdel;
@@ -17,19 +19,6 @@ public class FaqVO {
 	private int level;
 	private int recnt;
 	private int TOTAL;
-	
-	public int getTOTAL() {
-		return TOTAL;
-	}
-	public void setTOTAL(int tOTAL) {
-		TOTAL = tOTAL;
-	}
-	public int getRecnt() {
-		return recnt;
-	}
-	public void setRecnt(int recnt) {
-		this.recnt = recnt;
-	}
 	public int getIdx() {
 		return idx;
 	}
@@ -41,6 +30,12 @@ public class FaqVO {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getSubtitle() {
+		return subtitle;
+	}
+	public void setSubtitle(String subtitle) {
+		this.subtitle = subtitle;
 	}
 	public String getContent() {
 		return content;
@@ -54,10 +49,10 @@ public class FaqVO {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(String regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 	public int getViewcnt() {
@@ -96,12 +91,25 @@ public class FaqVO {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	public int getRecnt() {
+		return recnt;
+	}
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+	public int getTOTAL() {
+		return TOTAL;
+	}
+	public void setTOTAL(int tOTAL) {
+		TOTAL = tOTAL;
+	}
 	@Override
 	public String toString() {
-		return "FaqVO [idx=" + idx + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", viewcnt=" + viewcnt + ", filelist=" + Arrays.toString(filelist) + ", showdel=" + showdel
-				+ ", ref=" + ref + ", turn=" + turn + ", level=" + level + ", recnt=" + recnt + ", TOTAL=" + TOTAL
-				+ "]";
+		return "FaqVO [idx=" + idx + ", title=" + title + ", subtitle=" + subtitle + ", content=" + content
+				+ ", writer=" + writer + ", regdate=" + regdate + ", viewcnt=" + viewcnt + ", filelist="
+				+ Arrays.toString(filelist) + ", showdel=" + showdel + ", ref=" + ref + ", turn=" + turn + ", level="
+				+ level + ", recnt=" + recnt + ", TOTAL=" + TOTAL + "]";
 	}
+	 
 	
 }

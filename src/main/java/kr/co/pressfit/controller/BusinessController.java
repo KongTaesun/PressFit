@@ -23,6 +23,7 @@ import kr.co.pressfit.service.KeyboardService;
 import kr.co.pressfit.service.TMouseService;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
 import kr.co.pressfit.vo.KeyboardVO;
 import kr.co.pressfit.vo.TMouseVO;
 
@@ -209,8 +210,7 @@ public class BusinessController {
         String searchOption3 = "exchange";
         List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id); // ��ٱ��� ���� 
 
-        // ��ٱ��� ��ü ��׿� ���� ��ۺ� ����
-        // ��۷�(10�����̻� => ����, �̸� => 2500��)
+        
         
         
         map.put("list1", list1);                // ��ٱ��� ������ map�� ����
@@ -240,6 +240,24 @@ public class BusinessController {
         return "redirect:orderList.do";
     	
 		
+    }
+	
+	@RequestMapping("graphData.do")
+    public ModelAndView graphData(@RequestParam(defaultValue = "1990-01-01") String startDate,
+            @RequestParam(defaultValue = "2020-12-31") String endDate, HttpSession session, ModelAndView mav) throws Exception{
+        String id = (String) session.getAttribute("id"); 
+        
+        endDate += " 23:59:59";
+        
+        mav.setViewName("jsonView");
+        mav.addObject("list1", businessService.mainGraphData(id));
+        mav.addObject("list2", businessService.mouseRank(id));
+        mav.addObject("list3", businessService.keyboardRank(id));
+        String kind = "tmouse";
+        mav.addObject("list4", businessService.monthData(id, kind));
+        kind = "keyboard";
+        mav.addObject("list5", businessService.monthData(id, kind));
+        return mav;
     }
 }
 

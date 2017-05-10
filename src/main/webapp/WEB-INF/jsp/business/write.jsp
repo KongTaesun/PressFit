@@ -551,10 +551,9 @@ input[type=text]:focus {
 						</dd>
 	</dl>
 					
-
-						<input type="submit" value="회원가입" /> 
-						
-						<input type="reset" value="취소" />
+ 
+						<button class="button form-button" type="submit">회원가입</button>
+					<button class="button form-button" type="reset">취소</button>
 
 				</form>
 

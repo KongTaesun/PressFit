@@ -69,7 +69,8 @@ public MemberVO updatepage(String id) {
 }
 
 @Override
-public void addAttach(String fullName) {
-	joinDao.addAttach(fullName);
+public void addAttach(MemberVO vo) {
+	joinDao.addAttach(vo);
 }
+
 }

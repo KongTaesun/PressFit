@@ -232,13 +232,13 @@ button.hover {
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
-					       <h2>내주문 관리</h2> 
-					       <ul class="breadcrumbs-list">
-						        <!-- <li>
+					       <h2>주문내역</h2> 
+					       <!--<ul class="breadcrumbs-list">
+						         <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li> -->
+						        </li> 
 						        <li>Shopping Cart</li>
-						    </ul>
+						    </ul>-->
 					    </div>
 					</div>
 				</div>
@@ -273,7 +273,7 @@ button.hover {
 														<img src="${path}/resources/upload${row.fullName}" class="thumb_g" alt="">
 													</a>
 													<div class="desc_basket">
-														주분번호 ${row.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row.cart_id}"/>
+														주문번호 ${row.cart_id }<input type="hidden" id="cart_id" name="cart_id" value="${row.cart_id}"/>
 														<strong class="tit_product">
 															<a href="${path}/${row2.kind}/view.do?idx=${row2.idx}&curPage=1&searchOption=${map.searchOption}&keyword=${map.keyword}" class="link_product">
 																${row.modelname}
@@ -290,17 +290,17 @@ button.hover {
 															<li name="price">
 																<em class="tit_append">주문일자 :</em>
 																<span class="product_price">
-							                        				${row.orderdate}
+																 <fmt:formatDate pattern="yyyy.MM.dd" value="${row.orderdate}"/>
+                                             	
 																</span>
-															</li>
-															<li>
+															</li> 
+														<%-- 	<li>
 																<em class="tit_append">주분상품정보 :</em>
 																<span class="product_price">
-																	<input type="text" style="width: 10px; border: none;" name="amount" value="${row.modelname}" readonly="readonly">
-																</span>개
-															<%-- 	 <input type="hidden"  name="amount" value="${row2.amount}"/> --%>
-															</li>
-															<li>
+																	<input type="text" value="${row.modelname}" readonly="readonly">
+																</span>
+															</li> --%>
+															<li> 
 																<em class="tit_append">상품수량 :</em>
 																<span class="product_price">
 																	<input type="text" style="width: 10px; border: none;" name="amount" value="${row.amount}" readonly="readonly">

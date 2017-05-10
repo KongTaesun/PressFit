@@ -124,6 +124,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set amount = amount + #{amount}, salesTotal = salesTotal - #{amount}
 		where idx = #{idx}
 	</update>
+	
+	
+	<select id="mainGraphData" resultType="kr.co.pressfit.vo.GraphVO">
+        select
+		(select sum(m.amount) from TMouseBoard m where m.crea_id = #{id}) as mAmount,
+		(select sum(m.salesTotal) from TMouseBoard m where m.crea_id = #{id}) as mSalesAmount,
+		(select sum(m.salesTotal*m.price) from TMouseBoard m where m.crea_id = #{id}) as mSalesTotal,
+		(select sum(k.amount) from KeyboardBoard k where k.crea_id = #{id}) as kAmount,
+		(select sum(k.salesTotal) from KeyboardBoard k where k.crea_id = #{id}) as kSalesAmount,
+		(select sum(k.salesTotal*k.price) from KeyboardBoard k where k.crea_id = #{id}) as kSalesTotal
+		from TMouseBoard m, KeyboardBoard k
+		group by mAmount; 
+    </select>
+    
+    <select id="mouseRank" resultType="kr.co.pressfit.vo.TMouseVO">
+        select *
+        from TMouseBoard m, TMouseFile f
+		where m.crea_id = #{id}
+			  and m.idx=f.idx
+		order by m.salesTotal desc, m.idx limit 1
+    </select>
+    
+    <select id="keyboardRank" resultType="kr.co.pressfit.vo.KeyboardVO">
+        select *
+        from KeyboardBoard k, KeyboardFile f
+		where k.crea_id = #{id}
+			  and k.idx=f.idx
+		order by k.salesTotal desc, k.idx limit 1
+    </select>
+    
+    <select id="monthData" resultType="kr.co.pressfit.vo.GraphVO">
+        select  DATE_FORMAT(orderdate,'%Y-%m') mon, sum(amount) monthAmount, sum(amount*price) monthSales from cart_board
+		where crea_id=#{id}
+		and kind=#{kind}
+		and orderdate >= DATE_ADD(NOW(), INTERVAL -6 MONTH)
+		group by mon;
+    </select>
+	
 </mapper>
 
  

@@ -235,35 +235,21 @@ button.hover {
 							<aside class="widget widget-seller">
 								<h2 class="sidebar-title">TOP SELLERS</h2>
 								<div class="single-seller">
-									<div class="seller-img">
-										<img src="img/shop/1.jpg" alt="" />
+									<div class="seller-img" style="border:1px solid #BDBDBD;">
+										<img src="${path}/resources/upload/2017/04/11/4451353_1.jpg" alt="인기품목" style="width:100px; height:100px;"/> 
 									</div>
-									<div class="seller-details">
-										<a href="shop.html"><h5>Cold mountain</h5></a>
-										<h5>$ 50.00</h5>
-										<ul>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-										</ul>
+									<div class="seller-details"     style="padding: 20px 20px 20px;">
+										<a href="${path}/keyboard/view.do?idx=1&curPage=1&searchOption=title&keyword="><h5>MAXTILL TRON G100K (그레이, 청축)</h5></a>
+										<h5>43,000원</h5>
 									</div>
 								</div>
 								<div class="single-seller">
-									<div class="seller-img">
-										<img src="img/shop/2.jpg" alt="" />
+									<div class="seller-img" style="border:1px solid #BDBDBD;">
+										<img src="${path}/resources/upload/2017/04/11/4292709_1.jpg" alt="인기품목" style="width:100px; height:100px;"/>
 									</div>
-									<div class="seller-details">
-										<a href=""><h5>The historian</h5></a>
-										<h5>$ 50.00</h5>
-										<ul>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-											<li><i class="fa fa-star icolor"></i></li>
-										</ul>
+									<div class="seller-details" style="padding: 20px 20px 20px;">
+										<a href="${path}/keyboard/view.do?idx=4&curPage=1&searchOption=title&keyword="><h5>ABKO HACKER K600 하데스 리얼RGB 한영 이중사출 게이밍(블랙, 청축)</h5></a>
+										<h5>65,000원</h5>
 									</div>
 								</div>
 							</aside>
@@ -336,9 +322,9 @@ button.hover {
 						</c:if>
 					</span>
 					</span> 
-									<c:if test="${sessionScope.id != null}">
+									<%-- <c:if test="${sessionScope.id != null}">
 										<button type="button" id="btnWrite">글쓰기</button>
-									</c:if>
+									</c:if> --%>
 								</ul>
 							</div>
 						</div>

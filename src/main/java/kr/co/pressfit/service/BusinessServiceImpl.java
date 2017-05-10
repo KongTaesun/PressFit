@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import kr.co.pressfit.dao.BusinessDAOImpl;
 import kr.co.pressfit.vo.BusinessVO;
 import kr.co.pressfit.vo.CartVO;
+import kr.co.pressfit.vo.GraphVO;
+import kr.co.pressfit.vo.KeyboardVO;
+import kr.co.pressfit.vo.TMouseVO;
 
  
 
@@ -87,6 +90,26 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public int countArticle(String searchOption, String keyword, String id) throws Exception {
 		return BusinessDao.countArticle(searchOption, keyword, id);
+	}
+
+	@Override
+	public GraphVO mainGraphData(String id) throws Exception {
+		return BusinessDao.mainGraphData(id);
+	}
+
+	@Override
+	public TMouseVO mouseRank(String id) throws Exception {
+		return BusinessDao.mouseRank(id);
+	}
+
+	@Override
+	public KeyboardVO keyboardRank(String id) throws Exception {
+		return BusinessDao.keyboardRank(id);
+	}
+
+	@Override
+	public List<GraphVO> monthData(String id, String kind) throws Exception {
+		return BusinessDao.monthData(id, kind);
 	}
     
     

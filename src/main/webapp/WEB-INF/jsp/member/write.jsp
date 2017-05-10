@@ -298,12 +298,6 @@ button.btnbuy:hover {
     width: 25%; 
     height: 50px;
     margin-left: 22px;
-    /* border: 1px solid #d2d2d2;
-    font-size: 16px;
-    color: #1e1e1e;
-    line-height: 49px;
-    background-color: #fff;
-    text-align: center;  */
 }
 .box_input {
 input[type=text]:focus {
@@ -328,7 +322,7 @@ input[type=text]:focus {
 			<div class="row">
 				<div class="col-md-12">
 					<div class="breadcrumbs">
-						<h2>My Account</h2>
+						<h2>회원가입</h2>
 						
 					</div>
 				</div>
@@ -336,8 +330,6 @@ input[type=text]:focus {
 		</div>
 	</div>
 
-
-	<!-- Loging Area Start -->
 	<div class="login-account section-padding">
 		<div class="container" style="display:table ;width: 700px;text-align: center">
 		<div id="infoAgree">
@@ -348,7 +340,7 @@ input[type=text]:focus {
 							<input type="hidden" name="marketing_email" value="false">
 						
 						
-						<div id="signup-agree" class="create-account-form" style="">
+						<div id="signup-agree" class="create-account-form" style="border:0px;">
 						
 						
 							<label> <input class="agree-all" type="checkbox"  id="allCheck"   name="Check"> <i></i> <span>전체동의</span> 
@@ -388,7 +380,7 @@ input[type=text]:focus {
 						</div>
 						
 						<div class="form-help">
-				,
+				
 							<p>
 								문제가 있거나 궁금한 점이 있으시면<br>아래 주소로 문의하시기 바랍니다.
 							</p>
@@ -441,7 +433,7 @@ input[type=text]:focus {
 							<dd>
 								<div class="box_input box_postal">
 								<input class="tf_g" id="post" name="post" type="text" readonly=readonly placeholder="우편번호"></div>
-								<button type="button" class="btn_postal" onclick="DaumPostcode()">주소검색</button>
+								<button type="button" class="btn_postal" onclick="DaumPostcode()" style="line-height: 0px;">주소검색</button>
 							</dd>
 							<dd>
 								<div class="box_input">
@@ -456,11 +448,12 @@ input[type=text]:focus {
 						</dl>
 						
 						 
-						<input type="submit" value="회원가입" />
-				<input type="reset" value="취소" />
+						<button class="button form-button" type="submit">회원가입</button>
+					<button class="button form-button" type="reset">취소</button>
+				 
 					</form>
-
-			</div>
+ 
+			</div>   
 
 
 		</div>
