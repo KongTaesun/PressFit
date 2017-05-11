@@ -31,6 +31,25 @@
 	            AND ${searchOption} like '%${keyword}%'
 	        </otherwise>
 	    </choose>
+	    <if test="searchOption=='gamingmouse'">
+        	and gamingmouse = '○'
+     	</if>
+      	<if test="searchOption=='connectionmethod'">
+        	and (connectionmethod like '%무선%' or connectionmethod like '%블루투스%')
+      	</if>
+      	<if test="searchOption=='wristtunnelsyndrome'">
+         	and wristtunnelsyndrome = '○'
+	    </if>
+	    <if test="searchOption=='switch1'">
+	        and switch1 = '무소음 스위치'
+	    </if> 
+	    <if test="searchOption=='price'">
+	    	and price BETWEEN #{minPrice} AND #{maxPrice}
+	    </if>
+	    <if test="searchOption=='id'">
+	    	and b.crea_id=#{id}
+	    </if>
+	    
 	</sql>
     
 	 

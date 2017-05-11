@@ -123,7 +123,9 @@ button.hover {
     color: #000000;
     border: 1px solid #879fff;
 }
-
+.div_btn1 {
+text-align:right;
+}
 </style>
  
 <script>
@@ -253,31 +255,12 @@ button.hover {
                            </div>
                         </c:when>
                         </c:choose>
-                     
-
-                        <div class="searchbar1">
-                           <form name="form1" method="post" action="${path}/faq/list.do">
-                              <select name="searchOption">
-                                 <!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
-                                 <option value="all"
-                                    <c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
-                                 <option value="name"
-                                    <c:out value="${map.searchOption == 'writer'?'selected':''}"/>>이름</option>
-                                 <option value="content"
-                                    <c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
-                                 <option value="title"
-                                    <c:out value="${map.searchOption == 'title'?'selected':''}"/>>제목</option>
-                              </select> 
-                              
-                              <input name="keyword" value="${map.keyword}">  
-                              <button type="submit" class="btn1">조회</button>
                               <!-- 로그인한 사용자만 글쓰기 버튼을 활성화 -->
-                              <c:if test="${sessionScope.id != null}">
+<%--                               <div class="div_btn1">
+                              <c:if test="${sessionScope.id == null}">
                                  <button type="button" id="btnWrite" class="btn1">글쓰기</button>
                               </c:if>
-                           </form> 
-                        </div>
-
+                              </div> --%>
                      </div>
                   </div> 
                </div>

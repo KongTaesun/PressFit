@@ -61,7 +61,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #616161;
-    padding: 9px 20px;
+    padding: 2px 17px;
     background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
     -moz-border-radius: 0px;
@@ -203,7 +203,7 @@ button.hover {
       		<!-- 페이징 끝  --> 
       		
       		
-      		<div class="searchbar1">
+      		<div class="searchbar1"  style="text-align: center; margin-top: 30px;">
 				<form name="form1" method="post" action="${path}/gallery/list.do">
 					<select name="searchOption">
 						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->

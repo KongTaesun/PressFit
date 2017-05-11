@@ -248,11 +248,7 @@ button.hover {
 				<div class="col-md-12">
 					<div class="breadcrumbs">
 
-				<!-- 		<h2>마우스</h2> -->
-						<!-- <ul class="breadcrumbs-list">
-							<li><a title="Return to Home" href="index.html">Home</a></li>
-							<li>NOTICE</li>
-						</ul> -->
+
 					</div>
 				</div>
 			</div>
@@ -270,9 +266,7 @@ button.hover {
 					<select name="searchOption">
 						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
 						<option value="all"
-							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+이름+제목</option>
-						<option value="name"
-							<c:out value="${map.searchOption == 'crea_id'?'selected':''}"/>>이름</option>
+							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+내용</option>
 						<option value="content"
 							<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
 						<option value="modelname"
@@ -324,9 +318,9 @@ button.hover {
 											<div class="widget-buttom">
 												<div class="filterbtn">
 													<span class="btn-left"><input type="button"
-														value="Filter" id="btnPrice" style="width: 112px;" /></span> <span
-														class="btn-right"><input type="reset" value="CLEAR"
-														style="width: 112px;" /></span>
+														value="금액조회" id="btnPrice" style="width: 100%;" /></span> <span
+														class="btn-right"><!-- <input type="reset" value="CLEAR"
+														style="width: 112px;" /> --></span>
 												</div>
 											</div>
 										</div>
@@ -374,7 +368,7 @@ button.hover {
 					<div class="shop-tab-area">
 						<div class="shop-tab-list">
 						<div class="tmouse-solid">마우스 &nbsp;</div>
-							<div class="shop-tab-pill pull-left">
+							<!-- <div class="shop-tab-pill pull-left">
 								<ul>
 									
 									<li class="active" id="left"><a data-toggle="pill"
@@ -384,7 +378,7 @@ button.hover {
 											class="fa fa-th-list"></i><span>List</span></a></li>
 
 								</ul>
-							</div>
+							</div> -->
 							<div class="shopingcart-bottom-area1">
 							<div class="shop-tab-pill pull-right">
 								<ul>
