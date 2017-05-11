@@ -50,13 +50,6 @@ function bargraph(name,a,b,c,d,e,f){
 		labels : ["성능","디자인","관심도","좋은평가","나쁜평가","의료"],
 		datasets : [
 			{
-				fillColor : "rgba(220,220,220,0.5)",
-				strokeColor : "rgba(220,220,220,0.8)",
-				highlightFill: "rgba(220,220,220,0.75)",
-				highlightStroke: "rgba(220,220,220,1)",
-				data : [30,26,84,95,77,58]
-			},
-			{
 				fillColor : "rgba(151,187,205,0.5)",
 				strokeColor : "rgba(151,187,205,0.8)",
 				highlightFill : "rgba(151,187,205,0.75)",
@@ -102,38 +95,38 @@ function Doughnut(name,a,b,c,d,e,f){
 				value: a,
 				color:"#F7464A",
 				highlight: "#FF5A5E",
-				label: "Red"
+				label: "성능"
 			},
 			{
 				value: b,
 				color: "#46BFBD",
 				highlight: "#5AD3D1",
-				label: "Green"
+				label: "디자인"
 			},
 			{
 				value: c,
 				color: "#FDB45C",
 				highlight: "#FFC870",
-				label: "Yellow"
+				label: "관심도"
 			},
 			{
 				value: d,
 				color: "#949FB1",
 				highlight: "#A8B3C5",
-				label: "Grey"
+				label: "좋은평가"
 			},
 			{
 				value: e,
 				color: "#4D5360",
 				highlight: "#616774",
-				label: "Dark Grey"
+				label: "나쁜평가"
 			}
 			,
 			{
 				value: f,
 				color: "#2155c6",
 				highlight: "#4868af",
-				label: "blue"
+				label: "건강"
 			}
 
 		];
@@ -204,8 +197,8 @@ function radargraph(name,a,b,c,d,e,f){
 				fillColor: "rgba(151,187,205,0.2)",
 				strokeColor: "rgba(151,187,205,1)",
 				pointColor: "rgba(151,187,205,1)",
-				pointStrokeColor: "#fff",
-				pointHighlightFill: "#fff",
+				pointStrokeColor: "#000000",
+				pointHighlightFill: "#000000",
 				pointHighlightStroke: "rgba(151,187,205,1)",
 				data: [a,b,c,d,e,f]
 			}
@@ -297,12 +290,12 @@ function type1obj(obj){
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list0 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health
+				obj.reviewlist.hitslist[i]._source.health*1.2
 				);
 		i++;
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
@@ -360,26 +353,27 @@ function type1obj(obj){
 	$('#first .banner-list').empty();
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.firstreview._source.tech+obj.secondreview._source.tech)/2*0.7),
+			((obj.firstreview._source.design+obj.secondreview._source.design)/2*0.7),
+			((obj.firstreview._source.attention+obj.secondreview._source.attention)/2),
+			((obj.firstreview._source.good+obj.secondreview._source.good)/2),
+			((obj.firstreview._source.bad+obj.secondreview._source.bad)/2),
+			((obj.firstreview._source.health+obj.secondreview._source.health)/2*1.2));
 	Doughnut('canvas2'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.firstreview._source.tech+obj.secondreview._source.tech)/2*0.7*0.01),
+			((obj.firstreview._source.design+obj.secondreview._source.design)/2*0.7*0.01),
+			((obj.firstreview._source.attention+obj.secondreview._source.attention)/2*0.01),
+			((obj.firstreview._source.good+obj.secondreview._source.good)/2*0.01),
+			((obj.firstreview._source.bad+obj.secondreview._source.bad)/2*0.01),
+			((obj.firstreview._source.health+obj.secondreview._source.health)/2*1.2*0.01));
 	ztskillbar();
 	});
-	$('#firstlist').show();
+	$('#list1').show();
 	if(obj.firstreview!=null){
 		var k='firstlist';
 		var str = '';
-		str+="<div class='col-md-3' style='background-color: white;''>"+
+		str+="<div class='col-md-2'></div>"+
+			"<div class='col-md-3' style='background-color: white;'>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.firstreview._score*10).toFixed(2)+"/100</div>"+
 			"<a target='_blank' href='"+obj.firstreview._source.link+"'>"+
@@ -387,14 +381,14 @@ function type1obj(obj){
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.firstreview._source.link+"'>"+
 			obj.firstreview._source.content.substring(0,100)+"...</a></div></div></div>";
-		$('#firstlist .banner-list').append(str).addClass('animate');
+		$('#list1 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
-				obj.reviewlist.hitslist[i]._source.attention,
-				obj.reviewlist.hitslist[i]._source.good,
-				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);		
+				obj.firstreview._source.tech*0.7,
+				obj.firstreview._source.design*0.7,
+				obj.firstreview._source.attention,
+				obj.firstreview._source.good,
+				obj.firstreview._source.bad,
+				obj.firstreview._source.health*1.2);		
 	}
 	if(obj.secondreview!=null){
 		var k='secondlist';
@@ -407,14 +401,14 @@ function type1obj(obj){
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.secondreview._source.link+"'>"+
 			obj.secondreview._source.content.substring(0,100)+"...</a></div></div></div>";
-		$('#firstlist .banner-list').append(str).addClass('animate');
+		$('#list1 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
-				obj.reviewlist.hitslist[i]._source.attention,
-				obj.reviewlist.hitslist[i]._source.good,
-				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);		
+				obj.secondreview._source.tech*0.7,
+				obj.secondreview._source.design*0.7,
+				obj.secondreview._source.attention,
+				obj.secondreview._source.good,
+				obj.secondreview._source.bad,
+				obj.secondreview._source.health*1.2);	
 	}
 	if(obj.thirdreview!=null){
 		var k='thirdlist';
@@ -427,14 +421,14 @@ function type1obj(obj){
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.thirdreview._source.link+"'>"+
 			obj.thirdreview._source.content.substring(0,100)+"...</a></div></div></div>";
-		$('#firstlist .banner-list').append(str).addClass('animate');
+		$('#list1 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+k,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
-				obj.reviewlist.hitslist[i]._source.attention,
-				obj.reviewlist.hitslist[i]._source.good,
-				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);		
+				obj.thirdreview._source.tech*0.7,
+				obj.thirdreview._source.design*0.7,
+				obj.thirdreview._source.attention,
+				obj.thirdreview._source.good,
+				obj.thirdreview._source.bad,
+				obj.thirdreview._source.health*1.2);	
 	}
 	
 };
@@ -457,7 +451,7 @@ function type3obj(obj){
 	          "<div class='col-md-1'></div>"+
 	        "<div class='col-md-3 col-sm-6'>"+
 	          "<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-	            "<div class='price'>추가사항 <br/>65%</div>"+
+	           // "<div class='price'>추가사항 <br/>65%</div>"+
 	            "<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 	            "<div class='banner-bottom text-center'>"+
 	              "<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
@@ -488,19 +482,19 @@ function type3obj(obj){
 	        "</div>";
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
+			obj.reviewlist.hitslist[i]._source.tech*0.7,
+			obj.reviewlist.hitslist[i]._source.design*0.7,
 			obj.reviewlist.hitslist[i]._source.attention,
 			obj.reviewlist.hitslist[i]._source.good,
 			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
-	Doughnut('canvas2'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			obj.reviewlist.hitslist[i]._source.health*1.2);
+	Doughnut('canvas2'+j,			
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2*0.01));
 	ztskillbar();
 	});
 	
@@ -518,12 +512,12 @@ function type3obj(obj){
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list1 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.reviewlist.hitslist[i]._source.health*1.2);
 		i++;
 		if(i>=6||i>=obj.reviewlist.hitslist.length){
 			clearInterval(inter);
@@ -538,22 +532,22 @@ function type4obj(obj){
 	var inter = setInterval(function(){
 	filename('tmouse',obj.reviewlist.hitslist[i]._source.idx,function(img){
 		var str = '';
-		str+="<div class='col-md-2' style='background-color: white;''>"+
+		str+="<div class='col-md-2' style='background-color: white;'>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
+			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.reviewlist.hitslist[i]._source.health*1.2);
 		
 			var str2 = '';
 			str2+="<div class='col-md-2' style='background-color: white;''>"+
@@ -591,18 +585,18 @@ function type5obj(obj){
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
+			"<canvas id='canvas"+i+"'height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.reviewlist.hitslist[i]._source.health*1.2);
 		
 		filename(kind,obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
@@ -639,22 +633,22 @@ function type6obj(obj){
 		if(obj.reviewlist.hitslist[i]._index=="anlayze"){kind="tmouse"}
 		else if(obj.reviewlist.hitslist[i]._index=="anlayze2"){kind="keyboard"}
 		var str = '';
-		str+="<div class='col-md-2' style='background-color: white;''>"+
+		str+="<div class='col-md-2' style='background-color: white;'>"+
 			"<div class='single-banner'>"+
 			"<div class='price'>검색단어 점수<br/>"+(obj.reviewlist.hitslist[i]._score*10).toFixed(2)+"/100</div>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
-			"<canvas id='canvas"+i+"' height='80%' width='80%'></canvas></a>"+
+			"<canvas id='canvas"+i+"' height='260' width='260'></canvas></a>"+
 			"<div class='banner-bottom text-center'>"+
 			"<a target='_blank' href='"+obj.reviewlist.hitslist[i]._source.link+"'>"+
 			obj.reviewlist.hitslist[i]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#list2 .banner-list').append(str).addClass('animate');
 		radargraph('canvas'+i,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.reviewlist.hitslist[i]._source.health*1.2);
 		
 		filename(kind,obj.reviewlist.hitslist[i]._source.idx,function(img){
 			var str2 = '';
@@ -726,19 +720,19 @@ function type7obj(obj){
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2));
 	Doughnut('canvas2'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2*0.01));
 	ztskillbar();
 	});
 	var i=0;
@@ -871,19 +865,19 @@ function type9obj(obj){
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2));
 	Doughnut('canvas2'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2*0.01));
 	ztskillbar();
 	});
 	$('#firstlist').show();
@@ -901,12 +895,12 @@ function type9obj(obj){
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('firstcanvas'+j,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
-				obj.reviewlist.hitslist[i]._source.attention,
-				obj.reviewlist.hitslist[i]._source.good,
-				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.firstreview[j]._source.tech*0.7,
+				obj.firstreview[j]._source.design*0.7,
+				obj.firstreview[j]._source.attention,
+				obj.firstreview[j]._source.good,
+				obj.firstreview[j]._source.bad,
+				obj.firstreview[j]._source.health*1.2);
 		j++;
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
@@ -984,19 +978,19 @@ function type10obj(obj){
 					"</div>";
 	$('#first .banner-list').append(str).addClass('animate');
 	bargraph('canvas'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2));
 	Doughnut('canvas2'+j,
-			obj.reviewlist.hitslist[i]._source.tech,
-			obj.reviewlist.hitslist[i]._source.design,
-			obj.reviewlist.hitslist[i]._source.attention,
-			obj.reviewlist.hitslist[i]._source.good,
-			obj.reviewlist.hitslist[i]._source.bad,
-			obj.reviewlist.hitslist[i]._source.health);
+			((obj.reviewlist.hitslist[0]._source.tech+obj.reviewlist.hitslist[1]._source.tech)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.design+obj.reviewlist.hitslist[1]._source.design)/2*0.7*0.01),
+			((obj.reviewlist.hitslist[0]._source.attention+obj.reviewlist.hitslist[1]._source.attention)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.good+obj.reviewlist.hitslist[1]._source.good)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.bad+obj.reviewlist.hitslist[1]._source.bad)/2*0.01),
+			((obj.reviewlist.hitslist[0]._source.health+obj.reviewlist.hitslist[1]._source.health)/2*1.2*0.01));
 	ztskillbar();
 	});
 	$('#firstlist').show();
@@ -1014,12 +1008,12 @@ function type10obj(obj){
 			obj.firstreview[j]._source.content.substring(0,100)+"...</a></div></div></div>";
 		$('#firstlist .banner-list').append(str).addClass('animate');
 		radargraph('firstcanvas'+j,
-				obj.reviewlist.hitslist[i]._source.tech,
-				obj.reviewlist.hitslist[i]._source.design,
+				obj.reviewlist.hitslist[i]._source.tech*0.7,
+				obj.reviewlist.hitslist[i]._source.design*0.7,
 				obj.reviewlist.hitslist[i]._source.attention,
 				obj.reviewlist.hitslist[i]._source.good,
 				obj.reviewlist.hitslist[i]._source.bad,
-				obj.reviewlist.hitslist[i]._source.health);
+				obj.reviewlist.hitslist[i]._source.health*1.2);
 		j++;
 		if(j>=4||j>=obj.firstreview.length){
 			clearInterval(inter1);
@@ -1896,7 +1890,8 @@ document.addEventListener('DOMContentLoaded', function () {
 	display: block;
 	position: absolute;
 	left: 0;
-	top: 0;
+	height: 8px;
+    top: 10px;
 	width: 20px;
 	border-radius: 5px;
 }
