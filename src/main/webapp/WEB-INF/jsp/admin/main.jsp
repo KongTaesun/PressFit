@@ -158,7 +158,7 @@ $(document).ready(function(){
 					"<div class='col-md-5'>"+
 						"<div class='card' style='padding: 5%;background-color: white;'>"+
 							"<div class='header'><div class='title'>"+
-								"<a href='#'>리뷰의 제품평가 평가/사이트제품 평가 수준.<br/>현재 : <strong>하락</strong></a>"+
+								"<a href='#'>리뷰의 제품평가 평가/사이트제품 평가 수준.</a>"+
 							"<canvas id='canvas"+j+"' style='position: relative;' height='260px' width='400px'></canvas>"+
 							"</div></div>"+
 						"</div>"+
@@ -166,7 +166,7 @@ $(document).ready(function(){
 					"<div class='col-md-5'>"+
 						"<div class='card' style='padding: 5%;background-color: white;'>"+
 							"<div class='header'><div class='title'>"+
-								"<a href='#'>기간이 길어지면 월별로 체크.<br/>현재 : <strong>상승중</strong></a>"+
+								"<a href='#'>현재 : <strong>월별 데이터</strong></a>"+
 							"<canvas id='canvas2"+j+"'style='position: relative;' height='260px' width='400px'></canvas>"+
 							"</div></div>"+
 						"</div>"+
@@ -214,11 +214,11 @@ $(document).ready(function(){
 
 	var word = $.animateNumber.numberStepFactories.append(' 개')
 	$('#alloreder').animateNumber({
-		number:  data.alloreder,color: 'green','font-size': '37px',
+		number:  data.alloreder,color: 'green','font-size': '20px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	$('#dayoreder').animateNumber({
-		number:  data.dayoreder,color: 'green','font-size': '37px',
+		number:  data.dayoreder,color: 'green','font-size': '20px',
 		easing: 'easeInQuad',numberStep: word
 	}, 2000);
 	 		
@@ -374,7 +374,7 @@ $(document).ready(function(){
 <%@ include file="adminsidebar.jsp"%>
     <div class="main-panel">
 <%@ include file="admininsideheader.jsp"%>
-        <div class="content" style="width: 100%;height: 100%;">
+        <div class="content" style="width: 100%;height: 120%;">
             <div id="particles-js" class="container-fluid" style="width: 100%;height: 100%;">
 			<!-- scripts -->
 			<script src="${path}/resources/recommendation/particles/particles.js"></script>
@@ -384,50 +384,50 @@ $(document).ready(function(){
                     <div class="col-md-2">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-study"></i>방문 누적</h4>
                                 <h4 class="title" id="allvisit" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>오늘 방문</h4>
                                 <h4 class="title" id="dayvisit" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
-                            	<i class="pe-7s-arc"></i>평균 응답속도</h4>
+                            	<h4 class="title" style="font-family: yanolja;font-size: 18px">
+                            	<i class="pe-7s-arc"></i>평균응답속도</h4>
                                 <h4 class="title" id="processtime" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-cloud-download"></i>전체응답량</h4>
                                 <h4 class="title" id="allresponsecount" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-magic-wand"></i>오늘응답량</h4>
                                 <h4 class="title" id="dayresponsecount" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
@@ -435,40 +435,40 @@ $(document).ready(function(){
                     <div class="col-md-3">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>검색 누적</h4>
                                 <h4 class="title" id="allsearch" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>오늘 검색</h4>
                                 <h4 class="title" id="daysearch" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>주문 누적</h4>
                                 <h4 class="title" id="alloreder" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>오늘 주문</h4>
                                 <h4 class="title" id="dayoreder" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>

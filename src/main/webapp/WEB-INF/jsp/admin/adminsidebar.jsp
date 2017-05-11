@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="sidebar">
     <div class="sidebar-wrapper" style="background-image: url('${path}/resources/admin/img/2.jpg')">
-            <div class="logo">
+            <div class="logo" style="background-color:white;border:1px solid;height: 83px;">
                 <a href="${path}/admin/main.do" class="simple-text" style="font-family: Connoisseurs;text-transform: none;font-size: 50px">
-                    Press Fit
+                    <img src="${path}/resources/writer/img/logo/logo.png" alt="" class="headerlogo" style="width: 100%;height:100%;">
                 </a>
             </div>
 
@@ -20,12 +20,12 @@
                         <p>회 원 관 리</p>
                     </a>
                 </li>
-                <li>
+                <%-- <li>
                     <a href="${path}/admin/board.do">
                         <i class="pe-7s-note2"></i>
                         <p>갤러리 관리</p>
                     </a>
-                </li>
+                </li> --%>
                 <li>
                     <a href="${path}/admin/product.do">
                         <i class="pe-7s-note2"></i>

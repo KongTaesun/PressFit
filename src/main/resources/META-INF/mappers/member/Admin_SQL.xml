@@ -83,10 +83,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="community" parameterType="kr.co.pressfit.vo.CommunityVO" resultType="kr.co.pressfit.vo.CommunityVO">
 	    <include refid="pagingPre"/>
 	    <![CDATA[
-		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y %m %d") as regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM CommunityReply WHERE boardno=b.idx) AS recnt
-      	FROM CommunityBoard b, Cmember m,(SELECT @ROWNUM := 0) R
-      	WHERE b.writer = m.id AND showdel = 'y'
+      	FROM CommunityBoard b, Aadmin a,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = a.id AND showdel = 'y'
 	    ]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
@@ -95,10 +95,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="faq" resultType="kr.co.pressfit.vo.FaqVO">
 	<include refid="pagingPre"/>
 	    <![CDATA[
-		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
+		SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer,DATE_FORMAT(b.regdate, "%Y %m %d") as regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM FaqReply WHERE boardno=b.idx) AS recnt
-      	FROM FaqBoard b, Cmember m,(SELECT @ROWNUM := 0) R
-      	WHERE b.writer = m.id AND showdel = 'y'
+      	FROM FaqBoard b, Aadmin a,(SELECT @ROWNUM := 0) R
+      	WHERE b.writer = a.id AND showdel = 'y'
 		]]>
 		<include refid="search"></include>
 		ORDER BY b.ref desc,b.turn,b.level
@@ -107,7 +107,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="gallery" resultType="kr.co.pressfit.vo.GalleryVO">
 	    <include refid="pagingPre"/>
 	    <![CDATA[
-        SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, DATE_FORMAT(b.regdate, "%Y%m%d") regdate, b.viewcnt,b.ref,b.turn,b.level,
+        SELECT @ROWNUM:=@ROWNUM+1 AS rownum, b.idx, b.title, b.content, b.writer, DATE_FORMAT(b.regdate, "%Y %m %d") as regdate, b.viewcnt,b.ref,b.turn,b.level,
       	(SELECT COUNT(*) FROM GalleryReply WHERE boardno=b.idx) AS recnt,
       	(SELECT fullname FROM GalleryFile WHERE idx=b.idx ORDER BY GalleryFile.regdate limit 1) AS fullname
       	FROM GalleryBoard b, Cmember m,(SELECT @ROWNUM := 0) R

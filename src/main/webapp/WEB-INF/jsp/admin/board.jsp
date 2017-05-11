@@ -48,7 +48,7 @@ function galleryBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 개');
 	$('#galleryBoardcnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#gallerylist");
@@ -249,7 +249,7 @@ figure.snip1384 .links {
 figure.snip1384 h3 {
   line-height: 1.1em;
   font-weight: 700;
-  font-size: 1.4em;
+  /* font-size: 1.4em; */
   text-transform: uppercase;
   opacity: 0;
 }
@@ -319,10 +319,10 @@ figure.snip1384.hover i {
 				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">갤러리</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">갤러리</h4>
 						</div>
 						<div class="content">
-							<div id="galleryBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="galleryBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
@@ -331,7 +331,8 @@ figure.snip1384.hover i {
         <div class="row">
             <div class="container-fluid">
 						
-						<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
 							<div class="col-md-12">
 								<div class="card">
 									<div class="header" style="text-align: center">

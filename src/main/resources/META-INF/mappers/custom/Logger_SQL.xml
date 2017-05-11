@@ -39,9 +39,9 @@
 		where start like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
     </select>
     <select id="alloreder" resultType="int">
-    	<![CDATA[select count(*) from cart_board where shippingStatus=2 and shippingStatus=7]]>
+    	<![CDATA[select count(*) from cart_board where shippingStatus=2 or shippingStatus=7]]>
     </select>
     <select id="dayoreder" resultType="int">
-    	<![CDATA[select count(*) from cart_board where shippingStatus=2 and shippingStatus=7 and orderdate like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
+    	<![CDATA[select count(*) from cart_board where shippingStatus=2 or shippingStatus=7 and orderdate like DATE_FORMAT(Now(), '%Y-%m-%d%')]]>
     </select>
 </mapper>

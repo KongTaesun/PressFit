@@ -29,7 +29,7 @@ function tmouseBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
 	$('#tmouseBoardcnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#tmouselist");
@@ -220,7 +220,7 @@ function keyboardBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
 	$('#keyboardBoardcnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#keyboardlist");
@@ -464,28 +464,28 @@ function tmouseupdate2(idx){
 				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">마우스</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">마우스</h4>
 						</div>
 						<div class="content">
-							<div id="tmouseBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="tmouseBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">키보드</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">키보드</h4>
 						</div>
 						<div class="content">
-							<div id="keyboardBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="keyboardBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
 			</div>
             <div class="row">
             	<div id="faq-links">
-				    <div id="service" class="faq-selected col-md-6">tmouse</div>
-				    <div id="installation" class="col-md-6">keyboard</div>
+				    <div id="service" class="faq-selected col-md-6">마우스</div>
+				    <div id="installation" class="col-md-6">키보드</div>
 				    <div id="mobile" > </div>
 				</div>
 						<div id="faq-wrapper" class="about-service">

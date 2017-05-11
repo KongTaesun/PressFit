@@ -124,9 +124,9 @@ body,
   position: relative; }
 
 a {
-  color: #1DC7EA; }
+  color: #000000; }
   a:hover, a:focus {
-    color: #42d0ed;
+    color: #000000;
     text-decoration: none; }
 
 a:focus, a:active,
@@ -427,7 +427,7 @@ body > .navbar-collapse {
     background-size: 150% 150%; }
 
 .main-panel {
-  background: #aed2c8;
+  background: #ffffff;
   position: relative;
   z-index: 2;
   float: right;
@@ -438,7 +438,7 @@ body > .navbar-collapse {
   .main-panel > .footer {
     border-top: 1px solid #e7e7e7; }
   .main-panel .navbar {
-    margin-bottom: 0; }
+    margin-bottom: 0;height: 83px; }
 
 .sidebar,
 .main-panel {

@@ -121,9 +121,9 @@ a {
 						사업자등록번호 : 211-87-00620</span> <span class="txt_info">통신판매업 신고번호 :
 						 01-1968</span>
 			</span> <span class="txt_copy"> <span class="txt_info">대표이사 :
-						갓세덕</span> <span class="txt_info">주소 : 서울시 종로구 대학로 12길 31 자유빌딩 5층(03086) <span class="txt_cont"><a
-							href="mailto:store@kakaofriends.com" class="link_mail">osd0126@pressfit.com</a></span>
-				</span> <span class="txt_info">고객센터 : 010 6238 5615 <span
+						프레스핏</span> <span class="txt_info">주소 : 서울시 종로구 대학로 12길 31 자유빌딩 5층(03086) <span class="txt_cont"><a
+							href="mailto:store@kakaofriends.com" class="link_mail">pressfit@pressfit.com</a></span>
+				</span> <span class="txt_info">고객센터 : 02-111-1111 <span
 						class="txt_cont">평일 10시 ~ 18시</span></span>
 			</span>
 			</small>

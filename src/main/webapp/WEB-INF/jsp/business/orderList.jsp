@@ -381,7 +381,7 @@ button.hover {
 		 		console.log(data);
 		 		
 		 		var word = $.animateNumber.numberStepFactories.append('');
-		 		
+		 		var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
 		 		$('#counter1').animateNumber({
 		 			number: data.list1.mAmount,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
@@ -390,10 +390,14 @@ button.hover {
 		 			number: data.list1.mSalesAmount,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
 		 		}, 2000);
-		 		$('#counter3').animateNumber({
-		 			number: data.list1.mSalesTotal,color: 'white','font-size': '37px',
-		 			easing: 'easeInQuad',numberStep: word
-		 		}, 2000);
+		 		$('#counter3').animateNumber(
+		 		          {
+		 		             number: data.list1.mSalesTotal,
+		 		             color: 'white','font-size': '37px',
+		 		             numberStep: comma_separator_number_step
+		 		         },2000
+		 		 );
+		 		
 		 		$('#counter4').animateNumber({
 		 			number: data.list1.mSalesAmount+data.list1.kSalesAmount,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
@@ -406,14 +410,20 @@ button.hover {
 		 			number: data.list1.kSalesAmount,color: 'white','font-size': '37px',
 		 			easing: 'easeInQuad',numberStep: word
 		 		}, 2000);
-		 		$('#counter7').animateNumber({
-		 			number: data.list1.kSalesTotal,color: 'white','font-size': '37px',
-		 			easing: 'easeInQuad',numberStep: word
-		 		}, 2000);
-		 		$('#counter8').animateNumber({
-		 			number: data.list1.mSalesTotal+data.list1.kSalesTotal,color: 'white','font-size': '37px',
-		 			easing: 'easeInQuad',numberStep: word
-		 		}, 2000);
+		 		$('#counter7').animateNumber(
+		 		          {
+		 		             number: data.list1.kSalesTotal,
+		 		             color: 'white','font-size': '37px',
+		 		             numberStep: comma_separator_number_step
+		 		         },2000
+		 		 );
+		 		$('#counter8').animateNumber(
+		 		          {
+		 		             number: data.list1.mSalesTotal+data.list1.kSalesTotal,
+		 		             color: 'white','font-size': '37px',
+		 		             numberStep: comma_separator_number_step
+		 		         },2000
+		 		 );
 		 		var str = "";
 		 		str+= ' <div> ';
 				str+= ' <div class="product-wrapper" style="width: 100%;  height: 232px; text-align: center;"> ';

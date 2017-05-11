@@ -49,7 +49,7 @@ function communityBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
 	$('#communityBoardcnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#communitylist");
@@ -72,11 +72,10 @@ function communityBoardListCallback(data){
          
         var str = "";
         $.each(data.list, function(key, value){	
-            str += "    <tr>" +
+            str += "    <tr style='height:40px'>" +
 				   "    	<td>"+value.idx+"</td>" +
 				   "    	<td><a href='#' onclick='communityBoardread("+ value.idx +")'>" + value.title + "("+value.recnt+")</a></td>" +
 				   "    	<td>"+value.writer+"</td>" +
-				   "    	<td>"+value.viewcnt+"</td>" +
 				   "    	<td></td>" +
 				   "    	<td></td>" +
 				   "    </tr>";
@@ -141,7 +140,7 @@ function faqBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 개')
 	$('#faqBoardcnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#faqlist");
@@ -164,11 +163,10 @@ function faqBoardListCallback(data){
          
         var str = "";
         $.each(data.list, function(key, value){	
-            str += "    <tr>" +
+            str += "    <tr style='height:40px'>" +
 				   "    	<td>"+value.idx+"</td>" +
 				   "    	<td><a href='#' onclick='faqBoardread("+ value.idx +")'>" + value.title + "("+value.recnt+")</a></td>" +
 				   "    	<td>"+value.writer+"</td>" +
-				   "    	<td>"+value.viewcnt+"</td>" +
 				   "    	<td></td>" +
 				   "    	<td></td>" +
 				   "    </tr>";
@@ -400,10 +398,10 @@ function editorcloses(){
 				<div class="col-md-2">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">공지사항</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">공지사항</h4>
 						</div>
 						<div class="content">
-							<div id="communityBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="communityBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
@@ -412,10 +410,10 @@ function editorcloses(){
 				<div class="col-md-2">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">QnA</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">QnA</h4>
 						</div>
 						<div class="content">
-							<div id="faqBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="faqBoardcnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
@@ -432,7 +430,6 @@ function editorcloses(){
 		                	<th>idx</th>
 		                	<th>title</th>
 		                	<th>writer</th>
-		                	<th>viewcnt</th>
 		                </thead>
 		                <tbody id="communitylist">
 		                
@@ -451,7 +448,6 @@ function editorcloses(){
 		                   <th>idx</th>
 		                	<th>title</th>
 		                	<th>writer</th>
-		                	<th>viewcnt</th>
 		                </thead>
 		                <tbody id="faqlist">
 		                

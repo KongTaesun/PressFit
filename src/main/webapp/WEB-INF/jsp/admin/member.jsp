@@ -29,7 +29,7 @@ function businessBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 명')
 	$('#businesscnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#businesslist");
@@ -137,7 +137,7 @@ function businessupdate2(idx){
     comAjax.setUrl("<c:url value='/admin/business/update2.do' />");
     comAjax.addParam("businessidx",idx);
     comAjax.ajax();
-    _movePage($("#businessPAGEINDEX").val());
+    location.reload();
 }
 function _movePage(value){
     $("#businessPAGEINDEX").val(value);
@@ -168,7 +168,7 @@ function memberBoardListCallback(data){
     var total = data.TOTAL;
     var percent_number_step = $.animateNumber.numberStepFactories.append(' 명')
 	$('#membercnt').animateNumber({
-		number: total,color: 'black','font-size': '37px',
+		number: total,color: 'black','font-size': '20px',
 		easing: 'easeInQuad',numberStep: percent_number_step
 	}, 500);
     var body = $("#memberlist");
@@ -198,11 +198,11 @@ function memberBoardListCallback(data){
 				"<span class='col-md-2'>" + value.name + "</span> " +
 				"<span class='col-md-2'>경고:" + value.warn + "</span> " +
 				"<span class='col-md-1'>"+
-				"<button onclick='memberdelete("+ value.idx +")'>삭제</button></span> " +
+				"<button class='btn btn-default btn-block' onclick='memberdelete("+ value.idx +")'>삭제</button></span> " +
 				"<span class='col-md-1'>"+
-				"<button onclick='memberupdate1("+ value.idx +")'>PW변경</button></span> " +
+				"<button class='btn btn-default btn-block' onclick='memberupdate1("+ value.idx +")'>PW변경</button></span> " +
 				"<span class='col-md-1'>"+
-				"<button onclick='memberupdate2("+ value.idx +")'>경고</button></span> " +
+				"<button class='btn btn-default btn-block' onclick='memberupdate2("+ value.idx +")'>경고</button></span> " +
 			"</a>" +
 			"<ul class='faq-content'>" +
 				"<li><div>" +
@@ -249,12 +249,14 @@ function memberupdate1(idx){
     alert(password);
     comAjax.addParam("password",password);
     comAjax.ajax();
+    location.reload();
 }
 function memberupdate2(idx){
     var comAjax = new ComAjax();
     comAjax.setUrl("<c:url value='/admin/member/update2.do' />");
     comAjax.addParam("memberidx",idx);
     comAjax.ajax();
+    location.reload();
 }
 </script>	
 <body>
@@ -270,20 +272,20 @@ function memberupdate2(idx){
 				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">사업자</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">사업자</h4>
 						</div>
 						<div class="content">
-							<div id="businesscnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="businesscnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 	             	<div class="card">
 						<div class="header" style="text-align: center">
-							<h4 class="title" style="font-family: yanolja; font-size: 37px">멤버</h4>
+							<h4 class="title" style="font-family: yanolja; font-size: 20px">멤버</h4>
 						</div>
 						<div class="content">
-							<div id="membercnt" class="num" style="text-align:center; font-family: yanolja;font-size: 37px">1</div>
+							<div id="membercnt" class="num" style="text-align:center; font-family: yanolja;font-size: 20px">1</div>
 						</div>
 					</div>
 				</div>

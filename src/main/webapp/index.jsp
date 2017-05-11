@@ -491,8 +491,8 @@ $(document).ready(function(){
 							</div>
 							<div class="info">
 								<h3>PHONE</h3>
-								<p>010-7106-5135</p>
-								<p>010-9927-8895</p>
+								<p>02-111-1111</p>
+								<p>02-111-1112</p>
 							</div>
 						</div>
 					</div>
@@ -519,7 +519,7 @@ $(document).ready(function(){
 							</div>
 							<div class="info">
 								<h3>E-MAIL</h3>
-								<p>pressfit@gpressfit.com</p>
+								<p>pressfit@pressfit.com</p>
 								<p>http://localhost:8080/pressfit</p>
 							</div>
 						</div>

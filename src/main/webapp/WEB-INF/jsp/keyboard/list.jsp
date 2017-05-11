@@ -186,35 +186,36 @@ button.hover {
 			</div>
 		</div>
 	</div>
-	<!-- search -->
-			<div class="searchbar1">
-				<span class="search-left">
-				<!-- 레코드의 갯수를 출력 -->
-				${map.count}개의 제품이 있습니다.
-				</span>
-				<span class="search-right">
-				<form name="form1" method="post" action="${path}/keyboard/list.do">
-				게시판 내 검색 : 
-					<select name="searchOption">
-						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
-						<option value="all"
-							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+내용</option>
-						<option value="content"
-							<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
-						<option value="modelname"
-							<c:out value="${map.searchOption == 'modelname'?'selected':''}"/>>제목</option>
-					</select>  
-                    <input name="keyword" value="${map.keyword}"> 
-                     <button type="submit" class="btn1">조회</button>
-                     
-                 </form>
-                 </span>
-             </div>
 	<!-- Breadcrumbs Area Start -->
 	<div class="shopping-area section-padding">
 		<div class="container">
 			<!-- Shop Area Start -->
 			<div class="row">
+				<!-- search Start-->
+				<div class="col-md-12" style="padding-bottom:10px">
+					<span style="float:left">
+					<!-- 레코드의 갯수를 출력 -->
+					${map.count}개의 제품이 있습니다.
+					</span>
+					<form name="form1" method="post" action="${path}/keyboard/list.do">
+						<span style="float:right">
+						게시판 내 검색 : 
+							<select name="searchOption">
+								<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
+								<option value="all"
+									<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+내용</option>
+								<option value="content"
+									<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
+								<option value="modelname"
+									<c:out value="${map.searchOption == 'modelname'?'selected':''}"/>>제목</option>
+							</select>  
+		                    <input name="keyword" value="${map.keyword}"> 
+		                     <button type="submit" class="btn1">조회</button>
+		                     
+		                 </span>
+	            	</form>
+             	</div>
+             	<!-- search End-->
 				<div class="col-md-3 col-sm-3 col-xs-12">
 					<div class="shop-widget">
 						<div class="shop-widget-top">

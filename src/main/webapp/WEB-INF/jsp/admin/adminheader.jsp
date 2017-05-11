@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<style>@font-face{font-family: 'Connoisseurs';src: url('${path}/resources/font/Connoisseurs.ttf')}
-	@font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')}</style>
+	/* @font-face{font-family: 'yanolja';src: url('${path}/resources/font/야놀자 야체 Bold.ttf')} */</style>
 	<title>Admin</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -40,7 +40,7 @@
 <style>
 .dialog__trigger, .dialog__action {
   border: 3px solid #ffffff;
-  background: #f1f1f1;
+  background: #ffffff;
   padding: 15px 20px;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -66,7 +66,7 @@
 }
 
 .dialog {
-  background: #f1f1f1;
+  background: #ffffff;
   width: 70%;
   position: absolute;
   left: calc(50% - 35%);

@@ -30,8 +30,7 @@
 				<div class="col-md-6" style="padding: 10%">
 					<div class="card" style="background-color:white;">
 						<div class="header" style="height: 60px;text-align: center;padding: 10%;">
-							<h4 class="title" style="font-family: Connoisseurs;
-							text-transform: none;font-size: 60px">PressFit</h4>
+							<img src="${path}/resources/writer/img/logo/logo.png" alt="" class="headerlogo" style="width: 190px;height: 40px;">
 						</div>
 						<div class="content" style="text-transform: none;font-size: 15px">
 								<div class="row">
@@ -48,7 +47,7 @@
 								<div class="col-md-2"> </div>
 									<div class="col-md-8">
 										<div class="form-group">
-											<label style="color:black">패스워드</label> 
+											<label style="color:black">1차 패스워드</label> 
 											<input type="text" id="pw" name="pw" class="form-control" placeholder="admin PW" value="">
 										</div>
 									</div>
@@ -58,7 +57,7 @@
 								<div class="col-md-2"> </div>
 									<div class="col-md-8">
 										<div class="form-group">
-											<label style="color:black">패스워드</label> 
+											<label style="color:black">2차 패스워드</label> 
 											<input type="text" id="pw2" name="pw2" class="form-control" placeholder="admin second PW"
 												value="">
 										</div>

@@ -552,27 +552,27 @@ $(document).ready(function(){
 <%@ include file="adminsidebar.jsp"%>
     <div class="main-panel" style="height: 115%">
 <%@ include file="admininsideheader.jsp"%>
-        <div class="content" style="height: 115%">
+        <div class="content" style="height: 135%">
             <div class="container-fluid">
             <div class="row" style="padding-top: 2%;">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-study"></i>방문객</h4>
                                 <h4 class="title" id="allvisit" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="card">
                             <div class="header" style="text-align: center">
-                            	<h4 class="title" style="font-family: yanolja;font-size: 37px">
+                            	<h4 class="title" style="font-family: yanolja;font-size: 20px">
                             	<i class="pe-7s-diamond"></i>응답 량/주</h4>
                                 <h4 class="title" id="allresponsecount" 
-                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 37px">0</h4>
+                                style="padding:10px;margin: 5px;font-family: yanolja;font-size: 20px">0</h4>
                             </div>
                         </div>
                     </div>
