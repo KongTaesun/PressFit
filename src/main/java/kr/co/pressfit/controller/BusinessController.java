@@ -195,24 +195,52 @@ public class BusinessController {
 	@RequestMapping("orderList.do")
     public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
             @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1990-01-01") String startDate,
-            @RequestParam(defaultValue = "2020-12-31") String endDate, @RequestParam(defaultValue = "1") int curPage, HttpSession session, ModelAndView mav) throws Exception{
+            @RequestParam(defaultValue = "2020-12-31") String endDate, @RequestParam(defaultValue = "1") int curPage, 
+            @RequestParam(defaultValue = "") String range, HttpSession session, ModelAndView mav) throws Exception{
         String id = (String) session.getAttribute("id"); // session�� ����� userId
         Map<String, Object> map = new HashMap<String, Object>();
         
         endDate += " 23:59:59";
-        
-        String searchOption1 = "order";
-        List<CartVO> list1 = businessService.orderList(startDate, endDate, searchOption1, id); // ��ٱ��� ����
-        
-        String searchOption2 = "refund";
-        List<CartVO> list2 = businessService.orderList(startDate, endDate, searchOption2, id); // ��ٱ��� ���� 
-        
-        String searchOption3 = "exchange";
-        List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id); // ��ٱ��� ���� 
 
+        String searchOption1 = "order";
+        String searchOption2 = "refund";
+        String searchOption3 = "exchange";
         
+        List<CartVO> list1 = businessService.orderList(startDate, endDate, searchOption1, id, range); // ��ٱ��� ����
+        List<CartVO> list2 = businessService.orderList(startDate, endDate, searchOption2, id, range); // ��ٱ��� ���� 
+        List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id, range); // ��ٱ��� ���� 
+
+        map.put("list1", list1);                // ��ٱ��� ������ map�� ����
+        map.put("list2", list2);                // ��ٱ��� ������ map�� ����
+        map.put("list3", list3);                // ��ٱ��� ������ map�� ����
+		map.put("searchOption1", searchOption1);
+		map.put("searchOption2", searchOption2);
+		map.put("searchOption3", searchOption3);
+        map.put("listcount1", list1.size());        // ��ٱ��� ��ǰ�� ����
+        map.put("listcount2", list2.size());        // ��ٱ��� ��ǰ�� ����
+        map.put("listcount3", list3.size());        // ��ٱ��� ��ǰ�� ����
+        mav.setViewName("business/orderList");    // view(jsp)�� �̸� ����
+        mav.addObject("map", map);            // map ���� ����
+        return mav;
+    }
+	
+	@RequestMapping("rangeOrderList.do")
+    public ModelAndView rangeList(@RequestParam(defaultValue = "title") String searchOption,
+            @RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1990-01-01") String startDate,
+            @RequestParam(defaultValue = "2020-12-31") String endDate, @RequestParam(defaultValue = "1") int curPage, 
+            @RequestParam(defaultValue = "") String range, HttpSession session, ModelAndView mav) throws Exception{
+        String id = (String) session.getAttribute("id"); // session�� ����� userId
+        Map<String, Object> map = new HashMap<String, Object>();
         
+        endDate += " 23:59:59";
+        String searchOption1 = "order";
+        String searchOption2 = "refund";
+        String searchOption3 = "exchange";
         
+        List<CartVO> list1 = businessService.orderList(startDate, endDate, searchOption1, id, range); // ��ٱ��� ����
+        List<CartVO> list2 = businessService.orderList(startDate, endDate, searchOption2, id, range); // ��ٱ��� ���� 
+        List<CartVO> list3 = businessService.orderList(startDate, endDate, searchOption3, id, range); // ��ٱ��� ���� 
+
         map.put("list1", list1);                // ��ٱ��� ������ map�� ����
         map.put("list2", list2);                // ��ٱ��� ������ map�� ����
         map.put("list3", list3);                // ��ٱ��� ������ map�� ����

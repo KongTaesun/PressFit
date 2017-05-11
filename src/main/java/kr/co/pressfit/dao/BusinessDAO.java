@@ -21,7 +21,7 @@ public interface BusinessDAO {
 	public boolean checkPw(String id, String pw);
 	
 	// 주문리스트
-    public List<CartVO> orderList(String startDate, String endDate, String searchOption, String id) throws Exception;
+    public List<CartVO> orderList(String startDate, String endDate, String searchOption, String id, String range) throws Exception;
 	public int sumMoney(String id) throws Exception;
 	
 	public int countArticle(String searchOption, String keyword, String id) throws Exception;

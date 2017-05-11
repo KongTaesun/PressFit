@@ -66,13 +66,15 @@ public class BusinessDAOImpl implements BusinessDAO {
 	}
 	
 	@Override
-    public List<CartVO> orderList(String startDate, String endDate, String searchOption, String id) {
+    public List<CartVO> orderList(String startDate, String endDate, String searchOption, String id, String range) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("searchOption", searchOption);
         map.put("id", id);
         // BETWEEN #{start}, #{end}�뿉 �엯�젰�맆 媛믪쓣 留듭뿉 
         map.put("startDate", startDate);
         map.put("endDate", endDate);
+        
+        map.put("range", range);
         return sqlSession.selectList("business.orderList", map);
     }
     // 5. ��ٱ��� �ݾ� �հ�

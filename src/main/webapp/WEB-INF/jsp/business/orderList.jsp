@@ -288,6 +288,33 @@ button.hover {
     font-weight: 500;
     line-height: 20px;
 }
+.button11 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #616161;
+    padding: 2px 17px 2px;
+    background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: 1px solid #dbe2ff;
+    box-shadow: 0px 1px 3px rgba(000,000,000,0.3), inset 0px 0px 2px rgba(255,255,255,0);
+}
+
+.sorting ul {
+    float: left;
+    display: inline;
+    margin: 7px 0;
+}
+.sorting ul li {
+    float: left;
+    display: inline;
+    width: 42px;
+    height: 20px;
+    overflow: hidden;
+    margin-right: 5px;
+}
 </style>
 <%@ include file="/resources/include/header.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -443,6 +470,16 @@ button.hover {
 			}
 		}
 	}	
+	
+	function date_click(str){
+		if(str=="week"){
+			location.href="${path}/business/rangeOrderList.do?range=week";
+		} else if(str=="oneMonth"){
+			location.href="${path}/business/rangeOrderList.do?range=oneMonth";
+		} else if(str=="threeMonth"){
+			location.href="${path}/business/rangeOrderList.do?range=threeMonth";
+		}
+	}
 </script>
 
 <script> //그래프 스크립트
@@ -629,8 +666,8 @@ button.hover {
 					</div>
 					<!-- layer 1 -->      
 					<div class="col-md-12" style="text-align:center;">  
-						<div class="col-md-2 col-sm-2 col-xs-6"></div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
+						
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
 									<span>
@@ -640,7 +677,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info" style="font-size: 30px">
 									<span>
@@ -650,7 +687,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info" style="font-size: 30px">
 									<span>
@@ -660,7 +697,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info" style="font-size: 30px">
 									<span>
@@ -673,8 +710,8 @@ button.hover {
 					</div>
 					<!-- layer 2 --> 
 					<div class="col-md-12" style="text-align:center;">
-						<div class="col-md-2 col-sm-2 col-xs-6"></div>
-						<div class="col-md-2 col-sm-2 col-xs-6">
+						
+						<div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s"> 
 								<div class="counter-info">
 									<span>
@@ -684,7 +721,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
+			            <div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
 									<span>
@@ -694,7 +731,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
+			            <div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
 									<span>
@@ -704,7 +741,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div>
-			            <div class="col-md-2 col-sm-2 col-xs-6">
+			            <div class="col-md-3 col-sm-3 col-xs-6">
 							<div class="single-counter wow" data-wow-duration="1.5s" data-wow-delay=".3s">
 								<div class="counter-info">
 									<span>
@@ -714,6 +751,7 @@ button.hover {
 								</div>
 							</div>		                
 			            </div> 
+			         
 					</div>
 					
 				</div>
@@ -725,18 +763,33 @@ button.hover {
 	<div class="shopping-cart-area">
 		<div class="container">
 			<div class="p-details-tab-content">
- 				<div style="margin-top:20px;">
-					<form name="frm" method="post" action="${path}/business/orderList.do" >
-						<input type="text" name="startDate" id="datepicker1"> ~ <input type="text" name="endDate" id="datepicker2">
-						<button style="margin-top:10px;" type="submit">조회</button>
-					</form>
-				</div>
-				<div class="p-details-tab" style="margin-top: 30px;"> 
-					<ul class="p-details-nav-tab">
+ 				<%-- <div style="margin-top:50px;">
+					
+				</div> --%>
+				<div class="p-details-tab" style="margin-top: 50px;"> 
+					<ul class="p-details-nav-tab" style="float:left">
 						<li role="presentation" class="active"><a href="#" id="btnone">주문내역</a></li>
 						<li role="presentation"><a href="#" id="btntwo">환불내역</a></li>
 						<li role="presentation"><a href="#" id="btnthree">교환내역</a></li>
 					</ul>
+						<div class="sorting" style="width:70%;float:right">
+					<form name="frm" method="post" action="${path}/business/orderList.do" >
+							<div class="date" style="float:right;font-size:16px;">
+	 							시작일
+	 							<input type="text" style="width:110px;" name="startDate" id="datepicker1">
+								~
+								종료일
+								<input type="text" style="width:110px;" name="endDate" id="datepicker2">
+								<button class="button11" type="submit">조회</button>
+							</div>
+					</form>
+							<div class="date" style="float:right; padding-right:30px;font-size:16px;">
+								기간조회
+								<button class="button11" onclick="date_click('week')">1주일</button>
+								<button class="button11" onclick="date_click('oneMonth')">1개월</button>
+								<button class="button11" onclick="date_click('threeMonth')">3개월</button>
+							</div>
+						</div>
 				</div>
                 <div>
 					<div id="one">
