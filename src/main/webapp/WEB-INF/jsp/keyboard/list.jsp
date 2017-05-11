@@ -93,7 +93,7 @@ button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #616161;
-    padding: 9px 20px;
+    padding: 2px 17px;
     background: -moz-linear-gradient(top, #ffffff 0%, #ffffff);
     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ffffff));
     -moz-border-radius: 0px;
@@ -106,6 +106,18 @@ button.hover {
     font-weight: bold;
     color: #000000;
     border: 1px solid #879fff;
+}
+.search-right {
+	float: right;
+    margin-right: 380px;
+    margin-top: 39px;
+}
+
+.search-left {
+	float: left;
+    margin-top: 43px;
+    margin-left: 382px;
+	
 }
 </style>
 
@@ -156,6 +168,8 @@ button.hover {
 </script>
 </head>
 <body>
+
+
 	<!-- Breadcrumbs Area Start -->
 	<div class="breadcrumbs-area">
 		<div class="container">
@@ -163,21 +177,42 @@ button.hover {
 				<div class="col-md-12">
 					<div class="breadcrumbs">
   
-						<!-- <h2>키보드</h2> -->
-						<!-- <ul class="breadcrumbs-list">
-							<li><a title="Return to Home" href="index.html">Home</a></li>
-							<li>NOTICE</li>
-						</ul> -->
+  
+  
+  
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- search -->
+			<div class="searchbar1">
+				<span class="search-left">
+				<!-- 레코드의 갯수를 출력 -->
+				${map.count}개의 제품이 있습니다.
+				</span>
+				<span class="search-right">
+				<form name="form1" method="post" action="${path}/keyboard/list.do">
+				게시판 내 검색 : 
+					<select name="searchOption">
+						<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
+						<option value="all"
+							<c:out value="${map.searchOption == 'all'?'selected':''}"/>>제목+내용</option>
+						<option value="content"
+							<c:out value="${map.searchOption == 'content'?'selected':''}"/>>내용</option>
+						<option value="modelname"
+							<c:out value="${map.searchOption == 'modelname'?'selected':''}"/>>제목</option>
+					</select>  
+                    <input name="keyword" value="${map.keyword}"> 
+                     <button type="submit" class="btn1">조회</button>
+                     
+                 </form>
+                 </span>
+             </div>
 	<!-- Breadcrumbs Area Start -->
 	<div class="shopping-area section-padding">
 		<div class="container">
-			<!-- 레코드의 갯수를 출력 -->
-			${map.count}개의 게시물이 있습니다.
 			<!-- Shop Area Start -->
 			<div class="row">
 				<div class="col-md-3 col-sm-3 col-xs-12">
@@ -211,9 +246,9 @@ button.hover {
 
 											<div class="widget-buttom">
 												<span class="btn-left"><input type="button"
-													value="Filter" id="btnPrice" style="width: 112px;" /></span> <span
-													class="btn-right"><input type="reset" value="CLEAR"
-													style="width: 112px;" /></span>
+													value="금액조회" id="btnPrice" style="width: 100%;" /></span> <span
+													class="btn-right"><!-- <input type="reset" value="CLEAR"
+													style="width: 112px;" /> --></span>
 											</div>
 										</div>
 									</div>
@@ -260,15 +295,6 @@ button.hover {
 					<div class="shop-tab-area">
 						<div class="shop-tab-list">
 						<div class="keyboard-solid">키보드 &nbsp;</div>
-							<div class="shop-tab-pill pull-left">
-								<ul>
-									<li class="active" id="left"><a data-toggle="pill"
-										href="#home"><i class="fa fa-th"></i><span>Grid</span></a></li>
-
-									<li><a data-toggle="pill" href="#menu1"><i
-											class="fa fa-th-list"></i><span>List</span></a></li>
-								</ul>
-							</div>
 							<div class="shop-tab-pill pull-right">
 								<ul>
 									<li class="product-size-deatils">

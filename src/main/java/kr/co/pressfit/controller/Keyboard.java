@@ -57,7 +57,7 @@ public class Keyboard {
     
     @RequestMapping("list.do")
  
-    public ModelAndView list(@RequestParam(defaultValue = "title") String searchOption,
+    public ModelAndView list(@RequestParam(defaultValue = "modelname") String searchOption,
 			@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int minPrice,
 			@RequestParam(defaultValue = "200000") int maxPrice, @RequestParam(defaultValue = "1") int curPage,
 			HttpSession session) throws Exception{

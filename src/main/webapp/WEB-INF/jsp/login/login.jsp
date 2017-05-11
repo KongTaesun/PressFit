@@ -212,7 +212,7 @@ button.btnbuy {
         <!-- Loging Area Start --> 
         <div class="login-account section-padding">
         	<div class="container" style="display:table ;width: 700px;text-align: center">
-          <div class ="create-account-form">
+          <div class ="create-account-form" style="border:0px;">
                 <div class="row">
                     
             
@@ -386,7 +386,7 @@ button.btnbuy {
          <form action="/auth/kakao" name="kakao">
          <input type="hidden" name="scope"value=email,user_friends"/></form>-->
          <br>
- <div class="submit" style="text-align: center" >					
+ <div class="submit" style="text-align: center; margin-bottom: 50px;" >					
                            
                                 <button name="submitcreate" id="submitcreate" type="submit" class="btn1">
                                     <span>

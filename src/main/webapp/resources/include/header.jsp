@@ -203,7 +203,7 @@ sans-serif;
 				<div class="header-left">
 					<span class="login-light1" style="text-align: left; ">
 					<c:if test="${sessionScope.kind eq 'member'}"> 
-					<a href="${path}/shop/cart/cartList.do"> ${sessionScope.id}	<i class="flaticon-shop"></i></a>
+					<a href="${path}/shop/cart/cartList.do" > ${sessionScope.id}	<i class="flaticon-shop"></i></a>
 					<a href="${path}/login/logout.do"> <img src="${path}/resources/writer/icon/logout.png" class="icon1" /></a> 
 					</c:if> 
 					 
@@ -215,7 +215,7 @@ sans-serif;
 					</c:if>
 					
 					<c:if test="${sessionScope.id == null}">
-						<a href="${path}/login/login.do">
+						<a href="${path}/login/login.do" title="로그인">
 						<i class="flaticon-people"></i></a>
 					</c:if>
 					</span>
