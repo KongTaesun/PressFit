@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>제품군 작성</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp" %>
 <%@ include file="/resources/include/sessionCheck.jsp" %>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>PressFit</title>
 </head>
 
 <%@ include file="/resources/include/header.jsp" %> 

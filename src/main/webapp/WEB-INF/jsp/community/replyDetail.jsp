@@ -3,7 +3,7 @@ $<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="U
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>PressFit</title>
 <script>
     //3. 댓글 수정
     $("#btnReplyUpdate").click(function(){

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>상품장바구니</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
 .breadcrumbs-area {

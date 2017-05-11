@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Home</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/index/css/style.css" />

@@ -9,7 +9,7 @@
 <head>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 목록</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
 .breadcrumbs-area {

@@ -8,7 +8,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<title>Insert title here</title>
+<title>PressFit</title>
 </head>
 <style>
 button {

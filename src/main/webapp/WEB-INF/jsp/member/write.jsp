@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="http://code.jquery.com/jquery-latest.min.js">
-	
+<title>PressFit</title>
 </script>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>

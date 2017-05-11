@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <style>
 .table-data-sheet1 {

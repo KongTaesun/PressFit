@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 작성</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp" %>
 <script src="<c:url value='/resources/include/commons.js' />"></script>
 <script>

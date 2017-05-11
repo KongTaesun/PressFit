@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>Insert title here</title>
-
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <script type="text/javascript" src="${path}/include/js/common.js"></script>
 <script src="<c:url value='/resources/ckediter/ckeditor.js' />"></script>

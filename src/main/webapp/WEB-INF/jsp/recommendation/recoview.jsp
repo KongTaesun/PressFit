@@ -5,8 +5,7 @@
 <html lang="en" class="no-js">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>게시글 작성</title>
-
+<title>PressFit</title>
   <link rel="stylesheet" href="<c:url value='/resources/recommendation/css/style.css' />" />
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <script type='text/javascript' src="<c:url value='/resources/recommendation/jquery.particleground.js' />"></script>

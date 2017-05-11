@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>PressFit</title>
 <%@ include file="/resources/include/header.jsp"%>
 <script>
 	// 원하는 페이지로 이동시 검색조건, 키워드 값을 유지하기 위해 
