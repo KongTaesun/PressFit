@@ -48,7 +48,7 @@
 									<div class="col-md-8">
 										<div class="form-group">
 											<label style="color:black">1차 패스워드</label> 
-											<input type="text" id="pw" name="pw" class="form-control" placeholder="admin PW" value="">
+											<input type="password" id="pw" name="pw" class="form-control" placeholder="admin PW" value="">
 										</div>
 									</div>
 								</div>
@@ -58,7 +58,7 @@
 									<div class="col-md-8">
 										<div class="form-group">
 											<label style="color:black">2차 패스워드</label> 
-											<input type="text" id="pw2" name="pw2" class="form-control" placeholder="admin second PW"
+											<input type="password" id="pw2" name="pw2" class="form-control" placeholder="admin second PW"
 												value="">
 										</div>
 									</div>

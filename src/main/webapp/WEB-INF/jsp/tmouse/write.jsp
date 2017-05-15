@@ -80,16 +80,16 @@
 </head>
 <body>
 <!-- Breadcrumbs Area Start -->
-        <div class="breadcrumbs-area">
+        <div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/join_img.png')">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
 					    <div class="breadcrumbs">
 					       <h2>제품등록</h2> 
 					       <ul class="breadcrumbs-list">
-						        <li>
+						        <!-- <li>
 						            <a title="Return to Home" href="index.html">Home</a>
-						        </li>
+						        </li> -->
 						        <li>제품등록</li>
 						    </ul>
 					    </div>

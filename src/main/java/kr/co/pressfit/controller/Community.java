@@ -190,7 +190,7 @@ public class Community {
     	PrintWriter printwriter = null;
     	String fileName = upload.getOriginalFilename();
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload"+fileName;
+    	String uploadPath = "C:/Users/teauk/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");

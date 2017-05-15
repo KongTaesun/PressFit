@@ -369,7 +369,7 @@ input[type=text]:focus {
 
 
 	<!-- Breadcrumbs Area Start -->
-	<div class="breadcrumbs-area">
+	<div class="breadcrumbs-area" style="background-image: url('${path}/resources/writer/img/bigpicture/join_img.png')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">

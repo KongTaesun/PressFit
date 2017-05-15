@@ -57,7 +57,7 @@
 	        SELECT MAX(idx)+1 FROM CommunityBoard        
 	    </selectKey>
 	    INSERT INTO CommunityBoard (idx,title,subtitle,content,writer,regdate,showdel,ref,turn,level) 
-		VALUES (#{idx},#{title},#{subtitle},#{content},#{writer},NOW(),'y',#{idx},0,0);
+		VALUES (#{idx},#{title},"공지",#{content},#{writer},NOW(),'y',#{idx},0,0);
 	 </insert>
 	 
 	 <insert id="insertcmt">

@@ -320,7 +320,6 @@ function type1obj(obj){
 			      "<div class='col-md-1'></div>"+
 					"<div class='col-md-3 col-sm-6'>"+
 						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div class='price'>추가사항 <br/>65%</div>"+
 							"<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 							"<div class='banner-bottom text-center'>"+
 								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
@@ -444,16 +443,15 @@ function type3obj(obj){
 	    "<div class='single-banner'>"+
 	      "<div class='banner-bottom text-center'>"+
 	      "<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-	        "<div class='zt-skill-bar'><div data-width='"+obj.first._source.content_cnt+"'> 관련 리뷰 <span>"+obj.first._source.content_cnt+"개</span></div></div>"+
+	        "<div class='zt-skill-bar'><div data-width='33'> 관련 리뷰 <span>"+obj.first._source.content_cnt+"개</span></div></div>"+
 	        "<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
 	      "</div></div></div></div>"+
 	          "<div class='col-md-1'></div>"+
 	        "<div class='col-md-3 col-sm-6'>"+
 	          "<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-	           // "<div class='price'>추가사항 <br/>65%</div>"+
 	            "<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 	            "<div class='banner-bottom text-center'>"+
-	              "<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
+	              "<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>62</strong></a>"+
 	            "</div>"+
 	          "</div>"+
 	        "</div>"+
@@ -475,7 +473,7 @@ function type3obj(obj){
 	            "<div style='width:260px;height:260px'>"+
 	            "<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
 	            "<div class='banner-bottom text-center'>"+
-	              "<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
+	              "<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>27</strong></a>"+
 	            "</div>"+
 	          "</div>"+
 	        "</div>";
@@ -522,7 +520,6 @@ function type3obj(obj){
 			clearInterval(inter);
 		} 
 	},500);
-	$('html body').css('height', '110%');
 };
 function type4obj(obj){
 	$('#list2').show();
@@ -681,16 +678,15 @@ function type7obj(obj){
 			"<div class='single-banner'>"+
 				"<div class='banner-bottom text-center'>"+
 				"<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-					"<div class='zt-skill-bar'><div data-width='"+obj.first.content_cnt+"'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
+					"<div class='zt-skill-bar'><div data-width='27'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
 					"<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
 				"</div></div></div></div>"+
 			      "<div class='col-md-1'></div>"+
 					"<div class='col-md-3 col-sm-6'>"+
 						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div class='price'>추가사항 <br/>65%</div>"+
 							"<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
+								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>68</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>"+
@@ -713,7 +709,7 @@ function type7obj(obj){
 							"<div style='width:260px;height:260px'>"+
 							"<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
+								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>66</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>";
@@ -826,16 +822,15 @@ function type9obj(obj){
 			"<div class='single-banner'>"+
 				"<div class='banner-bottom text-center'>"+
 				"<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-					"<div class='zt-skill-bar'><div data-width='"+obj.first.content_cnt+"'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
+					"<div class='zt-skill-bar'><div data-width='32'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
 					"<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
 				"</div></div></div></div>"+
 			      "<div class='col-md-1'></div>"+
 					"<div class='col-md-3 col-sm-6'>"+
 						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div class='price'>추가사항 <br/>65%</div>"+
 							"<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
+								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>38</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>"+
@@ -858,7 +853,7 @@ function type9obj(obj){
 							"<div style='width:260px;height:260px'>"+
 							"<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
+								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>92</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>";
@@ -939,16 +934,15 @@ function type10obj(obj){
 			"<div class='single-banner'>"+
 				"<div class='banner-bottom text-center'>"+
 				"<div class='zt-span6 last' style='padding-top: 0px;padding-right: 10px;padding-bottom: 0px;padding-left: 10px;'>"+
-					"<div class='zt-skill-bar'><div data-width='"+obj.first.content_cnt+"'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
+					"<div class='zt-skill-bar'><div data-width='4'> 관련 리뷰 <span>"+obj.first.content_cnt+"개</span></div></div>"+
 					"<div class='zt-skill-bar'><div data-width='100'>분석 진행 현황<span>100%</span></div></div>"+
 				"</div></div></div></div>"+
 			      "<div class='col-md-1'></div>"+
 					"<div class='col-md-3 col-sm-6'>"+
 						"<div class='single-banner' style='padding: 5%;background-color: white;'>"+
-							"<div class='price'>추가사항 <br/>65%</div>"+
 							"<canvas id='canvas"+j+"' style='' height='260' width='260'></canvas>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>55</strong></a>"+
+								"<a href='#'>제품평가에서 이런평가를 받았어요.<br/>종합점수 : <strong>67</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>"+
@@ -971,7 +965,7 @@ function type10obj(obj){
 							"<div style='width:260px;height:260px'>"+
 							"<canvas id='canvas2"+j+"' height='260' width='260'></canvas></div>"+
 							"<div class='banner-bottom text-center'>"+
-								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>24</strong></a>"+
+								"<a href='#'>리뷰에서 이런평가를 받았어요.<br/>종합점수 : <strong>57</strong></a>"+
 							"</div>"+
 						"</div>"+
 					"</div>";
@@ -1078,7 +1072,7 @@ $(document).ready(function() {
 	var data = null;
 	$.ajax({
 		type : "POST",
-		url: "http://192.168.1.47:8900/?q=${q}",
+		url: "http://192.168.0.26:8900/?q=${q}",
 	 	contentType: "text/plain; charset=utf-8",
 	 	jsonp : "callback",
 	 	dataType : "jsonp",

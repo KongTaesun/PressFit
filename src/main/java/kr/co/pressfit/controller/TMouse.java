@@ -165,30 +165,6 @@ public class TMouse {
     }
     
     
-    
-    
-    @RequestMapping("imageUpload.do")
-    public void imageUpload(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload) throws Exception {
-    	response.setCharacterEncoding("utf-8");
-    	response.setContentType("text/html");
-    	OutputStream out = null;
-    	PrintWriter printwriter = null;
-    	String fileName = upload.getOriginalFilename();
-    	tmouseservice.addAttach(fileName);
-    	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
-    	out = new FileOutputStream(new File(uploadPath));
-    	out.write(bytes);
-    	String callback = request.getParameter("CKEditorFuncNum");
-    	printwriter = response.getWriter();
-    	String fileUrl = request.getContextPath()+"/resources/upload/"+fileName;
-    	printwriter.println("<script> window.parent.CKEDITOR.tools.callFunction("
-    			+callback+",'"+fileUrl+"','dwqwsqqq')"
-    					+ "</script>");
-    	printwriter.flush();
-    	out.close(); 
-    } 
-
     @RequestMapping("imageUpdate.do")
     public void imageUpdate(HttpServletRequest request, HttpServletResponse response,@RequestParam MultipartFile upload, TMouseVO vo) throws Exception {
     	response.setCharacterEncoding("utf-8");
@@ -199,7 +175,7 @@ public class TMouse {
     	int idx = vo.getIdx();
     	tmouseservice.updateAttach(fileName, idx);
     	byte[] bytes = upload.getBytes();
-    	String uploadPath = "C:/Users/bit/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/PressFit/resources/upload/"+fileName;
+    	String uploadPath = "C:/Users/teauk/PressFit/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PressFit/resources/upload/"+fileName;
     	out = new FileOutputStream(new File(uploadPath));
     	out.write(bytes);
     	String callback = request.getParameter("CKEditorFuncNum");
